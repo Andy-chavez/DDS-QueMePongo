@@ -54,13 +54,13 @@ public class Guardarropa {
 		List<Prenda> accesorios=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
 		
 		Atuendo atuendoSugerido= new Atuendo();
-		for(int i=0;i<prendasSuperiores.toArray().length;i++){
+		for(int i=0;i<prendasSuperiores.size();i++){
 			atuendoSugerido.setParteSuperior(prendasSuperiores.get(i));
-			for(int j=0;j<prendasInferiores.toArray().length;j++){
+			for(int j=0;j<prendasInferiores.size();j++){
 				atuendoSugerido.setParteInferior(prendasInferiores.get(j));
-				for(int h=0;h<calzados.toArray().length;h++){
+				for(int h=0;h<calzados.size();h++){
 					atuendoSugerido.setCalzado(calzados.get(h));
-					for(int g=0;g<accesorios.toArray().length;g++){
+					for(int g=0;g<accesorios.size();g++){
 						atuendoSugerido.setAccesorio(accesorios.get(g));
 						if(!this.atuendosRechazados.contains(atuendoSugerido)){
 							return atuendoSugerido;
