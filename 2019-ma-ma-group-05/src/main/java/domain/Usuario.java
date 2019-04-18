@@ -28,15 +28,7 @@ public class Usuario {
 		this.guardarropas.add(guardarropa);
 	}
 	
-	public Atuendo obtenerSugerencia(Guardarropa guardarropa) throws Exception{
-		/*Ése throw que está en la firma es para que no rompa los huevos digamos.
-		 * En realidad estaría burbujeando la excepción a tal punto que le explota en la cara
-		 * al usuario. Como todavía no sabría que hacer si al usuario no le gusta ninguna sugerencia,
-		 * lo dejo así y no hago ningun catch porque claramente no se que hacer con la excepción al atraparla.
-		 * Cuando algún profe me conteste por el foro qué hacer, ahí vería donde meter el catch
-		 * 
-		 
-		 */
+	public Atuendo obtenerSugerencia(Guardarropa guardarropa) {
 		return guardarropa.obtenerSugerencia();
 	}
 	

@@ -45,8 +45,7 @@ public class Guardarropa {
 	filtremos la lista según cualquier condición, pero no lo piden todavía así que...
 	
 	*/
-	public Atuendo obtenerSugerencia() throws Exception{ 
-		//Hice una pregunta en el foro para ver como solucionar el tema de las Exception.
+	public Atuendo obtenerSugerencia() { 
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_SUPERIOR));
 		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_INFERIOR));
@@ -69,7 +68,11 @@ public class Guardarropa {
 				}
 			}
 		}
-		throw new Exception("Todos los atuendos han sido rechazados");
+		return atuendoSugerido;/*
+		Si todos los atuendos son rechazados devuelvo el último de todos.
+		Solución villera detected. Le tuve que agregar eso para sacar el throw exception,porque el profe
+		me respondió que acá se va agregar otro requerimiento más tarde.
+		*/
 		
 	}
 	
