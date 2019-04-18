@@ -21,12 +21,5 @@ public class Atuendo {
 	public void setAccesorio(Prenda unaPrenda){
 		this.accesorio=unaPrenda;
 	}
-	/*public Boolean esIgualA(Atuendo otroAtuendo){
-		
-		for(int i=0;i<5;i++){
-			
-			return false;
-		}
-		return true;
-	}*/
+	
 }
