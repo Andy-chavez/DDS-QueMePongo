@@ -12,6 +12,10 @@ public class Guardarropa {
 	private List<Prenda> prendas;
 	private List<Atuendo> atuendosRechazados;
 	
+	public Guardarropa(String unNombre){
+		this.nombre=unNombre;
+		this.prendas=new ArrayList<Prenda>();
+	} 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas){
 		this.nombre=unNombre;
 		this.prendas=new ArrayList<Prenda>();

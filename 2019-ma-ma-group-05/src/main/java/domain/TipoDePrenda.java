@@ -21,7 +21,7 @@ public class TipoDePrenda {
 	public Categoria getCategoria(){
 		return this.categoria;
 	}
-	public Boolean telaInconsistente(){
-		return this.telasInconsistentes.contains(tela);
+	public Boolean telaInconsistente(Tela unaTela){
+		return this.telasInconsistentes.contains(unaTela);
 	}
 }
