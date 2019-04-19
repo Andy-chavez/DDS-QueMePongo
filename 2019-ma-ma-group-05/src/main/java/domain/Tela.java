@@ -1,5 +1,11 @@
 package domain;
 
 public enum Tela {
-	//consultar tipos de tela disponibles
+	ALGODON,
+	CUERO,
+	NYLON,
+	POLYESTER,
+	ELASTINA,
+	SEDA
+	//consultar tipos de tela disponibles, agregué algunas que se me ocurrieron
 }

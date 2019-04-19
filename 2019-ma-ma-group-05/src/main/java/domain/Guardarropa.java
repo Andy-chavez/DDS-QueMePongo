@@ -2,10 +2,10 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import domain.Atuendo;
+import domain.Prenda;
 
 public class Guardarropa {
 	private String nombre;

@@ -1,7 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import domain.Prenda;
 
 public class Atuendo {
 	private Prenda parteSuperior;

@@ -1,13 +1,18 @@
 package domain;
-import java.sql.NClob;
+
 import java.util.ArrayList;
 import java.util.List;
-public abstract class TipoDePrenda {
+import domain.Tela;
+import domain.Categoria;
+
+public class TipoDePrenda {
+	private String tipo;
 	private Categoria categoria;
 	private List<Tela> telasInconsistentes;
 	private Tela tela;
 	
-	public TipoDePrenda(Categoria unaCategoria, Tela unaTela){
+	public TipoDePrenda(String unTipo, Categoria unaCategoria, Tela unaTela){
+		this.tipo =unTipo;
 		this.categoria=unaCategoria;
 		this.tela=unaTela;
 		this.telasInconsistentes=new ArrayList<Tela>();

@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import domain.Guardarropa;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
