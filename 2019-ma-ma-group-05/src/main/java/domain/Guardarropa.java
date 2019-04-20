@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
@@ -49,15 +50,16 @@ public class Guardarropa {
 	filtremos la lista según cualquier condición, pero no lo piden todavía así que...
 	
 	*/
-	public Atuendo obtenerSugerencia() { 
+public List<Atuendo> obtenerTodasLasSugerencias() { 
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_SUPERIOR));
 		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_INFERIOR));
 		List<Prenda> calzados=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
 		
-		Atuendo atuendoSugerido= new Atuendo();
+		List<Atuendo> atuendos = new ArrayList<Atuendo>();
 		for(int i=0;i<prendasSuperiores.size();i++){
+			Atuendo atuendoSugerido= new Atuendo();
 			atuendoSugerido.setParteSuperior(prendasSuperiores.get(i));
 			for(int j=0;j<prendasInferiores.size();j++){
 				atuendoSugerido.setParteInferior(prendasInferiores.get(j));
@@ -65,18 +67,17 @@ public class Guardarropa {
 					atuendoSugerido.setCalzado(calzados.get(h));
 					for(int g=0;g<accesorios.size();g++){
 						atuendoSugerido.setAccesorio(accesorios.get(g));
-						if(!this.atuendosRechazados.contains(atuendoSugerido)){
-							return atuendoSugerido;
-						}
+						atuendos.add(atuendoSugerido);
 					}
 				}
 			}
 		}
-		return atuendoSugerido;/*
-		Si todos los atuendos son rechazados devuelvo el último de todos.
-		Solución villera detected. Le tuve que agregar eso para sacar el throw exception,porque el profe
-		me respondió que acá se va agregar otro requerimiento más tarde.
-		*/
+		return atuendos;
+	}
+	public Atuendo obtenerSugerencia(){
+		List<Atuendo> atuendosSugeridos= this.obtenerTodasLasSugerencias();
+		Random random =  new Random();
+		return atuendosSugeridos.get(random.nextInt(atuendosSugeridos.size()));
 		
 	}
 	
