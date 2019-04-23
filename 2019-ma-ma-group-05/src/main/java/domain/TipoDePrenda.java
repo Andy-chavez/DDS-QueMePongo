@@ -7,7 +7,7 @@ import domain.Categoria;
 
 public abstract class TipoDePrenda {
 	private Categoria categoria;
-	private List<Tela> telasInconsistentes;
+	protected static List<Tela> telasInconsistentes;
 	private Tela tela;
 	/*
 	 * public TipoDePrenda(String unTipo, Categoria unaCategoria, Tela unaTela){
@@ -21,13 +21,16 @@ public abstract class TipoDePrenda {
 	public TipoDePrenda(Categoria unaCategoria, Tela unaTela){
 		this.categoria=unaCategoria;
 		this.tela=unaTela;
-		this.telasInconsistentes=new ArrayList<Tela>();
+		telasInconsistentes=new ArrayList<Tela>();
 		
+	}
+	public static void setTelasInconsistentes(List<Tela> unasTelas){
+		telasInconsistentes.addAll(unasTelas);
 	}
 	public Categoria getCategoria(){
 		return this.categoria;
 	}
-	public Boolean telaInconsistente(Tela unaTela){
-		return this.telasInconsistentes.contains(unaTela);
+	public Boolean prendaInconsistente(){
+		return this.telasInconsistentes.contains(this.tela);
 	}
 }
