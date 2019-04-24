@@ -3,6 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import domain.Guardarropa;
+import domain.Excepciones.AccesorioMalConstruido;
+import domain.Excepciones.CalzadoMalConstruido;
+import domain.Excepciones.PantalonMalConstruido;
+import domain.Excepciones.RemeraMalConstruida;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
@@ -24,6 +28,7 @@ public class Usuario {
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
 		armario.agregarPrenda(prenda);
+		
 	}
 	public void agregarGuardarropa(Guardarropa guardarropa){
 		this.guardarropas.add(guardarropa);

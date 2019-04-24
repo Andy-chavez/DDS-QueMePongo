@@ -7,6 +7,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
+import domain.Excepciones.AccesorioMalConstruido;
+import domain.Excepciones.CalzadoMalConstruido;
+import domain.Excepciones.PantalonMalConstruido;
+import domain.Excepciones.RemeraMalConstruida;
 
 public class Guardarropa {
 	private String nombre;
@@ -20,21 +24,16 @@ public class Guardarropa {
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas){
 		this.nombre=unNombre;
 		this.prendas=new ArrayList<Prenda>();
-		this.agregarPrendas(unasPrendas);
+		this.prendas.addAll(unasPrendas);
 	}
 	
 	public String getNombre(){return this.nombre;}
-	public void setNombre(String unNombre){
-		this.nombre=unNombre;
-	}
+	
+	public void setNombre(String unNombre){this.nombre=unNombre;}
 	
 	public List<Prenda> getPrendas(){return this.prendas;}
-	public void agregarPrenda(Prenda prenda){
-		this.prendas.add(prenda);
-	}
-	public void agregarPrendas(List<Prenda> prendas) {
-		this.prendas.addAll(prendas);
-	}
+	
+	public void agregarPrenda(Prenda prenda) {this.prendas.add(prenda);}
 	
 	public List<Atuendo> getAtuendosRechazados(){return this.atuendosRechazados;}
 	

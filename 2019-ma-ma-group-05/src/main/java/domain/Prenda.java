@@ -3,6 +3,10 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 import domain.TipoDePrenda;
+import domain.Excepciones.AccesorioMalConstruido;
+import domain.Excepciones.CalzadoMalConstruido;
+import domain.Excepciones.PantalonMalConstruido;
+import domain.Excepciones.RemeraMalConstruida;
 
 public class Prenda {
 	private List<Color> colores;
@@ -22,7 +26,8 @@ public class Prenda {
 		this.colores=new ArrayList<Color>();
 		this.colores.addAll(colores);
 	}
-	public Prenda(List<Color> colores,TipoDePrenda unTipo){
+	public Prenda(List<Color> colores,TipoDePrenda unTipo) throws AccesorioMalConstruido,CalzadoMalConstruido,
+	PantalonMalConstruido,RemeraMalConstruida{
 		this.tipo=unTipo;
 		this.colores=new ArrayList<Color>();
 		this.colores.addAll(colores);

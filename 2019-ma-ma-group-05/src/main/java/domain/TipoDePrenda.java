@@ -27,6 +27,7 @@ public abstract class TipoDePrenda {
 	public static void setTelasInconsistentes(List<Tela> unasTelas){
 		telasInconsistentes.addAll(unasTelas);
 	}
+	public static List<Tela> getTelasInconsistentes(){return telasInconsistentes;}
 	public Categoria getCategoria(){
 		return this.categoria;
 	}
