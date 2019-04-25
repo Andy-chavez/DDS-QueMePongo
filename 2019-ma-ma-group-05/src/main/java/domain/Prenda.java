@@ -29,7 +29,8 @@ public class Prenda {
 		this.colores.addAll(colores);
 	} //Agrego constructor sin la descripción en caso de que el usuario lo quiera sin la misma
 	
-	public Categoria categoria(){
+	
+	public Categoria getCategoria(){
 		return this.tipo.getCategoria();
 	}
 	

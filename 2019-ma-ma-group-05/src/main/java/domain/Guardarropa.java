@@ -23,7 +23,7 @@ public class Guardarropa {
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas){
 		this.nombre=unNombre;
 		this.prendas=new ArrayList<Prenda>();
-		this.prendas.addAll(unasPrendas);
+		this.agregarPrendas(unasPrendas);
 	}
 	
 	public String getNombre(){return this.nombre;}
@@ -33,12 +33,13 @@ public class Guardarropa {
 	public List<Prenda> getPrendas(){return this.prendas;}
 	
 	public void agregarPrenda(Prenda prenda) {this.prendas.add(prenda);}
+	public void agregarPrendas(List<Prenda> unasPrendas){this.prendas.addAll(unasPrendas);}
 		
 	public List<Prenda> filtrarPrendasSegunCondicion(Predicate<Prenda> predicado){		
 		return this.prendas.stream().filter(predicado).collect(Collectors.toList());		
 	}
 	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria){
-		return prenda->prenda.categoria()==unaCategoria;
+		return prenda->prenda.getCategoria()==unaCategoria;
 	}
 	/*Supongo que éstos 2 anteriores métodos en realidad van en otra clase que se encargue de filtrar.
 	Además en esa clase podríamos poner otros métodos como "esDeColor(Color unColor)" y otras boludeces más para que

@@ -24,5 +24,4 @@ public class Atuendo {
 	public void setAccesorio(Prenda unaPrenda){
 		this.accesorio=unaPrenda;
 	}
-	
 }
