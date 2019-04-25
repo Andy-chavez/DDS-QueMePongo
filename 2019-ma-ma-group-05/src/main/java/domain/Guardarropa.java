@@ -15,7 +15,6 @@ import domain.Excepciones.RemeraMalConstruida;
 public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
-	private List<Atuendo> atuendosRechazados;
 	
 	public Guardarropa(String unNombre){
 		this.nombre=unNombre;
@@ -34,9 +33,7 @@ public class Guardarropa {
 	public List<Prenda> getPrendas(){return this.prendas;}
 	
 	public void agregarPrenda(Prenda prenda) {this.prendas.add(prenda);}
-	
-	public List<Atuendo> getAtuendosRechazados(){return this.atuendosRechazados;}
-	
+		
 	public List<Prenda> filtrarPrendasSegunCondicion(Predicate<Prenda> predicado){		
 		return this.prendas.stream().filter(predicado).collect(Collectors.toList());		
 	}
@@ -75,9 +72,17 @@ public List<Atuendo> obtenerTodasLasSugerencias() {
 	}
 	public Atuendo obtenerSugerencia(){
 		List<Atuendo> atuendosSugeridos= this.obtenerTodasLasSugerencias();
-		Random random =  new Random();
-		return atuendosSugeridos.get(random.nextInt(atuendosSugeridos.size()));
-		
+		/*Random random =  new Random();
+		return atuendosSugeridos.get(random.nextInt(atuendosSugeridos.size()));*/
+		return atuendosSugeridos.get(0);
+	}
+	
+	//Test
+	public static Guardarropa testCrearGuardarropa() throws RemeraMalConstruida, PantalonMalConstruido,
+	CalzadoMalConstruido, AccesorioMalConstruido{
+		Guardarropa guardarropa= new Guardarropa("ropalinda");
+		guardarropa.prendas.addAll(Prenda.testCrearPrendas());
+		return guardarropa;
 	}
 	
 }

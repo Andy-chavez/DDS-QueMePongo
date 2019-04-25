@@ -8,6 +8,10 @@ public class Atuendo {
 	private Prenda calzado;
 	private Prenda accesorio;
 	
+	public Prenda getParteSuperior(){return this.parteSuperior;}
+	public Prenda getParteInferior(){return this.parteInferior;}
+	public Prenda getCalzado(){return this.calzado;}
+	public Prenda getAccesorio(){return this.accesorio;}
 	public void setParteSuperior(Prenda unaPrenda){
 		this.parteSuperior=unaPrenda;
 	}

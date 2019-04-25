@@ -2,6 +2,10 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import domain.Guardarropa;
 import domain.Excepciones.AccesorioMalConstruido;
 import domain.Excepciones.CalzadoMalConstruido;
@@ -26,6 +30,14 @@ public class Usuario {
 	public void setNombre(String unNombre){
 		this.nombre=unNombre;
 	}
+	public Guardarropa getGuardarropa(String unNombre){
+		return this.getGuardarropas().stream().filter(g -> g.getNombre().toLowerCase()==unNombre.toLowerCase())
+				.collect(Collectors.toList()).get(0);
+	}
+	
+	public List<Guardarropa> getGuardarropas(){
+		return this.guardarropas;
+	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
 		armario.agregarPrenda(prenda);
 		
@@ -36,6 +48,14 @@ public class Usuario {
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa) {
 		return guardarropa.obtenerSugerencia();
+	}
+	
+	//Test
+	public static Usuario testGenerarUsuario() throws RemeraMalConstruida, PantalonMalConstruido,
+	CalzadoMalConstruido, AccesorioMalConstruido{
+		Guardarropa guardarropa= Guardarropa.testCrearGuardarropa();
+		Usuario usuario1= new Usuario("santi",guardarropa);
+		return usuario1;
 	}
 	
 }

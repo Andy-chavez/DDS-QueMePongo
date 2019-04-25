@@ -9,15 +9,7 @@ public abstract class TipoDePrenda {
 	private Categoria categoria;
 	protected static List<Tela> telasInconsistentes;
 	private Tela tela;
-	/*
-	 * public TipoDePrenda(String unTipo, Categoria unaCategoria, Tela unaTela){
-		this.tipo =unTipo;
-		this.categoria=unaCategoria;
-		this.tela=unaTela;
-		this.telasInconsistentes=new ArrayList<Tela>();
-		
-	}
-	 */
+	
 	public TipoDePrenda(Categoria unaCategoria, Tela unaTela){
 		this.categoria=unaCategoria;
 		this.tela=unaTela;
