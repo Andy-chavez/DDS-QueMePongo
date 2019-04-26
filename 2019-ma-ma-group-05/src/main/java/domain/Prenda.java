@@ -34,7 +34,7 @@ public abstract class Prenda {
 		this.categoria=unaCategoria;
 		this.tela=unaTela;
 	} //Agrego constructor sin la descripción en caso de que el usuario lo quiera sin la misma
-	
+	public String getDesripcion(){return this.descripcion;}
 	public static void setTelasInconsistentes(List<Tela> unasTelas){
 		telasInconsistentes.addAll(unasTelas);
 	}

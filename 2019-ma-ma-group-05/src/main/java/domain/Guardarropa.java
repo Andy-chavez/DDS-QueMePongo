@@ -7,10 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
-import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.PantalonMalConstruido;
-import domain.Excepciones.RemeraMalConstruida;
-import domain.Excepciones.ZapatosMalConstruidos;
+import domain.Excepciones.*;
 
 public class Guardarropa {
 	private String nombre;
@@ -41,13 +38,8 @@ public class Guardarropa {
 	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria){
 		return prenda->prenda.getCategoria()==unaCategoria;
 	}
-	/*Supongo que éstos 2 anteriores métodos en realidad van en otra clase que se encargue de filtrar.
-	Además en esa clase podríamos poner otros métodos como "esDeColor(Color unColor)" y otras boludeces más para que
-	con el método "filtrarSegunCondicion" 
-	filtremos la lista según cualquier condición, pero no lo piden todavía así que...
 	
-	*/
-public List<Atuendo> obtenerTodasLasSugerencias() { 
+	public List<Atuendo> obtenerTodasLasSugerencias() { 
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_SUPERIOR));
 		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_INFERIOR));
