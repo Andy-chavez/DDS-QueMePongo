@@ -18,14 +18,20 @@ import domain.TiposDePrenda.Remera;
 import domain.TiposDePrenda.Zapatos;
 
 public class testPrendas{
-
+	
+	@Test
+	public void seCreaPrendaSatisfactoriamente() throws RemeraMalConstruida{
+		List<Color> colores=new ArrayList<Color>();
+		colores.add(Color.NEGRO);
+		Remera unaRemera=new Remera(colores,Tela.SEDA);
+		assertNotNull(colores);
+	}
 	@Test
 	public void seAgregaPrendaSatisfactoriamente() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido{
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
-		TipoDePrenda unTipo=new Remera(Tela.SEDA);
-		Prenda prenda=new Prenda(unosColores,unTipo);
+		Prenda prenda=new Remera(unosColores,Tela.SEDA);
 		usuario.agregarPrenda(usuario.getGuardarropa("ropalinda"), prenda);
 		assertTrue(usuario.getGuardarropa("ropalinda").getPrendas().contains(prenda));
 	}
@@ -34,7 +40,7 @@ public class testPrendas{
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
-		Prenda prenda=new Prenda(unosColores,new Remera(Tela.SEDA));
+		Prenda prenda=new Remera(unosColores,Tela.SEDA);
 		Guardarropa guardarropaNuevo = new Guardarropa("ropavieja");
 		guardarropaNuevo.agregarPrenda(prenda);
 		usuario.agregarGuardarropa(guardarropaNuevo);
@@ -44,25 +50,25 @@ public class testPrendas{
 	public void seRompeAlCrearPantalonInconsistente() throws PantalonMalConstruido{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
-		Prenda prenda = new Prenda(unosColores,"un pantalon fisura",new Pantalon(Tela.NYLON));
+		Prenda prenda = new Pantalon(unosColores,"un pantalon fisura",Tela.NYLON);
 	}
 	@Test(expected=RemeraMalConstruida.class)
 	public void seRompeAlCrearRemeraInconsistente() throws RemeraMalConstruida{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
-		Prenda prenda = new Prenda(unosColores,"una remera fisura",new Remera(Tela.CUERO));
+		Prenda prenda = new Remera(unosColores,"una remera fisura",Tela.CUERO);
 	}
 	@Test(expected=ZapatosMalConstruidos.class)
 	public void seRompeAlCrearCalzadoInconsistente() throws ZapatosMalConstruidos{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
-		Prenda prenda = new Prenda(unosColores,"un pantalon fisura",new Zapatos(Tela.SEDA));
+		Prenda prenda = new Zapatos(unosColores,"un pantalon fisura",Tela.SEDA);
 	}
 	@Test(expected=AccesorioMalConstruido.class)
 	public void seRompeAlCrearAccesorioInconsistente() throws AccesorioMalConstruido{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
-		Prenda prenda = new Prenda(unosColores,"un accesorio fisura",new Accesorio(Tela.ALGODON));
+		Prenda prenda = new Accesorio(unosColores,"un accesorio fisura",Tela.ALGODON);
 	}
 	
 }
