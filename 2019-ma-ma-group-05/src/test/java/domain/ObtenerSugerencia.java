@@ -13,20 +13,20 @@ import org.junit.Test;
 
 
 import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.CalzadoMalConstruido;
 import domain.Excepciones.PantalonMalConstruido;
 import domain.Excepciones.RemeraMalConstruida;
+import domain.Excepciones.ZapatosMalConstruidos;
 
 public class ObtenerSugerencia {
 
 	@Test
-	public void testObtenerAlgunaSugerencia() throws RemeraMalConstruida, PantalonMalConstruido, CalzadoMalConstruido, AccesorioMalConstruido {
+	public void testObtenerAlgunaSugerencia() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
 		assertNotNull(usuario.obtenerSugerencia(usuario.getGuardarropas().get(0)));
 	}
 	@Test
-	public void testObtenerSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, CalzadoMalConstruido, AccesorioMalConstruido {
+	public void testObtenerSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
 		Atuendo atuendo=new Atuendo();
@@ -40,18 +40,9 @@ public class ObtenerSugerencia {
 		atuendo.setCalzado(unosZapatos);
 		atuendo.setParteInferior(unPantalon);
 		atuendo.setParteSuperior(unaRemera);
-		/*El atuendo que me debería dar tiene los mismos atributos que el atuendo que me devuelve  el obtenerSugerencia
-		 *Sin embargo, cuando los comparo me tira bandera azul y no me pasa el test 
-		 */
-		/*System.out.println(usuario.obtenerSugerencia(guardarropa).atuendosIguales(atuendo));
-		System.out.println(atuendo.getParteSuperior().equals(usuario.obtenerSugerencia(guardarropa).getParteSuperior()));
-		System.out.println(atuendo.getParteInferior().equals(usuario.obtenerSugerencia(guardarropa).getParteInferior()));
-		System.out.println(atuendo.getCalzado().equals(usuario.obtenerSugerencia(guardarropa).getCalzado()));
-		System.out.println(atuendo.getAccesorio().equals(usuario.obtenerSugerencia(guardarropa).getAccesorio()));
 		/*Misma remera, mismo pantalon, todos los attr iguales
 		, pero sin embargo cuando los comparo  me da bandera azul y no pasa el test
 		*/
-		//System.out.println(usuario.getGuardarropa("ropalinda").obtenerTodasLasSugerencias());
 		List<Atuendo> atuendossugeridos=new ArrayList<Atuendo>();
 		atuendossugeridos=usuario.getGuardarropa("ropalinda").obtenerTodasLasSugerencias();
 		System.out.println("Cantidad de atuendos sugeridos: " +atuendossugeridos.size());
@@ -64,9 +55,7 @@ public class ObtenerSugerencia {
 		}/*Ésto fue para probar que me crea varios atuendos con las combinaciones, teóricamente el algoritmo funciona.
 		Hasta ahora en nuestro guardarropa tenemos 1 pantalon, 1 accesorio, 1 calzado y 2 remeras, me debería crear 2 atuendos
 		y lo hace efectivamente.*/
-		
 		assertTrue(atuendo.getParteSuperior()==usuario.obtenerSugerencia(guardarropa).getParteSuperior());
-	
 
 }
 }

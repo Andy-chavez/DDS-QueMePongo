@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import domain.TipoDePrenda;
 import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.CalzadoMalConstruido;
 import domain.Excepciones.PantalonMalConstruido;
 import domain.Excepciones.RemeraMalConstruida;
+import domain.Excepciones.ZapatosMalConstruidos;
 import domain.TiposDePrenda.Accesorio;
 import domain.TiposDePrenda.Pantalon;
 import domain.TiposDePrenda.Remera;
@@ -37,7 +37,7 @@ public class Prenda {
 	
 	//Test. DESPUES VEO SI ME SALE LO DE IMPLEMENTAR EL USO DE JSON. NUNCA LO HICE POR ESO PRIMERO HAGO ÉSTO.
 	public static List<Prenda> testCrearPrendas() throws RemeraMalConstruida, PantalonMalConstruido,
-	CalzadoMalConstruido, AccesorioMalConstruido{
+	ZapatosMalConstruidos, AccesorioMalConstruido{
 		List<Prenda> unasPrendas= new ArrayList<Prenda>();
 		
 		List<Color> unosColores1=new ArrayList<Color>();

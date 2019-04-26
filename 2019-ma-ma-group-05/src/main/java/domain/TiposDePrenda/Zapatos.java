@@ -3,11 +3,11 @@ package domain.TiposDePrenda;
 import domain.Categoria;
 import domain.Tela;
 import domain.TipoDePrenda;
-import domain.Excepciones.CalzadoMalConstruido;
+import domain.Excepciones.ZapatosMalConstruidos;
 
 public class Zapatos extends TipoDePrenda{
 
-	public Zapatos(Tela unaTela)throws CalzadoMalConstruido{
+	public Zapatos(Tela unaTela)throws ZapatosMalConstruidos{
 		super(Categoria.CALZADO,unaTela);
 		/*Acá habría que setearle los tipos de tela que no admitiría. 
 		 * Los datos reales no los tenemos así que los invento SOLO PARA PODER TESTEAR. 
@@ -16,7 +16,7 @@ public class Zapatos extends TipoDePrenda{
 		telasInconsistentes.add(Tela.POLYESTER);
 		telasInconsistentes.add(Tela.SEDA);
 		if(this.prendaInconsistente()){
-			throw new CalzadoMalConstruido();
+			throw new ZapatosMalConstruidos();
 		}
 	}
 }

@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
 import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.CalzadoMalConstruido;
 import domain.Excepciones.PantalonMalConstruido;
 import domain.Excepciones.RemeraMalConstruida;
+import domain.Excepciones.ZapatosMalConstruidos;
 
 public class Guardarropa {
 	private String nombre;
@@ -80,7 +80,7 @@ public List<Atuendo> obtenerTodasLasSugerencias() {
 	
 	//Test
 	public static Guardarropa testCrearGuardarropa() throws RemeraMalConstruida, PantalonMalConstruido,
-	CalzadoMalConstruido, AccesorioMalConstruido{
+	ZapatosMalConstruidos, AccesorioMalConstruido{
 		Guardarropa guardarropa= new Guardarropa("ropalinda");
 		guardarropa.prendas.addAll(Prenda.testCrearPrendas());
 		return guardarropa;
