@@ -47,6 +47,9 @@ public class Usuario {
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa) {
 		return guardarropa.obtenerSugerencia();
 	}
+	public List<Atuendo> obtenerTodasLasSugerencias(Guardarropa guardarropa){
+		return guardarropa.obtenerTodasLasSugerencias();
+	}
 	
 	//Test
 	public static Usuario testGenerarUsuario() throws RemeraMalConstruida, PantalonMalConstruido,
