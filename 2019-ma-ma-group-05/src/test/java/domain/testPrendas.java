@@ -24,7 +24,7 @@ public class testPrendas{
 		List<Color> colores=new ArrayList<Color>();
 		colores.add(Color.NEGRO);
 		Remera unaRemera=new Remera(colores,Tela.SEDA);
-		assertNotNull(colores);
+		assertNotNull(unaRemera);
 	}
 	@Test
 	public void seAgregaPrendaSatisfactoriamente() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido{
@@ -40,11 +40,33 @@ public class testPrendas{
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
-		Prenda prenda=new Remera(unosColores,Tela.SEDA);
-		Guardarropa guardarropaNuevo = new Guardarropa("ropavieja");
-		guardarropaNuevo.agregarPrenda(prenda);
+		List <Color> otrosColores = new ArrayList<Color>();
+		otrosColores.add(Color.NEGRO);
+		Prenda prenda1=new Remera(unosColores,Tela.SEDA);
+		Prenda prenda2= new Pantalon(otrosColores,Tela.CUERO);
+		
+		List<Prenda> prendas = new ArrayList<Prenda>();
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		Guardarropa guardarropaNuevo = new Guardarropa("ropavieja",prendas);
 		usuario.agregarGuardarropa(guardarropaNuevo);
 		assertTrue(usuario.getGuardarropas().contains(guardarropaNuevo));
+	}
+	@Test(expected=RemeraMalConstruida.class)
+	public void seRompeAlIntentarAgregarGuardarropaConPrendaMalConstruida() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+		Usuario usuario=Usuario.testGenerarUsuario();
+		List<Color> unosColores= new ArrayList<Color>();
+		unosColores.add(Color.AMARILLO);
+		List <Color> otrosColores = new ArrayList<Color>();
+		otrosColores.add(Color.NEGRO);
+		Prenda prenda1=new Remera(unosColores,Tela.CUERO);
+		Prenda prenda2= new Pantalon(otrosColores,Tela.CUERO);
+		
+		List<Prenda> prendas = new ArrayList<Prenda>();
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		Guardarropa guardarropaNuevo = new Guardarropa("ropavieja",prendas);
+		usuario.agregarGuardarropa(guardarropaNuevo);
 	}
 	@Test(expected=PantalonMalConstruido.class)
 	public void seRompeAlCrearPantalonInconsistente() throws PantalonMalConstruido{

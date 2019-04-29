@@ -12,11 +12,7 @@ import domain.Excepciones.*;
 public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
-	
-	public Guardarropa(String unNombre){
-		this.nombre=unNombre;
-		this.prendas=new ArrayList<Prenda>();
-	} 
+	 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas){
 		this.nombre=unNombre;
 		this.prendas=new ArrayList<Prenda>();
@@ -67,8 +63,7 @@ public class Guardarropa {
 	//Test
 	public static Guardarropa testCrearGuardarropa() throws RemeraMalConstruida, PantalonMalConstruido,
 	ZapatosMalConstruidos, AccesorioMalConstruido{
-		Guardarropa guardarropa= new Guardarropa("ropalinda");
-		guardarropa.prendas.addAll(Prenda.testCrearPrendas());
+		Guardarropa guardarropa= new Guardarropa("ropalinda",Prenda.testCrearPrendas());
 		return guardarropa;
 	}
 	
