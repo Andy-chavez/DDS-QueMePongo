@@ -1,0 +1,127 @@
+[33mcommit 0d0aea12b60897c2dadd69b3d417c3f3d9da5601[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: aaceb9d 4a7a037
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 24 13:28:41 2019 -0300
+
+    Merge branch 'master' of https://github.com/dds-utn/2019-ma-ma-group-05
+
+[33mcommit aaceb9d55e854b2adf6114c849505384b3da41f4[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 24 13:27:06 2019 -0300
+
+    cosillas
+
+[33mcommit 4a7a0372a2c30bccfc15e16b25d0a3e3ea9a2e9a[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Wed Apr 24 08:57:18 2019 -0300
+
+    Delete org.eclipse.core.resources.prefs
+
+[33mcommit f1f13bc3e9cd05ced832eccd0f7d220267a39cfb[m
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Wed Apr 24 08:57:08 2019 -0300
+
+    Delete org.eclipse.jdt.core.prefs
+
+[33mcommit 5295a631db3d3941384537be6812d567ffb602d2[m
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Wed Apr 24 08:56:58 2019 -0300
+
+    Delete org.eclipse.m2e.core.prefs
+
+[33mcommit 75e4fe6909ce86382adee262af43a7c899486ed5[m
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Wed Apr 24 08:56:31 2019 -0300
+
+    Delete .project
+
+[33mcommit c6b7d217126ca44d4bb214cce69194506cc9c95f[m
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Wed Apr 24 08:55:37 2019 -0300
+
+    Ignore de autogenerados
+
+[33mcommit d4902680bedbbcaf4086021ddb607b5966268536[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Tue Apr 23 20:22:33 2019 -0300
+
+    idem, me olvidé unas lineas
+
+[33mcommit f3e3dd145b7042b2fc73018e91b9688090385232[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Tue Apr 23 19:48:03 2019 -0300
+
+    Excepciones agregadas de acuerdo al tipo de prenda
+
+[33mcommit 06c2dfbf6d4553c9095156ad01c413438033abfb[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Sat Apr 20 17:23:44 2019 -0300
+
+    Cambios en el obtenerSugerencias y plantie discusión en los constructores de Prenda y TipoPrenda
+
+[33mcommit c8c51d9be090738a5139beef9cee3b5e8b49d30e[m
+Author: Andy-chavez <andychavez02@gmail.com>
+Date:   Fri Apr 19 14:39:39 2019 -0300
+
+    Agrego enunciado
+
+[33mcommit e3515028eb8f63c31cd76ac1ddc095b2febe667a[m
+Author: Andy-chavez <andychavez02@gmail.com>
+Date:   Fri Apr 19 14:36:31 2019 -0300
+
+    Agrego diagrama
+
+[33mcommit 041e3fd8ae9e77dbe703f64d0eede1a798b49d44[m
+Author: Andy-chavez <andychavez02@gmail.com>
+Date:   Fri Apr 19 14:03:33 2019 -0300
+
+    Cambios pequeños
+
+[33mcommit b14468bcb290065fad8513e75ec938171a4e4f36[m
+Author: Andy-chavez <andychavez02@gmail.com>
+Date:   Fri Apr 19 13:02:38 2019 -0300
+
+    Agrego de imports+cambio en constructores+cambios pequeños
+
+[33mcommit 72b13ce2e2c2e9a2ef155051b01e15f8511502ed[m
+Merge: 730bcef 5a6a56f
+Author: Andy-chavez <32040585+Andy-chavez@users.noreply.github.com>
+Date:   Fri Apr 19 12:21:29 2019 -0300
+
+    Mergeo branch de Santi a master
+
+[33mcommit 5a6a56fe5538587363c90e72fca94c662a1806a9[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Thu Apr 18 15:09:54 2019 -0300
+
+    Saqué lo de las excepcions
+
+[33mcommit 8772d84d8d8a525a34561081370f8e03cab900f8[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 17 23:13:50 2019 -0300
+
+    La tercera la vencida
+
+[33mcommit bd8b1e5b367d66303e55334f9223d52d75fa4c04[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 17 22:55:56 2019 -0300
+
+    Cambié el toArray().length por el size()
+
+[33mcommit 72315e6dcb3388649e3b1cb7f4d8ae1bd8d8065c[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 17 22:33:43 2019 -0300
+
+    Método obtenersugerencias realizado
+
+[33mcommit a674c4d5c9b872803a29aff5827d38cc126c8ca5[m
+Author: SantiagoIvan <santiago.feijoo96@gmail.com>
+Date:   Wed Apr 17 15:10:22 2019 -0300
+
+    clases báicas del diagrama
+
+[33mcommit 730bcef4b5f3b3ab2c464ca2300b38ec81733a1d[m
+Author: Great Saiyaman <thesaiyanbot@gmail.com>
+Date:   Sun Apr 14 12:29:13 2019 -0300
+
+    Initial commit
