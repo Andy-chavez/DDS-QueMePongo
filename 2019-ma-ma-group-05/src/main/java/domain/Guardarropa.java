@@ -39,7 +39,7 @@ public class Guardarropa {
 		return prenda->prenda.getCategoria()==unaCategoria;
 	}
 	
-	public List<Atuendo> obtenerTodasLasSugerencias() { 
+	public List<Atuendo> obtenerSugerencias() { 
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_SUPERIOR));
 		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_INFERIOR));
@@ -62,12 +62,6 @@ public class Guardarropa {
 			}
 		}
 		return atuendos;
-	}
-	public Atuendo obtenerSugerencia(){
-		List<Atuendo> atuendosSugeridos= this.obtenerTodasLasSugerencias();
-		/*Random random =  new Random();
-		return atuendosSugeridos.get(random.nextInt(atuendosSugeridos.size()));*/
-		return atuendosSugeridos.get(0);
 	}
 	
 	//Test

@@ -44,11 +44,8 @@ public class Usuario {
 		this.guardarropas.add(guardarropa);
 	}
 	
-	public Atuendo obtenerSugerencia(Guardarropa guardarropa) {
-		return guardarropa.obtenerSugerencia();
-	}
-	public List<Atuendo> obtenerTodasLasSugerencias(Guardarropa guardarropa){
-		return guardarropa.obtenerTodasLasSugerencias();
+	public List<Atuendo> obtenerSugerencias(Guardarropa guardarropa){
+		return guardarropa.obtenerSugerencias();
 	}
 	
 	//Test

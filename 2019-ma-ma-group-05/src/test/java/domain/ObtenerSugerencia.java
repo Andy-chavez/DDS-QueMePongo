@@ -23,34 +23,36 @@ public class ObtenerSugerencia {
 	public void testObtenerAlgunaSugerencia() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
-		assertNotNull(usuario.obtenerSugerencia(usuario.getGuardarropas().get(0)));
+		assertNotNull(usuario.obtenerSugerencias(usuario.getGuardarropas().get(0)));
 	}
 	@Test
 	public void testObtenerSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
 		Guardarropa guardarropa=usuario.getGuardarropa("ropalinda");
-		Atuendo atuendoObtenido=usuario.obtenerSugerencia(guardarropa);
+		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
+		atuendosSugeridos=usuario.obtenerSugerencias(guardarropa);
 		
-		List<Atuendo> atuendossugeridos=new ArrayList<Atuendo>();
-		atuendossugeridos=usuario.getGuardarropa("ropalinda").obtenerTodasLasSugerencias();
-		Atuendo atuendoEsperado = atuendossugeridos.get(0);
-		assertTrue(atuendoEsperado.compararConOtroAtuendo(atuendoObtenido));
+		Atuendo atuendo=new Atuendo();
+		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
+		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_INFERIOR)).get(0));
+		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
+		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_SUPERIOR)).get(0));
+		
+		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));
 	}
 	@Test
 	public void testObtenerOtraSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
 			
 		Usuario usuario=Usuario.testGenerarUsuario();
 		Guardarropa guardarropa= usuario.getGuardarropa("ropalinda");
-		Atuendo atuendo2=new Atuendo();
-		atuendo2.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
-		atuendo2.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_INFERIOR)).get(0));
-		atuendo2.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
-		atuendo2.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_SUPERIOR)).get(1));
+		Atuendo atuendo=new Atuendo();
+		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
+		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_INFERIOR)).get(0));
+		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
+		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.PARTE_SUPERIOR)).get(1));
 		
-		List<Atuendo> atuendossugeridos=new ArrayList<Atuendo>();
-		atuendossugeridos=usuario.getGuardarropa("ropalinda").obtenerTodasLasSugerencias();
-		Atuendo atuendoEsperado = atuendossugeridos.get(1);
-		assertTrue(atuendoEsperado.compararConOtroAtuendo(atuendo2));
-}
+		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
+		atuendosSugeridos=usuario.getGuardarropa("ropalinda").obtenerSugerencias();
+		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));}
 }
