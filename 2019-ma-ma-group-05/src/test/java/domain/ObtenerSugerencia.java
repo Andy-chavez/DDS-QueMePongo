@@ -1,21 +1,10 @@
 package domain;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-
-import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.PantalonMalConstruido;
-import domain.Excepciones.RemeraMalConstruida;
-import domain.Excepciones.ZapatosMalConstruidos;
+import domain.Excepciones.*;
 
 public class ObtenerSugerencia {
 

@@ -3,19 +3,9 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.PantalonMalConstruido;
-import domain.Excepciones.RemeraMalConstruida;
-import domain.Excepciones.ZapatosMalConstruidos;
-import domain.TiposDePrenda.Accesorio;
-import domain.TiposDePrenda.Pantalon;
-import domain.TiposDePrenda.Remera;
-import domain.TiposDePrenda.Zapatos;
+import domain.Excepciones.*;
+import domain.TiposDePrenda.*;
 
 public class testPrendas{
 	
