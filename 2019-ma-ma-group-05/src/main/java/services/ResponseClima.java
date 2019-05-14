@@ -3,6 +3,6 @@ package services;
 import dtoClases.ClimaDto;
 
 public class ResponseClima {
-    public ClimaDto data;
-
+	public Double id;  // id de la ciudad
+	public ClimaDto main;
 }

@@ -12,18 +12,18 @@ public class TestApi {
 
 	public static void main(String[] args) {
 		Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://openweathermap.org/")
+                .baseUrl("https://api.openweathermap.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
+		
         RetrofitClimaService service = retrofit.create(RetrofitClimaService.class);
 
-        Call<ResponseClima> call = service.getClimaByCityId(20);
+        Call<ResponseClima> call = service.getClimaByCityId(2172797);
         try{
             Response<ResponseClima> response = call.execute();
-            ClimaDto clima = response.body().data;
+            ClimaDto clima = response.body().main;
 
-            System.out.print(clima.allMainClimaData());
+            System.out.print(clima.temperatura());
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());
