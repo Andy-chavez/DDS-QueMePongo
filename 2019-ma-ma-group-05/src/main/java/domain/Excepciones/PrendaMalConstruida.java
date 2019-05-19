@@ -4,12 +4,12 @@ import domain.Prenda;
 import domain.TiposDePrenda.Pantalon;
 
 public class PrendaMalConstruida extends Exception{
-	public PrendaMalConstruida(Prenda clase){
-		this.msj(clase);
+	public PrendaMalConstruida(Prenda prenda){
+		this.msj(prenda);
 	}
-	public void msj(Prenda clase){
-		System.out.println("Prenda mal construido. NO crees "+ clase.getClass().getSimpleName().toString()+ 
+	public void msj(Prenda prenda){
+		System.out.println("Prenda mal construido. NO crees "+ prenda.getClass().getSimpleName().toString()+ 
 				" con los siguientes materiales: "
-				+ clase.getTelasInconsistentes().toString()); 
+				+ prenda.getTelasInconsistentes().toString()); 
 	}
 }
