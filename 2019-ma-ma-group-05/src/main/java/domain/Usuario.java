@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import domain.Guardarropa;
-import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.PantalonMalConstruido;
-import domain.Excepciones.RemeraMalConstruida;
-import domain.Excepciones.ZapatosMalConstruidos;
+import domain.Excepciones.PrendaMalConstruida;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
@@ -49,8 +46,7 @@ public class Usuario {
 	}
 	
 	//Test
-	public static Usuario testGenerarUsuario() throws RemeraMalConstruida, PantalonMalConstruido,
-	ZapatosMalConstruidos, AccesorioMalConstruido{
+	public static Usuario testGenerarUsuario() throws PrendaMalConstruida{
 		Guardarropa guardarropa= Guardarropa.testCrearGuardarropa();
 		Usuario usuario1= new Usuario("santi",guardarropa);
 		return usuario1;

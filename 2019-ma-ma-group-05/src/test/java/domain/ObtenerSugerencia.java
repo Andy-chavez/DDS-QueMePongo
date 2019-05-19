@@ -9,13 +9,13 @@ import domain.Excepciones.*;
 public class ObtenerSugerencia {
 
 	@Test
-	public void testObtenerAlgunaSugerencia() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+	public void testObtenerAlgunaSugerencia() throws PrendaMalConstruida {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
 		assertNotNull(usuario.obtenerSugerencias(usuario.getGuardarropas().get(0)));
 	}
 	@Test
-	public void testObtenerSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+	public void testObtenerSugerenciaEspecifica() throws PrendaMalConstruida {
 		
 		Usuario usuario=Usuario.testGenerarUsuario();
 		Guardarropa guardarropa=usuario.getGuardarropa("ropalinda");
@@ -31,7 +31,7 @@ public class ObtenerSugerencia {
 		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));
 	}
 	@Test
-	public void testObtenerOtraSugerenciaEspecifica() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+	public void testObtenerOtraSugerenciaEspecifica() throws PrendaMalConstruida {
 			
 		Usuario usuario=Usuario.testGenerarUsuario();
 		Guardarropa guardarropa= usuario.getGuardarropa("ropalinda");

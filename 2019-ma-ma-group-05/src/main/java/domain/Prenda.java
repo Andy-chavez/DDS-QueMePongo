@@ -2,14 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import domain.Excepciones.AccesorioMalConstruido;
-import domain.Excepciones.PantalonMalConstruido;
-import domain.Excepciones.RemeraMalConstruida;
-import domain.Excepciones.ZapatosMalConstruidos;
-import domain.TiposDePrenda.Accesorio;
-import domain.TiposDePrenda.Pantalon;
-import domain.TiposDePrenda.Remera;
-import domain.TiposDePrenda.Zapatos;
+import domain.Excepciones.*;
+import domain.TiposDePrenda.*;
 
 public abstract class Prenda {
 	private List<Color> colores;
@@ -38,18 +32,21 @@ public abstract class Prenda {
 	public static void setTelasInconsistentes(List<Tela> unasTelas){
 		telasInconsistentes.addAll(unasTelas);
 	}
-	public static List<Tela> getTelasInconsistentes(){return telasInconsistentes;}
+	public List<Tela> getTelasInconsistentes(){return telasInconsistentes;}
 	public Categoria getCategoria(){
 		return this.categoria;
 	}
 	public Boolean prendaInconsistente(){
 		return telasInconsistentes.contains(this.tela);
 	}
-	
+	public void chequearConstruccionDePrenda()throws PrendaMalConstruida{
+		if(prendaInconsistente()){
+			throw new PrendaMalConstruida(this);
+		}
+	}
 	
 	//Test. DESPUES VEO SI ME SALE LO DE IMPLEMENTAR EL USO DE JSON. NUNCA LO HICE POR ESO PRIMERO HAGO ÉSTO.
-	public static List<Prenda> testCrearPrendas() throws RemeraMalConstruida, PantalonMalConstruido,
-	ZapatosMalConstruidos, AccesorioMalConstruido{
+	public static List<Prenda> testCrearPrendas() throws PrendaMalConstruida{
 		List<Prenda> unasPrendas= new ArrayList<Prenda>();
 		
 		List<Color> unosColores1=new ArrayList<Color>();

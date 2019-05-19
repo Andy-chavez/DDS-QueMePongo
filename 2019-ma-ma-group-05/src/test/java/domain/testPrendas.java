@@ -10,14 +10,14 @@ import domain.TiposDePrenda.*;
 public class testPrendas{
 	
 	@Test
-	public void seCreaPrendaSatisfactoriamente() throws RemeraMalConstruida{
+	public void seCreaPrendaSatisfactoriamente() throws PrendaMalConstruida{
 		List<Color> colores=new ArrayList<Color>();
 		colores.add(Color.NEGRO);
 		Remera unaRemera=new Remera(colores,Tela.SEDA);
 		assertNotNull(unaRemera);
 	}
 	@Test
-	public void seAgregaPrendaSatisfactoriamente() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido{
+	public void seAgregaPrendaSatisfactoriamente() throws PrendaMalConstruida{
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
@@ -26,7 +26,7 @@ public class testPrendas{
 		assertTrue(usuario.getGuardarropa("ropalinda").getPrendas().contains(prenda));
 	}
 	@Test
-	public void seAgregaGuardarropaSatisfactoriamente() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+	public void seAgregaGuardarropaSatisfactoriamente() throws PrendaMalConstruida {
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
@@ -42,8 +42,8 @@ public class testPrendas{
 		usuario.agregarGuardarropa(guardarropaNuevo);
 		assertTrue(usuario.getGuardarropas().contains(guardarropaNuevo));
 	}
-	@Test(expected=RemeraMalConstruida.class)
-	public void seRompeAlIntentarAgregarGuardarropaConPrendaMalConstruida() throws RemeraMalConstruida, PantalonMalConstruido, ZapatosMalConstruidos, AccesorioMalConstruido {
+	@Test(expected=PrendaMalConstruida.class)
+	public void seRompeAlIntentarAgregarGuardarropaConPrendaMalConstruida() throws PrendaMalConstruida {
 		Usuario usuario=Usuario.testGenerarUsuario();
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.AMARILLO);
@@ -58,26 +58,26 @@ public class testPrendas{
 		Guardarropa guardarropaNuevo = new Guardarropa("ropavieja",prendas);
 		usuario.agregarGuardarropa(guardarropaNuevo);
 	}
-	@Test(expected=PantalonMalConstruido.class)
-	public void seRompeAlCrearPantalonInconsistente() throws PantalonMalConstruido{
+	@Test(expected=PrendaMalConstruida.class)
+	public void seRompeAlCrearPantalonInconsistente() throws PrendaMalConstruida{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
 		Prenda prenda = new Pantalon(unosColores,"un pantalon fisura",Tela.NYLON);
 	}
-	@Test(expected=RemeraMalConstruida.class)
-	public void seRompeAlCrearRemeraInconsistente() throws RemeraMalConstruida{
+	@Test(expected=PrendaMalConstruida.class)
+	public void seRompeAlCrearRemeraInconsistente() throws PrendaMalConstruida{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
 		Prenda prenda = new Remera(unosColores,"una remera fisura",Tela.CUERO);
 	}
-	@Test(expected=ZapatosMalConstruidos.class)
-	public void seRompeAlCrearCalzadoInconsistente() throws ZapatosMalConstruidos{
+	@Test(expected=PrendaMalConstruida.class)
+	public void seRompeAlCrearCalzadoInconsistente() throws PrendaMalConstruida{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
 		Prenda prenda = new Zapatos(unosColores,"un pantalon fisura",Tela.SEDA);
 	}
-	@Test(expected=AccesorioMalConstruido.class)
-	public void seRompeAlCrearAccesorioInconsistente() throws AccesorioMalConstruido{
+	@Test(expected=PrendaMalConstruida.class)
+	public void seRompeAlCrearAccesorioInconsistente() throws PrendaMalConstruida{
 		List<Color> unosColores= new ArrayList<Color>();
 		unosColores.add(Color.NEGRO);
 		Prenda prenda = new Accesorio(unosColores,"un accesorio fisura",Tela.ALGODON);

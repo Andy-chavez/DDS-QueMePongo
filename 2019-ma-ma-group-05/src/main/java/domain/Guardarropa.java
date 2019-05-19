@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
-import domain.Excepciones.*;
+import domain.Excepciones.PrendaMalConstruida;;
 
 public class Guardarropa {
 	private String nombre;
@@ -60,8 +60,7 @@ public class Guardarropa {
 	}
 	
 	//Test
-	public static Guardarropa testCrearGuardarropa() throws RemeraMalConstruida, PantalonMalConstruido,
-	ZapatosMalConstruidos, AccesorioMalConstruido{
+	public static Guardarropa testCrearGuardarropa() throws PrendaMalConstruida{
 		Guardarropa guardarropa= new Guardarropa("ropalinda",Prenda.testCrearPrendas());
 		return guardarropa;
 	}
