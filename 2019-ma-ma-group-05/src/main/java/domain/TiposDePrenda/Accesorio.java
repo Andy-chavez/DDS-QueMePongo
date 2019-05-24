@@ -1,22 +1,25 @@
 package domain.TiposDePrenda;
 
+import java.util.List;
+
 import domain.Categoria;
+import domain.Color;
+import domain.Prenda;
 import domain.Tela;
-import domain.TipoDePrenda;
-import domain.Excepciones.AccesorioMalConstruido;
+import domain.Excepciones.PrendaMalConstruida;
 
-public class Accesorio extends TipoDePrenda{
+public class Accesorio extends Prenda{
 
-	public Accesorio(Tela unaTela) throws AccesorioMalConstruido{
-		super(Categoria.ACCESORIO,unaTela);
-		/*Acá habría que setearle los tipos de tela que no admitiría. 
-		 * Los datos reales no los tenemos así que los invento SOLO PARA PODER TESTEAR. 
-		 * Seguro hay otra forma mejor.
-		 */
+	public Accesorio(List<Color> colores,String unaDescripcion,Tela unaTela) throws PrendaMalConstruida{
+		super(colores,unaDescripcion,Categoria.ACCESORIO,unaTela);
 		telasInconsistentes.add(Tela.ALGODON);
-		if(this.prendaInconsistente()){
-			throw new AccesorioMalConstruido();
-		}
+		this.chequearConstruccionDePrenda();
 	}
-
+	public Accesorio(List<Color> colores,Tela unaTela) throws PrendaMalConstruida{
+		super(colores,Categoria.ACCESORIO,unaTela);
+		telasInconsistentes.add(Tela.ALGODON);
+		this.chequearConstruccionDePrenda();
 }
+}
+
+

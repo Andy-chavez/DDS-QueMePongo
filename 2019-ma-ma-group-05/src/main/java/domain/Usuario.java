@@ -2,7 +2,10 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import domain.Guardarropa;
+import domain.Excepciones.PrendaMalConstruida;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
@@ -22,15 +25,31 @@ public class Usuario {
 	public void setNombre(String unNombre){
 		this.nombre=unNombre;
 	}
+	public Guardarropa getGuardarropa(String unNombre){
+		return this.getGuardarropas().stream().filter(g -> g.getNombre().toLowerCase()==unNombre.toLowerCase())
+				.collect(Collectors.toList()).get(0);
+	}
+	
+	public List<Guardarropa> getGuardarropas(){
+		return this.guardarropas;
+	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
 		armario.agregarPrenda(prenda);
+		
 	}
 	public void agregarGuardarropa(Guardarropa guardarropa){
 		this.guardarropas.add(guardarropa);
 	}
 	
-	public Atuendo obtenerSugerencia(Guardarropa guardarropa) {
-		return guardarropa.obtenerSugerencia();
+	public List<Atuendo> obtenerSugerencias(Guardarropa guardarropa){
+		return guardarropa.obtenerSugerencias();
+	}
+	
+	//Test
+	public static Usuario testGenerarUsuario() throws PrendaMalConstruida{
+		Guardarropa guardarropa= Guardarropa.testCrearGuardarropa();
+		Usuario usuario1= new Usuario("santi",guardarropa);
+		return usuario1;
 	}
 	
 }
