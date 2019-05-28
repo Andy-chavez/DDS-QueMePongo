@@ -1,81 +1,65 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import domain.Excepciones.*;
-import domain.TiposDePrenda.*;
+import java.awt.Color;
+import java.util.Objects;
+import domain.Tipo;
+import domain.Excepciones.ColoresIgualesException;
+import domain.Excepciones.ValidacionException;
 
-public abstract class Prenda {
-	private List<Color> colores;
-	private String descripcion;
-	private Categoria categoria;
-	protected static List<Tela> telasInconsistentes;
-	private Tela tela;
-	
-	public Prenda(List<Color> colores,String unaDescripcion, Categoria unaCategoria,Tela unaTela){
-		telasInconsistentes=new ArrayList<Tela>();
-		this.colores=new ArrayList<Color>();
-		this.colores.addAll(colores);
-		this.descripcion=unaDescripcion;
-		this.categoria=unaCategoria;
-		this.tela=unaTela;
-		
+public class Prenda {
+	private Color colorPrimario;
+	private Color colorSecundario;
+	private Tipo tipo;
+	//private GuardaRopa guardaRropa;
+	//public Prenda() {}
+
+	public void setColorPrimario(Color colorPrimario) {
+		this.colorPrimario = colorPrimario;
 	}
-	public Prenda(List<Color> colores,Categoria unaCategoria,Tela unaTela) {
-		telasInconsistentes=new ArrayList<Tela>();
-		this.colores=new ArrayList<Color>();
-		this.colores.addAll(colores);
-		this.categoria=unaCategoria;
-		this.tela=unaTela;
-	} //Agrego constructor sin la descripción en caso de que el usuario lo quiera sin la misma
-	public String getDesripcion(){return this.descripcion;}
-	public static void setTelasInconsistentes(List<Tela> unasTelas){
-		telasInconsistentes.addAll(unasTelas);
-	}
-	public List<Tela> getTelasInconsistentes(){return telasInconsistentes;}
-	public Categoria getCategoria(){
-		return this.categoria;
-	}
-	public Boolean prendaInconsistente(){
-		return telasInconsistentes.contains(this.tela);
-	}
-	public void chequearConstruccionDePrenda()throws PrendaMalConstruida{
-		if(prendaInconsistente()){
-			throw new PrendaMalConstruida(this);
+
+	public void setColorSecundario(Color unColorSecundario) {
+		if(unColorSecundario == this.colorPrimario) {
+			throw new ColoresIgualesException("ERROR: Se ingresaron colores iguales"); 
+		}
+		else {
+			this.colorSecundario = unColorSecundario;
 		}
 	}
 	
-	//Test. DESPUES VEO SI ME SALE LO DE IMPLEMENTAR EL USO DE JSON. NUNCA LO HICE POR ESO PRIMERO HAGO ÉSTO.
-	public static List<Prenda> testCrearPrendas() throws PrendaMalConstruida{
-		List<Prenda> unasPrendas= new ArrayList<Prenda>();
-		
-		List<Color> unosColores1=new ArrayList<Color>();
-		unosColores1.add(Color.AMARILLO);
-		Prenda prenda1= new Remera(unosColores1,Tela.ALGODON);
-		unasPrendas.add(prenda1);
-		
-		List<Color> unosColores2=new ArrayList<Color>();
-		unosColores2.add(Color.AZUL);
-		unosColores2.add(Color.NEGRO);
-		Prenda prenda2 = new Pantalon(unosColores2,Tela.CUERO);
-		unasPrendas.add(prenda2);
-		
-		List<Color> unosColores3=new ArrayList<Color>();
-		unosColores2.add(Color.AZUL);
-		unosColores2.add(Color.NEGRO);
-		Prenda prenda3 = new Zapatos(unosColores3,Tela.CUERO);
-		unasPrendas.add(prenda3);
-		
-		List<Color> unosColores4=new ArrayList<Color>();
-		unosColores2.add(Color.AZUL);
-		Prenda prenda4 = new Accesorio(unosColores4,Tela.CUERO);
-		unasPrendas.add(prenda4);
-		
-		List<Color> unosColores5=new ArrayList<Color>();
-		unosColores2.add(Color.BLANCO);
-		Remera prenda5 = new Remera(unosColores5,Tela.SEDA);
-		unasPrendas.add(prenda5);
-		
-		return unasPrendas;
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
+	
+	public Tipo getTipo() {
+		return this.tipo;
+	}
+	
+	public Color getColorPrimario() {
+		return colorPrimario;
+	}
+	
+	public Color getColorSecundario() {
+		return colorSecundario;
+	}
+	
+	public void validarAtributos() {
+		if(Objects.isNull(colorPrimario) || this.tipo.validarAtributosDeTipo()) {
+			throw new ValidacionException("ERROR: Alguno de los atributos ingresados es NULL");
+		}
+	}
+	
+	public Boolean deCategoria(Categoria unaCategoria) {
+		return this.tipo.esDeCategoria(unaCategoria);
+	}
+	
+	
+	// Para tests(?
+	public Boolean esIgualA(Prenda otraPrenda) {
+		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.colorPrimario, this.colorSecundario);
+	}
+	
+	public Boolean todosLosAtributosSonIgualesA(Tipo unTipo, Color unColorPrimario, Color unColorSecundario) {
+		return this.tipo.esIgualAOtro(unTipo) && unColorPrimario == this.colorPrimario && unColorSecundario == this.colorSecundario;
+	}
+	
 }
