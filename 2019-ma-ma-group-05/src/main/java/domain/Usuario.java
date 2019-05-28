@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import domain.Guardarropa;
-import domain.Excepciones.PrendaMalConstruida;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
@@ -43,13 +42,6 @@ public class Usuario {
 	
 	public List<Atuendo> obtenerSugerencias(Guardarropa guardarropa){
 		return guardarropa.obtenerSugerencias();
-	}
-	
-	//Test
-	public static Usuario testGenerarUsuario() throws PrendaMalConstruida{
-		Guardarropa guardarropa= Guardarropa.testCrearGuardarropa();
-		Usuario usuario1= new Usuario("santi",guardarropa);
-		return usuario1;
 	}
 	
 }
