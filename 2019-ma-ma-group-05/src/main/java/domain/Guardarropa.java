@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
-import domain.Excepciones.PrendaMalConstruida;;
 
 public class Guardarropa {
 	private String nombre;
@@ -31,13 +30,13 @@ public class Guardarropa {
 		return this.prendas.stream().filter(predicado).collect(Collectors.toList());		
 	}
 	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria){
-		return prenda->prenda.getCategoria()==unaCategoria;
+		return prenda->prenda.getTipo().getCategoria()==unaCategoria;
 	}
 	
 	public List<Atuendo> obtenerSugerencias() { 
 		
-		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_SUPERIOR));
-		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.PARTE_INFERIOR));
+		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
+		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
 		List<Prenda> calzados=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
 		
@@ -57,12 +56,6 @@ public class Guardarropa {
 			}
 		}
 		return atuendos;
-	}
-	
-	//Test
-	public static Guardarropa testCrearGuardarropa() throws PrendaMalConstruida{
-		Guardarropa guardarropa= new Guardarropa("ropalinda",Prenda.testCrearPrendas());
-		return guardarropa;
 	}
 	
 }

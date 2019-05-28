@@ -24,7 +24,7 @@ public class Atuendo {
 	public void setAccesorio(Prenda unaPrenda){
 		this.accesorio=unaPrenda;
 	}
-	public Boolean compararConOtroAtuendo(Atuendo atuendo){
+	public boolean compararConOtroAtuendo(Atuendo atuendo){
 		if((this.parteSuperior==atuendo.parteSuperior)
 				&&(this.parteInferior==atuendo.parteInferior)
 				&&(this.calzado==atuendo.calzado)

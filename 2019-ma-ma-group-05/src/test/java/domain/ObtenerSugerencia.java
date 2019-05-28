@@ -8,6 +8,7 @@ import domain.Excepciones.*;
 
 public class ObtenerSugerencia {
 
+	
 	@Test
 	public void testObtenerAlgunaSugerencia() throws PrendaMalConstruida {
 		

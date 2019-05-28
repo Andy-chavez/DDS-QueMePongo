@@ -6,6 +6,7 @@ public enum Tela {
 	NYLON,
 	POLYESTER,
 	ELASTINA,
-	SEDA
+	SEDA,
+	OTRO
 	//consultar tipos de tela disponibles, agregué algunas que se me ocurrieron
 }
