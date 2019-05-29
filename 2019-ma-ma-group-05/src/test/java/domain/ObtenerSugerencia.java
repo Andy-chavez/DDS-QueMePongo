@@ -11,24 +11,85 @@ import org.junit.Test;
 import domain.Excepciones.*;
 
 public class ObtenerSugerencia {
-	private Prenda prenda;
-	private Tipo tipo;
-	private Guardarropa guardarropa;
+private Guardarropa guardarropa;
+	
+	private FamiliaTipos antiparrasFamiliaTipo;
+	private FamiliaTipos musculosaFamiliaTipo;
+	private FamiliaTipos shortsFamiliaTipo;
+	private FamiliaTipos ojotasFamiliaTipo;
+	private FamiliaTipos remeraFamiliaTipo;
+	private FamiliaTipos zapatillasFamiliaTipo;
+	
+	private Prenda antiparras;
+	private Prenda musculosa;
+	private Prenda shorts;
+	private Prenda ojotas;
+	private Prenda zapatillas;
+	private Prenda remera;
+	
 	private Usuario usuario;
-		
+	
+	private List<Prenda> prendas;
 	@Before
 	public void init() {
-		prenda = new Prenda();
-		tipo = new Tipo();
+		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
+		musculosaFamiliaTipo = new domain.Tipos.Musculosa();
+		shortsFamiliaTipo = new domain.Tipos.Short();
+		ojotasFamiliaTipo = new domain.Tipos.Ojotas();
+		remeraFamiliaTipo = new domain.Tipos.Remera();
+		zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
 		
-		tipo.setCategoria(Categoria.CALZADO);
-		tipo.setNombre("Zapatos");
-		tipo.setTela(Tela.CUERO);
+		// Prendas para el test de sugerencias
+		remera = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(remeraFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
 		
-		prenda.setColorPrimario(Color.black);
-		prenda.setTipo(tipo);
+		antiparras = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(antiparrasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
 		
-		guardarropa= new Guardarropa("guardarropa",prenda);
+		shorts = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(shortsFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		musculosa = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(musculosaFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		ojotas = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(ojotasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		zapatillas = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(zapatillasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		// Guardar todo menos antiparras.
+		prendas = new ArrayList<Prenda>();
+		prendas.add(zapatillas);
+		prendas.add(musculosa);
+		prendas.add(remera);
+		prendas.add(shorts);
+		prendas.add(ojotas);
+		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 	}
 	
