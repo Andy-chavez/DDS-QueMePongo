@@ -7,9 +7,9 @@ import domain.FamiliaTipos;
 import domain.Tela;
 
 public class Reloj implements FamiliaTipos{
-	public String tipo = "reloj";
-	public EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.NYLON,Tela.POLYESTER,Tela.OTRO);
-	public Categoria categoria = Categoria.ACCESORIO;
+	private String tipo = "reloj";
+	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.NYLON,Tela.POLYESTER,Tela.OTRO);
+	private Categoria categoria = Categoria.ACCESORIO;
 	
 	public String getTipo() {
 		return tipo;

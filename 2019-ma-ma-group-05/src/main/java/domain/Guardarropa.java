@@ -1,5 +1,6 @@
 package domain;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,11 +17,7 @@ public class Guardarropa {
 		this.prendas=new ArrayList<Prenda>();
 		this.agregarPrendas(unasPrendas);
 	}
-	public Guardarropa(String unNombre, Prenda unaPrenda){
-		this.nombre=unNombre;
-		this.prendas=new ArrayList<Prenda>();
-		this.agregarPrendas((List<Prenda>) unaPrenda);
-	}
+	
 	public String getNombre(){return this.nombre;}
 	
 	public void setNombre(String unNombre){this.nombre=unNombre;}
@@ -36,7 +33,6 @@ public class Guardarropa {
 	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria){
 		return prenda->prenda.getTipo().getCategoria()==unaCategoria;
 	}
-	
 	public List<Atuendo> obtenerSugerencias() { 
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
@@ -60,6 +56,9 @@ public class Guardarropa {
 			}
 		}
 		return atuendos;
+	}
+	public Boolean tieneLaPrenda(Prenda unaPrenda) {
+		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
 	}
 	
 }

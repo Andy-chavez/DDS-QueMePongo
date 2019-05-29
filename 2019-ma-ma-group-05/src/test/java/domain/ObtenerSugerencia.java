@@ -6,41 +6,154 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import domain.Excepciones.*;
 
 public class ObtenerSugerencia {
-	private Prenda prenda;
-	private Tipo tipo;
-	private Guardarropa guardarropa;
+private Guardarropa guardarropa;
+	
+	private FamiliaTipos antiparrasFamiliaTipo;
+	private FamiliaTipos musculosaFamiliaTipo;
+	private FamiliaTipos shortsFamiliaTipo;
+	private FamiliaTipos ojotasFamiliaTipo;
+	private FamiliaTipos remeraFamiliaTipo;
+	private FamiliaTipos zapatillasFamiliaTipo;
+	
+	private Prenda antiparras;
+	private Prenda musculosa;
+	private Prenda shorts;
+	private Prenda ojotas;
+	private Prenda zapatillas;
+	private Prenda remera;
+	private Prenda antiparras2;
+	private Prenda musculosa2;
+	private Prenda shorts2;
+	private Prenda ojotas2;
+	private Prenda zapatillas2;
+	private Prenda remera2;
 	private Usuario usuario;
-		
+	
+	private List<Prenda> prendas;
 	@Before
 	public void init() {
-		prenda = new Prenda();
-		tipo = new Tipo();
+		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
+		musculosaFamiliaTipo = new domain.Tipos.Musculosa();
+		shortsFamiliaTipo = new domain.Tipos.Short();
+		ojotasFamiliaTipo = new domain.Tipos.Ojotas();
+		remeraFamiliaTipo = new domain.Tipos.Remera();
+		zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
 		
-		tipo.setCategoria(Categoria.CALZADO);
-		tipo.setNombre("Zapatos");
-		tipo.setTela(Tela.CUERO);
+		// Prendas para el test de sugerencias
+		remera = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(remeraFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
 		
-		prenda.setColorPrimario(Color.black);
-		prenda.setTipo(tipo);
+		antiparras = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(antiparrasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
 		
-		guardarropa= new Guardarropa("guardarropa",prenda);
+		shorts = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(shortsFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		musculosa = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(musculosaFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		ojotas = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(ojotasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		zapatillas = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(zapatillasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		remera2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(remeraFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		antiparras2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(antiparrasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		shorts2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(shortsFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		musculosa2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(musculosaFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		ojotas2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(ojotasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		
+		zapatillas2 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(zapatillasFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		prendas = new ArrayList<Prenda>();
+		prendas.add(antiparras);
+		prendas.add(zapatillas);
+		prendas.add(musculosa);
+		prendas.add(remera);
+		prendas.add(shorts);
+		prendas.add(ojotas);
+		prendas.add(antiparras2);
+		prendas.add(zapatillas2);
+		prendas.add(musculosa2);
+		prendas.add(remera2);
+		prendas.add(shorts2);
+		prendas.add(ojotas2);
+		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 	}
 	
 	@Test
 	public void testObtenerAlgunaSugerencia(){
 		
-		assertNotNull(usuario.obtenerSugerencias(usuario.getGuardarropas().get(0)));
+		Assert.assertNotNull(usuario.obtenerSugerencias(usuario.getGuardarropas().get(0)));
 	}
 	@Test
 	public void testObtenerSugerenciaEspecifica(){
 		
-		Guardarropa guardarropa=usuario.getGuardarropa("ropalinda");
+		Guardarropa guardarropa=usuario.getGuardarropa("guardarropa");
 		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
 		atuendosSugeridos=usuario.obtenerSugerencias(guardarropa);
 		
@@ -50,12 +163,12 @@ public class ObtenerSugerencia {
 		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
 		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(0));
 		
-		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));
+		Assert.assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));
 	}
 	@Test
 	public void testObtenerOtraSugerenciaEspecifica() {
 
-		Guardarropa guardarropa= usuario.getGuardarropa("ropalinda");
+		Guardarropa guardarropa= usuario.getGuardarropa("guardarropa");
 		Atuendo atuendo=new Atuendo();
 		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
 		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.INFERIOR)).get(0));
@@ -63,6 +176,6 @@ public class ObtenerSugerencia {
 		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(1));
 		
 		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
-		atuendosSugeridos=usuario.getGuardarropa("ropalinda").obtenerSugerencias();
-		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));}
+		atuendosSugeridos=usuario.getGuardarropa("guardarropa").obtenerSugerencias();
+		Assert.assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));}
 }
