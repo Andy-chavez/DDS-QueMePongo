@@ -108,11 +108,6 @@ public class GuardarropaTest {
 	@Test
 	public void seGuardaUnaAntiparra() {
 		guardarropa.agregarPrenda(antiparras);
-		Atuendo atuendo=new Atuendo();
-		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
-		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.INFERIOR)).get(0));
-		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
-		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(0));
 		Assert.assertTrue(guardarropa.tieneLaPrenda(antiparras));
 	}
 	
