@@ -9,6 +9,7 @@ import domain.Guardarropa;
 public class Usuario {
 	private List<Guardarropa> guardarropas;
 	private String nombre;
+	private Suscripcion suscripcion;
 	
 	public Usuario(String nombre){
 		this.nombre=nombre;
@@ -20,6 +21,9 @@ public class Usuario {
 		this.agregarGuardarropa(guardarropa);
 	}
 	
+	public void setSuscripcion(Suscripcion unaSuscripcion) {
+		this.suscripcion = unaSuscripcion;
+	}
 	public String getNombre(){return this.nombre;}
 	public void setNombre(String unNombre){
 		this.nombre=unNombre;
@@ -33,7 +37,7 @@ public class Usuario {
 		return this.guardarropas;
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
-		armario.agregarPrenda(prenda);
+		this.suscripcion.agregarPrenda(armario,prenda);
 		
 	}
 	public void agregarGuardarropa(Guardarropa guardarropa){
