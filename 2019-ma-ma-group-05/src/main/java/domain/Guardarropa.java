@@ -16,7 +16,11 @@ public class Guardarropa {
 		this.prendas=new ArrayList<Prenda>();
 		this.agregarPrendas(unasPrendas);
 	}
-	
+	public Guardarropa(String unNombre, Prenda unaPrenda){
+		this.nombre=unNombre;
+		this.prendas=new ArrayList<Prenda>();
+		this.agregarPrendas((List<Prenda>) unaPrenda);
+	}
 	public String getNombre(){return this.nombre;}
 	
 	public void setNombre(String unNombre){this.nombre=unNombre;}
