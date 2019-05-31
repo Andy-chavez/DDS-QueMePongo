@@ -14,7 +14,7 @@ public class Atuendo {
 
 	public boolean compararConOtroAtuendo(Atuendo atuendo){
 		for(String key : this.map.keySet()){
-			if(!this.map.get(key).equals(atuendo.getMap().get(key))){
+			if(!(this.map.get(key).equals(atuendo.getMap().get(key)))){
 				return false;
 			}
 		}
