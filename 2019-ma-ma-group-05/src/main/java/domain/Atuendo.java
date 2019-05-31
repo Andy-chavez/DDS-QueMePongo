@@ -1,35 +1,23 @@
 package domain;
 
+import java.util.HashMap;
+
 import domain.Prenda;
 
 public class Atuendo {
-	private Prenda parteSuperior;
-	private Prenda parteInferior;
-	private Prenda calzado;
-	private Prenda accesorio;
+	private HashMap<String, Prenda> map=new HashMap<String,Prenda>();;
 	
-	public Prenda getParteSuperior(){return this.parteSuperior;}
-	public Prenda getParteInferior(){return this.parteInferior;}
-	public Prenda getCalzado(){return this.calzado;}
-	public Prenda getAccesorio(){return this.accesorio;}
-	public void setParteSuperior(Prenda unaPrenda){
-		this.parteSuperior=unaPrenda;
+	public void agregarPrenda(Prenda prenda){
+		this.map.put(prenda.getTipo().getNombre().toLowerCase(), prenda);
 	}
-	public void setParteInferior(Prenda unaPrenda){
-		this.parteInferior=unaPrenda;
-	}
-	public void setCalzado(Prenda unaPrenda){
-		this.calzado=unaPrenda;
-	}
-	public void setAccesorio(Prenda unaPrenda){
-		this.accesorio=unaPrenda;
-	}
+	public HashMap<String,Prenda> getMap(){return this.map;}
+
 	public boolean compararConOtroAtuendo(Atuendo atuendo){
-		if((this.parteSuperior==atuendo.parteSuperior)
-				&&(this.parteInferior==atuendo.parteInferior)
-				&&(this.calzado==atuendo.calzado)
-				&&(this.accesorio==atuendo.accesorio)){
-			return true;
-		}else{return false;}
+		for(String key : this.map.keySet()){
+			if(!this.map.get(key).equals(atuendo.getMap().get(key))){
+				return false;
+			}
+		}
+		return true;
 	}
 }

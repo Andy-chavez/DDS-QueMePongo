@@ -7,9 +7,9 @@ import domain.FamiliaTipos;
 import domain.Tela;
 
 public class Antiparras implements FamiliaTipos{
-	public String tipo = "antiparras";
-	public EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.OTRO);
-	public Categoria categoria = Categoria.ACCESORIO;
+	private String tipo = "antiparras";
+	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.OTRO);
+	private Categoria categoria = Categoria.ACCESORIO;
 	
 	public String getTipo() {
 		return tipo;

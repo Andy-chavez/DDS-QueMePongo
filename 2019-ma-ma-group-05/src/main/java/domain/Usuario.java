@@ -2,6 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import domain.Guardarropa;
@@ -44,8 +45,8 @@ public class Usuario {
 		this.guardarropas.add(guardarropa);
 	}
 	
-	public List<Atuendo> obtenerSugerencias(Guardarropa guardarropa){
-		return guardarropa.obtenerSugerencias();
+	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
+		return guardarropa.obtenerSugerencia();
 	}
 	
 }

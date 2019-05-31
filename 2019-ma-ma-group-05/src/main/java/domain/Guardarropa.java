@@ -1,8 +1,8 @@
 package domain;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import domain.Atuendo;
@@ -33,7 +33,8 @@ public class Guardarropa {
 	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria){
 		return prenda->prenda.getTipo().getCategoria()==unaCategoria;
 	}
-	public List<Atuendo> obtenerSugerencias() { 
+	public Atuendo obtenerSugerencia() { 
+		Random random = new Random();
 		
 		List<Prenda> prendasSuperiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
 		List<Prenda> prendasInferiores=this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
@@ -43,19 +44,19 @@ public class Guardarropa {
 		List<Atuendo> atuendos = new ArrayList<Atuendo>();
 		for(int i=0;i<prendasSuperiores.size();i++){
 			Atuendo atuendoSugerido= new Atuendo();
-			atuendoSugerido.setParteSuperior(prendasSuperiores.get(i));
+			atuendoSugerido.agregarPrenda(prendasSuperiores.get(i));
 			for(int j=0;j<prendasInferiores.size();j++){
-				atuendoSugerido.setParteInferior(prendasInferiores.get(j));
+				atuendoSugerido.agregarPrenda(prendasInferiores.get(j));
 				for(int h=0;h<calzados.size();h++){
-					atuendoSugerido.setCalzado(calzados.get(h));
+					atuendoSugerido.agregarPrenda(calzados.get(h));
 					for(int g=0;g<accesorios.size();g++){
-						atuendoSugerido.setAccesorio(accesorios.get(g));
+						atuendoSugerido.agregarPrenda(accesorios.get(g));
 						atuendos.add(atuendoSugerido);
 					}
 				}
 			}
 		}
-		return atuendos;
+		return atuendos.get(random.nextInt(atuendos.size()));
 	}
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));

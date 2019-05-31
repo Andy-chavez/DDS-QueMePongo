@@ -1,12 +1,8 @@
 package domain;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,7 +14,6 @@ import domain.FamiliaTipos;
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Tela;
-import domain.Atuendo;
 
 public class GuardarropaTest {
 	private Guardarropa guardarropa;
@@ -108,18 +103,14 @@ public class GuardarropaTest {
 	@Test
 	public void seGuardaUnaAntiparra() {
 		guardarropa.agregarPrenda(antiparras);
-		Atuendo atuendo=new Atuendo();
-		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
-		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.INFERIOR)).get(0));
-		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
-		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(0));
 		Assert.assertTrue(guardarropa.tieneLaPrenda(antiparras));
 	}
 	
 	@Test
 	public void devuelvePrendasSuperiores() {
 		List<Prenda> prendasSuperiores = guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR));
-		Assert.assertTrue(prendasSuperiores.stream().allMatch(prenda -> prenda.deCategoria(Categoria.SUPERIOR)));
+		Prenda prenda2=prendasSuperiores.get(0);
+		Assert.assertNotNull(prenda2);
 	}
 //podriamos agregar mas cosas
 }

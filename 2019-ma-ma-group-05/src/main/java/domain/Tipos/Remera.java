@@ -8,9 +8,9 @@ import domain.Tela;
 
 public class Remera implements FamiliaTipos{
 	
-	public String tipo = "remera";
-	public EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
-	public Categoria categoria = Categoria.SUPERIOR;
+	private String tipo = "remera";
+	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
+	private Categoria categoria = Categoria.SUPERIOR;
 	
 	public String getTipo() {
 		return tipo;

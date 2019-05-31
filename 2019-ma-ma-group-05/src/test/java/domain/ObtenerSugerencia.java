@@ -8,61 +8,99 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import domain.Excepciones.*;
 
 public class ObtenerSugerencia {
-	private Prenda prenda;
-	private Tipo tipo;
+	private Prenda prenda1;
+	private Prenda prenda2;
+	private Prenda prenda3;
+	private Prenda prenda4;
+	private Prenda prenda5;
+	private Tipo tipo1;
+	private Tipo tipo2;
+	private Tipo tipo3;
+	private Tipo tipo4;
+	private Tipo tipo5;
 	private Guardarropa guardarropa;
 	private Usuario usuario;
-		
+	private List<Prenda> prendas=new ArrayList<Prenda>();
 	@Before
 	public void init() {
-		prenda = new Prenda();
-		tipo = new Tipo();
+		prenda1 = new Prenda();
+		tipo1 = new Tipo();
+		tipo1.setCategoria(Categoria.CALZADO);
+		tipo1.setNombre("Zapatos");
+		tipo1.setTela(Tela.CUERO);
+		prenda1.setColorPrimario(Color.black);
+		prenda1.setTipo(tipo1);
 		
-		tipo.setCategoria(Categoria.CALZADO);
-		tipo.setNombre("Zapatos");
-		tipo.setTela(Tela.CUERO);
+		prenda2 = new Prenda();
+		tipo2 = new Tipo();
+		tipo2.setCategoria(Categoria.INFERIOR);
+		tipo2.setNombre("Pantalon");
+		tipo2.setTela(Tela.ALGODON);
+		prenda2.setColorPrimario(Color.black);
+		prenda2.setTipo(tipo2);
 		
-		prenda.setColorPrimario(Color.black);
-		prenda.setTipo(tipo);
+		prenda3 = new Prenda();
+		tipo3 = new Tipo();
+		tipo3.setCategoria(Categoria.SUPERIOR);
+		tipo3.setNombre("Remera");
+		tipo3.setTela(Tela.SEDA);
+		prenda3.setColorPrimario(Color.pink);
+		prenda3.setTipo(tipo3);
 		
-		guardarropa= new Guardarropa("guardarropa",prenda);
+		prenda4 = new Prenda();
+		tipo4 = new Tipo();
+		tipo4.setCategoria(Categoria.ACCESORIO);
+		tipo4.setNombre("Reloj");
+		tipo4.setTela(Tela.CUERO);
+		prenda4.setColorPrimario(Color.black);
+		prenda4.setTipo(tipo4);
+		
+		prenda5= new Prenda();
+		tipo5 = new Tipo();
+		tipo5.setCategoria(Categoria.SUPERIOR);
+		tipo5.setNombre("Remera");
+		tipo5.setTela(Tela.ALGODON);
+		prenda5.setColorPrimario(Color.blue);
+		prenda5.setTipo(tipo5);
+		
+		
+		prendas.add(prenda1);
+		prendas.add(prenda2);
+		prendas.add(prenda3);
+		prendas.add(prenda4);
+		prendas.add(prenda5);
+		guardarropa= new Guardarropa("ropacheta",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 	}
 	
 	@Test
-	public void testObtenerAlgunaSugerencia(){
+	public void obtenerSugerencia(){
 		
-		assertNotNull(usuario.obtenerSugerencias(usuario.getGuardarropas().get(0)));
+		Guardarropa guardarropa2=usuario.getGuardarropa("ropacheta");
+		Atuendo atuendoSugerido=new Atuendo();
+		atuendoSugerido=usuario.obtenerSugerencia(guardarropa2);
+		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
+		assertNotNull(atuendoSugerido);
 	}
 	@Test
-	public void testObtenerSugerenciaEspecifica(){
+	public void compararAtuendosDaTrue(){
 		
-		Guardarropa guardarropa=usuario.getGuardarropa("ropalinda");
-		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
-		atuendosSugeridos=usuario.obtenerSugerencias(guardarropa);
-		
-		Atuendo atuendo=new Atuendo();
-		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
-		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.INFERIOR)).get(0));
-		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
-		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(0));
-		
-		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));
-	}
-	@Test
-	public void testObtenerOtraSugerenciaEspecifica() {
+		Guardarropa guardarropa2=usuario.getGuardarropa("ropacheta");
+		Atuendo atuendoSugerido=new Atuendo();
+		atuendoSugerido=usuario.obtenerSugerencia(guardarropa2);
+		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
-		Guardarropa guardarropa= usuario.getGuardarropa("ropalinda");
-		Atuendo atuendo=new Atuendo();
-		atuendo.setAccesorio(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.ACCESORIO)).get(0));
-		atuendo.setParteInferior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.INFERIOR)).get(0));
-		atuendo.setCalzado(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.CALZADO)).get(0));
-		atuendo.setParteSuperior(guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR)).get(1));
-		
-		List<Atuendo> atuendosSugeridos=new ArrayList<Atuendo>();
-		atuendosSugeridos=usuario.getGuardarropa("ropalinda").obtenerSugerencias();
-		assertTrue(atuendosSugeridos.stream().anyMatch(unAtuendo->unAtuendo.compararConOtroAtuendo(atuendo)));}
+		Atuendo otroAtuendo=new Atuendo();
+		otroAtuendo.agregarPrenda(prenda1);
+		otroAtuendo.agregarPrenda(prenda2);
+		otroAtuendo.agregarPrenda(prenda3);
+		otroAtuendo.agregarPrenda(prenda4);
+		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
+
+		assertTrue(!atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
+	}
+	
 }
+
