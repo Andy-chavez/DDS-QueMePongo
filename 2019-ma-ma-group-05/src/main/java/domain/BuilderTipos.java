@@ -3,7 +3,7 @@ package domain;
 public class BuilderTipos {
 	
 	private Tipo miTipo;
-	public FamiliaTipos fabricaTipos;
+	private FamiliaTipos fabricaTipos;
 	
 
 	public BuilderTipos empezarCreacion() {

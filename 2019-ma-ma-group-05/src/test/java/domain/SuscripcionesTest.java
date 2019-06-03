@@ -9,9 +9,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ObtenerSugerencia {
-	Guardarropa guardarropa;
+import domain.Suscripciones.Free;
+import domain.Suscripciones.Premium;
+import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 
+public class SuscripcionesTest {
+	Guardarropa guardarropa;
+	
 	private FamiliaTipos antiparrasFamiliaTipo;
 	private FamiliaTipos musculosaFamiliaTipo;
 	private FamiliaTipos shortsFamiliaTipo;
@@ -31,11 +35,13 @@ public class ObtenerSugerencia {
 	private Prenda ojotas2;
 	private Prenda zapatillas2;
 	private Prenda remera2;
+	private Prenda remera3;
+	
 	private Usuario usuario;
 	
 	private List<Prenda> prendas;
 	@Before
-	public void init() {
+	public void init(){
 		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
 		musculosaFamiliaTipo = new domain.Tipos.Musculosa();
 		shortsFamiliaTipo = new domain.Tipos.Short();
@@ -126,6 +132,13 @@ public class ObtenerSugerencia {
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
+		
+		remera3 = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(remeraFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);
 		prendas.add(zapatillas);
@@ -139,54 +152,35 @@ public class ObtenerSugerencia {
 		prendas.add(remera2);
 		prendas.add(shorts2);
 		prendas.add(ojotas2);
+		
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
+		
+	}
+	@Test
+	public void usuarioNuevoEsFree(){
+		assertTrue(usuario.getSuscripcion().getClass()==Free.class);
+	}
+	@Test
+	public void usuarioFreePasaAPremium(){
+		Premium prem=new Premium();
+		usuario.setSuscripcion(prem);
+		
+		assertTrue(usuario.getSuscripcion().getClass()==Premium.class);
+	}
+	@Test
+	public void limiteDePrendasDeLaSuscrpcionFreeEs12(){
+		Free free= new Free();
+		assertEquals(free.getLimiteDePrendas(),12);
+	}
+	@Test
+	public void usuarioConGuardarropaAlLimite(){
+		assertEquals(usuario.getGuardarropa("guardarropa").cantidadDePrendas(),12);
 	}
 	
-	@Test
-	public void obtenerSugerencia(){
-		Atuendo atuendoSugerido = new Atuendo();
-		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
-
-		assertNotNull(atuendoSugerido);
+	@Test(expected=LimiteDePrendasAlcanzadoException.class)
+	public void usuarioFreeSePasaDelLimite(){
+		usuario.agregarPrenda(guardarropa, remera3);
 	}
-	@Test
-	public void compararAtuendosDaTrue(){
-		
-		Atuendo atuendoSugerido=new Atuendo();
-		atuendoSugerido.agregarPrenda(remera);
-		atuendoSugerido.agregarPrenda(ojotas);
-		atuendoSugerido.agregarPrenda(antiparras);
-		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
-
-		Atuendo otroAtuendo=new Atuendo();
-		otroAtuendo.agregarPrenda(remera);
-		otroAtuendo.agregarPrenda(ojotas);
-		otroAtuendo.agregarPrenda(antiparras);
-		otroAtuendo.agregarPrenda(shorts);
-		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
-
-		assertTrue(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
-	}
-	@Test
-	public void compararAtuendosDaFalse(){
-		
-		Atuendo atuendoSugerido=new Atuendo();
-		atuendoSugerido.agregarPrenda(remera);
-		atuendoSugerido.agregarPrenda(ojotas);
-		atuendoSugerido.agregarPrenda(antiparras);
-		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
-
-		Atuendo otroAtuendo=new Atuendo();
-		otroAtuendo.agregarPrenda(remera2);
-		otroAtuendo.agregarPrenda(ojotas);
-		otroAtuendo.agregarPrenda(antiparras);
-		otroAtuendo.agregarPrenda(shorts);
-		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
-
-		assertFalse(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
-	}
+	
 }

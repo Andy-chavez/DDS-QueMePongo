@@ -1,12 +1,8 @@
 package domain;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,7 +14,6 @@ import domain.FamiliaTipos;
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Tela;
-import domain.Atuendo;
 
 public class GuardarropaTest {
 	private Guardarropa guardarropa;
@@ -114,7 +109,8 @@ public class GuardarropaTest {
 	@Test
 	public void devuelvePrendasSuperiores() {
 		List<Prenda> prendasSuperiores = guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR));
-		Assert.assertTrue(prendasSuperiores.stream().allMatch(prenda -> prenda.deCategoria(Categoria.SUPERIOR)));
+		Prenda prenda2=prendasSuperiores.get(0);
+		Assert.assertNotNull(prenda2);
 	}
 //podriamos agregar mas cosas
 }

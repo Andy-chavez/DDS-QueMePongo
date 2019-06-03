@@ -9,7 +9,6 @@ import org.junit.Test;
 import domain.Categoria;
 import domain.Prenda;
 import domain.Tela;
-import domain.Tipos.*;
 
 public class PrendaTest {
 	private Prenda prenda;

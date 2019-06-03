@@ -1,11 +1,12 @@
 package dtoClases;
 
 public class ClimaDto{
-	public Double temp;
-	public Double temp_min;
-	public Double temp_max;
+	public Double temperatura;
 	
-	public Double temperatura(){
-		return this.temp;
+	public Double getTemperatura(){
+		return this.temperatura;
+	}
+	public void setTemperatura(Double temp){
+		this.temperatura=temp;
 	}
 }
