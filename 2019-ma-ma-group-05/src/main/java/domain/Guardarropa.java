@@ -26,7 +26,7 @@ public class Guardarropa {
 	
 	public void agregarPrenda(Prenda prenda) {this.prendas.add(prenda);}
 	public void agregarPrendas(List<Prenda> unasPrendas){this.prendas.addAll(unasPrendas);}
-		
+	public int cantidadDePrendas(){return this.prendas.size();}
 	public List<Prenda> filtrarPrendasSegunCondicion(Predicate<Prenda> predicado){		
 		return this.prendas.stream().filter(predicado).collect(Collectors.toList());		
 	}
