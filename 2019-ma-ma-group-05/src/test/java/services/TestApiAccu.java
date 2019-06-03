@@ -39,9 +39,9 @@ public class TestApiAccu {
         try{
             Response<List<ResponseClimaApiAccuweather>> response = call.execute();
             ClimaDto clima = new ClimaDto();
-            clima.setTemperatura(response.body().get(0).temperature.metric.value);
+            //clima.setTemperatura(response.body().get(0).temperature.metric.value);
             
-            System.out.print(response.code());
+            System.out.print(response.body().get(0).getClass());
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());

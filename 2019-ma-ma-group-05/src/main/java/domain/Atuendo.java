@@ -12,7 +12,7 @@ public class Atuendo {
 	}
 	public HashMap<String,Prenda> getMap(){return this.map;}
 
-	public boolean compararConOtroAtuendo(Atuendo atuendo){
+	public Boolean compararConOtroAtuendo(Atuendo atuendo){
 		for(String key : this.map.keySet()){
 			if(!(this.map.get(key).equals(atuendo.getMap().get(key)))){
 				return false;

@@ -43,13 +43,13 @@ public class Guardarropa {
 		
 		List<Atuendo> atuendos = new ArrayList<Atuendo>();
 		for(int i=0;i<prendasSuperiores.size();i++){
-			Atuendo atuendoSugerido= new Atuendo();
-			atuendoSugerido.agregarPrenda(prendasSuperiores.get(i));
 			for(int j=0;j<prendasInferiores.size();j++){
-				atuendoSugerido.agregarPrenda(prendasInferiores.get(j));
 				for(int h=0;h<calzados.size();h++){
-					atuendoSugerido.agregarPrenda(calzados.get(h));
 					for(int g=0;g<accesorios.size();g++){
+						Atuendo atuendoSugerido = new Atuendo();
+						atuendoSugerido.agregarPrenda(prendasSuperiores.get(i));
+						atuendoSugerido.agregarPrenda(prendasInferiores.get(j));
+						atuendoSugerido.agregarPrenda(calzados.get(h));
 						atuendoSugerido.agregarPrenda(accesorios.get(g));
 						atuendos.add(atuendoSugerido);
 					}
