@@ -25,7 +25,7 @@ public class Prenda {
 			this.colorSecundario = unColorSecundario;
 		}
 	}
-	
+
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
@@ -52,7 +52,9 @@ public class Prenda {
 		return this.tipo.esDeCategoria(unaCategoria);
 	}
 	
-	
+	public Capa getCapa() {
+		return this.tipo.getCapa();
+	}
 	// Para tests(?
 	public Boolean esIgualA(Prenda otraPrenda) {
 		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.colorPrimario, this.colorSecundario);
