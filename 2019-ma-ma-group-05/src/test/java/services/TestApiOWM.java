@@ -26,7 +26,7 @@ public class TestApiOWM {
         }
     	String urlBase= archivoDeConfiguraciones.getProperty("endpointOwm");
     	String appid=archivoDeConfiguraciones.getProperty("appidOwm");
-    	String units=archivoDeConfiguraciones.getProperty("units");
+    	String units=archivoDeConfiguraciones.getProperty("unitsOwm");
     	String cabaId=archivoDeConfiguraciones.getProperty("cabaId");
     	
 		Retrofit retrofit = new Retrofit.Builder()

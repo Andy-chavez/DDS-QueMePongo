@@ -1,7 +1,7 @@
 package dtoClases;
 
 public class ClimaDto{
-	public Double temperatura;
+	private Double temperatura;
 	
 	public Double getTemperatura(){
 		return this.temperatura;

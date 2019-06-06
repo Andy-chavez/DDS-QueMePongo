@@ -35,7 +35,7 @@ public class SuscripcionesTest {
 	private Prenda ojotas2;
 	private Prenda zapatillas2;
 	private Prenda remera2;
-	private Prenda remera3;
+	private Prenda remeraBonus;
 	
 	private Usuario usuario;
 	
@@ -133,12 +133,13 @@ public class SuscripcionesTest {
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
-		remera3 = new BuilderPrenda().empezarCreacion()
+		remeraBonus = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(remeraFamiliaTipo)
 				 .crearTipoConTelaYCategoria(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
+		
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);
 		prendas.add(zapatillas);
@@ -164,7 +165,7 @@ public class SuscripcionesTest {
 	@Test
 	public void usuarioFreePasaAPremium(){
 		Premium prem=new Premium();
-		usuario.setSuscripcion(prem);
+		usuario.getSuscripcion().cambiarSuscripcion(usuario,prem);
 		
 		assertTrue(usuario.getSuscripcion().getClass()==Premium.class);
 	}
@@ -180,7 +181,7 @@ public class SuscripcionesTest {
 	
 	@Test(expected=LimiteDePrendasAlcanzadoException.class)
 	public void usuarioFreeSePasaDelLimite(){
-		usuario.agregarPrenda(guardarropa, remera3);
+		usuario.agregarPrenda(guardarropa, remeraBonus);
 	}
 	
 }
