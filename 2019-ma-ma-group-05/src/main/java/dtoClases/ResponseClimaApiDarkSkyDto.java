@@ -1,5 +1,5 @@
 package dtoClases;
 
-public class ResponseClimaApiDarkSky {
+public class ResponseClimaApiDarkSkyDto {
 	public ClimaDsDto currently;
 }
