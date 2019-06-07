@@ -6,14 +6,14 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import dtoClases.ClimaDto;
+import dtoClases.ResponseClimaApiOwmDto;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import services.RetrofitClimaService;
 
-public class TestApiOWM {
+public class TestApiOwm {
 
 	public static void main(String[] args) {
     	Properties archivoDeConfiguraciones= new Properties();
@@ -35,15 +35,13 @@ public class TestApiOWM {
                 .build();
         RetrofitClimaService service = retrofit.create(RetrofitClimaService.class);
         
-        Call<ResponseClimaApiOWM> call = service.getClimaByOwm(cabaId,units,appid);
+        Call<ResponseClimaApiOwmDto> call = service.getClimaByOwm(cabaId,units,appid);
         
         try{
-            Response<ResponseClimaApiOWM> response = call.execute();
-            ResponseClimaApiOWM respuesta = response.body();
-            ClimaDto clima = new ClimaDto();
-            clima.setTemperatura(respuesta.main.temp);
+            Response<ResponseClimaApiOwmDto> response = call.execute();
+            ResponseClimaApiOwmDto respuesta = response.body();
             
-            System.out.print(clima.getTemperatura());
+            System.out.print(respuesta.main.temp);
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());

@@ -2,32 +2,21 @@ package services;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-
-import dtoClases.ClimaDto;
+import dtoClases.ResponseClimaApiDarkSky;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Path;
 
 public class TestApiDarkSky {
 
 	public static void main(String[] args) {
 		Properties archivoDeConfiguraciones= new Properties();
     	InputStream input=null;
-    	ArrayList stringJson = new ArrayList<String>();
     	try{
             input = new FileInputStream("configuraciones.properties");
             archivoDeConfiguraciones.load(input);
@@ -50,12 +39,9 @@ public class TestApiDarkSky {
         
         try{
             Response<ResponseClimaApiDarkSky> response = call.execute();
-            System.out.print(response.code() + "\n");
             ResponseClimaApiDarkSky resp = response.body();
-            ClimaDto clima = new ClimaDto();
-            clima.setTemperatura(resp.currently.temperature);
             
-            System.out.print(clima.getTemperatura());
+            System.out.print(resp.currently.temperature);
 
         }
         catch (Exception ex){

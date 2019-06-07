@@ -1,5 +1,7 @@
 package services;
 
+import dtoClases.ResponseClimaApiDarkSky;
+import dtoClases.ResponseClimaApiOwmDto;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -7,7 +9,7 @@ import retrofit2.http.Query;
 
 public interface RetrofitClimaService {
     @GET("/data/2.5/weather?") 
-    Call<ResponseClimaApiOWM> getClimaByOwm
+    Call<ResponseClimaApiOwmDto> getClimaByOwm
     (@Query("id") String idCity,@Query("units") String unidades,@Query("appid") String appid);
    
     @GET("/forecast/{appid}/{latitud},{longitud}")
