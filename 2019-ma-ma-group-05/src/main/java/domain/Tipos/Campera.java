@@ -7,16 +7,15 @@ import domain.Categoria;
 import domain.FamiliaTipos;
 import domain.Tela;
 
-public class Pantalon implements FamiliaTipos{
-	private String tipo = "pantalon";
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.SEDA,Tela.OTRO);
-	private Categoria categoria = Categoria.INFERIOR;
-	private Capa capa = Capa.REMERA;
+public class Campera implements FamiliaTipos{
+	private String tipo = "campera";
+	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
+	private Categoria categoria = Categoria.SUPERIOR;
+	private Capa capa = Capa.CAMPERA;
 
 	public Capa getCapa() {
 		return capa;
 	}
-	
 	public String getTipo() {
 		return tipo;
 	}

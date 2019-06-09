@@ -7,6 +7,15 @@ public class Tipo {
 	private Categoria categoria;
 	private Tela tela;
 	private String nombre;
+	private Capa capa;
+	
+	public Capa getCapa() {
+		return this.capa;
+	}
+	
+	public void setCapa(Capa capa) {
+		this.capa = capa;
+	}
 	
 	public String getNombre() {
 		return nombre;
