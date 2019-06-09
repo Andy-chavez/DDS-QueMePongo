@@ -17,6 +17,7 @@ public class Atuendo {
 	public HashMap<String,Prenda> getMap(){return this.map;}
 
 	public Boolean compararConOtroAtuendo(Atuendo atuendo){
+		if(this.map.size()!=atuendo.getMap().size()){return false;};
 		for(String key : this.map.keySet()){
 			if(!(this.map.get(key).equals(atuendo.getMap().get(key)))){
 				return false;
