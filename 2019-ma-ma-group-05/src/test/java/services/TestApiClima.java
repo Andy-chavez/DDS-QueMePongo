@@ -2,31 +2,17 @@ package services;
 
 import static org.junit.Assert.*;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.swing.JOptionPane;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import domain.ApiClima;
 import domain.GestorDeClima;
-import dtoClases.ResponseClimaApiOwmDto;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import services.RetrofitClimaService;
-
+import static org.mockito.Mockito.*;
 public class TestApiClima {
-	private ApiClima api;
 	private GestorDeClima gestor;
 	@Before
 	public void init(){
-		api = new ApiDs();
-		gestor=new GestorDeClima(api);
+		gestor=GestorDeClima.getInstance();
 	}
 	@Test
 	public void seRecibeCorrectamenteLaRespuestaDeDarkSky(){
@@ -41,5 +27,13 @@ public class TestApiClima {
 		Double temp = gestor.getTemperaturaActual();
 		System.out.println(temp);
 		assertNotNull(temp);
+	}
+	@Test
+	public void mocks(){
+		ApiDs mockApi=mock(ApiDs.class);
+		gestor.setApiClima(mockApi);
+		when(mockApi.getTemperaturaActual()).thenReturn(10.0);
+		assertEquals(gestor.getTemperaturaActual(),new Double(10));
+		verify(mockApi,times(1)).getTemperaturaActual();
 	}
 }
