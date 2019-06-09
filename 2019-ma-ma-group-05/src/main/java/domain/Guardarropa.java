@@ -1,5 +1,6 @@
 package domain;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -62,7 +63,29 @@ public class Guardarropa {
 		}
 
 	}
-
+	@SuppressWarnings("unused")
+	private Prenda crearNuevaPrenda(FamiliaTipos tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
+		BuilderPrenda builderDePrenda = new BuilderPrenda();
+		Prenda nuevaPrenda = builderDePrenda.empezarCreacion()
+											.setTipoAUtilizar(tipoDeEstaPrenda)
+											.crearTipoConTelaYCategoria(unaTela)
+											.setColorPrimario(colorPrimario)
+											.setColorSecundarioOpcional(colorSecundario)
+											.crearPrenda();
+		return nuevaPrenda;
+	}
+	@SuppressWarnings("unused")
+	private Prenda crearNuevaPrenda(FamiliaTipos tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
+		BuilderPrenda builderDePrenda = new BuilderPrenda();
+		Prenda nuevaPrenda = builderDePrenda.empezarCreacion()
+											.setTipoAUtilizar(tipoDeEstaPrenda)
+											.crearTipoConTelaYCategoria(unaTela)
+											.setColorPrimario(colorPrimario)
+											.setColorSecundarioOpcional(colorSecundario)
+											.setImagen(pathToImg)
+											.crearPrenda();
+		return nuevaPrenda;
+	}
 	public Atuendo obtenerSugerencia() {
 		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
 		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
