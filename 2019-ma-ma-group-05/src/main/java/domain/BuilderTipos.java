@@ -28,6 +28,7 @@ public class BuilderTipos {
 	public Tipo crearTipo() {
 		miTipo.setCategoria(fabricaTipos.getCategoria());
 		miTipo.setNombre(fabricaTipos.getTipo());
+		miTipo.setCapa(fabricaTipos.getCapa());
 		return miTipo;
 	}
 }
