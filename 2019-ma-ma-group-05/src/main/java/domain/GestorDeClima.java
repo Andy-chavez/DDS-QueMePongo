@@ -1,6 +1,7 @@
 package domain;
 
 import services.ApiDs;
+import services.ApiOwm;
 
 public class GestorDeClima {
 	private ApiClima apiClima;
@@ -8,7 +9,7 @@ public class GestorDeClima {
 	
 	public static GestorDeClima getInstance(){
 		if(instancia==null){
-			instancia = new GestorDeClima(new ApiDs());
+			instancia = new GestorDeClima(new ApiOwm());
 			//por defecto. Me faltaría hacer que cuando una falle, se cambie sola
 		}
 		return instancia;
@@ -21,5 +22,8 @@ public class GestorDeClima {
 	
 	public Double getTemperaturaActual(){
 		return this.apiClima.getTemperaturaActual();
+	}
+	public Double getPronostico(){
+		return this.apiClima.getPronostico();
 	}
 }

@@ -10,21 +10,39 @@ import domain.GestorDeClima;
 import static org.mockito.Mockito.*;
 public class TestApiClima {
 	private GestorDeClima gestor;
+	private ApiDs apiDs;
+	private ApiOwm apiOwm;
 	@Before
 	public void init(){
 		gestor=GestorDeClima.getInstance();
+		apiDs=new ApiDs();
+		apiOwm=new ApiOwm();
 	}
 	@Test
-	public void seRecibeCorrectamenteLaRespuestaDeDarkSky(){
+	public void seRecibeCorrectamenteElClimaActualDeDarkSky(){
+		gestor.setApiClima(apiDs);
 		Double temp = gestor.getTemperaturaActual();
 		System.out.println(temp);
 		assertNotNull(temp);
 	}
 	@Test
-	public void seRecibeCorrectamenteLaRespuestaDeOwm(){
-		ApiClima api2= new ApiOwm();
-		gestor.setApiClima(api2);
+	public void seRecibeCorrectamenteElClimaActualDeOwm(){
+		gestor.setApiClima(apiOwm);
 		Double temp = gestor.getTemperaturaActual();
+		System.out.println(temp);
+		assertNotNull(temp);
+	}
+	@Test
+	public void seRecibeCorrectamenteElPronosticoDeOwm(){
+		gestor.setApiClima(apiOwm);
+		Double temp = gestor.getPronostico();
+		System.out.println(temp);
+		assertNotNull(temp);
+	}
+	@Test
+	public void seRecibeCorrectamenteElPronosticoDeDs(){
+		gestor.setApiClima(apiDs);
+		Double temp = gestor.getPronostico();
 		System.out.println(temp);
 		assertNotNull(temp);
 	}

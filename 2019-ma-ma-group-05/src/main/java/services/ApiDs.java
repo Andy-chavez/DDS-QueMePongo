@@ -36,26 +36,36 @@ public class ApiDs implements ApiClima{
     	this.units=archivoDeConfiguraciones.getProperty("unitsDarkSky");
     	
 	}
-	public Double getTemperaturaActual(){
-		Double temp=0.0;/*lo inicialicé en 0 para que no rompa las bolas el Ide.
-		La idea es que se intenta hacer la llamada, si hay un error, lanzo la excepción y si no, 
-		devuelvo la temperatura*/
+	private RetrofitClimaService iniciarConexion(){
 		Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(this.urlBase)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RetrofitClimaService service = retrofit.create(RetrofitClimaService.class);
-        
-        Call<ResponseClimaApiDarkSkyDto> call = service.getClimaByDarkSky(appid,latitud,longitud,units);
-        
-        try{
+		return retrofit.create(RetrofitClimaService.class);
+	}
+	public ResponseClimaApiDarkSkyDto getClima(String camposExcluidos){
+		Double temp = 0.0;
+		RetrofitClimaService service = this.iniciarConexion();
+		Call<ResponseClimaApiDarkSkyDto> call = service.getClimaByDarkSky(appid,latitud,longitud,units,camposExcluidos);
+		ResponseClimaApiDarkSkyDto resp=new ResponseClimaApiDarkSkyDto();
+		try{
             Response<ResponseClimaApiDarkSkyDto> response = call.execute();
-            ResponseClimaApiDarkSkyDto resp = response.body();
-            temp = resp.currently.temperature;
+            resp = response.body();
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());
         }
-        return temp;
+		return resp;
+	}
+	public Double getPronostico(){
+		int indexMañana=1;
+		ResponseClimaApiDarkSkyDto resp= this.getClima("[currently,hourly,minutely,alerts,flags]");
+		Double promedio=(resp.daily.data.get(indexMañana).temperatureHigh
+						+ resp.daily.data.get(indexMañana).temperatureLow)/2;
+		return promedio;
+	}
+	public Double getTemperaturaActual(){
+		ResponseClimaApiDarkSkyDto resp= this.getClima("[daily,hourly,minutely,alerts,flags]");
+		return resp.currently.temperature;
 	}
 }
