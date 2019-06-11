@@ -230,6 +230,7 @@ import static org.mockito.Mockito.*
 	@Test
 	public void obtenerSugerencia(){
 		Atuendo atuendoSugerido = new Atuendo();
+		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
