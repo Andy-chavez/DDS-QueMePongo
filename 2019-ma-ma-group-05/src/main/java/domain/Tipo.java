@@ -8,6 +8,11 @@ public class Tipo {
 	private Tela tela;
 	private String nombre;
 	private Capa capa;
+	private int nivelAbrigo;
+	
+	public int getNivelAbrigo() {
+		return this.nivelAbrigo;
+	}
 	
 	public Capa getCapa() {
 		return this.capa;
