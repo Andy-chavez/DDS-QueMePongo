@@ -6,7 +6,7 @@ import java.util.Random;
 import domain.Prenda;
 
 public class Atuendo {
-	private HashMap<String, Prenda> map=new HashMap<String,Prenda>();;
+	private HashMap<String, Prenda> map=new HashMap<String,Prenda>();
 	
 	public void agregarPrenda(Prenda prenda){
 		if(!this.tieneCapa(prenda.getCapa())) {
@@ -33,5 +33,11 @@ public class Atuendo {
 			}
 		}
 		return false;
+	}
+	
+	// TODO: usar temperatura posta
+	public boolean bienAbrigado(int temperatura) {
+		int temp = 24;
+		return true;
 	}
 }
