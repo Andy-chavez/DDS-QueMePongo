@@ -12,10 +12,12 @@ import domain.Prenda;
 public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
+	private List<Atuendo> atuendosSugeridos;
 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
 	}
 
@@ -63,6 +65,19 @@ public class Guardarropa {
 		}
 
 	}
+	
+	public void agregarSugerencia(Atuendo atuendo) {
+		this.atuendosSugeridos.add(atuendo);
+	}
+	
+	public void eliminarAtuendoSugerido(Atuendo atuendo) {
+		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
+			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
+				this.atuendosSugeridos.remove(atuendo);
+			}
+		}
+	}
+
 	@SuppressWarnings("unused")
 	private Prenda crearNuevaPrenda(FamiliaTipos tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
 		BuilderPrenda builderDePrenda = new BuilderPrenda();
@@ -86,7 +101,8 @@ public class Guardarropa {
 											.crearPrenda();
 		return nuevaPrenda;
 	}
-	public Atuendo obtenerSugerencia() {
+
+  public Atuendo obtenerSugerencia() {
 		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
 		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
 
@@ -99,22 +115,36 @@ public class Guardarropa {
 		List<Atuendo> atuendos = new ArrayList<Atuendo>();
 		Atuendo atuendo = new Atuendo();
 
-		int numeroDeCapas = 0;
-		//TODO: no hardcodear el numero 3 (cantidad de max capas que tiene la parte superior)
-		agregarAlgunaPrendaAlAtuendo(atuendo, remerasOCamisas);
-		while(numeroDeCapas < 3) {
-			agregarAlgunaPrendaAlAtuendoMaybe(atuendo, prendasSuperiores);
-			numeroDeCapas ++;
+		boolean atuendoOk = false;
+		while(!atuendoOk) {
+			int numeroDeCapas = 0;
+			//TODO: no hardcodear el numero 3 (cantidad de max capas que tiene la parte superior)
+			agregarAlgunaPrendaAlAtuendo(atuendo, remerasOCamisas);
+			while(numeroDeCapas < 3) {
+				agregarAlgunaPrendaAlAtuendoMaybe(atuendo, prendasSuperiores);
+				numeroDeCapas ++;
+			}
+			
+			agregarAlgunaPrendaAlAtuendo(atuendo, prendasInferiores);
+			agregarAlgunaPrendaAlAtuendo(atuendo, calzados);
+			agregarAlgunaPrendaAlAtuendo(atuendo, accesorios);
+			
+			atuendoOk = atuendoNoRechazado(atuendo) && atuendo.bienAbrigado(24);
 		}
-
-		agregarAlgunaPrendaAlAtuendo(atuendo, prendasInferiores);
-		agregarAlgunaPrendaAlAtuendo(atuendo, calzados);
-		agregarAlgunaPrendaAlAtuendo(atuendo, accesorios);
-		atuendo.getMap().forEach( (k,v) -> System.out.println(k));
-
 		return atuendo;
 	}
-
+	
+	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
+	public boolean atuendoNoRechazado(Atuendo atuendo) {
+		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
+			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
+				System.out.println("este atuendo ya fue sugerido, obteniendo otro");
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
 	}
