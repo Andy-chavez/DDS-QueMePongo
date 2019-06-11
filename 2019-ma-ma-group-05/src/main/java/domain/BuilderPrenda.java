@@ -21,7 +21,10 @@ public class BuilderPrenda {
 		prenda.setColorSecundario(unColorSecundario);
 		return this;
 	}
-
+	public BuilderPrenda setImagen(String path) {
+		prenda.setImage(path);
+		return this;
+	}
 	// Llamo al builder de Tipos
 	public BuilderPrenda setTipoAUtilizar(FamiliaTipos tipoDeEstaPrenda) {
 		fabricaTipo = new BuilderTipos();
