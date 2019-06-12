@@ -2,6 +2,7 @@ package services;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class ApiDs implements ApiClima{
 	private String units;
 	private String latitud;
 	private String longitud;
+	private String camposExcluidosPronostico;
+	private String camposExcluidosClimaActual;
 	
 	public ApiDs(){
 		Properties archivoDeConfiguraciones= new Properties();
@@ -34,6 +37,8 @@ public class ApiDs implements ApiClima{
     	this.latitud=archivoDeConfiguraciones.getProperty("cabaLat");
     	this.longitud=archivoDeConfiguraciones.getProperty("cabaLong");
     	this.units=archivoDeConfiguraciones.getProperty("unitsDarkSky");
+    	this.camposExcluidosClimaActual=archivoDeConfiguraciones.getProperty("camposExcluidosClimaActual");
+    	this.camposExcluidosPronostico=archivoDeConfiguraciones.getProperty("camposExcluidosPronostico");
     	
 	}
 	private RetrofitClimaService iniciarConexion(){
@@ -44,7 +49,6 @@ public class ApiDs implements ApiClima{
 		return retrofit.create(RetrofitClimaService.class);
 	}
 	public ResponseClimaApiDarkSkyDto getClima(String camposExcluidos){
-		Double temp = 0.0;
 		RetrofitClimaService service = this.iniciarConexion();
 		Call<ResponseClimaApiDarkSkyDto> call = service.getClimaByDarkSky(appid,latitud,longitud,units,camposExcluidos);
 		ResponseClimaApiDarkSkyDto resp=new ResponseClimaApiDarkSkyDto();
@@ -59,13 +63,19 @@ public class ApiDs implements ApiClima{
 	}
 	public Double getPronostico(){
 		int indexMañana=1;
-		ResponseClimaApiDarkSkyDto resp= this.getClima("[currently,hourly,minutely,alerts,flags]");
-		Double promedio=(resp.daily.data.get(indexMañana).temperatureHigh
-						+ resp.daily.data.get(indexMañana).temperatureLow)/2;
+		ResponseClimaApiDarkSkyDto resp= this.getClima(this.camposExcluidosPronostico);
+		Double promedio = resp.daily.data.get(indexMañana).temperatureHigh;
+		if(promedio!=null){
+			promedio=(resp.daily.data.get(indexMañana).temperatureHigh
+					+ resp.daily.data.get(indexMañana).temperatureLow)/2;
+		}
+		
 		return promedio;
+		
 	}
 	public Double getTemperaturaActual(){
-		ResponseClimaApiDarkSkyDto resp= this.getClima("[daily,hourly,minutely,alerts,flags]");
-		return resp.currently.temperature;
+		ResponseClimaApiDarkSkyDto resp= this.getClima(this.camposExcluidosClimaActual);
+		Double temp = resp.currently.temperature;
+		return temp;
 	}
 }

@@ -8,40 +8,49 @@ import org.junit.Test;
 import domain.ApiClima;
 import domain.GestorDeClima;
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.List;
 public class TestApiClima {
 	private GestorDeClima gestor;
 	private ApiDs apiDs;
 	private ApiOwm apiOwm;
+	private List<ApiClima> apis;
 	@Before
 	public void init(){
 		gestor=GestorDeClima.getInstance();
-		apiDs=new ApiDs();
-		apiOwm=new ApiOwm();
+		apiDs= new ApiDs();
+		apiOwm = new ApiOwm();
+		apis= new ArrayList<ApiClima>();
 	}
 	@Test
 	public void seRecibeCorrectamenteElClimaActualDeDarkSky(){
-		gestor.setApiClima(apiDs);
+		apis.add(apiDs);
+		gestor.setApisDelClima(apis);
 		Double temp = gestor.getTemperaturaActual();
 		System.out.println(temp);
 		assertNotNull(temp);
 	}
 	@Test
 	public void seRecibeCorrectamenteElClimaActualDeOwm(){
-		gestor.setApiClima(apiOwm);
+		apis.add(apiOwm);
+		gestor.setApisDelClima(apis);
 		Double temp = gestor.getTemperaturaActual();
 		System.out.println(temp);
 		assertNotNull(temp);
 	}
 	@Test
 	public void seRecibeCorrectamenteElPronosticoDeOwm(){
-		gestor.setApiClima(apiOwm);
+		apis.add(apiOwm);
+		gestor.setApisDelClima(apis);
 		Double temp = gestor.getPronostico();
 		System.out.println(temp);
 		assertNotNull(temp);
 	}
 	@Test
 	public void seRecibeCorrectamenteElPronosticoDeDs(){
-		gestor.setApiClima(apiDs);
+		apis.add(apiDs);
+		gestor.setApisDelClima(apis);
 		Double temp = gestor.getPronostico();
 		System.out.println(temp);
 		assertNotNull(temp);
@@ -49,7 +58,8 @@ public class TestApiClima {
 	@Test
 	public void mocks(){
 		ApiDs mockApi=mock(ApiDs.class);
-		gestor.setApiClima(mockApi);
+		apis.add(mockApi);
+		gestor.setApisDelClima(apis);
 		when(mockApi.getTemperaturaActual()).thenReturn(10.0);
 		assertEquals(gestor.getTemperaturaActual(),new Double(10));
 		verify(mockApi,times(1)).getTemperaturaActual();

@@ -2,6 +2,7 @@ package services;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -44,9 +45,7 @@ public class ApiOwm implements ApiClima{
        
 	}
 	public Double getTemperaturaActual(){
-		Double temp=0.0;/*lo inicialicé en 0 para que no rompa las bolas el Ide.
-		La idea es que se intenta hacer la llamada, si hay un error, lanzo la excepción y si no, 
-		devuelvo la temperatura*/
+		Double temp=null;
         RetrofitClimaService service = this.iniciarConexion();
         Call<ResponseClimaApiOwmDto> call = service.getClimaActualByOwm(cabaId,units,appid);
         try{
@@ -60,7 +59,7 @@ public class ApiOwm implements ApiClima{
         return temp;
 	}
 	public Double getPronostico(){
-		Double temp=0.0;
+		Double temp=null;
 		int indexMañana=1;
 		RetrofitClimaService service= this.iniciarConexion();
 		Call<ResponsePronosticoApiOwmDto> call = service.getPronosticoByOwm(cabaId,units,appid);
