@@ -206,8 +206,10 @@ import static org.mockito.Mockito.*
 		usuario= new Usuario("usuario",guardarropa);
 		
 		gestor = GestorDeClima.getInstance();
+		List<ApiClima> apis= new ArrayList<ApiClima>();
 		ApiDs mockApi= mock(ApiDs.class);
-		gestor.setApiClima(mockApi);
+		apis.add(mockApi);
+		gestor.setApisDelClima(apis);
 		when(mockApi.getTemperaturaActual()).thenReturn(new Double(10));
 		/*Ésto de los mocks es para testear. Ayuda mucho con los tests unitarios y nos permiten testear(valga la rebundancia)
 		 * el comportamiento de una clase, independientemente de si los demás componentes de nuestro sistema están terminados.
