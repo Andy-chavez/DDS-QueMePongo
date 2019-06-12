@@ -11,7 +11,7 @@ public class Ojotas implements FamiliaTipos{
 	private String tipo = "ojotas";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.CUERO,Tela.NYLON,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.CALZADO;
-	private Capa capa = Capa.REMERA;
+	private Capa capa = Capa.CALZADO;
 
 	public Capa getCapa() {
 		return capa;

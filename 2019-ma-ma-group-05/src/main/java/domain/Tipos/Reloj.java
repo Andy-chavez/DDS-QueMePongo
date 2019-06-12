@@ -11,7 +11,7 @@ public class Reloj implements FamiliaTipos{
 	private String tipo = "reloj";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.NYLON,Tela.POLYESTER,Tela.OTRO);
 	private Categoria categoria = Categoria.ACCESORIO;
-	private Capa capa = Capa.REMERA;
+	private Capa capa = Capa.ACCESORIO;
 
 	public Capa getCapa() {
 		return capa;

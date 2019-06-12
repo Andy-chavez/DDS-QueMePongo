@@ -10,7 +10,7 @@ public class Zapatillas implements FamiliaTipos{
 	private String tipo = "zapatillas";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.CALZADO;
-	private Capa capa = Capa.REMERA;
+	private Capa capa = Capa.CALZADO;
 
 	public Capa getCapa() {
 		return capa;
