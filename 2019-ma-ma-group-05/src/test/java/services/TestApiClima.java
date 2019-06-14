@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import domain.ApiClima;
 import domain.GestorDeClima;
+import domain.Excepciones.FallaronTodasLasApisException;
+
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -63,5 +65,28 @@ public class TestApiClima {
 		when(mockApi.getTemperaturaActual()).thenReturn(10.0);
 		assertEquals(gestor.getTemperaturaActual(),new Double(10));
 		verify(mockApi,times(1)).getTemperaturaActual();
+	}
+	@Test
+	public void laPrimerApiFallaPeroLaSegundaNo(){
+		ApiDs mockApiDs=mock(ApiDs.class);
+		apis.add(mockApiDs);
+		ApiOwm mockApiOwm = mock(ApiOwm.class);
+		apis.add(mockApiOwm);
+		when(mockApiDs.getTemperaturaActual()).thenReturn(null);
+		when(mockApiOwm.getTemperaturaActual()).thenReturn(20.0);
+		gestor.setApisDelClima(apis);
+		
+		assertEquals(gestor.getTemperaturaActual(),new Double(20));
+	}
+	@Test(expected=FallaronTodasLasApisException.class)
+	public void seLanzaExceptionSiTodasLasApisFallan(){
+		ApiDs mockApiDs=mock(ApiDs.class);
+		apis.add(mockApiDs);
+		ApiOwm mockApiOwm = mock(ApiOwm.class);
+		apis.add(mockApiOwm);
+		when(mockApiDs.getTemperaturaActual()).thenReturn(null);
+		when(mockApiOwm.getTemperaturaActual()).thenReturn(null);
+		gestor.setApisDelClima(apis);
+		gestor.getTemperaturaActual();
 	}
 }
