@@ -13,14 +13,12 @@ public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
 	private List<Atuendo> atuendosSugeridos;
-	private Usuario owner;
 
-	public Guardarropa(String unNombre, List<Prenda> unasPrendas,Usuario owner) {
+	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
-		this.owner=owner;
 	}
 	
 	public String getNombre() {
@@ -32,7 +30,7 @@ public class Guardarropa {
 	}
 
 	public List<Prenda> getPrendas() {
-		return this.owner.getSuscripcion().filtrarPrendas(this.prendas);
+		return this.prendas;
 	}
 
 	public void agregarPrenda(Prenda prenda) {

@@ -1,6 +1,5 @@
 package domain.Suscripciones;
 
-import java.util.List;
 
 import domain.Guardarropa;
 import domain.Prenda;
@@ -14,5 +13,4 @@ public class Premium implements Suscripcion{
 	public void agregarPrenda(Guardarropa armario,Prenda prenda,Usuario usuario) {
 		armario.agregarPrenda(prenda);
 	}
-	public List<Prenda> filtrarPrendas(List<Prenda> prendas){return prendas;}
 }
