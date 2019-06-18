@@ -11,10 +11,12 @@ import domain.Prenda;
 public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
+	private List<Atuendo> atuendosSugeridos;
 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
 	}
 
@@ -57,10 +59,22 @@ public class Guardarropa {
 	
 	private void agregarAlgunaPrendaAlAtuendoMaybe(Atuendo atuendo, List<Prenda> prendas) {
 		Random random = new Random();
-		if(random.nextInt(1) > 0.5) {
+		if(random.nextDouble() > 0.5) {
 			agregarAlgunaPrendaAlAtuendo(atuendo, prendas);
 		}
 
+	}
+	
+	public void agregarSugerencia(Atuendo atuendo) {
+		this.atuendosSugeridos.add(atuendo);
+	}
+	
+	public void eliminarAtuendoSugerido(Atuendo atuendo) {
+		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
+			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
+				this.atuendosSugeridos.remove(atuendo);
+			}
+		}
 	}
 
 	public Atuendo obtenerSugerencia() {
@@ -73,44 +87,39 @@ public class Guardarropa {
 		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
 
-		prendasSuperiores.forEach( p -> System.out.println("superiores: " + p.getTipo().getNombre()));
-		remerasOCamisas.forEach( p -> System.out.println("remeras o camisas: " + p.getTipo().getNombre()));
-		prendasInferiores.forEach( p -> System.out.println("inferiores: " + p.getTipo().getNombre()));
-		calzados.forEach( p -> System.out.println("calzados: " + p.getTipo().getNombre()));
-		accesorios.forEach( p -> System.out.println("accesorios: " + p.getTipo().getNombre()));
-
 		List<Atuendo> atuendos = new ArrayList<Atuendo>();
 		Atuendo atuendo = new Atuendo();
-		
-		int numeroDeCapas = 0;
-		agregarAlgunaPrendaAlAtuendo(atuendo, remerasOCamisas);
-		//TODO: no hardcodear el numero 3 (cantidad de max capas que tiene la parte superior)
-		while(numeroDeCapas < 3) {
-			agregarAlgunaPrendaAlAtuendoMaybe(atuendo, prendasSuperiores);
-			numeroDeCapas ++;
-		}
-		agregarAlgunaPrendaAlAtuendo(atuendo, prendasInferiores);
-		agregarAlgunaPrendaAlAtuendo(atuendo, calzados);
-		agregarAlgunaPrendaAlAtuendo(atuendo, accesorios);
-		
-		return atuendo;
-//		for(int i=0;i<prendasSuperiores.size();i++){
-//			for(int j=0;j<prendasInferiores.size();j++){
-//				for(int h=0;h<calzados.size();h++){
-//					for(int g=0;g<accesorios.size();g++){
-//						Atuendo atuendoSugerido = new Atuendo();
-//						atuendoSugerido.agregarPrenda(prendasSuperiores.get(i));
-//						atuendoSugerido.agregarPrenda(prendasInferiores.get(j));
-//						atuendoSugerido.agregarPrenda(calzados.get(h));
-//						atuendoSugerido.agregarPrenda(accesorios.get(g));
-//						atuendos.add(atuendoSugerido);
-//					}
-//				}
-//			}
-//		}
-//		return atuendos.get(random.nextInt(atuendos.size()));
-	}
 
+		boolean atuendoOk = false;
+		while(!atuendoOk) {
+			int numeroDeCapas = 0;
+			//TODO: no hardcodear el numero 3 (cantidad de max capas que tiene la parte superior)
+			agregarAlgunaPrendaAlAtuendo(atuendo, remerasOCamisas);
+			while(numeroDeCapas < 3) {
+				agregarAlgunaPrendaAlAtuendoMaybe(atuendo, prendasSuperiores);
+				numeroDeCapas ++;
+			}
+			
+			agregarAlgunaPrendaAlAtuendo(atuendo, prendasInferiores);
+			agregarAlgunaPrendaAlAtuendo(atuendo, calzados);
+			agregarAlgunaPrendaAlAtuendo(atuendo, accesorios);
+			
+			atuendoOk = atuendoNoRechazado(atuendo) && atuendo.bienAbrigado(24);
+		}
+		return atuendo;
+	}
+	
+	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
+	public boolean atuendoNoRechazado(Atuendo atuendo) {
+		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
+			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
+				System.out.println("este atuendo ya fue sugerido, obteniendo otro");
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
 	}

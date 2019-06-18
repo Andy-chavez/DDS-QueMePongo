@@ -11,7 +11,12 @@ public class Pantalon implements FamiliaTipos{
 	private String tipo = "pantalon";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
-	private Capa capa = Capa.REMERA;
+	private Capa capa = Capa.PANTALON;
+	private int nivelAbrigo = 12;
+
+	public int getNivelAbrigo() {
+		return nivelAbrigo;
+	}
 
 	public Capa getCapa() {
 		return capa;

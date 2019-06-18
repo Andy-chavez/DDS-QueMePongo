@@ -10,7 +10,13 @@ public class Short implements FamiliaTipos{
 	private String tipo = "short";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
-	private Capa capa = Capa.REMERA;
+	private Capa capa = Capa.PANTALON;
+	private int nivelAbrigo = 6;
+
+	public int getNivelAbrigo() {
+		return nivelAbrigo;
+	}
+
 
 	public Capa getCapa() {
 		return capa;

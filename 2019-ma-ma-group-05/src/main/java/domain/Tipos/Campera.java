@@ -12,6 +12,11 @@ public class Campera implements FamiliaTipos{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.CAMPERA;
+	private int nivelAbrigo = 15;
+
+	public int getNivelAbrigo() {
+		return nivelAbrigo;
+	}
 
 	public Capa getCapa() {
 		return capa;

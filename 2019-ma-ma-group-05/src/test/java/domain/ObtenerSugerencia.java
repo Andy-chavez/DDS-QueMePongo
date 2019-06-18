@@ -205,12 +205,36 @@ public class ObtenerSugerencia {
 	@Test
 	public void obtenerSugerencia(){
 		Atuendo atuendoSugerido = new Atuendo();
+		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
 		
 		assertNotNull(atuendoSugerido);
 	}
+	
+	@Test
+	public void nivelDeAbrigoCorrecto() {
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera); //8
+		atuendoSugerido.agregarPrenda(zapatillas); //5
+		atuendoSugerido.agregarPrenda(shorts); //5
+		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+		assertTrue(atuendoSugerido.bienAbrigado(24));
+	}
+	
+	@Test
+	public void nivelDeAbrigoIncorrecto() {
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera); //8
+		atuendoSugerido.agregarPrenda(sweater); //12
+		atuendoSugerido.agregarPrenda(zapatillas); //5
+		atuendoSugerido.agregarPrenda(shorts); //5
+		atuendoSugerido.agregarPrenda(campera); //15
+		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+		assertTrue(atuendoSugerido.bienAbrigado(0));
+	}
+	
 	@Test
 	public void compararAtuendosDaTrue(){
 		
