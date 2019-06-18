@@ -2,6 +2,7 @@ package domain.Suscripciones;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -39,5 +40,6 @@ public class Free implements Suscripcion {
 			throw new LimiteDePrendasAlcanzadoException();
 		}
 	}
+	public List<Prenda> filtrarPrendas(List<Prenda> prendas){return prendas.subList(0,this.limiteDePrendas);}
 	
 }

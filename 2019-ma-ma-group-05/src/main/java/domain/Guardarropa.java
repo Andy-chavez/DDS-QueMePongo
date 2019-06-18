@@ -13,24 +13,26 @@ public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
 	private List<Atuendo> atuendosSugeridos;
+	private Usuario owner;
 
-	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
+	public Guardarropa(String unNombre, List<Prenda> unasPrendas,Usuario owner) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
+		this.owner=owner;
 	}
-
+	
 	public String getNombre() {
 		return this.nombre;
 	}
-
+	
 	public void setNombre(String unNombre) {
 		this.nombre = unNombre;
 	}
 
 	public List<Prenda> getPrendas() {
-		return this.prendas;
+		return this.owner.getSuscripcion().filtrarPrendas(this.prendas);
 	}
 
 	public void agregarPrenda(Prenda prenda) {
