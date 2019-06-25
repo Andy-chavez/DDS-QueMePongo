@@ -6,8 +6,12 @@ import java.util.Random;
 import domain.Prenda;
 
 public class Atuendo {
-	private HashMap<String, Prenda> map=new HashMap<String,Prenda>();
+
+	private HashMap<String, Prenda> map=new HashMap<String,Prenda>();;
+	private Boolean rechazado;
 	
+	public void setRechazado(Boolean flag){this.rechazado=flag;}
+	public Boolean getRechazado(){return this.rechazado;}
 	public void agregarPrenda(Prenda prenda){
 		if(!this.tieneCapa(prenda.getCapa())) {
 			this.map.put(prenda.getTipo().getNombre().toLowerCase(), prenda);			

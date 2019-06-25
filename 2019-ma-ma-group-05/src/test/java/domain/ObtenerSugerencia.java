@@ -9,8 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ObtenerSugerencia {
-	Guardarropa guardarropa;
+import services.ApiDs;
+import static org.mockito.Mockito.*
+;public class ObtenerSugerencia {
+	private Guardarropa guardarropa;
 
 	private FamiliaTipos antiparrasFamiliaTipo;
 	private FamiliaTipos musculosaFamiliaTipo;
@@ -43,6 +45,8 @@ public class ObtenerSugerencia {
 	private Usuario usuario;
 	
 	private List<Prenda> prendas;
+	
+	private GestorDeClima gestor;
 	@Before
 	public void init() {
 		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
@@ -200,6 +204,29 @@ public class ObtenerSugerencia {
 		prendas.add(ojotas2);
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
+		
+		gestor = GestorDeClima.getInstance();
+		List<ApiClima> apis= new ArrayList<ApiClima>();
+		ApiDs mockApi= mock(ApiDs.class);
+		apis.add(mockApi);
+		gestor.setApisDelClima(apis);
+		when(mockApi.getTemperaturaActual()).thenReturn(new Double(10));
+		/*Ésto de los mocks es para testear. Ayuda mucho con los tests unitarios y nos permiten testear(valga la rebundancia)
+		 * el comportamiento de una clase, independientemente de si los demás componentes de nuestro sistema están terminados.
+		 * El GestorDeClima hace llamados a la API y me devuelve la temperatura real, pero para generar un atuendo en diferentes condiciones,
+		 * creo un impostor que entienda los mismos mensajes que una instancia de ApiDs, pero que en lugar de hacer la implementación posta,
+		 * devuelva un valor por defecto. De ésta forma yo me estoy abstrayendo del verdadero funcionamiento del getTemperatura,
+		 * para probar lo que verdaderamente quiero probar, y si hay fallos, se que son del método obtenerSugerenia y no del Gestor.
+		 * Con éstas 4 últmas lineas dde código, dentro del obtenerSugerencia, cuando solicitemos el clima al 
+		 * GestorDeClima ( que será algo como: GestorDeClima.getInstance().getTemperatura())
+		 * en realidad el mock va a devolver por default una temperatura de 10 gradillos.
+		 * Despues podemos hacer varios métodos para ver como se van superponiendo capas disminuyendo la temperatura,
+		 * es decir, disminuyendo el número que devuelve el mock. Aclaro que ésto de los mocks es sólo para tests.
+		 * Es solo para poder testear e método obtenerSugerencia, independientemente de si funcionan las APIs (que sí lo hacen)
+		 * e independientemente del valor que devuelven. Le seteamos un valor nosotros y listo.
+		 
+		 *
+		 */
 	}
 	
 	@Test

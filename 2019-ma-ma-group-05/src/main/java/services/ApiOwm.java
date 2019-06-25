@@ -2,12 +2,14 @@ package services;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
 import domain.ApiClima;
 import dtoClases.ResponseClimaApiOwmDto;
+import dtoClases.ResponsePronosticoApiOwmDto;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -34,23 +36,37 @@ public class ApiOwm implements ApiClima{
     	this.cabaId=archivoDeConfiguraciones.getProperty("cabaId");
     	
 	}
-	public Double getTemperaturaActual(){
-		Double temp=0.0;/*lo inicialicé en 0 para que no rompa las bolas el Ide.
-		La idea es que se intenta hacer la llamada, si hay un error, lanzo la excepción y si no, 
-		devuelvo la temperatura*/
-		
+	private RetrofitClimaService iniciarConexion(){
 		Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(this.urlBase)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RetrofitClimaService service = retrofit.create(RetrofitClimaService.class);
-        
-        Call<ResponseClimaApiOwmDto> call = service.getClimaByOwm(cabaId,units,appid);
-        
+        return retrofit.create(RetrofitClimaService.class);
+       
+	}
+	public Double getTemperaturaActual(){
+		Double temp=null;
+        RetrofitClimaService service = this.iniciarConexion();
+        Call<ResponseClimaApiOwmDto> call = service.getClimaActualByOwm(cabaId,units,appid);
         try{
             Response<ResponseClimaApiOwmDto> response = call.execute();
             ResponseClimaApiOwmDto respuesta = response.body();
             temp=respuesta.main.temp;
+        }
+        catch (Exception ex){
+            System.out.print(ex.getMessage());
+        }
+        return temp;
+	}
+	public Double getPronostico(){
+		Double temp=null;
+		int indexMañana=1;
+		RetrofitClimaService service= this.iniciarConexion();
+		Call<ResponsePronosticoApiOwmDto> call = service.getPronosticoByOwm(cabaId,units,appid);
+		try{
+            Response<ResponsePronosticoApiOwmDto> response = call.execute();
+            ResponsePronosticoApiOwmDto respuesta = response.body();
+            temp=respuesta.list.get(indexMañana).main.temp;
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());

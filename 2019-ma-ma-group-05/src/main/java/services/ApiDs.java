@@ -2,6 +2,7 @@ package services;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -19,6 +20,8 @@ public class ApiDs implements ApiClima{
 	private String units;
 	private String latitud;
 	private String longitud;
+	private String camposExcluidosPronostico;
+	private String camposExcluidosClimaActual;
 	
 	public ApiDs(){
 		Properties archivoDeConfiguraciones= new Properties();
@@ -34,28 +37,45 @@ public class ApiDs implements ApiClima{
     	this.latitud=archivoDeConfiguraciones.getProperty("cabaLat");
     	this.longitud=archivoDeConfiguraciones.getProperty("cabaLong");
     	this.units=archivoDeConfiguraciones.getProperty("unitsDarkSky");
+    	this.camposExcluidosClimaActual=archivoDeConfiguraciones.getProperty("camposExcluidosClimaActual");
+    	this.camposExcluidosPronostico=archivoDeConfiguraciones.getProperty("camposExcluidosPronostico");
     	
 	}
-	public Double getTemperaturaActual(){
-		Double temp=0.0;/*lo inicialicé en 0 para que no rompa las bolas el Ide.
-		La idea es que se intenta hacer la llamada, si hay un error, lanzo la excepción y si no, 
-		devuelvo la temperatura*/
+	private RetrofitClimaService iniciarConexion(){
 		Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(this.urlBase)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RetrofitClimaService service = retrofit.create(RetrofitClimaService.class);
-        
-        Call<ResponseClimaApiDarkSkyDto> call = service.getClimaByDarkSky(appid,latitud,longitud,units);
-        
-        try{
+		return retrofit.create(RetrofitClimaService.class);
+	}
+	public ResponseClimaApiDarkSkyDto getClima(String camposExcluidos){
+		RetrofitClimaService service = this.iniciarConexion();
+		Call<ResponseClimaApiDarkSkyDto> call = service.getClimaByDarkSky(appid,latitud,longitud,units,camposExcluidos);
+		ResponseClimaApiDarkSkyDto resp=new ResponseClimaApiDarkSkyDto();
+		try{
             Response<ResponseClimaApiDarkSkyDto> response = call.execute();
-            ResponseClimaApiDarkSkyDto resp = response.body();
-            temp = resp.currently.temperature;
+            resp = response.body();
         }
         catch (Exception ex){
             System.out.print(ex.getMessage());
         }
-        return temp;
+		return resp;
+	}
+	public Double getPronostico(){
+		int indexMañana=1;
+		ResponseClimaApiDarkSkyDto resp= this.getClima(this.camposExcluidosPronostico);
+		Double promedio = resp.daily.data.get(indexMañana).temperatureHigh;
+		if(promedio!=null){
+			promedio=(resp.daily.data.get(indexMañana).temperatureHigh
+					+ resp.daily.data.get(indexMañana).temperatureLow)/2;
+		}
+		
+		return promedio;
+		
+	}
+	public Double getTemperaturaActual(){
+		ResponseClimaApiDarkSkyDto resp= this.getClima(this.camposExcluidosClimaActual);
+		Double temp = resp.currently.temperature;
+		return temp;
 	}
 }

@@ -1,15 +1,47 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.Excepciones.FallaronTodasLasApisException;
+import services.ApiDs;
+import services.ApiOwm;
+
 public class GestorDeClima {
-	private ApiClima apiClima;
+	private List<ApiClima> apisDelClima;
+	private static GestorDeClima instancia;
 	
-	public GestorDeClima(ApiClima api){
-		this.apiClima=api;
+	public static GestorDeClima getInstance(){
+		if(instancia==null){
+			instancia = new GestorDeClima();
+		}
+		return instancia;
 	}
-	public ApiClima getApiClima(){ return this.apiClima;}
-	public void setApiClima(ApiClima api){ this.apiClima=api;}
-	
+	private GestorDeClima(){
+		this.apisDelClima= new ArrayList<ApiClima>();
+		this.apisDelClima.add(new ApiDs());
+		this.apisDelClima.add(new ApiOwm());
+	}
+	public void setApisDelClima(List<ApiClima> apis){
+		this.apisDelClima=apis;
+	}
+	public void agregarApiDelClima(ApiClima api){
+		this.apisDelClima.add(api);
+	}
 	public Double getTemperaturaActual(){
-		return this.apiClima.getTemperaturaActual();
+		Double temp=null;
+		for(int i=0;i<this.apisDelClima.size();i++){
+			temp=this.apisDelClima.get(i).getTemperaturaActual();
+			if(temp!=null){return temp;}
+		}
+		throw new FallaronTodasLasApisException();
+	}
+	public Double getPronostico(){
+		Double temp=null;
+		for(int i=0;i<this.apisDelClima.size();i++){
+			temp=this.apisDelClima.get(i).getPronostico();
+			if(temp!=null){return temp;}
+		}
+		throw new FallaronTodasLasApisException();
 	}
 }
