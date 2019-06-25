@@ -8,5 +8,6 @@ public interface FamiliaTipos {
 	public Categoria getCategoria();
 	public EnumSet<Tela> getTelasPosibles();
 	public Capa getCapa();
+	public int getNivelAbrigo();
 	
 }

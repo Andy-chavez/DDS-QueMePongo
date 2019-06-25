@@ -68,6 +68,10 @@ public class Prenda {
 	public Capa getCapa() {
 		return this.tipo.getCapa();
 	}
+	
+	public int getNivelAbrigo() {
+		return this.tipo.getNivelAbrigo();
+	}
 	// Para tests(?
 	public Boolean esIgualA(Prenda otraPrenda) {
 		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.colorPrimario, this.colorSecundario);

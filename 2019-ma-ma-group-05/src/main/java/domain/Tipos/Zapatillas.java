@@ -11,6 +11,11 @@ public class Zapatillas implements FamiliaTipos{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.CALZADO;
 	private Capa capa = Capa.CALZADO;
+	private int nivelAbrigo = 5;
+
+	public int getNivelAbrigo() {
+		return nivelAbrigo;
+	}
 
 	public Capa getCapa() {
 		return capa;

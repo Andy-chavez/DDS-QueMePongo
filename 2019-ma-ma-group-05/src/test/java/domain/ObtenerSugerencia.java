@@ -239,6 +239,29 @@ import static org.mockito.Mockito.*
 		
 		assertNotNull(atuendoSugerido);
 	}
+	
+	@Test
+	public void nivelDeAbrigoCorrecto() {
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera); //8
+		atuendoSugerido.agregarPrenda(zapatillas); //5
+		atuendoSugerido.agregarPrenda(shorts); //5
+		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+		assertTrue(atuendoSugerido.bienAbrigado(24));
+	}
+	
+	@Test
+	public void nivelDeAbrigoIncorrecto() {
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera); //8
+		atuendoSugerido.agregarPrenda(sweater); //12
+		atuendoSugerido.agregarPrenda(zapatillas); //5
+		atuendoSugerido.agregarPrenda(shorts); //5
+		atuendoSugerido.agregarPrenda(campera); //15
+		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+		assertTrue(atuendoSugerido.bienAbrigado(0));
+	}
+	
 	@Test
 	public void compararAtuendosDaTrue(){
 		
