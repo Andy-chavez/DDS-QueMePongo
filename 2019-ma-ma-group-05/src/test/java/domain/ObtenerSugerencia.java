@@ -9,8 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.Tipos.Remera;
 import services.ApiDs;
-import static org.mockito.Mockito.*
+//import static org.mockito.Mockito.*
 ;public class ObtenerSugerencia {
 	private Guardarropa guardarropa;
 
@@ -207,10 +208,10 @@ import static org.mockito.Mockito.*
 		
 		gestor = GestorDeClima.getInstance();
 		List<ApiClima> apis= new ArrayList<ApiClima>();
-		ApiDs mockApi= mock(ApiDs.class);
-		apis.add(mockApi);
-		gestor.setApisDelClima(apis);
-		when(mockApi.getTemperaturaActual()).thenReturn(new Double(10));
+		// ApiDs mockApi= mock(ApiDs.class);
+		// apis.add(mockApi);
+		// gestor.setApisDelClima(apis);
+		// when(mockApi.getTemperaturaActual()).thenReturn(new Double(10));
 		/*Ésto de los mocks es para testear. Ayuda mucho con los tests unitarios y nos permiten testear(valga la rebundancia)
 		 * el comportamiento de una clase, independientemente de si los demás componentes de nuestro sistema están terminados.
 		 * El GestorDeClima hace llamados a la API y me devuelve la temperatura real, pero para generar un atuendo en diferentes condiciones,
@@ -228,9 +229,22 @@ import static org.mockito.Mockito.*
 		 *
 		 */
 	}
+	@Test
+	public void obtenerNivelAbrigoPrenda() {
+		System.out.println("\nobtenerNivelAbrigoPrenda()");
+
+		remera = new BuilderPrenda().empezarCreacion()
+				 .setTipoAUtilizar(remeraFamiliaTipo)
+				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setColorPrimario(Color.black)
+				 .setColorSecundarioOpcional(Color.blue)
+				 .crearPrenda();
+		System.out.println("Nivel abrigo remera: " + remera.getTipo().getNivelAbrigo());
+	}
 	
 	@Test
 	public void obtenerSugerencia(){
+		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo();
 		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
@@ -242,16 +256,18 @@ import static org.mockito.Mockito.*
 	
 	@Test
 	public void nivelDeAbrigoCorrecto() {
+		System.out.println("\nnivelDeAbrigo()");
 		Atuendo atuendoSugerido = new Atuendo();
 		atuendoSugerido.agregarPrenda(remera); //8
 		atuendoSugerido.agregarPrenda(zapatillas); //5
 		atuendoSugerido.agregarPrenda(shorts); //5
 		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
-		assertTrue(atuendoSugerido.bienAbrigado(24));
+		assertTrue(atuendoSugerido.bienAbrigado(24) == 0);
 	}
 	
 	@Test
 	public void nivelDeAbrigoIncorrecto() {
+		System.out.println("\nnivelDeAbrigoIncorrecto()");
 		Atuendo atuendoSugerido = new Atuendo();
 		atuendoSugerido.agregarPrenda(remera); //8
 		atuendoSugerido.agregarPrenda(sweater); //12
@@ -259,12 +275,12 @@ import static org.mockito.Mockito.*
 		atuendoSugerido.agregarPrenda(shorts); //5
 		atuendoSugerido.agregarPrenda(campera); //15
 		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
-		assertTrue(atuendoSugerido.bienAbrigado(0));
+		assertTrue(atuendoSugerido.bienAbrigado(0) == 0);
 	}
 	
 	@Test
 	public void compararAtuendosDaTrue(){
-		
+		System.out.println("\ncompararAtuendosDaTrue()");
 		Atuendo atuendoSugerido=new Atuendo();
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
@@ -283,7 +299,7 @@ import static org.mockito.Mockito.*
 	}
 	@Test
 	public void compararAtuendosDaFalse(){
-		
+		System.out.println("\ncompararAtuendosDaFalse()");
 		Atuendo atuendoSugerido=new Atuendo();
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
