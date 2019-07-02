@@ -12,6 +12,7 @@ public class Usuario {
 	private List<Guardarropa> guardarropas;
 	private String nombre;
 	private Suscripcion suscripcion;
+	private List<Evento> eventos;
 	
 	public Usuario(String nombre){
 		this.nombre=nombre;
@@ -55,6 +56,11 @@ public class Usuario {
 		evento.setLugar(lugar);
 		evento.setFecha(anio, mes, dia);
 		return evento;
+	}
+	
+	public Evento getEvento(String unNombre){
+		return this.eventos.stream().filter(e -> e.getNombre().toLowerCase() == unNombre.toLowerCase())
+				.collect(Collectors.toList()).get(0);
 	}
 	
 }

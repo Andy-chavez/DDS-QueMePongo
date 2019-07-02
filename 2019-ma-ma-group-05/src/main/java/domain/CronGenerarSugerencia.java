@@ -12,12 +12,10 @@ import domain.Evento;
 
 public class CronGenerarSugerencia {
 	
-	public static void main(String[] args) {
+	/*public static void main(Guardarropa guardarropa) {
+		Evento evento = usuario.getEvento(nombreEvento); 
+		
 		Calendar calendar = Calendar.getInstance();
-		Usuario usuario = new Usuario(null); //null para que no joda con los errores
-		Guardarropa guardarropa = new Guardarropa(null, null); //null para que no joda con los errores
-		Evento evento = usuario.crearEvento("nombre", "lugar", 0, 0, 0); 
-		/*hardcodeado para que no joda con los errores*/
 		
 		int anio = evento.getFecha().getYear();
 		int mes = evento.getFecha().getMonthValue();
@@ -36,5 +34,5 @@ public class CronGenerarSugerencia {
 		};
 		
 		timer.schedule(tarea, time, 86400000);
-	}
+	}*/
 }
