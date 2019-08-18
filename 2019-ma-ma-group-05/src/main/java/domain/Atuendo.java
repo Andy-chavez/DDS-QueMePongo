@@ -47,13 +47,12 @@ public class Atuendo {
 		}
 		return nivelAbrigo;
 	}
-	// TODO: usar temperatura posta
-	public boolean bienAbrigado(double temp) {
-//		return true;
+
+	public int bienAbrigado(double temp) { // devuelve -1, 0, 1 dependiendo si esta por encima, si esta bien, o por debajo del nivel requerido
 		int variableTemperaturaSarasa = 50;
 		int margenAdmitido = 10;
 		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temp;
 		int nivelAbrigoCubierto = nivelAbrigoRequerido - this.getNivelAbrigo();
-		return (nivelAbrigoCubierto >= -margenAdmitido) && (nivelAbrigoCubierto <= margenAdmitido) ? true :false;
+		return (nivelAbrigoCubierto >= -margenAdmitido) && (nivelAbrigoCubierto <= margenAdmitido) ? 0 : nivelAbrigoCubierto < -margenAdmitido ? 1 : -1;
 	}
 }

@@ -12,6 +12,7 @@ public class Usuario {
 	private List<Guardarropa> guardarropas;
 	private String nombre;
 	private Suscripcion suscripcion;
+	private List<Evento> eventos;
 	
 	public Usuario(String nombre){
 		this.nombre=nombre;
@@ -46,15 +47,20 @@ public class Usuario {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return guardarropa.obtenerSugerencia();
+		return guardarropa.obtenerSugerencia(24); // TODO: conseguir temperatura y mandarlo como parametro
 	}
 	
-	public Evento crearEvento(String nombre, String lugar, int anio, int mes, int dia) {
+	public void crearEvento(String nombre, String lugar, int anio, int mes, int dia) {
 		Evento evento = new Evento();
 		evento.setNombre(nombre);
 		evento.setLugar(lugar);
 		evento.setFecha(anio, mes, dia);
-		return evento;
+		eventos.add(evento);
+	}
+	
+	public Evento getEvento(String unNombre){
+		return this.eventos.stream().filter(e -> e.getNombre().toLowerCase() == unNombre.toLowerCase())
+				.collect(Collectors.toList()).get(0);
 	}
 	
 }
