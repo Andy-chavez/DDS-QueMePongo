@@ -11,7 +11,7 @@ public class ImgResizer {
 
 	private static int MAX_ANCHO=800;
 	private static int MAX_ALTO=800;
-	private static String pathEnSistema;
+	private static String pathEnSistema; //habria que obtenerlo del sistema?
 	
 	public void copyImage(String filePath, Prenda prenda) { //guarda la imagen resizeada
         BufferedImage bimage = getImagen(filePath);
