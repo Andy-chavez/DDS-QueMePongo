@@ -47,7 +47,7 @@ public class Usuario {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return guardarropa.obtenerSugerencia();
+		return guardarropa.obtenerSugerencia(24); // TODO: conseguir temperatura y mandarlo como parametro
 	}
 	
 	public void crearEvento(String nombre, String lugar, int anio, int mes, int dia) {

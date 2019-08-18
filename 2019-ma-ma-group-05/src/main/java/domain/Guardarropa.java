@@ -53,15 +53,15 @@ public class Guardarropa {
 		return prenda -> prenda.getTipo().getCategoria() == unaCategoria;
 	}
 
-	private void agregarAlgunaPrendaAlAtuendo(Atuendo atuendo, List<Prenda> prendas) {
+	private void agregarPrendaDeCapa(Atuendo atuendo, List<Prenda> prendas) {
 		Random random = new Random();
 		atuendo.agregarPrenda(prendas.get(random.nextInt(prendas.size())));
 	}
 	
-	private void agregarAlgunaPrendaAlAtuendoMaybe(Atuendo atuendo, List<Prenda> prendas) {
+	private void agregarPrendaDeCapaMaybe(Atuendo atuendo, List<Prenda> prendas) {
 		Random random = new Random();
 		if(random.nextDouble() > 0.5) {
-			agregarAlgunaPrendaAlAtuendo(atuendo, prendas);
+			agregarPrendaDeCapa(atuendo, prendas);
 		}
 
 	}
@@ -102,7 +102,7 @@ public class Guardarropa {
 		return nuevaPrenda;
 	}
 
-  public Atuendo obtenerSugerencia() {
+  public Atuendo obtenerSugerencia(double temperatura) {
 		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
 		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
 
@@ -112,25 +112,24 @@ public class Guardarropa {
 		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
 
-		List<Atuendo> atuendos = new ArrayList<Atuendo>();
-		Atuendo atuendo = new Atuendo();
-
-		boolean atuendoOk = false;
-		while(!atuendoOk) {
-			int numeroDeCapas = 0;
-			//TODO: no hardcodear el numero 3 (cantidad de max capas que tiene la parte superior)
-			agregarAlgunaPrendaAlAtuendo(atuendo, remerasOCamisas);
-			while(numeroDeCapas < 3) {
-				agregarAlgunaPrendaAlAtuendoMaybe(atuendo, prendasSuperiores);
-				numeroDeCapas ++;
+		int intentos = 10;
+		Atuendo atuendo;		
+		do {
+			atuendo = new Atuendo(); // lo inicializo aca para que se borre en caso de que no este bine hecho
+			// armado de atuendo basico: remera, pantalon, calzado y capaz un accesorio
+			agregarPrendaDeCapa(atuendo, remerasOCamisas);
+			agregarPrendaDeCapa(atuendo, prendasInferiores);
+			agregarPrendaDeCapa(atuendo, calzados);
+			agregarPrendaDeCapaMaybe(atuendo, accesorios);	
+			
+			int capasMaximas = 3;
+			while(atuendo.bienAbrigado(temperatura) == -1 && capasMaximas > 0) { // mientras que el atuendo no cubra el nivel de abrigo necesario
+				agregarPrendaDeCapa(atuendo, prendasSuperiores);
+				capasMaximas--;
 			}
-			
-			agregarAlgunaPrendaAlAtuendo(atuendo, prendasInferiores);
-			agregarAlgunaPrendaAlAtuendo(atuendo, calzados);
-			agregarAlgunaPrendaAlAtuendo(atuendo, accesorios);
-			
-			atuendoOk = atuendoNoRechazado(atuendo) && atuendo.bienAbrigado(24);
-		}
+			intentos--;
+		} while(atuendo.bienAbrigado(temperatura) != 0 && !atuendoNoRechazado(atuendo) && intentos > 0);
+		
 		return atuendo;
 	}
 	
