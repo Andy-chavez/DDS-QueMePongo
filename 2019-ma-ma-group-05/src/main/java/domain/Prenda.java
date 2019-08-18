@@ -14,10 +14,12 @@ public class Prenda {
 	private Color colorPrimario;
 	private Color colorSecundario;
 	private Tipo tipo;
-	private Image imagen;
+	private BufferedImage imagen;
+	private ImgResizer resizer;
 	//private GuardaRopa guardaRropa;
 	//public Prenda() {}
 
+	
 	public void setColorPrimario(Color colorPrimario) {
 		this.colorPrimario = colorPrimario;
 	}
@@ -35,7 +37,10 @@ public class Prenda {
 		this.tipo = tipo;
 	}
 	public void setImage(String path) {
-		this.imagen = new ImageIcon(path).getImage();
+		this.resizer.copyImage(path,this);
+	}
+	public void setImagenResized(BufferedImage b) {
+		this.imagen = b;
 	}
 	public void normalizarImg(BufferedImage img, int height, int length ) {
 		//todavia no se como hacer esto, va tampoco se muy bien a que se refiere

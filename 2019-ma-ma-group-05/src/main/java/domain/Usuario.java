@@ -13,7 +13,14 @@ public class Usuario {
 	private String nombre;
 	private Suscripcion suscripcion;
 	private List<Evento> eventos;
+	private String celular;
 	
+	public String getCelular() {
+		return celular;
+	}
+	public void setCelular(String nuevoNumero) {
+		celular = nuevoNumero;
+	}
 	public Usuario(String nombre){
 		this.nombre=nombre;
 		this.guardarropas= new ArrayList<Guardarropa>();
