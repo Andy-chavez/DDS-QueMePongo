@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.BuilderPrenda;
 import domain.Categoria;
 import domain.Guardarropa;
 import domain.Prenda;
