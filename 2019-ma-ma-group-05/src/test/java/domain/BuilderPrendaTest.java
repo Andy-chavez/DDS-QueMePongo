@@ -3,7 +3,6 @@ package domain;
 import org.junit.Assert;
 import org.junit.Test;
 
-import domain.BuilderPrenda;
 import domain.Prenda;
 import domain.Tela;
 import domain.Excepciones.ColoresIgualesException;
@@ -14,12 +13,10 @@ import org.junit.Before;
 import java.awt.Color;
 
 	public class BuilderPrendaTest {
-	private BuilderPrenda builderDePrenda;
 	private Remera remeraTipo;
 	
 	@Before
 	public void init() {
-		builderDePrenda = new BuilderPrenda();
 		remeraTipo = new Remera();
 		remeraTipo.setNombre("remera");
 		remeraTipo.setCategoria(Categoria.SUPERIOR);
