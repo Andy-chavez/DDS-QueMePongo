@@ -17,14 +17,9 @@ public class PrendaTest {
 	@Before
 	public void init() {
 		tipo = new Zapatillas();
-		
-		//tipo.setCategoria(Categoria.CALZADO);
-		//tipo.setNombre("Zapatillas");
+
 		tipo.establecerTela(Tela.CUERO);
-		
-		//prenda.setColorPrimario(Color.black);
-		//prenda.setTipo(tipo);
-		
+
 		prenda = new Prenda(tipo,Color.black);
 	}
 	

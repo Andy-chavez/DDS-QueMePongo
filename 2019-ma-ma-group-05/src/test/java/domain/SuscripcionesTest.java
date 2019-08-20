@@ -52,8 +52,7 @@ public class SuscripcionesTest {
 		zapatillasTipo = new Zapatillas();
 		
 		// Prendas para el test de sugerencias
-		//remeraTipo.setTela(Tela.OTRO);
-		// Prendas para el test de sugerencias
+
 		remeraTipo.establecerTela(Tela.OTRO);
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
 		antiparrasTipo.establecerTela(Tela.OTRO);
