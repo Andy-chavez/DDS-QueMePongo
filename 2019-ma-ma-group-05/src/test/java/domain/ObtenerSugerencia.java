@@ -89,130 +89,8 @@ import services.ApiDs;
 		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);
 		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);
 		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);
-		campera2 = new Prenda(camisaTipo,Color.black,Color.blue);
-		/*remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		camisa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camisaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		sweater = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(sweaterTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		campera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camperaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		antiparras = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		remera2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		camisa2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camisaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		sweater2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(sweaterTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		campera2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camperaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		antiparras2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();*/
+		campera2 = new Prenda(camperaTipo,Color.black,Color.blue);
+
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);
 		prendas.add(zapatillas);
@@ -261,13 +139,6 @@ import services.ApiDs;
 	@Test
 	public void obtenerNivelAbrigoPrenda() {
 		System.out.println("\nobtenerNivelAbrigoPrenda()");
-
-		remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
 		System.out.println("Nivel abrigo remera: " + remera.getTipo().getNivelAbrigo());
 	}
 	
