@@ -8,7 +8,8 @@ import domain.Tipo;
 import domain.Tela;
 
 public class Short extends Tipo{
-	private String tipo = "short";
+	private String nombre = "short";
+	private Tela tela;
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
 	private Capa capa = Capa.PANTALON;
@@ -23,7 +24,7 @@ public class Short extends Tipo{
 		return capa;
 	}
 	public String getTipo() {
-		return tipo;
+		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
 		return telasPosibles;

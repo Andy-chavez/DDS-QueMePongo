@@ -12,8 +12,9 @@ public class Atuendo {
 	
 	public void setRechazado(Boolean flag){this.rechazado=flag;}
 	public Boolean getRechazado(){return this.rechazado;}
+	
 	public void agregarPrenda(Prenda prenda){
-		if(!this.tieneCapa(prenda.getCapa())) {
+		if(prenda != null && !this.tieneCapa(prenda.getCapa())) {
 			this.map.put(prenda.getTipo().getNombre().toLowerCase(), prenda);			
 		}
 	}

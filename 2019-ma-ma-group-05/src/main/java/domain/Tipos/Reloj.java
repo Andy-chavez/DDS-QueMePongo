@@ -8,7 +8,8 @@ import domain.Tipo;
 import domain.Tela;
 
 public class Reloj extends Tipo{
-	private String tipo = "reloj";
+	private String nombre = "reloj";
+	private Tela tela;
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.NYLON,Tela.POLYESTER,Tela.OTRO);
 	private Categoria categoria = Categoria.ACCESORIO;
 	private Capa capa = Capa.ACCESORIO;
@@ -23,7 +24,7 @@ public class Reloj extends Tipo{
 	}
 	
 	public String getTipo() {
-		return tipo;
+		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
 		return telasPosibles;

@@ -19,7 +19,15 @@ public class Prenda {
 	//private GuardaRopa guardaRropa;
 	//public Prenda() {}
 
-	
+	public Prenda(Tipo unTipo, Color colorPrim) {
+		this.setTipo(unTipo);
+		this.setColorPrimario(colorPrim);
+	}
+	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
+		this.setTipo(unTipo);
+		this.setColorPrimario(colorPrim);
+		this.setColorSecundario(colorSecun);
+	}
 	public void setColorPrimario(Color colorPrimario) {
 		this.colorPrimario = colorPrimario;
 	}
