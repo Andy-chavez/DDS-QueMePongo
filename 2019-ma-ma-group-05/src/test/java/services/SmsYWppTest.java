@@ -2,9 +2,6 @@ package services;
 
 import org.junit.Test;
 
-import domain.SmsSender;
-import domain.WppSender;
-
 public class SmsYWppTest { //es super precario, ya se, pero dps va a ir mejorando(?
 	
 	private SmsSender sms = new SmsSender();
@@ -15,7 +12,7 @@ public class SmsYWppTest { //es super precario, ya se, pero dps va a ir mejorand
 		sms.enviar("Hola! Cómo va? Este es un sms");
 	}
 	@Test
-	public void seEnvioWpp() { //aca habria que preguntar porque solo puede enviarse un wpp si se unen al sandbox de Twilio, eso es valido?
+	public void seEnvioWpp() {
 		wpp.configurar();
 		wpp.enviar("Hola! Cómo va? Este es un wpp");
 	}
