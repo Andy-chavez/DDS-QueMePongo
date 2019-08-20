@@ -1,4 +1,5 @@
 package domain;
+import java.util.Comparator;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -101,8 +102,46 @@ public class Guardarropa {
 											.crearPrenda();
 		return nuevaPrenda;
 	}
+	
+	// elije la prenda que mas se acerque al nivel de abrigo necesario (se usa cuando no hay prendas que queden dentro del rango)
+	public Prenda obtenerPrendaQueMasSeAcerque(int diferenciaTemperatura, List<Prenda> prendas){
+		//si la diferencia de temperatura es mayor a 10, quiere decir que hay que devolver la prenda que MAS abrigue, si es menor a -10, la MENOS abrigada
+		if(diferenciaTemperatura >= 10){
+			return prendas.stream().max(Comparator.comparing(p -> p.getNivelAbrigo())).get();
+		}
+		else{
+			return prendas.stream().min(Comparator.comparing(p -> p.getNivelAbrigo())).get();
+		}
+	}
 
-  public Atuendo obtenerSugerencia(double temperatura) {
+	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
+	public Prenda obtenerPrendaParaTemperatura(double temperatura, int sensibilidadFrio, List<Prenda> prendas){
+		int variableTemperaturaSarasa = 40;
+		int margenAdmitido = 10;
+		int nivelAbrigoRequerido = variableTemperaturaSarasa + sensibilidadFrio - (int) temperatura;
+		Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) >= margenAdmitido;
+		List<Prenda> prendasConAbrigoOk = prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
+		Random random = new Random();
+		
+		for(Prenda p : prendas){
+			System.out.println(p.getTipo().getNombre());
+		}
+		// Si la lista esta vacia, es porque no encontro inguna prenda que cumpla con el nivel de abrigo necesario
+		// entonces elige la prenda que mas se acerque
+		if(prendasConAbrigoOk.size() == 0){
+			System.out.println("holaaaa");
+			// TODO: elegir la prenda que mas se acerque, por ahora solo elige una random
+			return prendas.get(random.nextInt(prendas.size()));
+		}
+		// Devuelve una prenda random que cumple con el nivel de abrigo 
+		else{
+			System.out.println(prendasConAbrigoOk);
+
+			return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
+		}
+	}
+	
+	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
 		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
 		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
 
@@ -117,6 +156,7 @@ public class Guardarropa {
 		do {
 			atuendo = new Atuendo(); // lo inicializo aca para que se borre en caso de que no este bine hecho
 			// armado de atuendo basico: remera, pantalon, calzado y capaz un accesorio
+			
 			agregarPrendaDeCapa(atuendo, remerasOCamisas);
 			agregarPrendaDeCapa(atuendo, prendasInferiores);
 			agregarPrendaDeCapa(atuendo, calzados);
@@ -132,6 +172,8 @@ public class Guardarropa {
 		
 		return atuendo;
 	}
+	
+	
 	
 	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
 	public boolean atuendoNoRechazado(Atuendo atuendo) {

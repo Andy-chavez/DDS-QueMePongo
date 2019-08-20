@@ -12,7 +12,7 @@ public class Camisa implements FamiliaTipos{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.CAMISA;
-	private int nivelAbrigo = 10;
+	private int nivelAbrigo = 12;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;
