@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class BuilderPrenda {
 	private Prenda prenda;
-	private BuilderTipos fabricaTipo;
+	private Tipo tipo;
 
 	public BuilderPrenda empezarCreacion() {
 		prenda = new Prenda();
@@ -26,19 +26,13 @@ public class BuilderPrenda {
 		return this;
 	}
 	// Llamo al builder de Tipos
-	public BuilderPrenda setTipoAUtilizar(FamiliaTipos tipoDeEstaPrenda) {
-		fabricaTipo = new BuilderTipos();
-		this.fabricaTipo.setFabricaTipos(tipoDeEstaPrenda);
+	public BuilderPrenda setTipoAUtilizar(Tipo tipoDeEstaPrenda) {
+		this.tipo = tipoDeEstaPrenda;
 		return this;
 	}
 
-	public BuilderPrenda crearTipoConTelaYCategoria(Tela unaTela) {
-		Tipo tipoDeEstaPrenda = 
-				fabricaTipo
-				.empezarCreacion()
-				.setTela(unaTela)
-				.crearTipo();
-		prenda.setTipo(tipoDeEstaPrenda);
+	public BuilderPrenda setearTelaATipo(Tela unaTela) {
+		this.tipo.establecerTela(unaTela);
 		return this;
 	}
 

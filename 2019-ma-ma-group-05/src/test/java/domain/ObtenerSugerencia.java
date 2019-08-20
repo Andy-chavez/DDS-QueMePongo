@@ -15,15 +15,15 @@ import services.ApiDs;
 ;public class ObtenerSugerencia {
 	private Guardarropa guardarropa;
 
-	private FamiliaTipos antiparrasFamiliaTipo;
-	private FamiliaTipos musculosaFamiliaTipo;
-	private FamiliaTipos shortsFamiliaTipo;
-	private FamiliaTipos ojotasFamiliaTipo;
-	private FamiliaTipos remeraFamiliaTipo;
-	private FamiliaTipos zapatillasFamiliaTipo;
-	private FamiliaTipos camisaFamiliaTipo;
-	private FamiliaTipos sweaterFamiliaTipo;
-	private FamiliaTipos camperaFamiliaTipo;
+	private Tipo antiparrasFamiliaTipo;
+	private Tipo musculosaFamiliaTipo;
+	private Tipo shortsFamiliaTipo;
+	private Tipo ojotasFamiliaTipo;
+	private Tipo remeraFamiliaTipo;
+	private Tipo zapatillasFamiliaTipo;
+	private Tipo camisaFamiliaTipo;
+	private Tipo sweaterFamiliaTipo;
+	private Tipo camperaFamiliaTipo;
 
 	private Prenda antiparras;
 	private Prenda musculosa;
@@ -63,124 +63,124 @@ import services.ApiDs;
 		// Prendas para el test de sugerencias
 		remera = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		camisa = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(camisaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		sweater = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(sweaterFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		campera = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(camperaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		antiparras = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(antiparrasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		shorts = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(shortsFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		musculosa = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(musculosaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		ojotas = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(ojotasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		zapatillas = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(zapatillasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		remera2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		camisa2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(camisaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		sweater2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(sweaterFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		campera2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(camperaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		antiparras2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(antiparrasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		shorts2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(shortsFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		musculosa2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(musculosaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		ojotas2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(ojotasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
 		
 		zapatillas2 = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(zapatillasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();
@@ -235,7 +235,7 @@ import services.ApiDs;
 
 		remera = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
+				 .setearTelaATipo(Tela.OTRO)
 				 .setColorPrimario(Color.black)
 				 .setColorSecundarioOpcional(Color.blue)
 				 .crearPrenda();

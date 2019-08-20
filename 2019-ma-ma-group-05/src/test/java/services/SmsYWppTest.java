@@ -1,6 +1,9 @@
-package domain;
+package services;
 
 import org.junit.Test;
+
+import domain.SmsSender;
+import domain.WppSender;
 
 public class SmsYWppTest { //es super precario, ya se, pero dps va a ir mejorando(?
 	

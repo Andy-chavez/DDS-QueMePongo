@@ -9,42 +9,43 @@ import org.junit.Test;
 import domain.Categoria;
 import domain.Prenda;
 import domain.Tela;
-
+import domain.Tipos.*;
 public class PrendaTest {
 	private Prenda prenda;
-	private Tipo tipo;
+	private Zapatillas tipo;
 	
 	@Before
 	public void init() {
-		prenda = new Prenda();
-		tipo = new Tipo();
+		tipo = new Zapatillas();
 		
-		tipo.setCategoria(Categoria.CALZADO);
-		tipo.setNombre("Zapatos");
-		tipo.setTela(Tela.CUERO);
+		//tipo.setCategoria(Categoria.CALZADO);
+		//tipo.setNombre("Zapatillas");
+		tipo.establecerTela(Tela.CUERO);
 		
-		prenda.setColorPrimario(Color.black);
-		prenda.setTipo(tipo);
+		//prenda.setColorPrimario(Color.black);
+		//prenda.setTipo(tipo);
+		
+		prenda = new Prenda(tipo,Color.black);
 	}
 	
 	@Test
-	public void sonZapatos() {
-		Assert.assertEquals("No eran zapatos", "Zapatos", prenda.getTipo().getNombre());
+	public void sonZapatillas() {
+		Assert.assertEquals("No eran zapatillas", "Zapatillas", prenda.getTipo().getNombre());
 	}
 	
 	@Test
 	public void sonCalzadoLosZapatos() {
-		Assert.assertEquals("No eran zapatos de calzado", Categoria.CALZADO, prenda.getTipo().getCategoria());
+		Assert.assertEquals("No eran zapatillas de calzado", Categoria.CALZADO, prenda.getTipo().getCategoria());
 	}
 	
 	@Test
 	public void sonNegrosLosZapatos() {
-		Assert.assertEquals("No eran zapatos negros", Color.black, prenda.getColorPrimario());
+		Assert.assertEquals("No eran zapatillas negros", Color.black, prenda.getColorPrimario());
 	}
 	
 	@Test
 	public void sonDeCueroLosZapatos() {
-		Assert.assertEquals("No eran zapatos de cuero", Tela.CUERO, prenda.getTipo().getTela());
+		Assert.assertEquals("No eran zapatillas de cuero", Tela.CUERO, prenda.getTipo().getTela());
 	}
 	
 }

@@ -8,8 +8,8 @@ import domain.Tipo;
 import domain.Tela;
 
 public class Remera extends Tipo{
-	
-	private String tipo = "remera";
+	private Tela tela;
+	private String nombre = "remera";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.REMERA;
@@ -24,7 +24,7 @@ public class Remera extends Tipo{
 	}
 	
 	public String getTipo() {
-		return tipo;
+		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
 		return telasPosibles;
