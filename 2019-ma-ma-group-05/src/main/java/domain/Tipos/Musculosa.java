@@ -4,15 +4,15 @@ import java.util.EnumSet;
 
 import domain.Capa;
 import domain.Categoria;
-import domain.FamiliaTipos;
+import domain.Tipo;
 import domain.Tela;
 
-public class Musculosa implements FamiliaTipos{
+public class Musculosa extends Tipo{
 	private String tipo = "musculosa";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.REMERA;
-	private int nivelAbrigo = 5;
+	private int nivelAbrigo = 8;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;

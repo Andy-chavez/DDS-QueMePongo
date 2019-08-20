@@ -29,6 +29,7 @@ public class BuilderTipos {
 		miTipo.setCategoria(fabricaTipos.getCategoria());
 		miTipo.setNombre(fabricaTipos.getTipo());
 		miTipo.setCapa(fabricaTipos.getCapa());
+		miTipo.setNivelAbrigo(fabricaTipos.getNivelAbrigo());
 		return miTipo;
 	}
 }

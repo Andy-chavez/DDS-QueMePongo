@@ -16,12 +16,12 @@ import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 public class SuscripcionesTest {
 	Guardarropa guardarropa;
 	
-	private FamiliaTipos antiparrasFamiliaTipo;
-	private FamiliaTipos musculosaFamiliaTipo;
-	private FamiliaTipos shortsFamiliaTipo;
-	private FamiliaTipos ojotasFamiliaTipo;
-	private FamiliaTipos remeraFamiliaTipo;
-	private FamiliaTipos zapatillasFamiliaTipo;
+	private Tipo antiparrasFamiliaTipo;
+	private Tipo musculosaFamiliaTipo;
+	private Tipo shortsFamiliaTipo;
+	private Tipo ojotasFamiliaTipo;
+	private Tipo remeraFamiliaTipo;
+	private Tipo zapatillasFamiliaTipo;
 	
 	private Prenda antiparras;
 	private Prenda musculosa;

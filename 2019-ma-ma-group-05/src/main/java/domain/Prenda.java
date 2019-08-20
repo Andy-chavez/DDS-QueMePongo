@@ -42,9 +42,6 @@ public class Prenda {
 	public void setImagenResized(BufferedImage b) {
 		this.imagen = b;
 	}
-	public void normalizarImg(BufferedImage img, int height, int length ) {
-		//todavia no se como hacer esto, va tampoco se muy bien a que se refiere
-	}
 	public Image getImagen() {
 		return this.imagen;
 	}
