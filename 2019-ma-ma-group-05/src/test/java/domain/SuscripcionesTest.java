@@ -53,95 +53,26 @@ public class SuscripcionesTest {
 		
 		// Prendas para el test de sugerencias
 		//remeraTipo.setTela(Tela.OTRO);
-		remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		antiparras = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		remera2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		antiparras2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		remeraBonus = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraTipo)
-				 .setearTelaATipo(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
+		// Prendas para el test de sugerencias
+		remeraTipo.establecerTela(Tela.OTRO);
+		remera = new Prenda(remeraTipo,Color.black,Color.blue);
+		antiparrasTipo.establecerTela(Tela.OTRO);
+		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shortsTipo.establecerTela(Tela.OTRO);
+		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosaTipo.establecerTela(Tela.OTRO);
+		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotasTipo.establecerTela(Tela.OTRO);
+		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillasTipo.establecerTela(Tela.OTRO);
+		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);
+		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		remeraBonus = new Prenda(remeraTipo,Color.black,Color.blue);
 		
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);

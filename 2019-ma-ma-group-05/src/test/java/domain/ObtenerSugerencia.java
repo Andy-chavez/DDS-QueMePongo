@@ -78,16 +78,18 @@ import services.ApiDs;
 		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
 		zapatillasTipo.establecerTela(Tela.OTRO);
 		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		camperaTipo.establecerTela(Tela.OTRO);
+		campera = new Prenda(camisaTipo,Color.black,Color.blue);
 		
-		remera = new Prenda(remeraTipo,Color.black,Color.blue);
-		camisa = new Prenda(camisaTipo,Color.black,Color.blue);
-		sweater = new Prenda(sweaterTipo,Color.black,Color.blue);
-		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
-		
+		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);
+		camisa2 = new Prenda(camisaTipo,Color.black,Color.blue);
+		sweater2 = new Prenda(sweaterTipo,Color.black,Color.blue);
+		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		campera2 = new Prenda(camisaTipo,Color.black,Color.blue);
 		/*remera = new BuilderPrenda().empezarCreacion()
 				 .setTipoAUtilizar(remeraTipo)
 				 .setearTelaATipo(Tela.OTRO)
