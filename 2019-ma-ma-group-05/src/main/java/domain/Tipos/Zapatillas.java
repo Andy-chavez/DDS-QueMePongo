@@ -4,9 +4,10 @@ import java.util.EnumSet;
 
 import domain.Capa;
 import domain.Categoria;
-import domain.FamiliaTipos;
+import domain.Tipo;
 import domain.Tela;
-public class Zapatillas implements FamiliaTipos{
+
+public class Zapatillas extends Tipo{
 	private String tipo = "zapatillas";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.CUERO,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.CALZADO;

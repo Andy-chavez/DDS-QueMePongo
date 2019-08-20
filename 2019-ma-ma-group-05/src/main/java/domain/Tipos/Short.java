@@ -4,9 +4,10 @@ import java.util.EnumSet;
 
 import domain.Capa;
 import domain.Categoria;
-import domain.FamiliaTipos;
+import domain.Tipo;
 import domain.Tela;
-public class Short implements FamiliaTipos{
+
+public class Short extends Tipo{
 	private String tipo = "short";
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
