@@ -297,6 +297,7 @@ import services.ApiDs;
 
 		assertTrue(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
 	}
+	
 	@Test
 	public void compararAtuendosDaFalse(){
 		System.out.println("\ncompararAtuendosDaFalse()");
@@ -315,5 +316,21 @@ import services.ApiDs;
 		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
 		assertFalse(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
+	}
+	
+	@Test
+	public void prendaMasAbrigada(){
+		System.out.println("\nprendaMasAbrigada()");
+		Prenda prendaMasAbrigada = guardarropa.obtenerPrendaQueMasSeAcerque(10, prendas);
+		System.out.println("Prenda mas abrigada: " + prendaMasAbrigada.getTipo().getNombre());
+		assertTrue(prendaMasAbrigada.getTipo().getNombre() == "campera");
+	}
+	
+	@Test
+	public void prendaMasAdecuada(){
+		System.out.println("\nprendaMasAdecuada()");
+		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaTemperatura(30, 0, prendas);
+		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
+		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
 	}
 }

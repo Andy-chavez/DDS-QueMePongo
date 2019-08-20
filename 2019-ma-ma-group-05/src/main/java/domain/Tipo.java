@@ -10,6 +10,10 @@ public class Tipo {
 	private Capa capa;
 	private int nivelAbrigo;
 	
+	public void setNivelAbrigo(int nivelAbrigo){
+		this.nivelAbrigo = nivelAbrigo;
+	}
+	
 	public int getNivelAbrigo() {
 		return this.nivelAbrigo;
 	}

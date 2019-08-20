@@ -14,6 +14,8 @@ public class Usuario {
 	private Suscripcion suscripcion;
 	private List<Evento> eventos;
 	private String celular;
+	private SensibilidadFrio sensibilidadFrio;
+	
 	
 	public String getCelular() {
 		return celular;
@@ -25,12 +27,14 @@ public class Usuario {
 		this.nombre=nombre;
 		this.guardarropas= new ArrayList<Guardarropa>();
 		this.suscripcion=new Free();
+		this.sensibilidadFrio = new SensibilidadFrio();
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
 		this.nombre=unNombre;
 		this.guardarropas=new ArrayList<Guardarropa>();
 		this.agregarGuardarropa(guardarropa);
 		this.suscripcion=new Free();
+		this.sensibilidadFrio = new SensibilidadFrio();
 	}
 	
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
@@ -54,7 +58,7 @@ public class Usuario {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return guardarropa.obtenerSugerencia(24); // TODO: conseguir temperatura y mandarlo como parametro
+		return guardarropa.obtenerSugerencia(24, sensibilidadFrio); // TODO: conseguir temperatura y mandarlo como parametro
 	}
 	
 	public void crearEvento(String nombre, String lugar, int anio, int mes, int dia) {
@@ -70,4 +74,19 @@ public class Usuario {
 				.collect(Collectors.toList()).get(0);
 	}
 	
+	public SensibilidadFrio getSensibilidadFrio(){
+		return this.sensibilidadFrio;
+	}
+	public void aumentarSensibilidadSuperior(){
+		this.sensibilidadFrio.aumentarSuperior();
+	}
+	public void aumentarSensibilidadInferior(){
+		this.sensibilidadFrio.aumentarInferior();
+	}
+	public void disminuirSensibilidadSuperior(){
+		this.sensibilidadFrio.disminuirSuperior();
+	}
+	public void disminuirSensibilidadInferior(){
+		this.sensibilidadFrio.disminuirInferior();
+	}
 }

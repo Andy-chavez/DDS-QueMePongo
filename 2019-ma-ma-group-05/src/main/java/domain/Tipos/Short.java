@@ -11,7 +11,7 @@ public class Short implements FamiliaTipos{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
 	private Capa capa = Capa.PANTALON;
-	private int nivelAbrigo = 6;
+	private int nivelAbrigo = 15;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;
