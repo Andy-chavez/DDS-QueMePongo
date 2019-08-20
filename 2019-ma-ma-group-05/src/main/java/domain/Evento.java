@@ -6,7 +6,7 @@ public class Evento {
 	private String nombre;
 	private String lugar;
 	private LocalDate fecha;
-        prívate String tipo;
+        private String tipo;
 	
 	public void setNombre(String unNombre){this.nombre=unNombre;}
 	public String getNombre(){return this.nombre;}
