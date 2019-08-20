@@ -13,7 +13,7 @@ public class Remera extends Tipo{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.REMERA;
-	private int nivelAbrigo = 6;
+	private int nivelAbrigo = 10;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;

@@ -12,7 +12,7 @@ public class Musculosa extends Tipo{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.REMERA;
-	private int nivelAbrigo = 5;
+	private int nivelAbrigo = 8;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;
