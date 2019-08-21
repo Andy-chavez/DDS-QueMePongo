@@ -154,7 +154,7 @@ public class Guardarropa {
 		return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
 	}
 	
-	
+	 
 	public List<Prenda> obtenerCapasParaNivelAbrigo(int nivelAbrigoRequerido, List<Prenda> prendas){		
 		List<Prenda> capasSuperiores = new ArrayList<Prenda>();
 		int nivelAbrigoFaltante = nivelAbrigoRequerido;
