@@ -115,89 +115,6 @@ public class Guardarropa {
 		}
 	}
 
-	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
-	public Prenda obtenerPrendaParaTemperatura(double temperatura, int sensibilidadFrio, List<Prenda> prendas){
-		int variableTemperaturaSarasa = 40;
-		int margenAdmitido = 5;
-		int nivelAbrigoRequerido = variableTemperaturaSarasa + sensibilidadFrio - (int) temperatura;
-//		System.out.println("Nivel abrigo req = " + nivelAbrigoRequerido);
-		
-		List<Prenda> prendasConAbrigoOk = new ArrayList<Prenda>();
-		// si la lista que me queda al filtrar es 0, agrando el margen y pruebo de nuevo, hasta que tenga al menos 1 prenda.
-		do{
-			int margenAdmitidoCopy = margenAdmitido;
-			Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) <= margenAdmitidoCopy;
-			prendasConAbrigoOk = prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
-//			System.out.println("Margen admitido = " + margenAdmitidoCopy);
-//			System.out.println("Size List prendas: " + prendasConAbrigoOk.size());
-			margenAdmitido *= 1.5;
-		}while(prendasConAbrigoOk.size() == 0);
-		
-		Random random = new Random();
-		
-		// Devuelve una prenda random que cumple con el nivel de abrigo 
-//		for(Prenda p : prendasConAbrigoOk){
-//			System.out.println(p.getTipo().getNombre() + ", " + (nivelAbrigoRequerido - p.getNivelAbrigo()));
-//		}
-		return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
-	}
-	
-	public List<Prenda> obtenerCapasParaTemperatura(double temperatura, int sensibilidadFrio, List<Prenda> prendas){
-		
-		List<Prenda> capasSuperiores = new ArrayList<Prenda>();
-		
-		Prenda capa = obtenerPrendaParaTemperatura(temperatura, sensibilidadFrio, prendas);
-
-		return capasSuperiores;
-	}
-	
-	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
-		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
-		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
-
-		List<Prenda> prendasSuperiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
-		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
-		List<Prenda> prendasInferiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
-		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
-		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
-
-		int intentos = 10;
-//		Atuendo atuendo;		
-//		do {
-//			atuendo = new Atuendo(); // lo inicializo aca para que se borre en caso de que no este bine hecho
-//			// armado de atuendo basico: remera, pantalon, calzado y capaz un accesorio
-//			
-//			agregarPrendaDeCapa(atuendo, remerasOCamisas);
-//			agregarPrendaDeCapa(atuendo, prendasInferiores);
-//			agregarPrendaDeCapa(atuendo, calzados);
-//			agregarPrendaDeCapaMaybe(atuendo, accesorios);	
-//			
-//			int capasMaximas = 3;
-//			while(atuendo.bienAbrigado(temperatura) == -1 && capasMaximas > 0) { // mientras que el atuendo no cubra el nivel de abrigo necesario
-//				agregarPrendaDeCapa(atuendo, prendasSuperiores);
-//				capasMaximas--;
-//			}
-//			intentos--;
-//		} while(atuendo.bienAbrigado(temperatura) != 0 && !atuendoNoRechazado(atuendo) && intentos > 0);
-//		
-		Atuendo atuendo = new Atuendo();
-		
-		Prenda top = obtenerPrendaParaTemperatura(temperatura, sensibilidadFrio.getSuperior(), remerasOCamisas);
-		Prenda bot = obtenerPrendaParaTemperatura(temperatura, sensibilidadFrio.getInferior(), prendasInferiores);
-		Prenda calzado = obtenerPrendaParaTemperatura(temperatura, 0, calzados);
-		Prenda accesorio = obtenerPrendaParaTemperatura(temperatura, 0, accesorios);
-//		List<Prenda> capasTop = obtenerCapasParaTemperatura(temperatura + top.getNivelAbrigo(), sensibilidadFrio.getSuperior(), prendasSuperiores);
-		
-		atuendo.agregarPrenda(top);
-		atuendo.agregarPrenda(bot);
-		atuendo.agregarPrenda(calzado);
-		atuendo.agregarPrenda(accesorio);
-		
-		return atuendo;
-	}
-	
-	
-	
 	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
 	public boolean atuendoNoRechazado(Atuendo atuendo) {
 		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
@@ -212,5 +129,74 @@ public class Guardarropa {
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
 	}
+	
+	
+	
+	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
+	public Prenda obtenerPrendaParaNivelAbrigo(int nivelAbrigoRequerido, List<Prenda> prendas){
+		if(prendas.size() == 0) { return null; }
+
+		int margenAdmitido = 5;		
+		List<Prenda> prendasConAbrigoOk = new ArrayList<Prenda>();
+		
+		// si la lista que me queda al filtrar es 0, agrando el margen y pruebo de nuevo, hasta que tenga al menos 1 prenda.
+		do{
+			int margenAdmitidoCopy = margenAdmitido; // tengo que copiar el int porque sino se queja por alguna razon el predicate de abajo :/
+			Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) <= margenAdmitidoCopy;
+			
+			prendasConAbrigoOk =  prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
+			margenAdmitido *= 1.5;
+		}while(prendasConAbrigoOk.size() == 0);
+		
+		Random random = new Random();
+		
+		return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
+	}
+	
+	
+	public List<Prenda> obtenerCapasParaNivelAbrigo(int nivelAbrigoRequerido, List<Prenda> prendas){		
+		List<Prenda> capasSuperiores = new ArrayList<Prenda>();
+		int nivelAbrigoFaltante = nivelAbrigoRequerido;
+		int margenAdmitido = 5;
+			
+		while(nivelAbrigoFaltante > margenAdmitido){
+			Prenda capa = obtenerPrendaParaNivelAbrigo(nivelAbrigoFaltante, prendas);
+			nivelAbrigoFaltante -= capa.getNivelAbrigo();
+			capasSuperiores.add(capa);
+		}
+		return capasSuperiores;
+	}
+	
+	
+	
+	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
+		int variableTemperaturaSarasa = 40;
+		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
+
+		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
+		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
+
+		List<Prenda> prendasSuperiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
+		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
+		List<Prenda> prendasInferiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
+		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
+		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
+
+		Atuendo atuendo = new Atuendo();
+		
+		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);
+		Prenda bot = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getInferior(), prendasInferiores);
+		Prenda calzado = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, calzados);
+		Prenda accesorio = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, accesorios);
+		List<Prenda> capasTop = obtenerCapasParaNivelAbrigo(nivelAbrigoRequerido - top.getNivelAbrigo() + sensibilidadFrio.getSuperior(), prendasSuperiores);
+
+		atuendo.agregarPrenda(top);
+		atuendo.agregarPrenda(bot);
+		atuendo.agregarPrenda(calzado);
+		atuendo.agregarPrenda(accesorio);
+		atuendo.agregarPrendas(capasTop);
+		return atuendo;
+	}
+	
 
 }
