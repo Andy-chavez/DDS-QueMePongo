@@ -25,7 +25,7 @@ public class CronGenerarSugerencia {
 	Date diaEvento = calendar.getTime();
 
 	Calendar cal = (Calendar) calendar.clone();
-	cal.add(Calendar.DAY_OF_YEAR, -10);
+	cal.add(Calendar.DAY_OF_YEAR, -10); //se supone que genera sugerencias 10 dias antes del evento
 	Date diezDiasAntes = cal.getTime();
        
 	Timer timer = new Timer();
@@ -34,7 +34,8 @@ public class CronGenerarSugerencia {
 		@Override
         public void run() {
 			if(diezDiasAntes.before(diaEvento)){
-				guardarropa.obtenerSugerencia();
+				guardarropa.obtenerSugerencia(scheduledExecutionTime(), new SensibilidadFrio());
+				//TODO: reemplazar el scheduledExecutionTime() con la temperatura que esta como TODO en Usuario
             }else{
             	return; //ver si pasa al otro cron
 			}
