@@ -144,6 +144,7 @@ public class Guardarropa {
 			int margenAdmitidoCopy = margenAdmitido; // tengo que copiar el int porque sino se queja por alguna razon el predicate de abajo :/
 			Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) <= margenAdmitidoCopy;
 			
+			// todo falta que luego de elegir la primer prenda, filtre esa capa fuera de la lista asi no agrega ds veces la misma prenda
 			prendasConAbrigoOk =  prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
 			margenAdmitido *= 1.5;
 		}while(prendasConAbrigoOk.size() == 0);
