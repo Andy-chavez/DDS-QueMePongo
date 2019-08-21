@@ -50,8 +50,18 @@ import services.ApiDs;
 	
 	private GestorDeClima gestor;
 	@Before
-	public void init() {
-		antiparrasTipo = new Antiparras();
+	public void init() {    
+  //  antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
+  //  musculosaFamiliaTipo = new domain.Tipos.Musculosa();
+  //  shortsFamiliaTipo = new domain.Tipos.Short();
+  //	ojotasFamiliaTipo = new domain.Tipos.Ojotas();
+	//	remeraFamiliaTipo = new domain.Tipos.Remera();
+	//  zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
+	//	camisaFamiliaTipo = new domain.Tipos.Camisa();
+	//	sweaterFamiliaTipo = new domain.Tipos.Sweater();
+	//	camperaFamiliaTipo = new domain.Tipos.Campera();
+
+    antiparrasTipo = new Antiparras();
 		musculosaTipo = new Musculosa();
 		shortsTipo = new Short();
 		ojotasTipo = new Ojotas();
@@ -60,7 +70,8 @@ import services.ApiDs;
 		camisaTipo = new Camisa();
 		sweaterTipo = new Sweater();
 		camperaTipo = new Campera();
-		
+
+    
 		// Prendas para el test de sugerencias
 		remeraTipo.establecerTela(Tela.OTRO);
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
@@ -143,11 +154,11 @@ import services.ApiDs;
 	}
 	
 	@Test
-	public void obtenerSugerencia(){
+	public void obtenerSugerenciaTest(){
 		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo();
 		System.out.println("PREPARANDO ATUENDO");
-		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
+		atuendoSugerido = guardarropa.obtenerSugerencia(0.0, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
 		
@@ -165,19 +176,19 @@ import services.ApiDs;
 		assertTrue(atuendoSugerido.bienAbrigado(24) == 0);
 	}
 	
-	@Test
-	public void nivelDeAbrigoIncorrecto() {
-		System.out.println("\nnivelDeAbrigoIncorrecto()");
-		Atuendo atuendoSugerido = new Atuendo();
-		atuendoSugerido.agregarPrenda(remera); //8
-		atuendoSugerido.agregarPrenda(sweater); //12
-		atuendoSugerido.agregarPrenda(zapatillas); //5
-		atuendoSugerido.agregarPrenda(shorts); //5
-		atuendoSugerido.agregarPrenda(campera); //15
-		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
-		assertTrue(atuendoSugerido.bienAbrigado(0) == 0);
-	}
-	
+//	@Test
+//	public void nivelDeAbrigoIncorrecto() {
+//		System.out.println("\nnivelDeAbrigoIncorrecto()");
+//		Atuendo atuendoSugerido = new Atuendo();
+//		atuendoSugerido.agregarPrenda(remera); //8
+//		atuendoSugerido.agregarPrenda(sweater); //12
+//		atuendoSugerido.agregarPrenda(zapatillas); //5
+//		atuendoSugerido.agregarPrenda(shorts); //5
+//		atuendoSugerido.agregarPrenda(campera); //25
+//		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+//		assertTrue(atuendoSugerido.bienAbrigado(0) == 0);
+//	}
+//	
 	@Test
 	public void compararAtuendosDaTrue(){
 		System.out.println("\ncompararAtuendosDaTrue()");
@@ -219,10 +230,22 @@ import services.ApiDs;
 	}
 	
 	@Test
-	public void prendaMasAdecuada(){
-		System.out.println("\nprendaMasAdecuada()");
-		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaTemperatura(203, 0, prendas);
+	public void obtenerPrendaParaTemperatura(){
+		int temperatura = 0;
+		int variableTemperaturaSarasa = 40;
+		int nivelDeAbrigo = variableTemperaturaSarasa - temperatura;
+		System.out.println("\nobtenerPrendaParaTemperatura()");
+		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
 		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
 		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
+	}
+	
+	@Test
+	public void obtenerCapasParaTemperatura(){
+		System.out.println("\nobtenerCapasParaTemperatura()");
+		List<Prenda> capas = guardarropa.obtenerCapasParaNivelAbrigo(30, prendas);
+		for(Prenda p : capas){
+			System.out.println(p.getTipo().getNombre());
+		}
 	}
 }

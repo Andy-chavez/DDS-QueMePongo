@@ -13,7 +13,7 @@ public class Campera extends Tipo{
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.SUPERIOR;
 	private Capa capa = Capa.CAMPERA;
-	private int nivelAbrigo = 15;
+	private int nivelAbrigo = 25;
 
 	public int getNivelAbrigo() {
 		return nivelAbrigo;
