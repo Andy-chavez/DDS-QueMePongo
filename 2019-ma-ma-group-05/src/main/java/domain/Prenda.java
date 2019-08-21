@@ -19,7 +19,15 @@ public class Prenda {
 	//private GuardaRopa guardaRropa;
 	//public Prenda() {}
 
-	
+	public Prenda(Tipo unTipo, Color colorPrim) {
+		this.setTipo(unTipo);
+		this.setColorPrimario(colorPrim);
+	}
+	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
+		this.setTipo(unTipo);
+		this.setColorPrimario(colorPrim);
+		this.setColorSecundario(colorSecun);
+	}
 	public void setColorPrimario(Color colorPrimario) {
 		this.colorPrimario = colorPrimario;
 	}
@@ -41,9 +49,6 @@ public class Prenda {
 	}
 	public void setImagenResized(BufferedImage b) {
 		this.imagen = b;
-	}
-	public void normalizarImg(BufferedImage img, int height, int length ) {
-		//todavia no se como hacer esto, va tampoco se muy bien a que se refiere
 	}
 	public Image getImagen() {
 		return this.imagen;

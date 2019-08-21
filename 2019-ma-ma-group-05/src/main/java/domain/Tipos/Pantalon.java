@@ -4,11 +4,12 @@ import java.util.EnumSet;
 
 import domain.Capa;
 import domain.Categoria;
-import domain.FamiliaTipos;
+import domain.Tipo;
 import domain.Tela;
 
-public class Pantalon implements FamiliaTipos{
-	private String tipo = "pantalon";
+public class Pantalon extends Tipo{
+	private String nombre = "pantalon";
+	private Tela tela;
 	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.SEDA,Tela.OTRO);
 	private Categoria categoria = Categoria.INFERIOR;
 	private Capa capa = Capa.PANTALON;
@@ -23,7 +24,7 @@ public class Pantalon implements FamiliaTipos{
 	}
 	
 	public String getTipo() {
-		return tipo;
+		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
 		return telasPosibles;

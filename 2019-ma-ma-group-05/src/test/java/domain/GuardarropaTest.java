@@ -8,9 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.BuilderPrenda;
 import domain.Categoria;
-import domain.FamiliaTipos;
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Tela;
@@ -18,12 +16,12 @@ import domain.Tela;
 public class GuardarropaTest {
 	private Guardarropa guardarropa;
 	
-	private FamiliaTipos antiparrasFamiliaTipo;
-	private FamiliaTipos musculosaFamiliaTipo;
-	private FamiliaTipos shortsFamiliaTipo;
-	private FamiliaTipos ojotasFamiliaTipo;
-	private FamiliaTipos remeraFamiliaTipo;
-	private FamiliaTipos zapatillasFamiliaTipo;
+	private Tipo antiparrasTipo;
+	private Tipo musculosaTipo;
+	private Tipo shortsTipo;
+	private Tipo ojotasTipo;
+	private Tipo remeraTipo;
+	private Tipo zapatillasTipo;
 	
 	private Prenda antiparras;
 	private Prenda musculosa;
@@ -39,55 +37,26 @@ public class GuardarropaTest {
 	public void init() {
 		
 		// familias de tipos
-		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
-		musculosaFamiliaTipo = new domain.Tipos.Musculosa();
-		shortsFamiliaTipo = new domain.Tipos.Short();
-		ojotasFamiliaTipo = new domain.Tipos.Ojotas();
-		remeraFamiliaTipo = new domain.Tipos.Remera();
-		zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
+		antiparrasTipo = new domain.Tipos.Antiparras();
+		musculosaTipo = new domain.Tipos.Musculosa();
+		shortsTipo = new domain.Tipos.Short();
+		ojotasTipo = new domain.Tipos.Ojotas();
+		remeraTipo = new domain.Tipos.Remera();
+		zapatillasTipo = new domain.Tipos.Zapatillas();
 		
 		// Prendas para el test de sugerencias
-		remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		antiparras = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
+		remeraTipo.establecerTela(Tela.OTRO);
+		remera = new Prenda(remeraTipo,Color.black,Color.blue);
+		antiparrasTipo.establecerTela(Tela.OTRO);
+		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shortsTipo.establecerTela(Tela.OTRO);
+		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosaTipo.establecerTela(Tela.OTRO);
+		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotasTipo.establecerTela(Tela.OTRO);
+		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillasTipo.establecerTela(Tela.OTRO);
+		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
 		
 		// Guardar todo menos antiparras.
 		prendas = new ArrayList<Prenda>();
