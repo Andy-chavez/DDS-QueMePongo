@@ -40,6 +40,7 @@ public class Usuario {
 		this.guardarropas= new ArrayList<Guardarropa>();
 		this.suscripcion=new Free();
 		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
 		this.nombre=unNombre;
@@ -47,6 +48,7 @@ public class Usuario {
 		this.agregarGuardarropa(guardarropa);
 		this.suscripcion=new Free();
 		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 	}
 	
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
@@ -67,7 +69,7 @@ public class Usuario {
 	}
 	
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
-		this.suscripcion.agregarPrenda(armario,prenda,this);
+		this.suscripcion.agregarPrenda(armario,prenda);
 		
 	}
 	public void agregarGuardarropa(Guardarropa guardarropa){
