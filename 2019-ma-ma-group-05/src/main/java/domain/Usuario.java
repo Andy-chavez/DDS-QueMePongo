@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -15,8 +16,19 @@ public class Usuario {
 	private List<Evento> eventos;
 	private String celular;
 	private SensibilidadFrio sensibilidadFrio;
+	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
 	
-	
+	public HashMap<Usuario,Guardarropa> getGuardarropasCompartidos(){
+		return this.guardarropasCompartidos;
+	}
+	public void compartirGuardarropa(Usuario otroUsuario,Guardarropa g){
+		this.guardarropasCompartidos.put(otroUsuario, g);
+		otroUsuario.agregarGuardarropa(g);
+	}
+	public void sacarCompartimientoDeGuardarropaAUnUsuario(Usuario otroUsuario,Guardarropa g){
+		otroUsuario.getGuardarropas().remove(g);
+		this.guardarropasCompartidos.remove(otroUsuario, g);
+	}
 	public String getCelular() {
 		return celular;
 	}
@@ -48,6 +60,11 @@ public class Usuario {
 				.collect(Collectors.toList()).get(0);
 	}
 	public List<Guardarropa> getGuardarropas(){return this.guardarropas;}
+	public List<Prenda> getPrendasDelguardarropa(String nombre){
+		Guardarropa g =  this.getGuardarropa(nombre);
+		//creo que acá lanzaria exception si no encuentra el guardarropa.
+		return this.suscripcion.getPrendasDelGuardarropa(g);
+	}
 	
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){
 		this.suscripcion.agregarPrenda(armario,prenda,this);

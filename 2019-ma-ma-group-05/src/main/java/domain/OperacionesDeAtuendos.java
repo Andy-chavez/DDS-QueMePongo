@@ -8,4 +8,7 @@ public abstract class OperacionesDeAtuendos implements Operacion{
 		this.atuendo.setRechazado(null);
 		this.guardarropa.eliminarAtuendoSugerido(this.atuendo);
 	}
+
+	public abstract void ejecutar();
+		
 }

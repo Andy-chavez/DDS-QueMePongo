@@ -2,6 +2,7 @@ package domain.Suscripciones;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -17,7 +18,7 @@ public class Free implements Suscripcion {
 	public Free(){
 		this.inicializarVariablesDesdeConfig();
 	}
-	public void inicializarVariablesDesdeConfig(){
+	private void inicializarVariablesDesdeConfig(){
 		Properties archivoDeConfiguraciones= new Properties();
     	InputStream input=null;
     	try{
@@ -32,12 +33,16 @@ public class Free implements Suscripcion {
 	public void cambiarSuscripcion(Usuario usuario,Suscripcion unaSuscripcion) {
 		usuario.setSuscripcion(unaSuscripcion);
 	}
-	public void agregarPrenda(Guardarropa armario,Prenda prenda,Usuario usuario) {
+	public void agregarPrenda(Guardarropa armario,Prenda prenda) {
 		if(armario.cantidadDePrendas()<this.limiteDePrendas){
 			armario.agregarPrenda(prenda);
 		}else{
 			throw new LimiteDePrendasAlcanzadoException();
 		}
+	}
+	@Override
+	public List<Prenda> getPrendasDelGuardarropa(Guardarropa g) {
+		return g.getPrendas().subList(0, this.getLimiteDePrendas());
 	}
 	
 }
