@@ -1,14 +1,16 @@
 package domain;
 
+import java.util.EnumSet;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public class Tipo {
+public abstract class Tipo {
 	private Categoria categoria;
 	private Tela tela;
 	private String nombre;
 	private Capa capa;
 	private int nivelAbrigo;
+	private EnumSet<Tela> telasPosibles;
 	
 	public void setNivelAbrigo(int nivelAbrigo){
 		this.nivelAbrigo = nivelAbrigo;
@@ -41,11 +43,19 @@ public class Tipo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+	public EnumSet<Tela> getTelasPosibles() {
+		return telasPosibles;
+	}
 	public Tela getTela() {
 		return tela;
 	}
-	
+	public void establecerTela(Tela tela) {
+		if (this.getTelasPosibles().contains(tela)) {
+			this.setTela(tela);
+		}
+		else
+			throw new IllegalArgumentException("Tela no permitida");
+	}
 	public void setTela(Tela tela) {
 		this.tela = tela;
 	}

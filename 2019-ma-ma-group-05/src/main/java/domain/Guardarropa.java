@@ -80,32 +80,23 @@ public class Guardarropa {
 	}
 
 	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(FamiliaTipos tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
-		BuilderPrenda builderDePrenda = new BuilderPrenda();
-		Prenda nuevaPrenda = builderDePrenda.empezarCreacion()
-											.setTipoAUtilizar(tipoDeEstaPrenda)
-											.crearTipoConTelaYCategoria(unaTela)
-											.setColorPrimario(colorPrimario)
-											.setColorSecundarioOpcional(colorSecundario)
-											.crearPrenda();
+	private Prenda crearNuevaPrenda(Tipo tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
+		tipoDeEstaPrenda.establecerTela(unaTela);
+		Prenda nuevaPrenda = new Prenda(tipoDeEstaPrenda,colorPrimario,colorSecundario);
 		return nuevaPrenda;
 	}
 	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(FamiliaTipos tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
-		BuilderPrenda builderDePrenda = new BuilderPrenda();
-		Prenda nuevaPrenda = builderDePrenda.empezarCreacion()
-											.setTipoAUtilizar(tipoDeEstaPrenda)
-											.crearTipoConTelaYCategoria(unaTela)
-											.setColorPrimario(colorPrimario)
-											.setColorSecundarioOpcional(colorSecundario)
-											.setImagen(pathToImg)
-											.crearPrenda();
+	private Prenda crearNuevaPrenda(Tipo tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
+		tipoDeEstaPrenda.establecerTela(unaTela);
+		Prenda nuevaPrenda = new Prenda(tipoDeEstaPrenda,colorPrimario,colorSecundario);
+		nuevaPrenda.setImage(pathToImg);
 		return nuevaPrenda;
 	}
 	
 	// elije la prenda que mas se acerque al nivel de abrigo necesario (se usa cuando no hay prendas que queden dentro del rango)
-	public Prenda obtenerPrendaQueMasSeAcerque(int diferenciaTemperatura, List<Prenda> prendas){
+	public Prenda obtenerPrendaQueMasSeAcerque(int nivelAbrigoRequerido, List<Prenda> prendas){
 		//si la diferencia de temperatura es mayor a 10, quiere decir que hay que devolver la prenda que MAS abrigue, si es menor a -10, la MENOS abrigada
+		int diferenciaTemperatura = 0;
 		if(diferenciaTemperatura >= 10){
 			return prendas.stream().max(Comparator.comparing(p -> p.getNivelAbrigo())).get();
 		}
@@ -114,67 +105,6 @@ public class Guardarropa {
 		}
 	}
 
-	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
-	public Prenda obtenerPrendaParaTemperatura(double temperatura, int sensibilidadFrio, List<Prenda> prendas){
-		int variableTemperaturaSarasa = 40;
-		int margenAdmitido = 10;
-		int nivelAbrigoRequerido = variableTemperaturaSarasa + sensibilidadFrio - (int) temperatura;
-		Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) >= margenAdmitido;
-		List<Prenda> prendasConAbrigoOk = prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
-		Random random = new Random();
-		
-		for(Prenda p : prendas){
-			System.out.println(p.getTipo().getNombre());
-		}
-		// Si la lista esta vacia, es porque no encontro inguna prenda que cumpla con el nivel de abrigo necesario
-		// entonces elige la prenda que mas se acerque
-		if(prendasConAbrigoOk.size() == 0){
-			System.out.println("holaaaa");
-			// TODO: elegir la prenda que mas se acerque, por ahora solo elige una random
-			return prendas.get(random.nextInt(prendas.size()));
-		}
-		// Devuelve una prenda random que cumple con el nivel de abrigo 
-		else{
-			System.out.println(prendasConAbrigoOk);
-
-			return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
-		}
-	}
-	
-	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
-		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
-		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
-
-		List<Prenda> prendasSuperiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
-		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
-		List<Prenda> prendasInferiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
-		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
-		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
-
-		int intentos = 10;
-		Atuendo atuendo;		
-		do {
-			atuendo = new Atuendo(); // lo inicializo aca para que se borre en caso de que no este bine hecho
-			// armado de atuendo basico: remera, pantalon, calzado y capaz un accesorio
-			
-			agregarPrendaDeCapa(atuendo, remerasOCamisas);
-			agregarPrendaDeCapa(atuendo, prendasInferiores);
-			agregarPrendaDeCapa(atuendo, calzados);
-			agregarPrendaDeCapaMaybe(atuendo, accesorios);	
-			
-			int capasMaximas = 3;
-			while(atuendo.bienAbrigado(temperatura) == -1 && capasMaximas > 0) { // mientras que el atuendo no cubra el nivel de abrigo necesario
-				agregarPrendaDeCapa(atuendo, prendasSuperiores);
-				capasMaximas--;
-			}
-			intentos--;
-		} while(atuendo.bienAbrigado(temperatura) != 0 && !atuendoNoRechazado(atuendo) && intentos > 0);
-		
-		return atuendo;
-	}
-	
-	
-	
 	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
 	public boolean atuendoNoRechazado(Atuendo atuendo) {
 		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
@@ -189,5 +119,75 @@ public class Guardarropa {
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.prendas.stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
 	}
+	
+	
+	
+	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
+	public Prenda obtenerPrendaParaNivelAbrigo(int nivelAbrigoRequerido, List<Prenda> prendas){
+		if(prendas.size() == 0) { return null; }
+
+		int margenAdmitido = 5;		
+		List<Prenda> prendasConAbrigoOk = new ArrayList<Prenda>();
+		
+		// si la lista que me queda al filtrar es 0, agrando el margen y pruebo de nuevo, hasta que tenga al menos 1 prenda.
+		do{
+			int margenAdmitidoCopy = margenAdmitido; // tengo que copiar el int porque sino se queja por alguna razon el predicate de abajo :/
+			Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) <= margenAdmitidoCopy;
+			
+			// todo falta que luego de elegir la primer prenda, filtre esa capa fuera de la lista asi no agrega ds veces la misma prenda
+			prendasConAbrigoOk =  prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());
+			margenAdmitido *= 1.5;
+		}while(prendasConAbrigoOk.size() == 0);
+		
+		Random random = new Random();
+		
+		return prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size()));
+	}
+	
+	 
+	public List<Prenda> obtenerCapasParaNivelAbrigo(int nivelAbrigoRequerido, List<Prenda> prendas){		
+		List<Prenda> capasSuperiores = new ArrayList<Prenda>();
+		int nivelAbrigoFaltante = nivelAbrigoRequerido;
+		int margenAdmitido = 5;
+			
+		while(nivelAbrigoFaltante > margenAdmitido){
+			Prenda capa = obtenerPrendaParaNivelAbrigo(nivelAbrigoFaltante, prendas);
+			nivelAbrigoFaltante -= capa.getNivelAbrigo();
+			capasSuperiores.add(capa);
+		}
+		return capasSuperiores;
+	}
+	
+	
+	
+	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
+		int variableTemperaturaSarasa = 40;
+		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
+
+		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
+		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
+
+		List<Prenda> prendasSuperiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.SUPERIOR));
+		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
+		List<Prenda> prendasInferiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
+		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
+		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
+
+		Atuendo atuendo = new Atuendo();
+		
+		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);
+		Prenda bot = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getInferior(), prendasInferiores);
+		Prenda calzado = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, calzados);
+		Prenda accesorio = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, accesorios);
+		List<Prenda> capasTop = obtenerCapasParaNivelAbrigo(nivelAbrigoRequerido - top.getNivelAbrigo() + sensibilidadFrio.getSuperior(), prendasSuperiores);
+
+		atuendo.agregarPrenda(top);
+		atuendo.agregarPrenda(bot);
+		atuendo.agregarPrenda(calzado);
+		atuendo.agregarPrenda(accesorio);
+		atuendo.agregarPrendas(capasTop);
+		return atuendo;
+	}
+	
 
 }

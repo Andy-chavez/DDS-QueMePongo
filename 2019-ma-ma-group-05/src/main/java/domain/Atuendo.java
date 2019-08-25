@@ -2,6 +2,7 @@ package domain;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.List;
 
 import domain.Prenda;
 
@@ -12,9 +13,16 @@ public class Atuendo {
 	
 	public void setRechazado(Boolean flag){this.rechazado=flag;}
 	public Boolean getRechazado(){return this.rechazado;}
+	
 	public void agregarPrenda(Prenda prenda){
-		if(!this.tieneCapa(prenda.getCapa())) {
+		if(prenda != null && !this.tieneCapa(prenda.getCapa())) {
 			this.map.put(prenda.getTipo().getNombre().toLowerCase(), prenda);			
+		}
+	}
+	
+	public void agregarPrendas(List<Prenda> prendas){
+		for(Prenda p : prendas){
+			agregarPrenda(p);
 		}
 	}
 	

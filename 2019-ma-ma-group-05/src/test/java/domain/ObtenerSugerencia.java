@@ -9,21 +9,22 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Tipos.Remera;
+import domain.Tipos.Short;
+import domain.Tipos.*;
 import services.ApiDs;
 //import static org.mockito.Mockito.*
 ;public class ObtenerSugerencia {
 	private Guardarropa guardarropa;
 
-	private FamiliaTipos antiparrasFamiliaTipo;
-	private FamiliaTipos musculosaFamiliaTipo;
-	private FamiliaTipos shortsFamiliaTipo;
-	private FamiliaTipos ojotasFamiliaTipo;
-	private FamiliaTipos remeraFamiliaTipo;
-	private FamiliaTipos zapatillasFamiliaTipo;
-	private FamiliaTipos camisaFamiliaTipo;
-	private FamiliaTipos sweaterFamiliaTipo;
-	private FamiliaTipos camperaFamiliaTipo;
+	private Tipo antiparrasTipo;
+	private Tipo musculosaTipo;
+	private Tipo shortsTipo;
+	private Tipo ojotasTipo;
+	private Tipo remeraTipo;
+	private Tipo zapatillasTipo;
+	private Tipo camisaTipo;
+	private Tipo sweaterTipo;
+	private Tipo camperaTipo;
 
 	private Prenda antiparras;
 	private Prenda musculosa;
@@ -49,141 +50,58 @@ import services.ApiDs;
 	
 	private GestorDeClima gestor;
 	@Before
-	public void init() {
-		antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
-		musculosaFamiliaTipo = new domain.Tipos.Musculosa();
-		shortsFamiliaTipo = new domain.Tipos.Short();
-		ojotasFamiliaTipo = new domain.Tipos.Ojotas();
-		remeraFamiliaTipo = new domain.Tipos.Remera();
-		zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
-		camisaFamiliaTipo = new domain.Tipos.Camisa();
-		sweaterFamiliaTipo = new domain.Tipos.Sweater();
-		camperaFamiliaTipo = new domain.Tipos.Campera();
-		
+	public void init() {    
+  //  antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
+  //  musculosaFamiliaTipo = new domain.Tipos.Musculosa();
+  //  shortsFamiliaTipo = new domain.Tipos.Short();
+  //	ojotasFamiliaTipo = new domain.Tipos.Ojotas();
+	//	remeraFamiliaTipo = new domain.Tipos.Remera();
+	//  zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
+	//	camisaFamiliaTipo = new domain.Tipos.Camisa();
+	//	sweaterFamiliaTipo = new domain.Tipos.Sweater();
+	//	camperaFamiliaTipo = new domain.Tipos.Campera();
+
+    antiparrasTipo = new Antiparras();
+		musculosaTipo = new Musculosa();
+		shortsTipo = new Short();
+		ojotasTipo = new Ojotas();
+		remeraTipo = new Remera();
+		zapatillasTipo = new Zapatillas();
+		camisaTipo = new Camisa();
+		sweaterTipo = new Sweater();
+		camperaTipo = new Campera();
+
+    
 		// Prendas para el test de sugerencias
-		remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
+		remeraTipo.establecerTela(Tela.OTRO);
+		remera = new Prenda(remeraTipo,Color.black,Color.blue);
+		camisaTipo.establecerTela(Tela.OTRO);
+		camisa = new Prenda(camisaTipo,Color.black,Color.blue);
+		sweaterTipo.establecerTela(Tela.OTRO);
+		sweater = new Prenda(sweaterTipo,Color.black,Color.blue);
+		antiparrasTipo.establecerTela(Tela.OTRO);
+		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shortsTipo.establecerTela(Tela.OTRO);
+		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosaTipo.establecerTela(Tela.OTRO);
+		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotasTipo.establecerTela(Tela.OTRO);
+		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillasTipo.establecerTela(Tela.OTRO);
+		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		camperaTipo.establecerTela(Tela.OTRO);
+		campera = new Prenda(camisaTipo,Color.black,Color.blue);
 		
-		camisa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camisaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		sweater = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(sweaterFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		campera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camperaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		antiparras = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		remera2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		camisa2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camisaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		sweater2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(sweaterFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		campera2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(camperaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		antiparras2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(antiparrasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		shorts2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(shortsFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		musculosa2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(musculosaFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		ojotas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(ojotasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
-		
-		zapatillas2 = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(zapatillasFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
+		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);
+		camisa2 = new Prenda(camisaTipo,Color.black,Color.blue);
+		sweater2 = new Prenda(sweaterTipo,Color.black,Color.blue);
+		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);
+		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);
+		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);
+		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);
+		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		campera2 = new Prenda(camperaTipo,Color.black,Color.blue);
+
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);
 		prendas.add(zapatillas);
@@ -232,22 +150,15 @@ import services.ApiDs;
 	@Test
 	public void obtenerNivelAbrigoPrenda() {
 		System.out.println("\nobtenerNivelAbrigoPrenda()");
-
-		remera = new BuilderPrenda().empezarCreacion()
-				 .setTipoAUtilizar(remeraFamiliaTipo)
-				 .crearTipoConTelaYCategoria(Tela.OTRO)
-				 .setColorPrimario(Color.black)
-				 .setColorSecundarioOpcional(Color.blue)
-				 .crearPrenda();
 		System.out.println("Nivel abrigo remera: " + remera.getTipo().getNivelAbrigo());
 	}
 	
 	@Test
-	public void obtenerSugerencia(){
+	public void obtenerSugerenciaTest(){
 		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo();
 		System.out.println("PREPARANDO ATUENDO");
-		atuendoSugerido=usuario.obtenerSugerencia(usuario.getGuardarropas().get(0));
+		atuendoSugerido = guardarropa.obtenerSugerencia(0.0, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
 		
@@ -265,19 +176,19 @@ import services.ApiDs;
 		assertTrue(atuendoSugerido.bienAbrigado(24) == 0);
 	}
 	
-	@Test
-	public void nivelDeAbrigoIncorrecto() {
-		System.out.println("\nnivelDeAbrigoIncorrecto()");
-		Atuendo atuendoSugerido = new Atuendo();
-		atuendoSugerido.agregarPrenda(remera); //8
-		atuendoSugerido.agregarPrenda(sweater); //12
-		atuendoSugerido.agregarPrenda(zapatillas); //5
-		atuendoSugerido.agregarPrenda(shorts); //5
-		atuendoSugerido.agregarPrenda(campera); //15
-		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
-		assertTrue(atuendoSugerido.bienAbrigado(0) == 0);
-	}
-	
+//	@Test
+//	public void nivelDeAbrigoIncorrecto() {
+//		System.out.println("\nnivelDeAbrigoIncorrecto()");
+//		Atuendo atuendoSugerido = new Atuendo();
+//		atuendoSugerido.agregarPrenda(remera); //8
+//		atuendoSugerido.agregarPrenda(sweater); //12
+//		atuendoSugerido.agregarPrenda(zapatillas); //5
+//		atuendoSugerido.agregarPrenda(shorts); //5
+//		atuendoSugerido.agregarPrenda(campera); //25
+//		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
+//		assertTrue(atuendoSugerido.bienAbrigado(0) == 0);
+//	}
+//	
 	@Test
 	public void compararAtuendosDaTrue(){
 		System.out.println("\ncompararAtuendosDaTrue()");
@@ -319,18 +230,22 @@ import services.ApiDs;
 	}
 	
 	@Test
-	public void prendaMasAbrigada(){
-		System.out.println("\nprendaMasAbrigada()");
-		Prenda prendaMasAbrigada = guardarropa.obtenerPrendaQueMasSeAcerque(10, prendas);
-		System.out.println("Prenda mas abrigada: " + prendaMasAbrigada.getTipo().getNombre());
-		assertTrue(prendaMasAbrigada.getTipo().getNombre() == "campera");
+	public void obtenerPrendaParaTemperatura(){
+		int temperatura = 0;
+		int variableTemperaturaSarasa = 40;
+		int nivelDeAbrigo = variableTemperaturaSarasa - temperatura;
+		System.out.println("\nobtenerPrendaParaTemperatura()");
+		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
+		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
+		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
 	}
 	
 	@Test
-	public void prendaMasAdecuada(){
-		System.out.println("\nprendaMasAdecuada()");
-		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaTemperatura(30, 0, prendas);
-		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
-		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
+	public void obtenerCapasParaTemperatura(){
+		System.out.println("\nobtenerCapasParaTemperatura()");
+		List<Prenda> capas = guardarropa.obtenerCapasParaNivelAbrigo(30, prendas);
+		for(Prenda p : capas){
+			System.out.println(p.getTipo().getNombre());
+		}
 	}
 }
