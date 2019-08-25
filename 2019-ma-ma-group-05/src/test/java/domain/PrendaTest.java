@@ -25,7 +25,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonZapatillas() {
-		Assert.assertEquals("No eran zapatillas", "Zapatillas", prenda.getTipo().getNombre());
+		Assert.assertEquals("No eran zapatillas", "zapatillas", prenda.getTipo().getNombre());
 	}
 	
 	@Test

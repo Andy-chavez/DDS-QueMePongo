@@ -5,12 +5,12 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 public abstract class Tipo {
-	private Categoria categoria;
-	private Tela tela;
-	private String nombre;
-	private Capa capa;
-	private int nivelAbrigo;
-	private EnumSet<Tela> telasPosibles;
+	protected Categoria categoria;
+	protected EnumSet<Tela> telasPosibles;
+	protected String nombre;
+	protected Tela tela;
+	protected Capa capa;
+	protected int nivelAbrigo;
 	
 	public void setNivelAbrigo(int nivelAbrigo){
 		this.nivelAbrigo = nivelAbrigo;
