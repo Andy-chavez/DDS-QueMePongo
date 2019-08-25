@@ -13,7 +13,7 @@ import domain.Tipos.Short;
 import domain.Tipos.*;
 import services.ApiDs;
 //import static org.mockito.Mockito.*
-;public class ObtenerSugerencia {
+public class ObtenerSugerenciaTest {
 	private Guardarropa guardarropa;
 
 	private Tipo antiparrasTipo;
@@ -125,7 +125,7 @@ import services.ApiDs;
 		prendas.add(ojotas2);
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
-		
+		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
 		gestor = GestorDeClima.getInstance();
 		List<ApiClima> apis= new ArrayList<ApiClima>();
 		// ApiDs mockApi= mock(ApiDs.class);
@@ -234,11 +234,12 @@ import services.ApiDs;
 	
 	@Test
 	public void obtenerPrendaParaTemperatura(){
+		System.out.println("\nobtenerPrendaParaTemperatura()");
 		int temperatura = 0;
+		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
 		int variableTemperaturaSarasa = 40;
 		int nivelDeAbrigo = variableTemperaturaSarasa - temperatura;
-		System.out.println("\nobtenerPrendaParaTemperatura()");
-		Prenda prendaMasAdecuada = guardarropa.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
+		Prenda prendaMasAdecuada = obtenerSugerencia.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
 		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
 		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
 	}
@@ -246,7 +247,8 @@ import services.ApiDs;
 	@Test
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
-		List<Prenda> capas = guardarropa.obtenerCapasParaNivelAbrigo(30, prendas);
+		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
+		List<Prenda> capas = obtenerSugerencia .obtenerCapasParaNivelAbrigo(30, prendas);
 		for(Prenda p : capas){
 			System.out.println(p.getTipo().getNombre());
 		}
