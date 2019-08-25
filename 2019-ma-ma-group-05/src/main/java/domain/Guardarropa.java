@@ -172,7 +172,11 @@ public class Guardarropa {
 		List<Prenda> prendasInferiores = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.INFERIOR));
 		List<Prenda> calzados = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios = this.filtrarPrendasSegunCondicion(this.esDeCategoria(Categoria.ACCESORIO));
-
+		
+		for(Prenda p : prendasSuperiores){
+			System.out.println(p.getTipo().getNombre());
+		}
+		
 		Atuendo atuendo = new Atuendo();
 		
 		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);

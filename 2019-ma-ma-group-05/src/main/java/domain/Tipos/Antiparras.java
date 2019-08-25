@@ -23,7 +23,7 @@ public class Antiparras extends Tipo{
 		return capa;
 	}
 	
-	public String getTipo() {
+	public String getNombre() {
 		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
