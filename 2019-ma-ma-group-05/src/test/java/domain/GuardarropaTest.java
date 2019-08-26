@@ -75,11 +75,11 @@ public class GuardarropaTest {
 		Assert.assertTrue(guardarropa.tieneLaPrenda(antiparras));
 	}
 	
-	@Test
+	/*@Test
 	public void devuelvePrendasSuperiores() {
 		List<Prenda> prendasSuperiores = guardarropa.filtrarPrendasSegunCondicion(guardarropa.esDeCategoria(Categoria.SUPERIOR));
 		Prenda prenda2=prendasSuperiores.get(0);
 		Assert.assertNotNull(prenda2);
-	}
+	}*/
 //podriamos agregar mas cosas
 }
