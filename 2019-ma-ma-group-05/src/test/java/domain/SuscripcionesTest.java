@@ -12,11 +12,12 @@ import org.junit.Test;
 import domain.Suscripciones.Free;
 import domain.Suscripciones.Premium;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
+import static org.mockito.Mockito.*;
 import domain.Tipos.*;
 import domain.Tipos.Short;
 
 public class SuscripcionesTest {
-	Guardarropa guardarropa;
+	private Guardarropa guardarropa;
 	
 	private Antiparras antiparrasTipo;
 	private Musculosa musculosaTipo;
@@ -38,9 +39,10 @@ public class SuscripcionesTest {
 	private Prenda zapatillas2;
 	private Prenda remera2;
 	private Prenda remeraBonus;
-	
+	private Free mockSuscripcionFree;
 	private Usuario usuario;
-	
+	private Guardarropa guardarropa2;
+	private Usuario usuario2;
 	private List<Prenda> prendas;
 	@Before
 	public void init(){
@@ -50,8 +52,6 @@ public class SuscripcionesTest {
 		ojotasTipo = new Ojotas();
 		remeraTipo = new Remera();
 		zapatillasTipo = new Zapatillas();
-		
-		// Prendas para el test de sugerencias
 
 		remeraTipo.establecerTela(Tela.OTRO);
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
@@ -77,7 +77,6 @@ public class SuscripcionesTest {
 		prendas.add(antiparras);
 		prendas.add(zapatillas);
 		prendas.add(musculosa);
-		prendas.add(remera);
 		prendas.add(shorts);
 		prendas.add(ojotas);
 		prendas.add(antiparras2);
@@ -90,6 +89,8 @@ public class SuscripcionesTest {
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 		
+		guardarropa2 = new Guardarropa("g2",prendas);
+		usuario2 = new Usuario("usadsa",guardarropa2);
 	}
 	@Test
 	public void usuarioNuevoEsFree(){
@@ -104,17 +105,88 @@ public class SuscripcionesTest {
 	}
 	@Test
 	public void limiteDePrendasDeLaSuscrpcionFreeEs12(){
-		Free free= new Free();
-		assertEquals(free.getLimiteDePrendas(),12);
+		Free f = new Free();
+		assertEquals(f.getLimiteDePrendas(),12);
 	}
 	@Test
-	public void usuarioConGuardarropaAlLimite(){
+	public void cantidadDePrendasDelGuardarropaEs11(){
+		assertEquals(guardarropa.cantidadDePrendas(),11);
+	}
+	@Test
+	public void usuarioFreeAgregaPrendasSinInconvenientesYQuedaEnElLimite(){
+		usuario.agregarPrenda(guardarropa, remera);
 		assertEquals(usuario.getGuardarropa("guardarropa").cantidadDePrendas(),12);
 	}
 	
 	@Test(expected=LimiteDePrendasAlcanzadoException.class)
 	public void usuarioFreeSePasaDelLimite(){
+		usuario.agregarPrenda(guardarropa, remera);
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 	}
 	
+	@Test
+	public void usuarioPremiumSePasaAFreeYNoPuedeVerTodasLasPrendas(){
+		//Usuario Premium
+		Premium prem=new Premium();
+		usuario.getSuscripcion().cambiarSuscripcion(usuario,prem);
+		
+		//Le agrego prendas para superar el limite
+		usuario.agregarPrenda(guardarropa, remera);
+		usuario.agregarPrenda(guardarropa, remeraBonus);
+		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),13);
+		//Se pasa a free
+		Free f=new Free();
+		usuario.setSuscripcion(f);
+		
+		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),12);
+	}
+	
+	@Test
+	public void usuarioComparteGuardarropasConOtro(){
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		assertNotNull(usuario2.getGuardarropa("guardarropa"));
+	}
+	
+	@Test
+	public void usuarioPremiumComparteGuardarropaConOtroUsuarioFreeYNoPuedeVerTodasLasPrendas(){
+		usuario.setSuscripcion(new Premium());
+		usuario.agregarPrenda(guardarropa, remeraBonus);
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		
+		assertEquals(usuario2.getGuardarropa("guardarropa").cantidadDePrendas(),12);
+	}
+	
+	@Test
+	public void usuarioPremiumComparteGuardarropaConOtroUsuarioPremiumYPuedeVerTodasLasPrendas(){
+		usuario.setSuscripcion(new Premium());
+		usuario2.setSuscripcion(new Premium());
+		usuario.agregarPrenda(guardarropa, remeraBonus);
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		
+		assertEquals(usuario2.getGuardarropa("guardarropa").cantidadDePrendas(),12);
+	}
+	
+	@Test
+	public void usuarioDejaDeCompartirGuardarropasConOtroUsuarioYEsteYaNoPuedeAccederAEl(){
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()),guardarropa);
+		
+		usuario.sacarCompartimientoDeGuardarropaAUnUsuario(usuario2, guardarropa);
+		assertFalse(usuario2.getGuardarropas().stream().anyMatch(g -> g.equals(guardarropa)));
+	}
+	
+	@Test
+	public void usuarioPremiumAgregaPrendasAGuardarropaCompartido(){
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		usuario2.setSuscripcion(new Premium());
+		usuario2.agregarPrenda(guardarropa, remeraBonus);
+		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
+	}
+	@Test
+	public void usuarioFreeAgregaPrendaPeroElGuardarropaEstaAlLimite(){
+		usuario.compartirGuardarropa(usuario2, guardarropa);
+		usuario2.setSuscripcion(new Free());
+		usuario2.agregarPrenda(guardarropa, remeraBonus);
+		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
+	}
 }
