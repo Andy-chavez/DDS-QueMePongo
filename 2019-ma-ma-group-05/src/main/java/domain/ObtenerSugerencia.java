@@ -9,6 +9,19 @@ import java.util.stream.Collectors;
 
 public class ObtenerSugerencia {
 	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
+	public List<Prenda> filtrarPrendasSegunCondicion(List<Prenda> prendas, Predicate<Prenda> predicado) {
+		return prendas.stream().filter(predicado).collect(Collectors.toList());
+	}
+
+	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria) {
+		return prenda -> prenda.getTipo().getCategoria() == unaCategoria;
+	}
+	
+	public Predicate<Prenda> esDeTipo(Tipo unTipo) {
+		return prenda -> prenda.getTipo() == unTipo;
+	}
+
+	
 	public boolean atuendoNoRechazado(Guardarropa g, Atuendo atuendo) {
 		for (Atuendo atuendoYaSugerido : g.getAtuendosSugeridos()) {
 			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
@@ -54,25 +67,54 @@ public class ObtenerSugerencia {
 		return capasSuperiores;
 	}
 	
+	public Atuendo crearAtuendoConMolde(Guardarropa g, MoldeAtuendo moldeAtuendo){
+		List <Prenda> prendasElegidas = new ArrayList<Prenda>();
+		for(Tipo tipo : moldeAtuendo.getMoldeTipos()){
+			List<Prenda> prendasDeTipo = filtrarPrendasSegunCondicion(g.getPrendas(), esDeTipo(tipo));
+
+			Random random = new Random();
+			prendasElegidas.add(prendasDeTipo.get(random.nextInt(prendasDeTipo.size())));
+		}
+		Atuendo atuendo = new Atuendo();
+		atuendo.agregarPrendas(prendasElegidas);
+		atuendo.setNivelAbrigo(moldeAtuendo.getNivelAbrigo());
+		return atuendo;
+	}
+	
+	public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
+		int margenAdmitido = 5;
+		for(MoldeAtuendo moldeAtuendo : g.getMoldesAtuendos()){
+			if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
+				System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
+				return moldeAtuendo;
+			}
+		}
+		return null;
+	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa g, double temperatura, SensibilidadFrio sensibilidadFrio) {
 		int variableTemperaturaSarasa = 40;
 		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
-
-		Predicate<Prenda> esRemera = p -> p.getCapa() == Capa.REMERA;
-		Predicate<Prenda> esCamisa = p -> p.getCapa() == Capa.CAMISA;
-
-		List<Prenda> prendasSuperiores = g.filtrarPrendasSegunCondicion(g.esDeCategoria(Categoria.SUPERIOR));
-		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
-		List<Prenda> prendasInferiores = g.filtrarPrendasSegunCondicion(g.esDeCategoria(Categoria.INFERIOR));
-		List<Prenda> calzados = g.filtrarPrendasSegunCondicion(g.esDeCategoria(Categoria.CALZADO));
-		List<Prenda> accesorios = g.filtrarPrendasSegunCondicion(g.esDeCategoria(Categoria.ACCESORIO));
 		
-		for(Prenda p : prendasSuperiores){
-			System.out.println(p.getTipo().getNombre());
+		// se fija si ya hay un molde hecho, y lo rellena con otras prendas
+		MoldeAtuendo moldeAtuendo = buscarMoldeParaNivelAbrigo(g, nivelAbrigoRequerido);
+		if(moldeAtuendo != null){
+			Atuendo atuendo = crearAtuendoConMolde(g, moldeAtuendo);
+			g.agregarSugerencia(atuendo);
+			return atuendo;
 		}
 		
 		Atuendo atuendo = new Atuendo();
+		
+		Predicate<Prenda> esRemeraOCamisa = p -> p.getCapa() == Capa.REMERA || p.getCapa() == Capa.CAMISA;
+
+		List<Prenda> prendasSuperiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.SUPERIOR));
+		List<Prenda> remerasOCamisas = filtrarPrendasSegunCondicion(prendasSuperiores, esRemeraOCamisa);
+//		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
+		List<Prenda> prendasInferiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.INFERIOR));
+		List<Prenda> calzados = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.CALZADO));
+		List<Prenda> accesorios = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.ACCESORIO));
+		
 		
 		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);
 		Prenda bot = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getInferior(), prendasInferiores);
@@ -85,6 +127,13 @@ public class ObtenerSugerencia {
 		atuendo.agregarPrenda(calzado);
 		atuendo.agregarPrenda(accesorio);
 		atuendo.agregarPrendas(capasTop);
+		
+		atuendo.setNivelAbrigo(nivelAbrigoRequerido);
+		g.agregarSugerencia(atuendo);
+		
+		moldeAtuendo = new MoldeAtuendo(atuendo);
+		g.agregarMoldeAtuendo(moldeAtuendo);
+		
 		return atuendo;
 	}
 }

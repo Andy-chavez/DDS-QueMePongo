@@ -15,6 +15,7 @@ public class Guardarropa {
 	private List<Prenda> prendas;
 	private List<Atuendo> atuendosSugeridos;
 	private ObtenerSugerencia obtenerSugerencia;
+	private List<MoldeAtuendo> moldesAtuendos;
 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
@@ -22,6 +23,16 @@ public class Guardarropa {
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
 		this.obtenerSugerencia = new ObtenerSugerencia();
+		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
+
+	}
+	
+	public List<MoldeAtuendo> getMoldesAtuendos(){
+		return this.moldesAtuendos;
+	}
+	
+	public void agregarMoldeAtuendo(MoldeAtuendo moldeAtuendo){
+		this.moldesAtuendos.add(moldeAtuendo);
 	}
 	
 	public String getNombre() {
@@ -50,14 +61,6 @@ public class Guardarropa {
 	
 	public Boolean tieneLaPrenda(Prenda unaPrenda) {
 		return this.getPrendas().stream().anyMatch(prenda -> prenda.esIgualA(unaPrenda));
-	}
-
-	public List<Prenda> filtrarPrendasSegunCondicion(Predicate<Prenda> predicado) {
-		return this.prendas.stream().filter(predicado).collect(Collectors.toList());
-	}
-
-	public Predicate<Prenda> esDeCategoria(Categoria unaCategoria) {
-		return prenda -> prenda.getTipo().getCategoria() == unaCategoria;
 	}
 
 	public void agregarSugerencia(Atuendo atuendo) {
