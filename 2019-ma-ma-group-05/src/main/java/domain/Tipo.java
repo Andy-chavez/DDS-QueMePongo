@@ -1,12 +1,12 @@
 package domain;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 public abstract class Tipo {
 	protected Categoria categoria;
-	protected EnumSet<Tela> telasPosibles;
+	protected ArrayList<Tela> telasPosibles;
 	protected String nombre;
 	protected Tela tela;
 	protected Capa capa;
@@ -43,7 +43,7 @@ public abstract class Tipo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public EnumSet<Tela> getTelasPosibles() {
+	public ArrayList<Tela> getTelasPosibles() {
 		return telasPosibles;
 	}
 	public Tela getTela() {

@@ -1,16 +1,16 @@
 package domain;
 
-public enum Tela {
-	ALGODON,
-	CUERO,
-	NYLON,
-	POLYESTER,
-	ELASTINA,
-	ENCAJE,
-	TUL,
+public class Tela {
+	protected String nombre;
+	
+	public void setNombre(String unNombre) {
+		this.nombre = unNombre;
+	}
+	public String setNombre() {
+		return this.nombre;
+	}
+	/*TUL,
 	LYCRA,
 	SATEN,
-	SEDA,
-	OTRO
-	//consultar tipos de tela disponibles, agregué algunas que se me ocurrieron
+	SEDA,*/
 }
