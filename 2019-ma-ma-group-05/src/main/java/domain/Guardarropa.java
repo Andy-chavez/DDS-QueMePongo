@@ -1,12 +1,8 @@
 package domain;
-import java.util.Comparator;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import domain.Atuendo;
 import domain.Prenda;
 

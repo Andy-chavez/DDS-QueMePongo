@@ -1,8 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.List;
 
 import domain.Prenda;

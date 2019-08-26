@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Objects;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 
 import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
@@ -16,8 +15,7 @@ public class Prenda implements Cloneable {
 	private Tipo tipo;
 	private BufferedImage imagen;
 	private ImgResizer resizer;
-	//private GuardaRopa guardaRropa;
-	//public Prenda() {}
+
 
 	public Prenda makeCopy(){
 		Prenda prendaCopy = null;

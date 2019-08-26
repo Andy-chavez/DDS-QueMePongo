@@ -9,8 +9,4 @@ public class Tela {
 	public String getNombre() {
 		return this.nombre;
 	}
-	/*TUL,
-	LYCRA,
-	SATEN,
-	SEDA,*/
 }

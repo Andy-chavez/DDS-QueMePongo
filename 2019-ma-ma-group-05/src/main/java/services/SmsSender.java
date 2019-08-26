@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 
 public class SmsSender {
 	    //No me parece mala idea leer estos datos del properties y el numero de twilio tmb
