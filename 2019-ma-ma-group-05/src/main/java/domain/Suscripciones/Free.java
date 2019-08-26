@@ -30,8 +30,12 @@ public class Free implements Suscripcion {
     	this.limiteDePrendas=Integer.parseInt(archivoDeConfiguraciones.getProperty("limiteDePrendas"));
 	}
 	public int getLimiteDePrendas(){return this.limiteDePrendas;}
-	public void cambiarSuscripcion(Usuario usuario,Suscripcion unaSuscripcion) {
-		usuario.setSuscripcion(unaSuscripcion);
+	public void cambiarAFree(Usuario usuario){
+		////sé si lanzar exception o simplemente no hacer nada, me parece too much lanzar una excepción.
+		System.out.println("El usuario ya es free");
+	}
+	public void cambiarAPremium(Usuario usuario){
+		usuario.setSuscripcion(new Premium());
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda) {
 		if(armario.cantidadDePrendas()<this.limiteDePrendas){

@@ -50,7 +50,12 @@ public class Usuario {
 		this.sensibilidadFrio = new SensibilidadFrio();
 		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 	}
-	
+	public void cambiarAPremium(){
+		this.suscripcion.cambiarAPremium(this);
+	}
+	public void cambiarAFree(){
+		this.suscripcion.cambiarAFree(this);
+	}
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
 	public Suscripcion getSuscripcion(){return this.suscripcion;}
 	

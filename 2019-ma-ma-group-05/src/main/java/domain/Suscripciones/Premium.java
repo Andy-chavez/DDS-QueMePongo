@@ -9,8 +9,12 @@ import domain.Suscripcion;
 import domain.Usuario;
 
 public class Premium implements Suscripcion{
-	public void cambiarSuscripcion(Usuario usuario,Suscripcion unaSuscripcion) {
-		usuario.setSuscripcion(unaSuscripcion);
+	public void cambiarAFree(Usuario usuario){
+		usuario.setSuscripcion(new Free());
+	}
+	public void cambiarAPremium(Usuario usuario){
+		//no sé si lanzar exception o simplemente no hacer nada, me parece too much lanzar una excepción.
+		System.out.println("El usuario ya es premium");
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda) {
 		armario.agregarPrenda(prenda);
