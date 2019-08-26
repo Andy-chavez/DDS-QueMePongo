@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import domain.Suscripciones.Free;
 import domain.Suscripciones.Premium;
+import domain.Telas.Algodon;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 import static org.mockito.Mockito.*;
 import domain.Tipos.*;
@@ -44,8 +45,11 @@ public class SuscripcionesTest {
 	private Guardarropa guardarropa2;
 	private Usuario usuario2;
 	private List<Prenda> prendas;
+	private Tela algodon;
+	
 	@Before
 	public void init(){
+		algodon = new Algodon();
 		antiparrasTipo = new Antiparras();
 		musculosaTipo = new Musculosa();
 		shortsTipo = new Short();
@@ -53,17 +57,17 @@ public class SuscripcionesTest {
 		remeraTipo = new Remera();
 		zapatillasTipo = new Zapatillas();
 
-		remeraTipo.establecerTela(Tela.OTRO);
+		remeraTipo.establecerTela(algodon);
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
-		antiparrasTipo.establecerTela(Tela.OTRO);
+		antiparrasTipo.establecerTela(algodon);
 		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shortsTipo.establecerTela(Tela.OTRO);
+		shortsTipo.establecerTela(algodon);
 		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosaTipo.establecerTela(Tela.OTRO);
+		musculosaTipo.establecerTela(algodon);
 		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotasTipo.establecerTela(Tela.OTRO);
+		ojotasTipo.establecerTela(algodon);
 		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillasTipo.establecerTela(Tela.OTRO);
+		zapatillasTipo.establecerTela(algodon);
 		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
 		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);
 		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);

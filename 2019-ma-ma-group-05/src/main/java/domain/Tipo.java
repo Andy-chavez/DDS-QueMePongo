@@ -1,16 +1,17 @@
 package domain;
 
-import java.util.EnumSet;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class Tipo {
-	private Categoria categoria;
-	private Tela tela;
-	private String nombre;
-	private Capa capa;
-	private int nivelAbrigo;
-	private EnumSet<Tela> telasPosibles;
+	protected Categoria categoria;
+	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
+	protected String nombre;
+	protected Tela tela;
+	protected Capa capa;
+	protected int nivelAbrigo;
 	
 	public void setNivelAbrigo(int nivelAbrigo){
 		this.nivelAbrigo = nivelAbrigo;
@@ -43,14 +44,17 @@ public abstract class Tipo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
+	public boolean estaTelaEsPosible(String nombreTela) {
+		ArrayList<Tela> lista = new ArrayList<>();
+		lista = this.telasPosibles;
+		lista.stream().filter(t -> t.getNombre() == nombreTela).collect(Collectors.toList());
+		return !lista.isEmpty();
 	}
 	public Tela getTela() {
 		return tela;
 	}
 	public void establecerTela(Tela tela) {
-		if (this.getTelasPosibles().contains(tela)) {
+		if (this.estaTelaEsPosible(tela.getNombre())) {
 			this.setTela(tela);
 		}
 		else

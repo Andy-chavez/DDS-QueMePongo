@@ -4,21 +4,30 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.Objects;
 import java.awt.image.BufferedImage;
-import javax.swing.ImageIcon;
 
 import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
 import domain.Excepciones.ValidacionException;
 
-public class Prenda {
+public class Prenda implements Cloneable {
 	private Color colorPrimario;
 	private Color colorSecundario;
 	private Tipo tipo;
 	private BufferedImage imagen;
 	private ImgResizer resizer;
-	//private GuardaRopa guardaRropa;
-	//public Prenda() {}
 
+
+	public Prenda makeCopy(){
+		Prenda prendaCopy = null;
+		try {
+			prendaCopy = (Prenda) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prendaCopy;
+	}
+	
 	public Prenda(Tipo unTipo, Color colorPrim) {
 		this.setTipo(unTipo);
 		this.setColorPrimario(colorPrim);

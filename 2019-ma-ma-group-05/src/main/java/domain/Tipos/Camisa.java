@@ -1,35 +1,22 @@
 package domain.Tipos;
 
-import java.util.EnumSet;
-
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
-import domain.Tela;
+import domain.Telas.Algodon;
+import domain.Telas.Nylon;
+import domain.Telas.Poliester;
+import domain.Telas.Seda;
 
 public class Camisa extends Tipo{
-	private String nombre = "camisa";
-	private Tela tela;
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
-	private Categoria categoria = Categoria.SUPERIOR;
-	private Capa capa = Capa.CAMISA;
-	private int nivelAbrigo = 12;
-
-	public int getNivelAbrigo() {
-		return nivelAbrigo;
+	public Camisa(){
+		this.categoria = Categoria.SUPERIOR;
+		this.telasPosibles.add(new Algodon());
+		this.telasPosibles.add(new Nylon());
+		this.telasPosibles.add(new Seda());
+		this.telasPosibles.add(new Poliester());
+		this.nombre = "camisa";
+		this.capa = Capa.CAMISA;
+		this.nivelAbrigo = 12;	
 	}
-
-	public Capa getCapa() {
-		return capa;
-	}
-	public String getTipo() {
-		return nombre;
-	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	
 }

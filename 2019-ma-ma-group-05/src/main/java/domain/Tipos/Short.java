@@ -1,36 +1,24 @@
 package domain.Tipos;
 
-import java.util.EnumSet;
 
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
-import domain.Tela;
+import domain.Telas.Algodon;
+import domain.Telas.Nylon;
+import domain.Telas.Poliester;
+import domain.Telas.Seda;
 
 public class Short extends Tipo{
-	private String nombre = "short";
-	private Tela tela;
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.POLYESTER,Tela.SEDA,Tela.OTRO);
-	private Categoria categoria = Categoria.INFERIOR;
-	private Capa capa = Capa.PANTALON;
-	private int nivelAbrigo = 15;
 
-	public int getNivelAbrigo() {
-		return nivelAbrigo;
+	public Short(){
+		this.categoria = Categoria.INFERIOR;
+		this.telasPosibles.add(new Algodon());
+		this.telasPosibles.add(new Nylon());
+		this.telasPosibles.add(new Seda());
+		this.telasPosibles.add(new Poliester());
+		this.nombre = "short";
+		this.capa = Capa.PANTALON;
+		this.nivelAbrigo = 15;	
 	}
-
-
-	public Capa getCapa() {
-		return capa;
-	}
-	public String getTipo() {
-		return nombre;
-	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	
 }

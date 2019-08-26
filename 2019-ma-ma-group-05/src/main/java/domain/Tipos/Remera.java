@@ -1,35 +1,18 @@
 package domain.Tipos;
 
-import java.util.EnumSet;
-
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
-import domain.Tela;
+import domain.Telas.Algodon;
+import domain.Telas.Nylon;
 
 public class Remera extends Tipo{
-	private Tela tela;
-	private String nombre = "remera";
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
-	private Categoria categoria = Categoria.SUPERIOR;
-	private Capa capa = Capa.REMERA;
-	private int nivelAbrigo = 10;
-
-	public int getNivelAbrigo() {
-		return nivelAbrigo;
-	}
-
-	public Capa getCapa() {
-		return capa;
-	}
-	
-	public String getTipo() {
-		return nombre;
-	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
-	}
-	public Categoria getCategoria() {
-		return categoria;
+	public Remera(){
+		this.categoria = Categoria.SUPERIOR;
+		this.telasPosibles.add(new Algodon());
+		this.telasPosibles.add(new Nylon());
+		this.nombre = "remera";
+		this.capa = Capa.REMERA;
+		this.nivelAbrigo = 10;	
 	}
 }
