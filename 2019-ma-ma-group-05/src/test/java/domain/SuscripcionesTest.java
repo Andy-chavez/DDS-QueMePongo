@@ -98,8 +98,7 @@ public class SuscripcionesTest {
 	}
 	@Test
 	public void usuarioFreePasaAPremium(){
-		Premium prem=new Premium();
-		usuario.getSuscripcion().cambiarSuscripcion(usuario,prem);
+		usuario.cambiarAPremium();
 		
 		assertTrue(usuario.getSuscripcion().getClass()==Premium.class);
 	}
@@ -127,16 +126,14 @@ public class SuscripcionesTest {
 	@Test
 	public void usuarioPremiumSePasaAFreeYNoPuedeVerTodasLasPrendas(){
 		//Usuario Premium
-		Premium prem=new Premium();
-		usuario.getSuscripcion().cambiarSuscripcion(usuario,prem);
+		usuario.cambiarAPremium();
 		
 		//Le agrego prendas para superar el limite
 		usuario.agregarPrenda(guardarropa, remera);
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),13);
 		//Se pasa a free
-		Free f=new Free();
-		usuario.setSuscripcion(f);
+		usuario.cambiarAFree();
 		
 		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),12);
 	}
@@ -149,7 +146,7 @@ public class SuscripcionesTest {
 	
 	@Test
 	public void usuarioPremiumComparteGuardarropaConOtroUsuarioFreeYNoPuedeVerTodasLasPrendas(){
-		usuario.setSuscripcion(new Premium());
+		usuario.cambiarAPremium();
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
@@ -158,8 +155,8 @@ public class SuscripcionesTest {
 	
 	@Test
 	public void usuarioPremiumComparteGuardarropaConOtroUsuarioPremiumYPuedeVerTodasLasPrendas(){
-		usuario.setSuscripcion(new Premium());
-		usuario2.setSuscripcion(new Premium());
+		usuario.cambiarAPremium();
+		usuario2.cambiarAPremium();
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
