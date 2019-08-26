@@ -10,7 +10,7 @@ import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
 import domain.Excepciones.ValidacionException;
 
-public class Prenda {
+public class Prenda implements Cloneable {
 	private Color colorPrimario;
 	private Color colorSecundario;
 	private Tipo tipo;
@@ -19,6 +19,17 @@ public class Prenda {
 	//private GuardaRopa guardaRropa;
 	//public Prenda() {}
 
+	public Prenda makeCopy(){
+		Prenda prendaCopy = null;
+		try {
+			prendaCopy = (Prenda) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return prendaCopy;
+	}
+	
 	public Prenda(Tipo unTipo, Color colorPrim) {
 		this.setTipo(unTipo);
 		this.setColorPrimario(colorPrim);

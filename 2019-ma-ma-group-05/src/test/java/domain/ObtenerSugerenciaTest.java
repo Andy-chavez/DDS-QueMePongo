@@ -168,17 +168,6 @@ public class ObtenerSugerenciaTest {
 		assertNotNull(atuendoSugerido);
 	}
 	
-	@Test
-	public void nivelDeAbrigoAtuendoCorrecto() {
-		System.out.println("\nnivelDeAbrigoAtuendoCorrecto()");
-		Atuendo atuendoSugerido = new Atuendo();
-		atuendoSugerido.agregarPrenda(remera); //8
-		atuendoSugerido.agregarPrenda(zapatillas); //5
-		atuendoSugerido.agregarPrenda(shorts); //5
-		System.out.println("Nivel abrigo: " + atuendoSugerido.getNivelAbrigo());
-		assertTrue(atuendoSugerido.bienAbrigado(24) == 0);
-	}
-	
 //	@Test
 //	public void nivelDeAbrigoIncorrecto() {
 //		System.out.println("\nnivelDeAbrigoIncorrecto()");
@@ -252,5 +241,70 @@ public class ObtenerSugerenciaTest {
 		for(Prenda p : capas){
 			System.out.println(p.getTipo().getNombre());
 		}
+	}
+	
+
+	@Test
+	public void crearMoldeTest(){
+		System.out.println("\ncrearMoldeTest()");
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera);
+		atuendoSugerido.agregarPrenda(ojotas);
+		atuendoSugerido.agregarPrenda(antiparras);
+		atuendoSugerido.agregarPrenda(shorts);
+		atuendoSugerido.setNivelAbrigo(16);
+		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
+		
+		for(Tipo t : moldeAtuendo.getMoldeTipos()){
+			System.out.println(t.getNombre());
+		}
+	}
+	
+	@Test
+	public void nivelAbrigoAtuendo(){
+		System.out.println("\nnivelAbrigoAtuendo()");
+		double temperatura = 24.0;
+		int nivelAbrigoRequerido = 40 - (int)temperatura;
+		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
+		Atuendo atuendoSugerido = obtenerSugerencia.obtenerSugerencia(guardarropa, temperatura, usuario.getSensibilidadFrio());
+		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
+
+		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(v.getTipo().getNombre()));
+		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido);
+	}
+	
+	@Test
+	public void buscarMoldeAtuendo(){
+		System.out.println("\nBuscarMoldeAtuendo()");
+
+		double temperatura = 24.0;
+		int nivelAbrigoRequerido = 40 - (int)temperatura;
+		
+		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
+		obtenerSugerencia.obtenerSugerencia(guardarropa, temperatura, usuario.getSensibilidadFrio());
+		obtenerSugerencia.obtenerSugerencia(guardarropa, 4.0, usuario.getSensibilidadFrio());
+		
+		MoldeAtuendo moldeAtuendo = obtenerSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
+		for(Tipo t : moldeAtuendo.getMoldeTipos()){
+			System.out.println(t);
+		}
+
+	}
+	
+	@Test
+	public void crearAtuendoConMolde(){
+		System.out.println("\ncrearAtuendoConMolde()");
+		Atuendo atuendoSugerido = new Atuendo();
+		atuendoSugerido.agregarPrenda(remera);
+		atuendoSugerido.agregarPrenda(ojotas);
+		atuendoSugerido.agregarPrenda(antiparras);
+		atuendoSugerido.agregarPrenda(shorts);
+		atuendoSugerido.setNivelAbrigo(16);
+		
+		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
+		for(Tipo t : moldeAtuendo.getMoldeTipos()){
+			System.out.println(t);
+		}
+		System.out.println(moldeAtuendo.getNivelAbrigo());
 	}
 }
