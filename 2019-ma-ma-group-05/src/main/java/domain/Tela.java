@@ -6,7 +6,7 @@ public class Tela {
 	public void setNombre(String unNombre) {
 		this.nombre = unNombre;
 	}
-	public String setNombre() {
+	public String getNombre() {
 		return this.nombre;
 	}
 	/*TUL,

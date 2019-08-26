@@ -12,6 +12,7 @@ import domain.Categoria;
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Tela;
+import domain.Telas.Algodon;
 
 public class GuardarropaTest {
 	private Guardarropa guardarropa;
@@ -32,10 +33,12 @@ public class GuardarropaTest {
 	
 	private Usuario usuario;
 	
+	private Algodon algodon;
+	
 	private List<Prenda> prendas;
 	@Before
 	public void init() {
-		
+		algodon = new Algodon();
 		// familias de tipos
 		antiparrasTipo = new domain.Tipos.Antiparras();
 		musculosaTipo = new domain.Tipos.Musculosa();
@@ -45,17 +48,17 @@ public class GuardarropaTest {
 		zapatillasTipo = new domain.Tipos.Zapatillas();
 		
 		// Prendas para el test de sugerencias
-		remeraTipo.establecerTela(Tela.OTRO);
+		remeraTipo.establecerTela(algodon);
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
-		antiparrasTipo.establecerTela(Tela.OTRO);
+		antiparrasTipo.establecerTela(algodon);
 		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shortsTipo.establecerTela(Tela.OTRO);
+		shortsTipo.establecerTela(algodon);
 		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosaTipo.establecerTela(Tela.OTRO);
+		musculosaTipo.establecerTela(algodon);
 		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotasTipo.establecerTela(Tela.OTRO);
+		ojotasTipo.establecerTela(algodon);
 		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillasTipo.establecerTela(Tela.OTRO);
+		zapatillasTipo.establecerTela(algodon);
 		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
 		
 		// Guardar todo menos antiparras.

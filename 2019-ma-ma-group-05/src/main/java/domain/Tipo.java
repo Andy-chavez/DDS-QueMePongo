@@ -2,11 +2,13 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public abstract class Tipo {
 	protected Categoria categoria;
-	protected ArrayList<Tela> telasPosibles;
+	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
 	protected String nombre;
 	protected Tela tela;
 	protected Capa capa;
@@ -43,14 +45,17 @@ public abstract class Tipo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public ArrayList<Tela> getTelasPosibles() {
-		return telasPosibles;
+	public boolean estaTelaEsPosible(String tela) {
+		ArrayList<Tela> lista = new ArrayList<>();
+		lista = this.telasPosibles;
+		lista.stream().filter(t -> t.getNombre() == tela).collect(Collectors.toList());
+		return !lista.isEmpty();
 	}
 	public Tela getTela() {
 		return tela;
 	}
 	public void establecerTela(Tela tela) {
-		if (this.getTelasPosibles().contains(tela)) {
+		if (this.estaTelaEsPosible(tela.getNombre())) {
 			this.setTela(tela);
 		}
 		else
