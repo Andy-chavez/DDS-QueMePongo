@@ -31,7 +31,8 @@ public class Free implements Suscripcion {
 	}
 	public int getLimiteDePrendas(){return this.limiteDePrendas;}
 	public void cambiarAFree(Usuario usuario){
-		//excepción o simplemente no hacer nada
+		////sé si lanzar exception o simplemente no hacer nada, me parece too much lanzar una excepción.
+		System.out.println("El usuario ya es free");
 	}
 	public void cambiarAPremium(Usuario usuario){
 		usuario.setSuscripcion(new Premium());

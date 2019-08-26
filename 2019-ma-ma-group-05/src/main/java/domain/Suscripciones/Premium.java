@@ -13,7 +13,8 @@ public class Premium implements Suscripcion{
 		usuario.setSuscripcion(new Free());
 	}
 	public void cambiarAPremium(Usuario usuario){
-		//aca no sé si lanzar exception o simplemente no hacer nada.
+		//no sé si lanzar exception o simplemente no hacer nada, me parece too much lanzar una excepción.
+		System.out.println("El usuario ya es premium");
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda) {
 		armario.agregarPrenda(prenda);
