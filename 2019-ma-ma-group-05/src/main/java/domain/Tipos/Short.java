@@ -23,7 +23,7 @@ public class Short extends Tipo{
 	public Capa getCapa() {
 		return capa;
 	}
-	public String getTipo() {
+	public String getNombre() {
 		return nombre;
 	}
 	public EnumSet<Tela> getTelasPosibles() {
