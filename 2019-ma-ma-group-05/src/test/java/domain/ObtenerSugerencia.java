@@ -92,9 +92,6 @@ import services.ApiDs;
 		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
 		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
 		campera = new Prenda(camperaTipo,Color.black,Color.blue);
-		
-		System.out.println("Test remera");
-		System.out.println(remera.getTipo().getNombre());
 
 		
 		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);

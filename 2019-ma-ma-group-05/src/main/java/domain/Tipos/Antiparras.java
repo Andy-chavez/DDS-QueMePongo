@@ -8,29 +8,11 @@ import domain.Tipo;
 import domain.Tela;
 
 public class Antiparras extends Tipo{
-	private String nombre = "antiparras";
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.OTRO);
-	private Tela tela;
-	private Categoria categoria = Categoria.ACCESORIO;
-	private Capa capa = Capa.ACCESORIO;
-	private int nivelAbrigo = 0;
-
-	public int getNivelAbrigo() {
-		return nivelAbrigo;
+	public Antiparras(){
+		this.categoria = Categoria.ACCESORIO;
+		this.telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.OTRO);
+		this.nombre = "antiparras";
+		this.capa = Capa.ACCESORIO;
+		this.nivelAbrigo = 0;	
 	}
-
-	public Capa getCapa() {
-		return capa;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
-	}
-	public Categoria getCategoria() {
-		return categoria;
-	}
-	
 }

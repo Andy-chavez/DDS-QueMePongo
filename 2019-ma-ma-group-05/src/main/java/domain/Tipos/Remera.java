@@ -8,28 +8,11 @@ import domain.Tipo;
 import domain.Tela;
 
 public class Remera extends Tipo{
-	private Tela tela;
-	private String nombre = "remera";
-	private EnumSet<Tela> telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
-	private Categoria categoria = Categoria.SUPERIOR;
-	private Capa capa = Capa.REMERA;
-	private int nivelAbrigo = 10;
-
-	public int getNivelAbrigo() {
-		return nivelAbrigo;
-	}
-
-	public Capa getCapa() {
-		return capa;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public EnumSet<Tela> getTelasPosibles() {
-		return telasPosibles;
-	}
-	public Categoria getCategoria() {
-		return categoria;
+	public Remera(){
+		this.categoria = Categoria.SUPERIOR;
+		this.telasPosibles = EnumSet.of(Tela.ALGODON, Tela.NYLON,Tela.OTRO);
+		this.nombre = "remera";
+		this.capa = Capa.REMERA;
+		this.nivelAbrigo = 10;	
 	}
 }
