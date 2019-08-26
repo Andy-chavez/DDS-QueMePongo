@@ -45,10 +45,10 @@ public abstract class Tipo {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public boolean estaTelaEsPosible(String tela) {
+	public boolean estaTelaEsPosible(String nombreTela) {
 		ArrayList<Tela> lista = new ArrayList<>();
 		lista = this.telasPosibles;
-		lista.stream().filter(t -> t.getNombre() == tela).collect(Collectors.toList());
+		lista.stream().filter(t -> t.getNombre() == nombreTela).collect(Collectors.toList());
 		return !lista.isEmpty();
 	}
 	public Tela getTela() {

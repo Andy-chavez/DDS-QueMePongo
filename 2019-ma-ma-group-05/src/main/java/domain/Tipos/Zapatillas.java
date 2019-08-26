@@ -1,15 +1,11 @@
 package domain.Tipos;
 
-import java.util.EnumSet;
-
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
 import domain.Telas.Algodon;
 import domain.Telas.Cuero;
-import domain.Telas.Nylon;
 import domain.Telas.Seda;
-import domain.Tela;
 
 public class Zapatillas extends Tipo{
 	public Zapatillas(){

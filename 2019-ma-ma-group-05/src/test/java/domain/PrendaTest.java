@@ -12,20 +12,26 @@ import domain.Tela;
 import domain.Excepciones.ColoresIgualesException;
 import domain.Tipos.*;
 import domain.Excepciones.ValidacionException;
+import domain.Telas.Algodon;
+import domain.Telas.Cuero;
 
 public class PrendaTest {
 	private Prenda prenda;
 	private Zapatillas tipo;
 	private Remera remeraTipo;
+	private Tela algodon;
+	private Tela cuero;
 	@Before
 	public void init() {
+		cuero = new Cuero();
+		algodon = new Algodon();
 		remeraTipo = new Remera();
 		remeraTipo.setNombre("remera");
 		remeraTipo.setCategoria(Categoria.SUPERIOR);
-		remeraTipo.establecerTela(Tela.ALGODON);
+		remeraTipo.establecerTela(algodon);
 		
 		tipo = new Zapatillas();
-		tipo.establecerTela(Tela.CUERO);
+		tipo.establecerTela(cuero);
 		prenda = new Prenda(tipo,Color.black);
 	}
 	@Test
@@ -37,13 +43,13 @@ public class PrendaTest {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void remeraAzulDeCueroInvalida() {
-		remeraTipo.establecerTela(Tela.CUERO);
+		remeraTipo.establecerTela(cuero);
 		Prenda remeraAzul = new Prenda(remeraTipo,Color.blue,Color.green);
 	}
 	
 	@Test (expected = ColoresIgualesException.class) 
 	public void remeraDeVerdeVerdeInvalida() {
-		remeraTipo.establecerTela(Tela.ALGODON);
+		remeraTipo.establecerTela(algodon);
 		Prenda remeraVerde = new Prenda(remeraTipo,Color.green,Color.green);
 
 	}
@@ -64,7 +70,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonDeCueroLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de cuero", Tela.CUERO, prenda.getTipo().getTela());
+		Assert.assertEquals("No eran zapatillas de cuero", cuero.getNombre(), prenda.getTipo().getTela().getNombre());
 	}
 	
 }

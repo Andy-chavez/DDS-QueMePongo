@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import domain.Tipos.Short;
+import domain.Telas.Algodon;
 import domain.Tipos.*;
 import services.ApiDs;
 //import static org.mockito.Mockito.*
@@ -49,18 +50,11 @@ public class ObtenerSugerenciaTest {
 	private List<Prenda> prendas;
 	
 	private GestorDeClima gestor;
+	private Tela algodon;
+	
 	@Before
 	public void init() {    
-  //  antiparrasFamiliaTipo = new domain.Tipos.Antiparras();
-  //  musculosaFamiliaTipo = new domain.Tipos.Musculosa();
-  //  shortsFamiliaTipo = new domain.Tipos.Short();
-  //	ojotasFamiliaTipo = new domain.Tipos.Ojotas();
-	//	remeraFamiliaTipo = new domain.Tipos.Remera();
-	//  zapatillasFamiliaTipo = new domain.Tipos.Zapatillas();
-	//	camisaFamiliaTipo = new domain.Tipos.Camisa();
-	//	sweaterFamiliaTipo = new domain.Tipos.Sweater();
-	//	camperaFamiliaTipo = new domain.Tipos.Campera();
-
+		algodon = new Algodon();
 		antiparrasTipo = new Antiparras();
 		musculosaTipo = new Musculosa();
 		shortsTipo = new Short();
@@ -73,15 +67,15 @@ public class ObtenerSugerenciaTest {
 
     
 		// Prendas para el test de sugerencias
-		remeraTipo.establecerTela(Tela.OTRO);
-		camisaTipo.establecerTela(Tela.OTRO);
-		sweaterTipo.establecerTela(Tela.OTRO);
-		antiparrasTipo.establecerTela(Tela.OTRO);
-		shortsTipo.establecerTela(Tela.OTRO);
-		musculosaTipo.establecerTela(Tela.OTRO);
-		ojotasTipo.establecerTela(Tela.OTRO);
-		zapatillasTipo.establecerTela(Tela.OTRO);
-		camperaTipo.establecerTela(Tela.OTRO);
+		remeraTipo.establecerTela(algodon);
+		camisaTipo.establecerTela(algodon);
+		sweaterTipo.establecerTela(algodon);
+		antiparrasTipo.establecerTela(algodon);
+		shortsTipo.establecerTela(algodon);
+		musculosaTipo.establecerTela(algodon);
+		ojotasTipo.establecerTela(algodon);
+		zapatillasTipo.establecerTela(algodon);
+		camperaTipo.establecerTela(algodon);
 
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
 		camisa = new Prenda(camisaTipo,Color.black,Color.blue);

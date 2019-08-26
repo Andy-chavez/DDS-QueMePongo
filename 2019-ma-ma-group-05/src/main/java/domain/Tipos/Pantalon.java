@@ -1,16 +1,20 @@
 package domain.Tipos;
 
-import java.util.EnumSet;
-
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
-import domain.Tela;
+import domain.Telas.Algodon;
+import domain.Telas.Cuero;
+import domain.Telas.Nylon;
+import domain.Telas.Seda;
 
 public class Pantalon extends Tipo{
 	public Pantalon(){
 		this.categoria = Categoria.INFERIOR;
-		this.telasPosibles = EnumSet.of(Tela.ALGODON,Tela.NYLON,Tela.SEDA,Tela.OTRO);
+		this.telasPosibles.add(new Nylon());
+		this.telasPosibles.add(new Seda());
+		this.telasPosibles.add(new Cuero());
+		this.telasPosibles.add(new Algodon());
 		this.nombre = "pantalon";
 		this.capa = Capa.PANTALON;
 		this.nivelAbrigo = 30;	
