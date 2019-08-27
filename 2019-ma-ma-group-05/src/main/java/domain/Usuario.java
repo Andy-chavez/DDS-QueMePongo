@@ -14,6 +14,7 @@ public class Usuario {
 	private Suscripcion suscripcion;
 	private List<Evento> eventos;
 	private String celular;
+	private String mail;
 	private SensibilidadFrio sensibilidadFrio;
 	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
 	
@@ -27,6 +28,12 @@ public class Usuario {
 	public void sacarCompartimientoDeGuardarropaAUnUsuario(Usuario otroUsuario,Guardarropa g){
 		otroUsuario.getGuardarropas().remove(g);
 		this.guardarropasCompartidos.remove(otroUsuario, g);
+	}
+	public String getMail() {
+		return celular;
+	}
+	public void setMail(String nuevoMail) {
+		mail = nuevoMail;
 	}
 	public String getCelular() {
 		return celular;
