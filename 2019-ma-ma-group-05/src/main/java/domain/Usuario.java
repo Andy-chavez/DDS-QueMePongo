@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import domain.Guardarropa;
 import domain.Suscripciones.Free;
+import java.time.LocalDate;
 
 public class Usuario {
 	private List<Guardarropa> guardarropas;
@@ -17,7 +18,20 @@ public class Usuario {
 	private String mail;
 	private SensibilidadFrio sensibilidadFrio;
 	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
+	private GestorSugerencia gestorSugerencia;
 	
+	public Usuario(String nombre){
+		this.nombre=nombre;
+		this.guardarropas= new ArrayList<Guardarropa>();
+		this.suscripcion=new Free();
+		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
+		this.gestorSugerencia = GestorSugerencia.getInstance();
+	}
+	public Usuario(String unNombre,Guardarropa guardarropa){
+		this(unNombre);
+		this.agregarGuardarropa(guardarropa);
+	}
 	public HashMap<Usuario,Guardarropa> getGuardarropasCompartidos(){
 		return this.guardarropasCompartidos;
 	}
@@ -40,21 +54,6 @@ public class Usuario {
 	}
 	public void setCelular(String nuevoNumero) {
 		celular = nuevoNumero;
-	}
-	public Usuario(String nombre){
-		this.nombre=nombre;
-		this.guardarropas= new ArrayList<Guardarropa>();
-		this.suscripcion=new Free();
-		this.sensibilidadFrio = new SensibilidadFrio();
-		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
-	}
-	public Usuario(String unNombre,Guardarropa guardarropa){
-		this.nombre=unNombre;
-		this.guardarropas=new ArrayList<Guardarropa>();
-		this.agregarGuardarropa(guardarropa);
-		this.suscripcion=new Free();
-		this.sensibilidadFrio = new SensibilidadFrio();
-		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 	}
 	public void cambiarAPremium(){
 		this.suscripcion.cambiarAPremium(this);
@@ -88,14 +87,11 @@ public class Usuario {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return guardarropa.obtenerSugerencia(24, sensibilidadFrio); // TODO: conseguir temperatura y mandarlo como parametro
+		return gestorSugerencia.obtenerSugerencia(LocalDate.now(), guardarropa, sensibilidadFrio);
 	}
 	
-	public void crearEvento(String nombre, String lugar, int anio, int mes, int dia) {
-		Evento evento = new Evento();
-		evento.setNombre(nombre);
-		evento.setLugar(lugar);
-		evento.setFecha(anio, mes, dia);
+	public void crearEvento(String nombre, String lugar, LocalDate fecha, String tipo) {
+		Evento evento = new Evento(nombre, lugar, fecha, tipo);
 		eventos.add(evento);
 	}
 	

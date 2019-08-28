@@ -1,12 +1,25 @@
 package domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ObtenerSugerencia {
+public class GestorSugerencia {
+	private GestorDeClima gestorDeClima;
+	// lo hago singleton
+	private GestorSugerencia(){
+		this.gestorDeClima = GestorDeClima.getInstance();
+	}
+	private static GestorSugerencia singleInstance = null;
+	public static GestorSugerencia getInstance(){
+		if(singleInstance == null){
+			singleInstance = new GestorSugerencia();
+		}
+		return singleInstance;
+	}
 	// checkea que el atuendo tenga el nivel de temperatura adecuado y que no haya sido rechazado previamente
 	public List<Prenda> filtrarPrendasSegunCondicion(List<Prenda> prendas, Predicate<Prenda> predicado) {
 		return prendas.stream().filter(predicado).collect(Collectors.toList());
@@ -91,7 +104,13 @@ public class ObtenerSugerencia {
 		return null;
 	}
 	
-	public Atuendo obtenerSugerencia(Guardarropa g, double temperatura, SensibilidadFrio sensibilidadFrio) {
+	public Atuendo obtenerSugerencia(LocalDate fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
+		double temperatura = this.gestorDeClima.getTemperaturaActual();
+		return obtenerSugerenciaParaTemperatura(temperatura, g, sensibilidadFrio);
+	}
+	
+	// hago este metodo aparte para poder probar con una temperatura especifica
+	public Atuendo obtenerSugerenciaParaTemperatura(double temperatura, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
 		int variableTemperaturaSarasa = 40;
 		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
 		
@@ -104,12 +123,13 @@ public class ObtenerSugerencia {
 		}
 		
 		Atuendo atuendo = new Atuendo();
+		atuendo.setNivelAbrigo(nivelAbrigoRequerido);
 		
 		Predicate<Prenda> esRemeraOCamisa = p -> p.getCapa() == Capa.REMERA || p.getCapa() == Capa.CAMISA;
-
+		
+		// TODO: capaz agregando sensibilidad frio al atuendo se puede reducir a menos lineas
 		List<Prenda> prendasSuperiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.SUPERIOR));
 		List<Prenda> remerasOCamisas = filtrarPrendasSegunCondicion(prendasSuperiores, esRemeraOCamisa);
-//		List<Prenda> remerasOCamisas = prendasSuperiores.stream().filter(esRemera.or(esCamisa)).collect(Collectors.toList());
 		List<Prenda> prendasInferiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.INFERIOR));
 		List<Prenda> calzados = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.CALZADO));
 		List<Prenda> accesorios = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.ACCESORIO));
@@ -127,7 +147,6 @@ public class ObtenerSugerencia {
 		atuendo.agregarPrenda(accesorio);
 		atuendo.agregarPrendas(capasTop);
 		
-		atuendo.setNivelAbrigo(nivelAbrigoRequerido);
 		g.agregarSugerencia(atuendo);
 		
 		moldeAtuendo = new MoldeAtuendo(atuendo);

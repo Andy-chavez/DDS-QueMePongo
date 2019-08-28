@@ -10,7 +10,13 @@ import domain.Evento;
 
 
 public class CronGenerarSugerencia {
-	
+	private static CronGenerarSugerencia singleInstance = null;
+	public static CronGenerarSugerencia getInstance(){
+		if(singleInstance == null){
+			singleInstance = new CronGenerarSugerencia();
+		}
+		return singleInstance;
+	}
 	public static void main(Guardarropa guardarropa, String nombreEvento, Usuario usuario) {
 
     Evento evento = usuario.getEvento(nombreEvento);

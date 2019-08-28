@@ -50,6 +50,7 @@ public class ObtenerSugerenciaTest {
 	private List<Prenda> prendas;
 	
 	private GestorDeClima gestor;
+	GestorSugerencia gestorSugerencia;
 	private Tela algodon;
 	
 	@Before
@@ -119,7 +120,7 @@ public class ObtenerSugerenciaTest {
 		prendas.add(ojotas2);
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
-		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
+		gestorSugerencia = GestorSugerencia.getInstance();
 		gestor = GestorDeClima.getInstance();
 		List<ApiClima> apis= new ArrayList<ApiClima>();
 		// ApiDs mockApi= mock(ApiDs.class);
@@ -155,7 +156,7 @@ public class ObtenerSugerenciaTest {
 		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo();
 		System.out.println("PREPARANDO ATUENDO");
-		atuendoSugerido = guardarropa.obtenerSugerencia(0.0, usuario.getSensibilidadFrio());
+		atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(0.0, guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
 		
@@ -219,10 +220,9 @@ public class ObtenerSugerenciaTest {
 	public void obtenerPrendaParaTemperatura(){
 		System.out.println("\nobtenerPrendaParaTemperatura()");
 		int temperatura = 0;
-		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
 		int variableTemperaturaSarasa = 40;
 		int nivelDeAbrigo = variableTemperaturaSarasa - temperatura;
-		Prenda prendaMasAdecuada = obtenerSugerencia.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
+		Prenda prendaMasAdecuada = gestorSugerencia.obtenerPrendaParaNivelAbrigo(nivelDeAbrigo, prendas);
 		System.out.println("Prenda mas adecuada: " + prendaMasAdecuada.getTipo().getNombre() + ", " + prendaMasAdecuada.getNivelAbrigo());
 		assertTrue(prendaMasAdecuada.getTipo().getNombre() == "campera");
 	}
@@ -230,8 +230,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
-		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
-		List<Prenda> capas = obtenerSugerencia .obtenerCapasParaNivelAbrigo(30, prendas);
+		List<Prenda> capas = gestorSugerencia.obtenerCapasParaNivelAbrigo(30, prendas);
 		for(Prenda p : capas){
 			System.out.println(p.getTipo().getNombre());
 		}
@@ -259,8 +258,7 @@ public class ObtenerSugerenciaTest {
 		System.out.println("\nnivelAbrigoAtuendo()");
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
-		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
-		Atuendo atuendoSugerido = obtenerSugerencia.obtenerSugerencia(guardarropa, temperatura, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
 
 		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(v.getTipo().getNombre()));
@@ -274,11 +272,10 @@ public class ObtenerSugerenciaTest {
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		ObtenerSugerencia obtenerSugerencia = new ObtenerSugerencia();
-		obtenerSugerencia.obtenerSugerencia(guardarropa, temperatura, usuario.getSensibilidadFrio());
-		obtenerSugerencia.obtenerSugerencia(guardarropa, 4.0, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerenciaParaTemperatura(4.0, guardarropa, usuario.getSensibilidadFrio());
 		
-		MoldeAtuendo moldeAtuendo = obtenerSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
+		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
 		for(Tipo t : moldeAtuendo.getMoldeTipos()){
 			System.out.println(t);
 		}
