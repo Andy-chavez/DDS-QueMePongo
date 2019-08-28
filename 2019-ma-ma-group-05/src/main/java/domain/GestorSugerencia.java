@@ -104,6 +104,21 @@ public class GestorSugerencia {
 		return null;
 	}
 	
+	// devuelve el nivel de abrigo de una parte del atuendo. (le paso una lista para poder pasarle SuperiorBase y SuperiorExtra
+	public int getNivelAbrigo(Atuendo atuendo, List<Categoria> categorias) {
+		int nivelAbrigo = 0;
+		for(Categoria c : categorias){
+			// filtrar las prendas por categoria
+			List<Prenda> prendasDeCategoriaC = filtrarPrendasSegunCondicion(atuendo.getPrendas().values(), esDeCategoria(Categoria.SUPERIOR));
+
+			
+			for(Prenda p : prendasDeCategoriaC){
+				nivelAbrigo += p.getNivelAbrigo();
+			}
+		}
+		return nivelAbrigo;
+	}
+	
 	public Atuendo obtenerSugerencia(LocalDate fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
 		double temperatura = this.gestorDeClima.getTemperaturaActual();
 		return obtenerSugerenciaParaTemperatura(temperatura, g, sensibilidadFrio);
@@ -124,6 +139,7 @@ public class GestorSugerencia {
 		
 		Atuendo atuendo = new Atuendo();
 		atuendo.setNivelAbrigo(nivelAbrigoRequerido);
+		atuendo.setSensibilidadFrio(sensibilidadFrio);
 		
 		Predicate<Prenda> esRemeraOCamisa = p -> p.getCapa() == Capa.REMERA || p.getCapa() == Capa.CAMISA;
 		

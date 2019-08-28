@@ -18,7 +18,7 @@ public class MoldeAtuendo {
 	}
 	
 	public void agregarTipos(Atuendo atuendo){
-		atuendo.getMap().forEach( (k,v) -> this.moldeTipos.add(v.getTipo()));
+		atuendo.getPrendas().forEach( (k,v) -> this.moldeTipos.add(v.getTipo()));
 
 	}
 	public int getNivelAbrigo(){

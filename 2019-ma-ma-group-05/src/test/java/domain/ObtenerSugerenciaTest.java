@@ -158,7 +158,7 @@ public class ObtenerSugerenciaTest {
 		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(0.0, guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(k));
+		atuendoSugerido.printPrendas();
 		
 		assertNotNull(atuendoSugerido);
 	}
@@ -184,14 +184,12 @@ public class ObtenerSugerenciaTest {
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
 		Atuendo otroAtuendo=new Atuendo();
 		otroAtuendo.agregarPrenda(remera);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
 		otroAtuendo.agregarPrenda(shorts);
-		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
 		assertTrue(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
 	}
@@ -204,14 +202,12 @@ public class ObtenerSugerenciaTest {
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
 		Atuendo otroAtuendo=new Atuendo();
 		otroAtuendo.agregarPrenda(remera2);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
 		otroAtuendo.agregarPrenda(shorts);
-		otroAtuendo.getMap().forEach( (k,v) -> System.out.println("Key: " + k + " Value: " + v.getTipo().getCategoria()));
 
 		assertFalse(atuendoSugerido.compararConOtroAtuendo(otroAtuendo));
 	}
@@ -261,7 +257,7 @@ public class ObtenerSugerenciaTest {
 		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
 
-		atuendoSugerido.getMap().forEach( (k,v) -> System.out.println(v.getTipo().getNombre()));
+		atuendoSugerido.printPrendas();
 		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido);
 	}
 	
