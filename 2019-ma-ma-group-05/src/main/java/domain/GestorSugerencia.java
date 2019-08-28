@@ -7,11 +7,22 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import domain.Categorias.*;
+
 public class GestorSugerencia {
+	private List<Categoria> categorias;
 	private GestorDeClima gestorDeClima;
+	
 	// lo hago singleton
 	private GestorSugerencia(){
 		this.gestorDeClima = GestorDeClima.getInstance();
+		this.categorias = new ArrayList<Categoria>();
+		this.categorias.add(new SuperiorBase());
+		this.categorias.add(new SuperiorExtra());
+		this.categorias.add(new Inferior());
+		this.categorias.add(new Calzado());
+		this.categorias.add(new Accesorio());
+		
 	}
 	private static GestorSugerencia singleInstance = null;
 	public static GestorSugerencia getInstance(){
@@ -104,21 +115,6 @@ public class GestorSugerencia {
 		return null;
 	}
 	
-	// devuelve el nivel de abrigo de una parte del atuendo. (le paso una lista para poder pasarle SuperiorBase y SuperiorExtra
-	public int getNivelAbrigo(Atuendo atuendo, List<Categoria> categorias) {
-		int nivelAbrigo = 0;
-		for(Categoria c : categorias){
-			// filtrar las prendas por categoria
-			List<Prenda> prendasDeCategoriaC = filtrarPrendasSegunCondicion(atuendo.getPrendas().values(), esDeCategoria(Categoria.SUPERIOR));
-
-			
-			for(Prenda p : prendasDeCategoriaC){
-				nivelAbrigo += p.getNivelAbrigo();
-			}
-		}
-		return nivelAbrigo;
-	}
-	
 	public Atuendo obtenerSugerencia(LocalDate fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
 		double temperatura = this.gestorDeClima.getTemperaturaActual();
 		return obtenerSugerenciaParaTemperatura(temperatura, g, sensibilidadFrio);
@@ -141,28 +137,30 @@ public class GestorSugerencia {
 		atuendo.setNivelAbrigo(nivelAbrigoRequerido);
 		atuendo.setSensibilidadFrio(sensibilidadFrio);
 		
-		Predicate<Prenda> esRemeraOCamisa = p -> p.getCapa() == Capa.REMERA || p.getCapa() == Capa.CAMISA;
+		this.categorias.forEach(c -> c.agregarPrendas(atuendo, g.getPrendas(), nivelAbrigoRequerido));
 		
-		// TODO: capaz agregando sensibilidad frio al atuendo se puede reducir a menos lineas
-		List<Prenda> prendasSuperiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.SUPERIOR));
-		List<Prenda> remerasOCamisas = filtrarPrendasSegunCondicion(prendasSuperiores, esRemeraOCamisa);
-		List<Prenda> prendasInferiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.INFERIOR));
-		List<Prenda> calzados = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.CALZADO));
-		List<Prenda> accesorios = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.ACCESORIO));
-		
-		
-		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);
-		Prenda bot = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getInferior(), prendasInferiores);
-		Prenda calzado = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, calzados);
-		Prenda accesorio = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, accesorios);
-		List<Prenda> capasTop = obtenerCapasParaNivelAbrigo(nivelAbrigoRequerido - top.getNivelAbrigo() + sensibilidadFrio.getSuperior(), prendasSuperiores);
-
-		atuendo.agregarPrenda(top);
-		atuendo.agregarPrenda(bot);
-		atuendo.agregarPrenda(calzado);
-		atuendo.agregarPrenda(accesorio);
-		atuendo.agregarPrendas(capasTop);
-		
+//		Predicate<Prenda> esRemeraOCamisa = p -> p.getCapa() == Capa.REMERA || p.getCapa() == Capa.CAMISA;
+//		
+//		// TODO: capaz agregando sensibilidad frio al atuendo se puede reducir a menos lineas
+//		List<Prenda> prendasSuperiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.SUPERIOR));
+//		List<Prenda> remerasOCamisas = filtrarPrendasSegunCondicion(prendasSuperiores, esRemeraOCamisa);
+//		List<Prenda> prendasInferiores = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.INFERIOR));
+//		List<Prenda> calzados = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.CALZADO));
+//		List<Prenda> accesorios = filtrarPrendasSegunCondicion(g.getPrendas(), esDeCategoria(Categoria.ACCESORIO));
+//		
+//		
+//		Prenda top = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getSuperior(), remerasOCamisas);
+//		Prenda bot = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido + sensibilidadFrio.getInferior(), prendasInferiores);
+//		Prenda calzado = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, calzados);
+//		Prenda accesorio = obtenerPrendaParaNivelAbrigo(nivelAbrigoRequerido, accesorios);
+//		List<Prenda> capasTop = obtenerCapasParaNivelAbrigo(nivelAbrigoRequerido - top.getNivelAbrigo() + sensibilidadFrio.getSuperior(), prendasSuperiores);
+//
+//		atuendo.agregarPrenda(top);
+//		atuendo.agregarPrenda(bot);
+//		atuendo.agregarPrenda(calzado);
+//		atuendo.agregarPrenda(accesorio);
+//		atuendo.agregarPrendas(capasTop);
+//		
 		g.agregarSugerencia(atuendo);
 		
 		moldeAtuendo = new MoldeAtuendo(atuendo);

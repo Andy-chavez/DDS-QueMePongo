@@ -51,7 +51,7 @@ public class Atuendo {
 		for(Prenda unaPrenda : this.prendas){
 			boolean contienePrenda = false;
 			for(Prenda otraPrenda : atuendo.getPrendas()){
-				if(unaPrenda.getTipo().getNombre().equals(otraPrenda.getTipo().getNombre())){
+				if(unaPrenda.equals(otraPrenda)){
 					contienePrenda = true;
 				}	
 			}
@@ -73,6 +73,16 @@ public class Atuendo {
 	
 	public List<Prenda> filtrarPrendasSegunCondicion(List<Prenda> prendas, Predicate<Prenda> predicado) {
 		return prendas.stream().filter(predicado).collect(Collectors.toList());
+	}
+	
+	public int getNivelAbrigoDeCategoria(Categoria unaCategoria){
+		int nivelAbrigo = 0;
+		for(Prenda p : this.prendas){
+			if(p.esDeCategoria(unaCategoria)){
+				nivelAbrigo += p.getNivelAbrigo();
+			}
+		}
+		return nivelAbrigo;
 	}
 	
 	public int getNivelAbrigo() {

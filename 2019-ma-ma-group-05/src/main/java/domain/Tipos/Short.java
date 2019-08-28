@@ -1,6 +1,6 @@
 package domain.Tipos;
 
-
+import domain.Categorias.*;
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
@@ -12,13 +12,13 @@ import domain.Telas.Seda;
 public class Short extends Tipo{
 
 	public Short(){
-		this.categoria = Categoria.INFERIOR;
+		this.categoria = new Inferior();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
 		this.telasPosibles.add(new Poliester());
 		this.nombre = "short";
-		this.capa = Capa.PANTALON;
+		this.capa = 0;
 		this.nivelAbrigo = 15;	
 	}
 }

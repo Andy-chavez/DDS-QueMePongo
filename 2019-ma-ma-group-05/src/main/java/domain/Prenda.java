@@ -80,11 +80,11 @@ public class Prenda implements Cloneable {
 		}
 	}
 	
-	public Boolean deCategoria(Categoria unaCategoria) {
+	public Boolean esDeCategoria(Categoria unaCategoria) {
 		return this.tipo.esDeCategoria(unaCategoria);
 	}
 	
-	public Capa getCapa() {
+	public int getCapa() {
 		return this.tipo.getCapa();
 	}
 	
@@ -98,6 +98,10 @@ public class Prenda implements Cloneable {
 	
 	public Boolean todosLosAtributosSonIgualesA(Tipo unTipo, Color unColorPrimario, Color unColorSecundario) {
 		return this.tipo.esIgualAOtro(unTipo) && unColorPrimario == this.colorPrimario && unColorSecundario == this.colorSecundario;
+	}
+
+	public Boolean esDeTipo(Tipo tipo) {
+		return this.tipo.getClass() == tipo.getClass();
 	}
 	
 }

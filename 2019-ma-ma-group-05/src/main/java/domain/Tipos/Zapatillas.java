@@ -1,5 +1,5 @@
 package domain.Tipos;
-
+import domain.Categorias.*;
 import domain.Capa;
 import domain.Categoria;
 import domain.Tipo;
@@ -9,12 +9,12 @@ import domain.Telas.Seda;
 
 public class Zapatillas extends Tipo{
 	public Zapatillas(){
-		this.categoria = Categoria.CALZADO;
+		this.categoria = new Calzado();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Cuero());
 		this.telasPosibles.add(new Seda());
 		this.nombre = "zapatillas";
-		this.capa = Capa.CALZADO;
+		this.capa = 0;
 		this.nivelAbrigo = 10;	
 	}
 }
