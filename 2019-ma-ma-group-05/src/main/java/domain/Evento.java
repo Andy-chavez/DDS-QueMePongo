@@ -6,8 +6,9 @@ public class Evento {
 	private String nombre;
 	private String lugar;
 	private LocalDate fecha;
-        private String tipo;
-	
+    private String tipo;
+    private Boolean caducado; //esto es algo que me acuerdo que eze corrigio en clase a todos
+    
 	public void setNombre(String unNombre){this.nombre=unNombre;}
 	public String getNombre(){return this.nombre;}
 	
