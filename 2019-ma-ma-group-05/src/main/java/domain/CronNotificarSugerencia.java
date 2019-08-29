@@ -1,11 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import domain.Usuario;
+import dtoClases.SenderDto;
 import services.EmailSender;
 import services.WppSender;
 import services.SmsSender;
@@ -14,10 +17,19 @@ import domain.Evento;
 public class CronNotificarSugerencia {
 	
 	public static void main(Usuario usuario, Guardarropa guardarropa, String nombreEvento, String nombreGuardarropa) {
-		Evento evento = usuario.getEvento(nombreEvento); 
+		Evento evento = usuario.getEvento(nombreEvento);
+		List<Sender> senders = new ArrayList<>();
 		EmailSender email = new EmailSender();
 		WppSender wpp = new WppSender();
 		SmsSender sms = new SmsSender();
+		senders.add(wpp);
+		senders.add(sms);
+		senders.add(email);
+		SenderDto dto = new SenderDto();
+		dto.asunto = "¿Que me pongo?";
+		dto.mensaje = "¡Sugerencia generada para un evento proximo! Abra la app para ver mas detalles.";
+		dto.celular = usuario.getCelular();
+		dto.mail = usuario.getMail();
 		Calendar calendar = Calendar.getInstance();
 		
 		int anio = evento.getFecha().getYear();
@@ -33,9 +45,7 @@ public class CronNotificarSugerencia {
 			@Override
 			public void run() {
 				usuario.obtenerSugerencia(usuario.getGuardarropa(nombreGuardarropa));
-				wpp.enviar(usuario,"Sugerencia generada para un evento proximo!");
-				sms.enviar(usuario,"Sugerencia generada para un evento proximo!");
-				email.enviar(usuario,"¿Que me pongo?","¡Sugerencia generada para un evento proximo! Abra la app para ver mas detalles.");
+				senders.stream().forEach(sender -> sender.enviar(dto));
 			}
 		};
 		
