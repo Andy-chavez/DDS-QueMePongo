@@ -27,7 +27,7 @@ public class ImgResizer {
             bimage = resize(bimage, MAX_ANCHO, alto);
         }
         saveImage(bimage, pathEnSistema);
-        prenda.setImagenResized(bimage);
+        prenda.setImagenResized(pathEnSistema);
     }
 	
 	 public static BufferedImage getImagen(String pathName) { //agarra la imagen de disco
