@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import domain.Categoria;
+import domain.Categorias.*;
 
 public abstract class Tipo {
 	protected Categoria categoria;
 	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
 	protected String nombre;
 	protected Tela tela;
-	protected Capa capa;
+	protected int capa;
 	protected int nivelAbrigo;
 	
 	public void setNivelAbrigo(int nivelAbrigo){
@@ -21,12 +23,8 @@ public abstract class Tipo {
 		return this.nivelAbrigo;
 	}
 	
-	public Capa getCapa() {
+	public int getCapa() {
 		return this.capa;
-	}
-	
-	public void setCapa(Capa capa) {
-		this.capa = capa;
 	}
 	
 	public String getNombre() {
@@ -69,7 +67,7 @@ public abstract class Tipo {
 	}
 	
 	public Boolean esDeCategoria(Categoria unaCategoria) {
-		return unaCategoria == categoria;
+		return this.categoria.getClass() == unaCategoria.getClass();
 	}
 
 	public boolean todosLosAtributosDeTipoSonIgualesA(Tela unaTela, String tipo, Categoria unaCategoria) {

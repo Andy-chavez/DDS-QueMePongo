@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Categoria;
+import domain.Categorias.*;
 import domain.Prenda;
 import domain.Tela;
 import domain.Excepciones.ColoresIgualesException;
@@ -26,8 +26,6 @@ public class PrendaTest {
 		cuero = new Cuero();
 		algodon = new Algodon();
 		remeraTipo = new Remera();
-		remeraTipo.setNombre("remera");
-		remeraTipo.setCategoria(Categoria.SUPERIOR);
 		remeraTipo.establecerTela(algodon);
 		
 		tipo = new Zapatillas();
@@ -60,7 +58,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonCalzadoLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de calzado", Categoria.CALZADO, prenda.getTipo().getCategoria());
+		Assert.assertEquals("No eran zapatillas de calzado", new Calzado().getClass(), prenda.getTipo().getCategoria().getClass());
 	}
 	
 	@Test

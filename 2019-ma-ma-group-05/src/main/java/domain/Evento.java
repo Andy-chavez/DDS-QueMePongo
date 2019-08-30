@@ -7,6 +7,13 @@ public class Evento {
 	private String lugar;
 	private LocalDate fecha;
     private String tipo;
+	
+    public Evento(String nombre, String lugar, LocalDate fecha, String tipo){
+    	this.nombre = nombre;
+    	this.lugar = lugar;
+    	this.fecha = fecha;
+    	this.tipo = tipo;
+    }
     private Boolean caducado; //esto es algo que me acuerdo que eze corrigio en clase a todos
     
 	public void setNombre(String unNombre){this.nombre=unNombre;}

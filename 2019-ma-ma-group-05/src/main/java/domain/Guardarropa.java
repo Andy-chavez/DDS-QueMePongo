@@ -10,7 +10,7 @@ public class Guardarropa {
 	private String nombre;
 	private List<Prenda> prendas;
 	private List<Atuendo> atuendosSugeridos;
-	private ObtenerSugerencia obtenerSugerencia;
+	private GestorSugerencia obtenerSugerencia;
 	private List<MoldeAtuendo> moldesAtuendos;
 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
@@ -18,7 +18,6 @@ public class Guardarropa {
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
-		this.obtenerSugerencia = new ObtenerSugerencia();
 		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}
@@ -90,9 +89,9 @@ public class Guardarropa {
 	}
 	
 
-	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
-		return obtenerSugerencia.obtenerSugerencia(this, temperatura, sensibilidadFrio);
-	}
+//	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
+//		return obtenerSugerencia.obtenerSugerencia(this, temperatura, sensibilidadFrio);
+//	}
 	
 
 }

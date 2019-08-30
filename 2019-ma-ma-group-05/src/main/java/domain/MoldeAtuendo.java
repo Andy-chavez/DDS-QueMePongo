@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoldeAtuendo {
-	List<Tipo> moldeTipos;
-	int nivelAbrigo;
+	private List<Tipo> moldeTipos;
+	private int nivelAbrigo;
+	private SensibilidadFrio sensibilidadFrio;
 	
 	public MoldeAtuendo(Atuendo atuendo){
 		this.moldeTipos = new ArrayList<Tipo>();
 		this.agregarTipos(atuendo);
 		this.nivelAbrigo = atuendo.getNivelAbrigo();
+		this.sensibilidadFrio = atuendo.getSensibilidadFrio();
 	}
 	
 	public List<Tipo> getMoldeTipos(){
@@ -18,10 +20,14 @@ public class MoldeAtuendo {
 	}
 	
 	public void agregarTipos(Atuendo atuendo){
-		atuendo.getMap().forEach( (k,v) -> this.moldeTipos.add(v.getTipo()));
+		atuendo.getPrendas().forEach( prenda -> this.moldeTipos.add(prenda.getTipo()));
 
 	}
 	public int getNivelAbrigo(){
 		return this.nivelAbrigo;
+	}
+	
+	public SensibilidadFrio getSensibilidadFrio(){
+		return this.sensibilidadFrio;
 	}
 }

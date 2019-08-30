@@ -7,16 +7,17 @@ import domain.Telas.Algodon;
 import domain.Telas.Nylon;
 import domain.Telas.Poliester;
 import domain.Telas.Seda;
+import domain.Categorias.*;
 
 public class Camisa extends Tipo{
 	public Camisa(){
-		this.categoria = Categoria.SUPERIOR;
+		this.categoria = new SuperiorBase();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
 		this.telasPosibles.add(new Poliester());
 		this.nombre = "camisa";
-		this.capa = Capa.CAMISA;
+		this.capa = 1;
 		this.nivelAbrigo = 12;	
 	}
 }
