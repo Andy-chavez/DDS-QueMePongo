@@ -13,9 +13,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
+import domain.Sender;
 import domain.Usuario;
+import dtoClases.SenderDto;
 
-public class EmailSender {
+public class EmailSender extends Sender{
 	static Properties props = new Properties();  
 	private String emisor;
 	private String contraDeEmisor;
@@ -28,7 +30,7 @@ public class EmailSender {
           props.put("mail.smtp.port", "465");
           this.configurar();
     }
-    public void configurar(){
+    protected void configurar(){
 		Properties archivoDeConfiguraciones= new Properties();
     	InputStream input=null;
     	try{
@@ -40,7 +42,7 @@ public class EmailSender {
     	this.emisor= archivoDeConfiguraciones.getProperty("mailEmisor");
     	this.contraDeEmisor=archivoDeConfiguraciones.getProperty("contraEmisor");
     }
-    public void enviar(Usuario usuario,String tema,String mensaje){  
+    public void enviar(SenderDto dto){  
           //get Session   
           Session session = Session.getInstance(props,    
            new javax.mail.Authenticator() {    
@@ -51,9 +53,9 @@ public class EmailSender {
           //compose message    
           try {    
            MimeMessage message = new MimeMessage(session);    
-           message.addRecipient(Message.RecipientType.TO,new InternetAddress(usuario.getMail()));    
-           message.setSubject(tema);    
-           message.setText(mensaje);    
+           message.addRecipient(Message.RecipientType.TO,new InternetAddress(dto.mail));    
+           message.setSubject(dto.asunto);    
+           message.setText(dto.mensaje);    
            //send message  
            Transport.send(message);    
            //System.out.println("message sent successfully");    

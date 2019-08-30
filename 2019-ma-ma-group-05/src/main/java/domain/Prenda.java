@@ -13,7 +13,7 @@ public class Prenda implements Cloneable {
 	private Color colorPrimario;
 	private Color colorSecundario;
 	private Tipo tipo;
-	private BufferedImage imagen;
+	private String imagen;
 	private ImgResizer resizer;
 
 
@@ -56,10 +56,10 @@ public class Prenda implements Cloneable {
 	public void setImage(String path) {
 		this.resizer.copyImage(path,this);
 	}
-	public void setImagenResized(BufferedImage b) {
-		this.imagen = b;
+	public void setImagenResized(String path) {
+		this.imagen = path;
 	}
-	public Image getImagen() {
+	public String getImagen() {
 		return this.imagen;
 	}
 	public Tipo getTipo() {

@@ -14,6 +14,7 @@ public class Evento {
     	this.fecha = fecha;
     	this.tipo = tipo;
     }
+    private Boolean caducado; //esto es algo que me acuerdo que eze corrigio en clase a todos
     
 	public void setNombre(String unNombre){this.nombre=unNombre;}
 	public String getNombre(){return this.nombre;}

@@ -9,9 +9,11 @@ import javax.swing.JOptionPane;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
+import domain.Sender;
 import domain.Usuario;
+import dtoClases.SenderDto;
 
-public class SmsSender {
+public class SmsSender extends Sender {
 	    //No me parece mala idea leer estos datos del properties y el numero de twilio tmb
 	    private String ACCOUNT_SID;// = "ACe7e5de9db047d602c38b5540708a7dae";
 	    private String AUTH_TOKEN;// = "9dafb932843d8ad753aef04f40518d62";
@@ -19,7 +21,7 @@ public class SmsSender {
 	    public SmsSender() {
 	    	this.configurar();
 	    }
-	    public void configurar(){
+	    protected void configurar(){
 			Properties archivoDeConfiguraciones= new Properties();
 	    	InputStream input=null;
 	    	try{
@@ -33,14 +35,14 @@ public class SmsSender {
 	    	this.TWILIO=archivoDeConfiguraciones.getProperty("twilioNum");
 	    }
 	    
-	    public void enviar(Usuario usuario,String mensaje) {
+	    public void enviar(SenderDto dto) {
 	    //public void enviar(String mensaje, Usuario usuario) {
 	        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 	        Message message = Message.creator( /*(from, to, menssage) */
 	                //new com.twilio.type.PhoneNumber("+541173612330"), //aca va el numero del usuario, dejo temporalmente eso asi voy viendo si puedo mandar un wpp
-	                new com.twilio.type.PhoneNumber(usuario.getCelular()),
+	                new com.twilio.type.PhoneNumber(dto.celular),
 	                new com.twilio.type.PhoneNumber(TWILIO),
-	                mensaje)
+	                dto.mensaje)
 	            .create();
 
 	        System.out.println(message.getSid());
