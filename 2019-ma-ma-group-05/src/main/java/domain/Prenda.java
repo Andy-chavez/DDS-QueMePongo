@@ -103,5 +103,8 @@ public class Prenda implements Cloneable {
 	public Boolean esDeTipo(Tipo tipo) {
 		return this.tipo.getClass() == tipo.getClass();
 	}
+	public Boolean noEsDeTipo(Tipo tipo){ //hago este metodo pedorro porque estaba teniendo problemas usando el de arriba en las lambda
+		return !esDeTipo(tipo);
+	}
 	
 }

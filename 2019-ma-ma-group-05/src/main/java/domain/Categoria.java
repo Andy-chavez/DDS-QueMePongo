@@ -11,10 +11,15 @@ public abstract class Categoria {
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){
 		return atuendo.getNivelAbrigo();
 	}
-	
+	protected Prenda elegirPrendaRandom(List<Prenda> prendas){
+		if(prendas.size() == 0){ return null; }
+		Random random = new Random();
+		return prendas.get(random.nextInt(prendas.size()));
+	}
+
 	// Filtra las prendas que cubran el nivel de temperatura del usuario y elige una al azar. Si no hay ninguna, elige la que mas abrigue
 	protected List<Prenda> obtenerPrendasParaNivelAbrigo(List<Prenda> prendas, int nivelAbrigoRequerido){
-		if(prendas.size() == 0) { return null; }
+		if(prendas.size() == 0) { return new ArrayList<Prenda>(); } // si prendas esta vacio, retorno un array vacio
 
 		int margenAdmitido = 5;		
 		List<Prenda> prendasConAbrigoOk = new ArrayList<Prenda>();
@@ -31,8 +36,9 @@ public abstract class Categoria {
 	public void agregarPrendas(Atuendo atuendo, List<Prenda> prendas, int nivelAbrigoRequerido){
 		List<Prenda> prendasDeEstaCategoria =  prendas.stream().filter(p -> p.esDeCategoria(this)).collect(Collectors.toList());
 		List<Prenda> prendasConAbrigoOk = obtenerPrendasParaNivelAbrigo(prendasDeEstaCategoria, nivelAbrigoRequerido);
-		Random random = new Random();
-		atuendo.agregarPrenda(prendasConAbrigoOk.get(random.nextInt(prendasConAbrigoOk.size())));
+		Prenda prendaElegida = elegirPrendaRandom(prendasConAbrigoOk);
+		atuendo.agregarPrenda(prendaElegida);
+		atuendo.printPrendas();
 	}
 	
 }

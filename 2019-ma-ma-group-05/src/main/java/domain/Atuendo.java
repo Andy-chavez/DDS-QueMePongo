@@ -15,12 +15,16 @@ public class Atuendo {
 	private int nivelAbrigo;
 	private SensibilidadFrio sensibilidadFrio;
 
+	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
+		this.nivelAbrigo = nivelAbrigo;
+		this.sensibilidadFrio = sensibilidadFrio;
+	}
 	public void setNivelAbrigo(int nivelAbrigo){
 		this.nivelAbrigo = nivelAbrigo;
 	}
 	
-	public void setSensibilidadFrio(SensibilidadFrio sf){
-		this.sensibilidadFrio = sf;
+	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){
+		this.sensibilidadFrio = sensibilidadFrio;
 	}
 	
 	public SensibilidadFrio getSensibilidadFrio(){
@@ -64,7 +68,7 @@ public class Atuendo {
 	
 	public boolean tieneTipo(Tipo tipo) {
 		for (Prenda prenda : this.prendas) {
-			if(prenda.getTipo().getNombre().equals(tipo.getNombre())) {
+			if(prenda.getTipo().getClass().equals(tipo.getClass())) {
 				return true;
 			}
 		}
@@ -90,9 +94,12 @@ public class Atuendo {
 	}
 	
 	public void printPrendas(){
+		System.out.print("Atuendo: ");
 		for(Prenda prenda : this.prendas){
-			System.out.println(prenda.getTipo().getNombre());
+			System.out.print(prenda.getTipo().getNombre() + " ");
 		}
+		System.out.println();
+
 	}
 	
 }
