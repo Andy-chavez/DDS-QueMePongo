@@ -1,10 +1,18 @@
 package domain;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.time.Duration;
+import java.time.Instant;
+
+import org.joda.time.LocalDateTime;
 
 import domain.Usuario;
 import domain.Evento;
@@ -24,46 +32,27 @@ public class CronGenerarSugerencia{
 		return singleInstance;
 	}
 	
+//	public long milisegundosHastaFecha(Instant fecha){
+//	    DateTimeFormatter fmt = DateTimeFormatter.ISO_INSTANT;
+//	    int diasPreviosDeAvisoConfig = ConfigReader.getIntValue("configuraciones.properties", "diasPreviosDeAviso");
+////	    int diasPreviosDeAviso = (int)Duration.between(Instant.now(), fecha).toDays() < diasPreviosDeAvisoConfig ? 0 : diasPreviosDeAvisoConfig;
+//	    Instant fechaMenosDiasPrevios = fecha.minus(Duration.ofDays(diasPreviosDeAvisoConfig));
+//	    String horaAviso = ConfigReader.getStringValue("configuraciones.properties", "horaParaGenerarSugerencia");
+//	    String fechaString = fechaMenosDiasPrevios.toString().substring(0, 10) + 'T' + horaAviso + 'Z';
+//	    Instant fechaAviso = fmt.parse(fechaString, Instant::from);
+//	    System.out.println(fechaAviso);
+//	    return Duration.between(Instant.now(), fechaAviso).toHours();
+//	}
+	
+	public long milisegundosHastaFecha(Instant fecha){
+	    return Duration.between(Instant.now(), fecha).toMillis();
+	}
+	
 	public void planificarEvento(Evento evento){
 		Timer timer = new Timer();
-		
-		timer.schedule(evento, LocalDate.now().until(evento.getFecha()));
+		long milisegundosTemp = milisegundosHastaFecha(evento.getFecha().minus(Duration.ofHours(evento.getAnticipacionHoras())));
+		long milisegundosHastaAviso = milisegundosTemp >= 0 ? milisegundosTemp : 0;
+		System.out.println(milisegundosHastaAviso);
+		timer.schedule(evento, milisegundosHastaAviso, evento.getRepeticionDias());		
 	}
-
-
-	
-	
-	
-//	public void main(Guardarropa guardarropa, String nombreEvento, Usuario usuario) {
-//
-//	    Evento evento = usuario.getEvento(nombreEvento);
-//		Calendar calendar = Calendar.getInstance();
-//			
-//		int anio = evento.getFecha().getYear();
-//		int mes = evento.getFecha().getMonthValue();
-//		int dia = evento.getFecha().getDayOfMonth();
-//			
-//		calendar.set(anio, mes, dia, 10, 0, 0);
-//		Date diaEvento = calendar.getTime();
-//	
-//		Calendar cal = (Calendar) calendar.clone();
-//		cal.add(Calendar.DAY_OF_YEAR, -10); //se supone que genera sugerencias 10 dias antes del evento
-//		Date diezDiasAntes = cal.getTime();
-//	       
-//		Timer timer = new Timer();
-//			
-//		TimerTask tarea = new TimerTask() {
-//			@Override
-//	        public void run() {
-//				if(diezDiasAntes.before(diaEvento)){
-//					gestorSugerencia.obtenerSugerencia(scheduledExecutionTime(), guardarropa, new SensibilidadFrio());
-//					//TODO: reemplazar el scheduledExecutionTime() con la temperatura que esta como TODO en Usuario
-//	            }else{
-//	            	return; //ver si pasa al otro cron
-//				}
-//	          }
-//			};
-//			
-//		timer.schedule(tarea, diezDiasAntes, 8640000);
-//	}
 }

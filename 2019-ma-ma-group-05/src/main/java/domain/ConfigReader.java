@@ -18,7 +18,7 @@ public class ConfigReader {
         }
     	return Integer.parseInt(archivoDeConfiguraciones.getProperty(property));
 	}
-	public static String getStringValue(String property){
+	public static String getStringValue(String configFile, String property){
 		Properties archivoDeConfiguraciones= new Properties();
     	InputStream input=null;
     	try{
