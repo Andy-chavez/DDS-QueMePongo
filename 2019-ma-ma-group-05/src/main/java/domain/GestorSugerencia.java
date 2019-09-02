@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class GestorSugerencia {
 		return null;
 	}
 	
-	public Atuendo obtenerSugerencia(LocalDate fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
+	public Atuendo obtenerSugerencia(Instant fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
 		double temperatura = this.gestorDeClima.getTemperaturaActual();
 		return obtenerSugerenciaParaTemperatura(temperatura, g, sensibilidadFrio);
 	}
