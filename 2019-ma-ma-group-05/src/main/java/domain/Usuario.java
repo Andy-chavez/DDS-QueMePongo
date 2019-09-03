@@ -47,7 +47,7 @@ public class Usuario {
 		this.guardarropasCompartidos.remove(otroUsuario, g);
 	}
 	public String getMail() {
-		return celular;
+		return mail;
 	}
 	public void setMail(String nuevoMail) {
 		mail = nuevoMail;

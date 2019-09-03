@@ -6,7 +6,7 @@ import org.junit.Test;
 import domain.Usuario;
 import dtoClases.SenderDto;
 
-public class SmsWppYEmailTest { //es super precario, ya se, pero dps va a ir mejorando(?
+public class SmsWppYEmailTest { 
 	
 	private SmsSender sms = SmsSender.getInstance();
 	private WppSender wpp = WppSender.getInstance();
@@ -19,7 +19,7 @@ public class SmsWppYEmailTest { //es super precario, ya se, pero dps va a ir mej
 		usuario.setMail("andychavez02@gmail.com");
 		dto.asunto = "¿Que me pongo?";
 		dto.celular = usuario.getCelular();
-		dto.mail = usuario.getMail();
+		dto.mail = "andychavez02@gmail.com";
 		dto.mensaje = "Este es un mensaje de la app del grupo 5";
 	}
 	@Test
