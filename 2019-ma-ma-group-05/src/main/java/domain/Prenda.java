@@ -15,7 +15,7 @@ public class Prenda implements Cloneable {
 	private Tipo tipo;
 	private String imagen;
 	private ImgResizer resizer;
-
+	private Tela tela;
 
 	public Prenda makeCopy(){
 		Prenda prendaCopy = null;
@@ -89,7 +89,13 @@ public class Prenda implements Cloneable {
 	public int getCapa() {
 		return this.tipo.getCapa();
 	}
-	
+	public void setTela(Tela unaTela) {
+		if (this.tipo.estaTelaEsPosible(unaTela.getNombre())) {
+			this.tela = unaTela;
+		}
+		else
+			throw new IllegalArgumentException("Tela no permitida");
+	}
 	public int getNivelAbrigo() {
 		return this.tipo.getNivelAbrigo();
 	}

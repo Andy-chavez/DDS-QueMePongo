@@ -57,25 +57,32 @@ public class SuscripcionesTest {
 		remeraTipo = new Remera();
 		zapatillasTipo = new Zapatillas();
 
-		remeraTipo.establecerTela(algodon);
-		remera = new Prenda(remeraTipo,Color.black,Color.blue);
-		antiparrasTipo.establecerTela(algodon);
-		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shortsTipo.establecerTela(algodon);
-		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosaTipo.establecerTela(algodon);
-		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotasTipo.establecerTela(algodon);
-		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillasTipo.establecerTela(algodon);
-		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
-		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);
-		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);
-		remeraBonus = new Prenda(remeraTipo,Color.black,Color.blue);
+		//remeraTipo.establecerTela(algodon);
+		remera = new Prenda(remeraTipo,Color.black,Color.blue);			remera.setTela(algodon);
+		//antiparrasTipo.establecerTela(algodon);
+		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue); antiparras.setTela(algodon);
+		//shortsTipo.establecerTela(algodon);
+		shorts = new Prenda(shortsTipo,Color.black,Color.blue);			shorts.setTela(algodon);
+		//musculosaTipo.establecerTela(algodon);
+		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);	musculosa.setTela(algodon);
+		//ojotasTipo.establecerTela(algodon);
+		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);			ojotas.setTela(algodon);
+		//zapatillasTipo.establecerTela(algodon);
+		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);	zapatillas.setTela(algodon);
+		
+		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);		remera2.setTela(algodon);
+		
+		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);antiparras2.setTela(algodon);
+		
+		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);		shorts2.setTela(algodon);
+		
+		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);	musculosa2.setTela(algodon);
+		
+		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);		ojotas2.setTela(algodon);
+		
+		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);zapatillas2.setTela(algodon);
+		
+		remeraBonus = new Prenda(remeraTipo,Color.black,Color.blue);	remeraBonus.setTela(algodon);
 		
 		prendas = new ArrayList<Prenda>();
 		prendas.add(antiparras);
