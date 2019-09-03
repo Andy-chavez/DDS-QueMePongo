@@ -27,7 +27,9 @@ public class Prenda implements Cloneable {
 		}
 		return prendaCopy;
 	}
-	
+	public Prenda(Tipo unTipo) {
+		this.setTipo(unTipo);
+	}
 	public Prenda(Tipo unTipo, Color colorPrim) {
 		this.setTipo(unTipo);
 		this.setColorPrimario(colorPrim);
