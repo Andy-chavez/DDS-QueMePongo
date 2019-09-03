@@ -56,11 +56,11 @@ public abstract class Tipo {
 		return this.categoria.getClass() == unaCategoria.getClass();
 	}
 
-	public boolean todosLosAtributosDeTipoSonIgualesA(String tipo, Categoria unaCategoria) {
-		return tipo == this.nombre && unaCategoria == this.categoria;
+	public boolean todosLosAtributosDeTipoSonIgualesA(String tipo) {//, Categoria unaCategoria) {
+		return tipo == this.nombre;// && unaCategoria == this.categoria;
 	}
 	
 	public boolean esIgualAOtro(Tipo otroTipo) {
-		return otroTipo.todosLosAtributosDeTipoSonIgualesA(this.nombre, this.categoria);
+		return otroTipo.todosLosAtributosDeTipoSonIgualesA(this.nombre);//, this.categoria);
 	}
 }

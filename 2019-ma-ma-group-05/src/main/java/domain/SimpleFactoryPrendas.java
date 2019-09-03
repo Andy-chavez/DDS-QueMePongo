@@ -3,7 +3,6 @@ package domain;
 import domain.Excepciones.CrearPrendaException;
 import domain.Tipos.*;
 import domain.Tipos.Short;
-import services.EmailSender;
 
 public class SimpleFactoryPrendas {
     private static SimpleFactoryPrendas singleInstance = null;

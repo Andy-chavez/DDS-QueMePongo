@@ -36,7 +36,8 @@ public class PrendaTest {
 	}
 	@Test
 	public void remeraRojaQueEsValida() {
-		Prenda remeraRoja = new Prenda(remeraTipo,Color.red);
+		Prenda remeraRoja = SimpleFactoryPrendas.crearPrenda("remera");
+		remeraRoja.setColorPrimario(Color.red);
 		Assert.assertNotNull(remeraRoja);
 		Assert.assertTrue(remeraRoja.todosLosAtributosSonIgualesA(remeraTipo, Color.red, null));
 	}
