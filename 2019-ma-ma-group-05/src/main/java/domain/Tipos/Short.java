@@ -10,7 +10,7 @@ import domain.Telas.Poliester;
 import domain.Telas.Seda;
 
 public class Short extends Tipo{
-
+	private static Short instancia;
 	public Short(){
 		this.categoria = new Inferior();
 		this.telasPosibles.add(new Algodon());
@@ -20,5 +20,9 @@ public class Short extends Tipo{
 		this.nombre = "short";
 		this.capa = 0;
 		this.nivelAbrigo = 15;	
+	}
+	public static Short getInstance(){
+		if(instancia==null){instancia=new Short();}
+		return instancia;
 	}
 }

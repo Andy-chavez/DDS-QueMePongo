@@ -8,6 +8,7 @@ import domain.Telas.Cuero;
 import domain.Telas.Seda;
 
 public class Zapatillas extends Tipo{
+	private static Zapatillas instancia;
 	public Zapatillas(){
 		this.categoria = new Calzado();
 		this.telasPosibles.add(new Algodon());
@@ -16,5 +17,9 @@ public class Zapatillas extends Tipo{
 		this.nombre = "zapatillas";
 		this.capa = 0;
 		this.nivelAbrigo = 10;	
+	}
+	public static Zapatillas getInstance(){
+		if(instancia==null){instancia=new Zapatillas();}
+		return instancia;
 	}
 }

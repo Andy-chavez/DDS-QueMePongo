@@ -10,6 +10,7 @@ import domain.Telas.Seda;
 import domain.Categorias.*;
 
 public class Musculosa extends Tipo{
+	private static Musculosa instancia;
 	public Musculosa(){
 		this.categoria = new SuperiorBase();
 		this.telasPosibles.add(new Algodon());
@@ -19,5 +20,10 @@ public class Musculosa extends Tipo{
 		this.nombre = "musculosa";
 		this.capa = 0;
 		this.nivelAbrigo = 8;	
+	}
+	
+	public static Musculosa getInstance(){
+		if(instancia==null){instancia= new Musculosa();}
+		return instancia;
 	}
 }
