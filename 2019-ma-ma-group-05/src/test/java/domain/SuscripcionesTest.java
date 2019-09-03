@@ -20,27 +20,7 @@ import domain.Tipos.Short;
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;
 	
-	private Antiparras antiparrasTipo;
-	private Musculosa musculosaTipo;
-	private Short shortsTipo;
-	private Ojotas ojotasTipo;
-	private Remera remeraTipo;
-	private Zapatillas zapatillasTipo;
-	
-	private Prenda antiparras;
-	private Prenda musculosa;
-	private Prenda shorts;
-	private Prenda ojotas;
-	private Prenda zapatillas;
-	private Prenda remera;
-	private Prenda antiparras2;
-	private Prenda musculosa2;
-	private Prenda shorts2;
-	private Prenda ojotas2;
-	private Prenda zapatillas2;
-	private Prenda remera2;
 	private Prenda remeraBonus;
-	private Free mockSuscripcionFree;
 	private Usuario usuario;
 	private Guardarropa guardarropa2;
 	private Usuario usuario2;
@@ -49,53 +29,11 @@ public class SuscripcionesTest {
 	
 	@Before
 	public void init(){
-		algodon = new Algodon();
-		antiparrasTipo = new Antiparras();
-		musculosaTipo = new Musculosa();
-		shortsTipo = new Short();
-		ojotasTipo = new Ojotas();
-		remeraTipo = new Remera();
-		zapatillasTipo = new Zapatillas();
-
-		//remeraTipo.establecerTela(algodon);
-		remera = new Prenda(remeraTipo,Color.black,Color.blue);			remera.setTela(algodon);
-		//antiparrasTipo.establecerTela(algodon);
-		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue); antiparras.setTela(algodon);
-		//shortsTipo.establecerTela(algodon);
-		shorts = new Prenda(shortsTipo,Color.black,Color.blue);			shorts.setTela(algodon);
-		//musculosaTipo.establecerTela(algodon);
-		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);	musculosa.setTela(algodon);
-		//ojotasTipo.establecerTela(algodon);
-		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);			ojotas.setTela(algodon);
-		//zapatillasTipo.establecerTela(algodon);
-		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);	zapatillas.setTela(algodon);
-		
-		remera2 = new Prenda(remeraTipo,Color.black,Color.blue);		remera2.setTela(algodon);
-		
-		antiparras2 = new Prenda(antiparrasTipo,Color.black,Color.blue);antiparras2.setTela(algodon);
-		
-		shorts2 = new Prenda(shortsTipo,Color.black,Color.blue);		shorts2.setTela(algodon);
-		
-		musculosa2 = new Prenda(musculosaTipo,Color.black,Color.blue);	musculosa2.setTela(algodon);
-		
-		ojotas2 = new Prenda(ojotasTipo,Color.black,Color.blue);		ojotas2.setTela(algodon);
-		
-		zapatillas2 = new Prenda(zapatillasTipo,Color.black,Color.blue);zapatillas2.setTela(algodon);
-		
-		remeraBonus = new Prenda(remeraTipo,Color.black,Color.blue);	remeraBonus.setTela(algodon);
 		
 		prendas = new ArrayList<Prenda>();
-		prendas.add(antiparras);
-		prendas.add(zapatillas);
-		prendas.add(musculosa);
-		prendas.add(shorts);
-		prendas.add(ojotas);
-		prendas.add(antiparras2);
-		prendas.add(zapatillas2);
-		prendas.add(musculosa2);
-		prendas.add(remera2);
-		prendas.add(shorts2);
-		prendas.add(ojotas2);
+		prendas = TestCargaDePrendas.init();
+		remeraBonus = SimpleFactoryPrendas.crearPrenda("remera");
+		remeraBonus.setColorPrimario(Color.BLUE);
 		
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
@@ -119,31 +57,21 @@ public class SuscripcionesTest {
 		assertEquals(f.getLimiteDePrendas(),12);
 	}
 	@Test
-	public void cantidadDePrendasDelGuardarropaEs11(){
-		assertEquals(guardarropa.cantidadDePrendas(),11);
+	public void cantidadDePrendasDelGuardarropaEs12(){
+		assertEquals(guardarropa.cantidadDePrendas(),12);
 	}
-	@Test
-	public void usuarioFreeAgregaPrendasSinInconvenientesYQuedaEnElLimite(){
-		usuario.agregarPrenda(guardarropa, remera);
-		assertEquals(usuario.getGuardarropa("guardarropa").cantidadDePrendas(),12);
-	}
-	
 	@Test(expected=LimiteDePrendasAlcanzadoException.class)
 	public void usuarioFreeSePasaDelLimite(){
-		usuario.agregarPrenda(guardarropa, remera);
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 	}
 	
 	@Test
 	public void usuarioPremiumSePasaAFreeYNoPuedeVerTodasLasPrendas(){
-		//Usuario Premium
 		usuario.cambiarAPremium();
 		
-		//Le agrego prendas para superar el limite
-		usuario.agregarPrenda(guardarropa, remera);
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),13);
-		//Se pasa a free
+
 		usuario.cambiarAFree();
 		
 		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),12);
@@ -161,17 +89,16 @@ public class SuscripcionesTest {
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
-		assertEquals(usuario2.getGuardarropa("guardarropa").cantidadDePrendas(),12);
+		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),12);
 	}
 	
 	@Test
 	public void usuarioPremiumComparteGuardarropaConOtroUsuarioPremiumYPuedeVerTodasLasPrendas(){
 		usuario.cambiarAPremium();
 		usuario2.cambiarAPremium();
-		usuario.agregarPrenda(guardarropa, remeraBonus);
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
-		assertEquals(usuario2.getGuardarropa("guardarropa").cantidadDePrendas(),12);
+		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),12);
 	}
 	
 	@Test
@@ -187,14 +114,12 @@ public class SuscripcionesTest {
 	public void usuarioPremiumAgregaPrendasAGuardarropaCompartido(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		usuario2.setSuscripcion(new Premium());
-		usuario2.agregarPrenda(guardarropa, remeraBonus);
 		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
 	}
 	@Test
 	public void usuarioFreeAgregaPrendaPeroElGuardarropaEstaAlLimite(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		usuario2.setSuscripcion(new Free());
-		usuario2.agregarPrenda(guardarropa, remeraBonus);
 		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
 	}
 }
