@@ -11,6 +11,7 @@ import domain.Telas.Nylon;
 import domain.Telas.Seda;
 
 public class Pantalon extends Tipo{
+	private static Pantalon instancia;
 	public Pantalon(){
 		this.categoria = new Inferior();
 		this.telasPosibles.add(new Nylon());
@@ -20,5 +21,9 @@ public class Pantalon extends Tipo{
 		this.nombre = "pantalon";
 		this.capa = 0;
 		this.nivelAbrigo = 30;	
+	}
+	public static Pantalon getInstance(){
+		if(instancia==null){instancia=new Pantalon();}
+		return instancia;
 	}
 }

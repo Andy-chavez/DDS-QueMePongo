@@ -11,6 +11,7 @@ import domain.Telas.Poliester;
 import domain.Telas.Seda;
 
 public class Campera extends Tipo{
+	private static Campera instancia;
 	public Campera(){
 		this.categoria = new SuperiorExtra();
 		this.telasPosibles.add(new Algodon());
@@ -20,5 +21,10 @@ public class Campera extends Tipo{
 		this.nombre = "campera";
 		this.capa = 3;
 		this.nivelAbrigo = 25;	
+	}
+	
+	public static Campera getInstance(){
+		if(instancia==null){instancia=new Campera();}
+		return instancia;
 	}
 }

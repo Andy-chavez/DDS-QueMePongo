@@ -10,6 +10,7 @@ import domain.Telas.Poliester;
 import domain.Telas.Seda;
 
 public class Sweater extends Tipo{
+	private static Sweater instancia;
 	public Sweater(){
 		this.categoria = new SuperiorExtra();
 		this.telasPosibles.add(new Algodon());
@@ -19,5 +20,9 @@ public class Sweater extends Tipo{
 		this.nombre = "sweater";
 		this.capa = 2;
 		this.nivelAbrigo = 12;	
+	}
+	public static Sweater getInstance(){
+		if(instancia==null){instancia=new Sweater();}
+		return instancia;
 	}
 }
