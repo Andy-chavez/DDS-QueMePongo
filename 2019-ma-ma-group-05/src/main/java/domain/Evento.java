@@ -26,8 +26,8 @@ public class Evento extends TimerTask{
     private EstadoEvento estado;
 	
     public Evento(EventoDto eventoDto){
-    	gestorSugerencia.getInstance();
-    	gestorClima.getInstance();
+    	this.gestorSugerencia = GestorSugerencia.getInstance();
+    	this.gestorClima = GestorDeClima.getInstance();
     	this.nombre = eventoDto.nombre;
     	this.usuario = eventoDto.usuario;
     	this.estado = eventoDto.estado;
