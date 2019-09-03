@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import domain.Guardarropa;
 import domain.Suscripciones.Free;
+import dtoClases.EventoDto;
+
 import java.time.LocalDate;
 
 public class Usuario {
@@ -74,7 +76,6 @@ public class Usuario {
 	public List<Guardarropa> getGuardarropas(){return this.guardarropas;}
 	public List<Prenda> getPrendasDelguardarropa(String nombre){
 		Guardarropa g =  this.getGuardarropa(nombre);
-		//creo que acá lanzaria exception si no encuentra el guardarropa.
 		return this.suscripcion.getPrendasDelGuardarropa(g);
 	}
 	
@@ -90,8 +91,8 @@ public class Usuario {
 		return gestorSugerencia.obtenerSugerencia(LocalDate.now(), guardarropa, sensibilidadFrio);
 	}
 	
-	public void crearEvento(String nombre, String lugar, LocalDate fecha, String tipo) {
-		Evento evento = new Evento(nombre, lugar, fecha, tipo);
+	public void crearEvento(EventoDto unEvento) {
+		Evento evento = new Evento(unEvento);
 		eventos.add(evento);
 	}
 	
