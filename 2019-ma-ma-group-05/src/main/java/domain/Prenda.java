@@ -2,8 +2,14 @@ package domain;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.awt.image.BufferedImage;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
@@ -17,6 +23,7 @@ public class Prenda implements Cloneable {
 	private String imagen;
 	private ImgResizer resizer;
 	private Tela tela;
+	private List<LocalDate> fechasReservadas;
 
 	public Prenda makeCopy(){
 		Prenda prendaCopy = null;
@@ -34,6 +41,7 @@ public class Prenda implements Cloneable {
 	public Prenda(Tipo unTipo, Color colorPrim) {
 		this.setTipo(unTipo);
 		this.setColorPrimario(colorPrim);
+		this.fechasReservadas = new ArrayList<LocalDate>();
 	}
 	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
 		this.setTipo(unTipo);
@@ -116,5 +124,12 @@ public class Prenda implements Cloneable {
 	public Boolean noEsDeTipo(Tipo tipo){ //hago este metodo pedorro porque estaba teniendo problemas usando el de arriba en las lambda
 		return !esDeTipo(tipo);
 	}
-	
+	public void reservarFecha(Instant fecha){
+		// casteo Instant a LocalDate porque sino es un quilombo comparar Instants porque tienen hasta milisegundos
+		this.fechasReservadas.add(fecha.atZone(ZoneId.systemDefault()).toLocalDate());
+	}
+	public void liberarFecha(Instant fecha){
+		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
+		this.fechasReservadas.removeIf(f -> f.compareTo(fechaLocalDate) == 0);
+	}
 }
