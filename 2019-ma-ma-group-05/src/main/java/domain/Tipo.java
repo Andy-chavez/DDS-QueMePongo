@@ -45,8 +45,7 @@ public abstract class Tipo {
 	public boolean estaTelaEsPosible(String nombreTela) {
 		ArrayList<Tela> lista = new ArrayList<>();
 		lista = this.telasPosibles;
-		lista.stream().filter(t -> t.getNombre() == nombreTela).collect(Collectors.toList());
-		return !lista.isEmpty();
+		return lista.stream().anyMatch(t -> t.getNombre() == nombreTela);
 	}
 	
 	public Boolean validarAtributosDeTipo() {

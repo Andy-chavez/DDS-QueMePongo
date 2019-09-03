@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.AttributeSet.ColorAttribute;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,18 +50,20 @@ public class GuardarropaTest {
 		zapatillasTipo = new domain.Tipos.Zapatillas();
 		
 		// Prendas para el test de sugerencias
-		remeraTipo.establecerTela(algodon);
-		remera = new Prenda(remeraTipo,Color.black,Color.blue);
-		antiparrasTipo.establecerTela(algodon);
-		antiparras = new Prenda(antiparrasTipo,Color.black,Color.blue);
-		shortsTipo.establecerTela(algodon);
-		shorts = new Prenda(shortsTipo,Color.black,Color.blue);
-		musculosaTipo.establecerTela(algodon);
-		musculosa = new Prenda(musculosaTipo,Color.black,Color.blue);
-		ojotasTipo.establecerTela(algodon);
-		ojotas = new Prenda(ojotasTipo,Color.black,Color.blue);
-		zapatillasTipo.establecerTela(algodon);
-		zapatillas = new Prenda(zapatillasTipo,Color.black,Color.blue);
+		remera = SimpleFactoryPrendas.crearPrenda("remera");
+		
+		//antiparrasTipo.establecerTela(algodon);
+		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
+		antiparras.setColorPrimario(Color.BLACK);
+		antiparras.setTela(algodon);
+		shorts = SimpleFactoryPrendas.crearPrenda("short");
+		shorts.setColorPrimario(Color.BLACK);
+		shorts.setTela(algodon);
+		musculosa =SimpleFactoryPrendas.crearPrenda("musculosa");
+		//ojotasTipo.establecerTela(algodon);
+		ojotas = SimpleFactoryPrendas.crearPrenda("ojotas");
+		//zapatillasTipo.establecerTela(algodon);
+		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
 		
 		// Guardar todo menos antiparras.
 		prendas = new ArrayList<Prenda>();

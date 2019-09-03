@@ -29,7 +29,6 @@ public class PrendaTest {
 		algodon = new Algodon();
 		prenda = SimpleFactoryPrendas.crearPrenda("remera");
 		prenda.setTela(algodon);
-		remeraTipo = new Remera();
 		
 		zapatillas  = SimpleFactoryPrendas.crearPrenda("zapatillas");
 		zapatillas.setTela(cuero);
