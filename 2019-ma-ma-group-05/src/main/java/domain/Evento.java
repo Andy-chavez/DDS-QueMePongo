@@ -41,7 +41,6 @@ public class Evento extends TimerTask{
 	    
     @Override
     public void run() {
-    	System.out.println("hola");
     	this.estado.run(this);
     }
     

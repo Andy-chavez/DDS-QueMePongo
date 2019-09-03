@@ -1,5 +1,6 @@
 package domain;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,11 @@ public class Atuendo {
 			System.out.print(prenda.getTipo().getNombre() + " ");
 		}
 		System.out.println();
-
 	}
-	
+	public void reservarPrendas(Instant fecha){
+		this.prendas.forEach(p -> p.reservarFecha(fecha));
+	}
+	public void reservarPrendas(){
+		reservarPrendas(Instant.now());
+	}
 }

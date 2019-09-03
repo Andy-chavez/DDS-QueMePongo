@@ -32,17 +32,13 @@ public class CronGenerarSugerencia{
 		return singleInstance;
 	}
 	
-//	public long milisegundosHastaFecha(Instant fecha){
-//	    DateTimeFormatter fmt = DateTimeFormatter.ISO_INSTANT;
-//	    int diasPreviosDeAvisoConfig = ConfigReader.getIntValue("configuraciones.properties", "diasPreviosDeAviso");
-////	    int diasPreviosDeAviso = (int)Duration.between(Instant.now(), fecha).toDays() < diasPreviosDeAvisoConfig ? 0 : diasPreviosDeAvisoConfig;
-//	    Instant fechaMenosDiasPrevios = fecha.minus(Duration.ofDays(diasPreviosDeAvisoConfig));
-//	    String horaAviso = ConfigReader.getStringValue("configuraciones.properties", "horaParaGenerarSugerencia");
-//	    String fechaString = fechaMenosDiasPrevios.toString().substring(0, 10) + 'T' + horaAviso + 'Z';
-//	    Instant fechaAviso = fmt.parse(fechaString, Instant::from);
-//	    System.out.println(fechaAviso);
-//	    return Duration.between(Instant.now(), fechaAviso).toHours();
-//	}
+	public Instant obtenerFechaSugerencia(Instant fecha){
+	    int diasAnticipacionSugerencia = ConfigReader.getIntValue("configuraciones.properties", "diasAnticipacionSugerencia");
+	    String horaSugerencia = ConfigReader.getStringValue("configuraciones.properties", "horaParaGenerarSugerencia");
+	    String fechaString = fecha.toString().substring(0, 10) + 'T' + horaSugerencia + 'Z';
+	    Instant fechaSugerencia = Instant.parse(fechaString);
+	    return fechaSugerencia.minus(Duration.ofDays(diasAnticipacionSugerencia));
+	}
 	
 	public long milisegundosHastaFecha(Instant fecha){
 	    return Duration.between(Instant.now(), fecha).toMillis();
@@ -50,9 +46,8 @@ public class CronGenerarSugerencia{
 	
 	public void planificarEvento(Evento evento){
 		Timer timer = new Timer();
-		long milisegundosTemp = milisegundosHastaFecha(evento.getFecha().minus(Duration.ofHours(evento.getAnticipacionHoras())));
-		long milisegundosHastaAviso = milisegundosTemp >= 0 ? milisegundosTemp : 0;
-		System.out.println(milisegundosHastaAviso);
-		timer.schedule(evento, milisegundosHastaAviso, evento.getRepeticionDias());		
+		Instant fechaSugerencia = obtenerFechaSugerencia(evento.getFecha());
+		long milisegundosHastaSugerencia = Instant.now().compareTo(fechaSugerencia) < 0 ? milisegundosHastaFecha(fechaSugerencia) : 0;
+		timer.schedule(evento, milisegundosHastaSugerencia, evento.getRepeticionDias());		
 	}
 }
