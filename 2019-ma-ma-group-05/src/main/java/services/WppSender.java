@@ -35,13 +35,14 @@ public class WppSender extends Sender{
     	this.configurar();
     }
     protected void configurar(){
-    	ConfigReader.getStringValue("twilioAcc", ACCOUNT_SID);
-    	ConfigReader.getStringValue("twilioToken", AUTH_TOKEN);
-    	ConfigReader.getStringValue("twilioNumWpp", TWILIO);
+    	this.ACCOUNT_SID = ConfigReader.getStringValue("configuraciones.properties","twilioAcc");
+    	this.AUTH_TOKEN = ConfigReader.getStringValue("configuraciones.properties","twilioToken");
+    	this.TWILIO = ConfigReader.getStringValue("configuraciones.properties","twilioNumWpp");
     }
     
     public void enviar(SenderDto dto) {
     //public void enviar(String mensaje, Usuario usuario) {
+    	this.configurar();
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator( /*(from, to, menssage) */
                 //new com.twilio.type.PhoneNumber("+5491173612330"), //aca va el numero del usuario, dejo temporalmente eso asi voy viendo si puedo mandar un wpp

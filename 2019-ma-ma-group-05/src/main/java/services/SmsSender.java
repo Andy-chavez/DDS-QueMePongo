@@ -19,9 +19,7 @@ public class SmsSender extends Sender {
 	    private String ACCOUNT_SID;// = "ACe7e5de9db047d602c38b5540708a7dae";
 	    private String AUTH_TOKEN;// = "9dafb932843d8ad753aef04f40518d62";
 	    private String TWILIO;// = "+12035909054";
-	    private ConfigReader config;
 	    public SmsSender() {
-	    	this.config = ConfigReader.getInstance();
 	    	this.configurar();
 	    }
 	    private static SmsSender singleInstance = null;
@@ -33,9 +31,9 @@ public class SmsSender extends Sender {
 			return singleInstance;
 		}
 	    protected void configurar(){
-	    	ConfigReader.getStringValue("twilioAcc", ACCOUNT_SID);
-	    	ConfigReader.getStringValue("twilioToken", AUTH_TOKEN);
-	    	ConfigReader.getStringValue("twilioNum", TWILIO);
+	    	this.ACCOUNT_SID = ConfigReader.getStringValue("configuraciones.properties","twilioAcc");
+	    	this.AUTH_TOKEN = ConfigReader.getStringValue("configuraciones.properties","twilioToken");
+	    	this.TWILIO = ConfigReader.getStringValue("configuraciones.properties","twilioNum");
 	    }
 	    
 	    public void enviar(SenderDto dto) {
