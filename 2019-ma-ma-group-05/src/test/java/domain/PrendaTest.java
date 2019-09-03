@@ -10,6 +10,7 @@ import domain.Categorias.*;
 import domain.Prenda;
 import domain.Tela;
 import domain.Excepciones.ColoresIgualesException;
+import domain.Excepciones.TelaIncompatibleException;
 import domain.Tipos.*;
 import domain.Excepciones.ValidacionException;
 import domain.Telas.Algodon;
@@ -17,6 +18,7 @@ import domain.Telas.Cuero;
 
 public class PrendaTest {
 	private Prenda prenda;
+	private Prenda zapatillas;
 	private Zapatillas tipo;
 	private Remera remeraTipo;
 	private Tela algodon;
@@ -25,12 +27,13 @@ public class PrendaTest {
 	public void init() {
 		cuero = new Cuero();
 		algodon = new Algodon();
+		prenda = SimpleFactoryPrendas.crearPrenda("remera");
+		prenda.setTela(algodon);
 		remeraTipo = new Remera();
-		remeraTipo.establecerTela(algodon);
 		
-		tipo = new Zapatillas();
-		tipo.establecerTela(cuero);
-		prenda = new Prenda(tipo,Color.black);
+		zapatillas  = SimpleFactoryPrendas.crearPrenda("zapatillas");
+		zapatillas.setTela(cuero);
+		zapatillas.setColorPrimario(Color.black);
 	}
 	@Test
 	public void remeraRojaQueEsValida() {
@@ -39,36 +42,38 @@ public class PrendaTest {
 		Assert.assertTrue(remeraRoja.todosLosAtributosSonIgualesA(remeraTipo, Color.red, null));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = TelaIncompatibleException.class)
 	public void remeraAzulDeCueroInvalida() {
-		remeraTipo.establecerTela(cuero);
-		Prenda remeraAzul = new Prenda(remeraTipo,Color.blue,Color.green);
+		Prenda remeraAzul = SimpleFactoryPrendas.crearPrenda("remera");
+		remeraAzul.setColorPrimario(Color.blue);
+		remeraAzul.setColorSecundario(Color.green);
+		remeraAzul.setTela(cuero);
 	}
 	
 	@Test (expected = ColoresIgualesException.class) 
 	public void remeraDeVerdeVerdeInvalida() {
-		remeraTipo.establecerTela(algodon);
 		Prenda remeraVerde = new Prenda(remeraTipo,Color.green,Color.green);
+		remeraVerde.setTela(algodon);
 
 	}
 	@Test
 	public void sonZapatillas() {
-		Assert.assertEquals("No eran zapatillas", "zapatillas", prenda.getTipo().getNombre());
+		Assert.assertEquals("No eran zapatillas", "zapatillas", zapatillas.getTipo().getNombre());
 	}
 	
 	@Test
 	public void sonCalzadoLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de calzado", new Calzado().getClass(), prenda.getTipo().getCategoria().getClass());
+		Assert.assertEquals("No eran zapatillas de calzado", new Calzado().getClass(), zapatillas.getTipo().getCategoria().getClass());
 	}
 	
 	@Test
 	public void sonNegrosLosZapatos() {
-		Assert.assertEquals("No eran zapatillas negros", Color.black, prenda.getColorPrimario());
+		Assert.assertEquals("No eran zapatillas negros", Color.black, zapatillas.getColorPrimario());
 	}
 	
 	@Test
 	public void sonDeCueroLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de cuero", cuero.getNombre(), prenda.getTipo().getTela().getNombre());
+		Assert.assertEquals("No eran zapatillas de cuero", cuero.getNombre(), zapatillas.getTela().getNombre());
 	}
 	
 }

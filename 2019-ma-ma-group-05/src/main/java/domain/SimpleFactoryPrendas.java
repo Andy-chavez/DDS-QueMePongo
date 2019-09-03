@@ -1,5 +1,6 @@
 package domain;
 
+import domain.Excepciones.CrearPrendaException;
 import domain.Tipos.*;
 import domain.Tipos.Short;
 import services.EmailSender;
@@ -14,7 +15,7 @@ public class SimpleFactoryPrendas {
 		return singleInstance;
 	}
 	
-	public Prenda crearPrenda(String tipo) {
+	public static Prenda crearPrenda(String tipo){
 		tipo = tipo.toLowerCase();
 		if(tipo == "remera") {
 			return new Prenda(Remera.getInstance());
@@ -52,5 +53,6 @@ public class SimpleFactoryPrendas {
 		else if(tipo == "zapatillas") {
 			return new Prenda(Zapatillas.getInstance());
 		}
+		throw new CrearPrendaException("Tipo de Prenda inexistente");
 	}
 }

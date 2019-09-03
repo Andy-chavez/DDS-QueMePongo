@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
+import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
 public class Prenda implements Cloneable {
@@ -89,12 +90,13 @@ public class Prenda implements Cloneable {
 	public int getCapa() {
 		return this.tipo.getCapa();
 	}
+	public Tela getTela() {	return this.tela;	}
 	public void setTela(Tela unaTela) {
 		if (this.tipo.estaTelaEsPosible(unaTela.getNombre())) {
 			this.tela = unaTela;
 		}
 		else
-			throw new IllegalArgumentException("Tela no permitida");
+			throw new TelaIncompatibleException("Tela no permitida");
 	}
 	public int getNivelAbrigo() {
 		return this.tipo.getNivelAbrigo();
