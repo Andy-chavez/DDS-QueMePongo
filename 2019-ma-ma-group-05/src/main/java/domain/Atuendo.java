@@ -93,9 +93,11 @@ public class Atuendo {
 	public int getNivelAbrigo() {
 		return this.nivelAbrigo;
 	}
+
 	
 	public void printPrendas(){
 		System.out.print("Atuendo: ");
+
 		for(Prenda prenda : this.prendas){
 			System.out.print(prenda.getTipo().getNombre() + " ");
 		}

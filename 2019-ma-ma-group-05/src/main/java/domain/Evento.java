@@ -24,6 +24,7 @@ public class Evento extends TimerTask{
     private Integer repeticionDias;
     private Integer anticipacionHoras;
     private EstadoEvento estado;
+    private NotificadorEvento notificadorEvento;
 	
     public Evento(EventoDto eventoDto){
     	gestorSugerencia.getInstance();
@@ -46,6 +47,7 @@ public class Evento extends TimerTask{
     
     public void cancelarEvento(){
     	this.cancel();
+    	this.notificadorEvento.cancel();
     	this.estado = new Inactivo();
     }
     
@@ -67,10 +69,11 @@ public class Evento extends TimerTask{
     public void setGuardarropa(Guardarropa guardarropa){ this.guardarropa = guardarropa; }
     public Usuario getUsuario(){ return this.usuario; }
     public void setAtuendo(Atuendo atuendo){ this.atuendo = atuendo; }
-	public void setNombre(String unNombre){this.nombre=unNombre;}
-	public String getNombre(){return this.nombre;}
-	public void setLugar(String unLugar){this.lugar=unLugar;}
-	public String getLugar(){return this.lugar;}
-    public void setTipo(String tipo){this.tipo = tipo;}
-    public String getTipo(){return this.tipo;}
+	public void setNombre(String unNombre){ this.nombre=unNombre; }
+	public String getNombre(){ return this.nombre; }
+	public void setLugar(String unLugar){ this.lugar=unLugar; }
+	public String getLugar(){ return this.lugar; }
+    public void setTipo(String tipo){ this.tipo = tipo; }
+    public String getTipo(){ return this.tipo; }
+    public NotificadorEvento getNotificadorEvento(){ return this.notificadorEvento; }
 }
