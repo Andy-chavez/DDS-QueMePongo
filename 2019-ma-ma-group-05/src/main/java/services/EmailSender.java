@@ -40,10 +40,12 @@ public class EmailSender extends Sender{
 		return singleInstance;
 	}
     protected void configurar(){
-    	ConfigReader.getStringValue("mailEmisor", emisor);
-    	ConfigReader.getStringValue("contraEmisor", contraDeEmisor);
+    	String nombreConfig="configuraciones.properties";
+    	this.emisor=ConfigReader.getStringValue(nombreConfig, "mailEmisor");
+    	this.contraDeEmisor=ConfigReader.getStringValue(nombreConfig, "contraEmisor");
     }
-    public void enviar(SenderDto dto){  
+    public void enviar(SenderDto dto){ 
+          this.configurar();
           //get Session   
           Session session = Session.getInstance(props,    
            new javax.mail.Authenticator() {    

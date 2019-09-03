@@ -9,6 +9,7 @@ import domain.Guardarropa;
 import domain.Suscripciones.Free;
 import dtoClases.EventoDto;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 public class Usuario {
@@ -88,7 +89,7 @@ public class Usuario {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return gestorSugerencia.obtenerSugerencia(LocalDate.now(), guardarropa, sensibilidadFrio);
+		return gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, sensibilidadFrio);
 	}
 	
 	public void crearEvento(EventoDto unEvento) {
