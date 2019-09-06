@@ -75,17 +75,21 @@ public class Guardarropa {
 	}
 
 	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(Tipo tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
-		tipoDeEstaPrenda.establecerTela(unaTela);
-		Prenda nuevaPrenda = new Prenda(tipoDeEstaPrenda,colorPrimario,colorSecundario);
-		return nuevaPrenda;
+	private Prenda crearNuevaPrenda(String tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
+		Prenda prenda = SimpleFactoryPrendas.crearPrenda(tipoDeEstaPrenda);
+		prenda.setTela(unaTela);
+		prenda.setColorPrimario(colorPrimario);
+		prenda.setColorSecundario(colorSecundario);
+		return prenda;
 	}
 	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(Tipo tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
-		tipoDeEstaPrenda.establecerTela(unaTela);
-		Prenda nuevaPrenda = new Prenda(tipoDeEstaPrenda,colorPrimario,colorSecundario);
-		nuevaPrenda.setImage(pathToImg);
-		return nuevaPrenda;
+	private Prenda crearNuevaPrenda(String tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
+		Prenda prenda = SimpleFactoryPrendas.crearPrenda(tipoDeEstaPrenda);
+		prenda.setTela(unaTela);
+		prenda.setColorPrimario(colorPrimario);
+		prenda.setColorSecundario(colorSecundario);
+		prenda.setImage(pathToImg);
+		return prenda;
 	}
 	
 

@@ -11,7 +11,7 @@ public abstract class Tipo {
 	protected Categoria categoria;
 	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
 	protected String nombre;
-	protected Tela tela;
+	//protected Tela tela;
 	protected int capa;
 	protected int nivelAbrigo;
 	
@@ -45,36 +45,22 @@ public abstract class Tipo {
 	public boolean estaTelaEsPosible(String nombreTela) {
 		ArrayList<Tela> lista = new ArrayList<>();
 		lista = this.telasPosibles;
-		lista.stream().filter(t -> t.getNombre() == nombreTela).collect(Collectors.toList());
-		return !lista.isEmpty();
-	}
-	public Tela getTela() {
-		return tela;
-	}
-	public void establecerTela(Tela tela) {
-		if (this.estaTelaEsPosible(tela.getNombre())) {
-			this.setTela(tela);
-		}
-		else
-			throw new IllegalArgumentException("Tela no permitida");
-	}
-	public void setTela(Tela tela) {
-		this.tela = tela;
+		return lista.stream().anyMatch(t -> t.getNombre() == nombreTela);
 	}
 	
 	public Boolean validarAtributosDeTipo() {
-		return Stream.of(categoria, tela, nombre).anyMatch(Objects::isNull);
+		return Stream.of(categoria, nombre).anyMatch(Objects::isNull);
 	}
 	
 	public Boolean esDeCategoria(Categoria unaCategoria) {
 		return this.categoria.getClass() == unaCategoria.getClass();
 	}
 
-	public boolean todosLosAtributosDeTipoSonIgualesA(Tela unaTela, String tipo, Categoria unaCategoria) {
-		return unaTela == this.tela && tipo == this.nombre && unaCategoria == this.categoria;
+	public boolean todosLosAtributosDeTipoSonIgualesA(String tipo) {//, Categoria unaCategoria) {
+		return tipo == this.nombre;// && unaCategoria == this.categoria;
 	}
 	
 	public boolean esIgualAOtro(Tipo otroTipo) {
-		return otroTipo.todosLosAtributosDeTipoSonIgualesA(this.tela, this.nombre, this.categoria);
+		return otroTipo.todosLosAtributosDeTipoSonIgualesA(this.nombre);//, this.categoria);
 	}
 }

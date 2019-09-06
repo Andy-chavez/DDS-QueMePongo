@@ -28,6 +28,7 @@ public class Evento{
     public Evento(EventoDto eventoDto){
     	this.gestorSugerencia = GestorSugerencia.getInstance();
     	this.cronSugerencia = CronGenerarSugerencia.getInstance();
+    	this.gestorClima = GestorDeClima.getInstance();
     	this.nombre = eventoDto.nombre;
     	this.usuario = eventoDto.usuario;
     	this.estado = eventoDto.estado;

@@ -13,6 +13,7 @@ import java.time.ZoneId;
 
 import domain.Tipo;
 import domain.Excepciones.ColoresIgualesException;
+import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
 public class Prenda implements Cloneable {
@@ -21,8 +22,8 @@ public class Prenda implements Cloneable {
 	private Tipo tipo;
 	private String imagen;
 	private ImgResizer resizer;
+	private Tela tela;
 	private List<LocalDate> fechasReservadas;
-
 
 	public Prenda makeCopy(){
 		Prenda prendaCopy = null;
@@ -96,7 +97,14 @@ public class Prenda implements Cloneable {
 	public int getCapa() {
 		return this.tipo.getCapa();
 	}
-	
+	public Tela getTela() {	return this.tela;	}
+	public void setTela(Tela unaTela) {
+		if (this.tipo.estaTelaEsPosible(unaTela.getNombre())) {
+			this.tela = unaTela;
+		}
+		else
+			throw new TelaIncompatibleException("Tela no permitida");
+	}
 	public int getNivelAbrigo() {
 		return this.tipo.getNivelAbrigo();
 	}
