@@ -1,29 +1,23 @@
 package domain;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
-import java.util.Date;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.time.Duration;
-import java.time.Instant;
-
-import org.joda.time.LocalDateTime;
-
-import domain.Usuario;
 import domain.Evento;
 
 
-public class CronGenerarSugerencia{
-	private GestorSugerencia gestorSugerencia;
+public class CronGenerarSugerencia extends TimerTask{
 	private static CronGenerarSugerencia singleInstance = null;
+	private Timer timer;
+	private List<Evento> eventos;
 	
 	private CronGenerarSugerencia(){
-		this.gestorSugerencia = GestorSugerencia.getInstance();
+		timer = new Timer();
+		eventos = new ArrayList<Evento>();
+//		timer.schedule(this, 0, Duration.ofHours(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
 	}
 	public static CronGenerarSugerencia getInstance(){
 		if(singleInstance == null){
@@ -31,23 +25,37 @@ public class CronGenerarSugerencia{
 		}
 		return singleInstance;
 	}
-	
-	public Instant obtenerFechaSugerencia(Instant fecha){
-	    int diasAnticipacionSugerencia = ConfigReader.getIntValue("configuraciones.properties", "diasAnticipacionSugerencia");
-	    String horaSugerencia = ConfigReader.getStringValue("configuraciones.properties", "horaParaGenerarSugerencia");
-	    String fechaString = fecha.toString().substring(0, 10) + 'T' + horaSugerencia + 'Z';
-	    Instant fechaSugerencia = Instant.parse(fechaString);
-	    return fechaSugerencia.minus(Duration.ofDays(diasAnticipacionSugerencia));
+
+	public void agregarEvento(Evento evento){
+		this.eventos.add(evento);
 	}
 	
-	public long milisegundosHastaFecha(Instant fecha){
-	    return Duration.between(Instant.now(), fecha).toMillis();
+	@Override
+	public void run() {
+		eventos.forEach(e -> e.ejecutar());
 	}
 	
-	public void planificarEvento(Evento evento){
-		Timer timer = new Timer();
-		Instant fechaSugerencia = obtenerFechaSugerencia(evento.getFecha());
-		long milisegundosHastaSugerencia = Instant.now().compareTo(fechaSugerencia) < 0 ? milisegundosHastaFecha(fechaSugerencia) : 0;
-		timer.schedule(evento, milisegundosHastaSugerencia, evento.getRepeticionDias());		
+	public  List<Evento> getEventos(){
+		return this.eventos;
 	}
+	
+//	public Instant obtenerFechaSugerencia(Instant fecha){
+//	    int diasAnticipacionSugerencia = ConfigReader.getIntValue("configuraciones.properties", "diasAnticipacionSugerencia");
+//	    String horaSugerencia = ConfigReader.getStringValue("configuraciones.properties", "horaParaGenerarSugerencia");
+//	    String fechaString = fecha.toString().substring(0, 10) + 'T' + horaSugerencia + 'Z';
+//	    Instant fechaSugerencia = Instant.parse(fechaString);
+//	    return fechaSugerencia.minus(Duration.ofDays(diasAnticipacionSugerencia));
+//	}
+//	
+//	public long milisegundosHastaFecha(Instant fecha){
+//	    return Duration.between(Instant.now(), fecha).toMillis();
+//	}
+//	
+//	public void planificarEvento(Evento evento){
+//		Timer timer = new Timer();
+//		Instant fechaSugerencia = obtenerFechaSugerencia(evento.getFecha());
+//		long milisegundosHastaSugerencia = Instant.now().compareTo(fechaSugerencia) < 0 ? milisegundosHastaFecha(fechaSugerencia) : 0;
+//		timer.schedule(evento, milisegundosHastaSugerencia, evento.getRepeticionDias());		
+//	}
+
 }

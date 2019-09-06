@@ -6,7 +6,17 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import services.WppSender;
+
 public class ConfigReader {
+    private static ConfigReader singleInstance = null;
+
+	public static ConfigReader getInstance(){
+		if(singleInstance == null){
+			singleInstance = new ConfigReader();
+		}
+		return singleInstance;
+	}
 	public static Integer getIntValue(String configFile, String property){
 		Properties archivoDeConfiguraciones= new Properties();
     	InputStream input=null;

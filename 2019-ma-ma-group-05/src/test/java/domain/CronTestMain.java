@@ -141,7 +141,7 @@ public class CronTestMain {
 		eventoDto.repeticionDias = 2000;
 		eventoDto.anticipacionHoras = 2;
 		eventoDto.fecha = "2019-09-04T00:04:00Z";
-		eventoDto.estado = new Activo();
+		eventoDto.estado = new Pendiente();
 		eventoDto.usuario = usuario;
 		eventoDto.guardarropa = guardarropa;
 		

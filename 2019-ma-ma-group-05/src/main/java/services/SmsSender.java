@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
+import domain.ConfigReader;
 import domain.Sender;
 import domain.Usuario;
 import dtoClases.SenderDto;
@@ -21,18 +22,18 @@ public class SmsSender extends Sender {
 	    public SmsSender() {
 	    	this.configurar();
 	    }
+	    private static SmsSender singleInstance = null;
+
+		public static SmsSender getInstance(){
+			if(singleInstance == null){
+				singleInstance = new SmsSender();
+			}
+			return singleInstance;
+		}
 	    protected void configurar(){
-			Properties archivoDeConfiguraciones= new Properties();
-	    	InputStream input=null;
-	    	try{
-	            input = new FileInputStream("configuraciones.properties");
-	            archivoDeConfiguraciones.load(input);
-	        } catch(Exception e){
-	            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	        }
-	    	this.ACCOUNT_SID= archivoDeConfiguraciones.getProperty("twilioAcc");
-	    	this.AUTH_TOKEN=archivoDeConfiguraciones.getProperty("twilioToken");
-	    	this.TWILIO=archivoDeConfiguraciones.getProperty("twilioNum");
+	    	this.ACCOUNT_SID = ConfigReader.getStringValue("configuraciones.properties","twilioAcc");
+	    	this.AUTH_TOKEN = ConfigReader.getStringValue("configuraciones.properties","twilioToken");
+	    	this.TWILIO = ConfigReader.getStringValue("configuraciones.properties","twilioNum");
 	    }
 	    
 	    public void enviar(SenderDto dto) {

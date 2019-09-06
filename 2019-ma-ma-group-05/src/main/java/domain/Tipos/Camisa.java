@@ -10,6 +10,7 @@ import domain.Telas.Seda;
 import domain.Categorias.*;
 
 public class Camisa extends Tipo{
+	private static Camisa instancia;
 	public Camisa(){
 		this.categoria = new SuperiorBase();
 		this.telasPosibles.add(new Algodon());
@@ -19,5 +20,10 @@ public class Camisa extends Tipo{
 		this.nombre = "camisa";
 		this.capa = 1;
 		this.nivelAbrigo = 12;	
+	}
+	
+	public static Camisa getInstance(){
+		if(instancia==null){instancia=new Camisa();}
+		return instancia;
 	}
 }

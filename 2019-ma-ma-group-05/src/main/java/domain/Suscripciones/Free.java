@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
+import domain.ConfigReader;
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Suscripcion;
@@ -19,15 +20,8 @@ public class Free implements Suscripcion {
 		this.inicializarVariablesDesdeConfig();
 	}
 	private void inicializarVariablesDesdeConfig(){
-		Properties archivoDeConfiguraciones= new Properties();
-    	InputStream input=null;
-    	try{
-            input = new FileInputStream("configuraciones.properties");
-            archivoDeConfiguraciones.load(input);
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    	this.limiteDePrendas=Integer.parseInt(archivoDeConfiguraciones.getProperty("limiteDePrendas"));
+		ConfigReader cr=new ConfigReader();
+		this.limiteDePrendas=cr.getIntValue("configuraciones.properties", "limiteDePrendas");
 	}
 	public int getLimiteDePrendas(){return this.limiteDePrendas;}
 	public void cambiarAFree(Usuario usuario){

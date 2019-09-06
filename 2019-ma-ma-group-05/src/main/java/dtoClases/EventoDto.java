@@ -1,6 +1,5 @@
 package dtoClases;
 
-import java.time.Instant;
 import domain.Guardarropa;
 import domain.Usuario;
 import domain.EstadosEvento.EstadoEvento;
@@ -15,4 +14,5 @@ public class EventoDto {
     public Integer repeticionDias;
     public Integer anticipacionHoras;
     public EstadoEvento estado;
+    public Boolean repetir;
 }

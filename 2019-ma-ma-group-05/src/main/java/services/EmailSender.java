@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
+import domain.ConfigReader;
 import domain.Sender;
 import domain.Usuario;
 import dtoClases.SenderDto;
@@ -30,19 +31,21 @@ public class EmailSender extends Sender{
           props.put("mail.smtp.port", "465");
           this.configurar();
     }
+    private static EmailSender singleInstance = null;
+
+	public static EmailSender getInstance(){
+		if(singleInstance == null){
+			singleInstance = new EmailSender();
+		}
+		return singleInstance;
+	}
     protected void configurar(){
-		Properties archivoDeConfiguraciones= new Properties();
-    	InputStream input=null;
-    	try{
-            input = new FileInputStream("configuraciones.properties");
-            archivoDeConfiguraciones.load(input);
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error cargando configuración\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    	this.emisor= archivoDeConfiguraciones.getProperty("mailEmisor");
-    	this.contraDeEmisor=archivoDeConfiguraciones.getProperty("contraEmisor");
+    	String nombreConfig="configuraciones.properties";
+    	this.emisor=ConfigReader.getStringValue(nombreConfig, "mailEmisor");
+    	this.contraDeEmisor=ConfigReader.getStringValue(nombreConfig, "contraEmisor");
     }
-    public void enviar(SenderDto dto){  
+    public void enviar(SenderDto dto){ 
+          this.configurar();
           //get Session   
           Session session = Session.getInstance(props,    
            new javax.mail.Authenticator() {    
