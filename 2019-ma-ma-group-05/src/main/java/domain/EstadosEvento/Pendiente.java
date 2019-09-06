@@ -14,7 +14,7 @@ public class Pendiente implements EstadoEvento{
 		if(Instant.now().until(evento.getFecha(), ChronoUnit.DAYS) <= diasAnticipacionSugernecia){
 			Atuendo atuendo = evento.getGestorSugerencia().obtenerSugerencia(evento.getFecha(), evento.getGuardarropa(), evento.getUsuario().getSensibilidadFrio());
 			evento.setAtuendo(atuendo);
-			atuendo.reservarPrendas();			
+			atuendo.reservarPrendas(evento.getFecha());			
 			evento.setEstado(new AtuendoListo());
 			evento.getAtuendo().printPrendas();
 		}

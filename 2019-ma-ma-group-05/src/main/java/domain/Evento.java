@@ -43,6 +43,10 @@ public class Evento{
     	this.estado = new Pendiente();
     	this.cronSugerencia.agregarEvento(this);
     }
+    public void cancelarEvento(){
+    	this.estado = new Inactivo();
+    	this.cronSugerencia.sacarEvento(this);
+    }
     public void ejecutar() {
     	this.estado.ejecutar(this);
     }
@@ -75,4 +79,5 @@ public class Evento{
     public String getTipo(){ return this.tipo; }
     public void setEstado(EstadoEvento estado) { this.estado = estado; }
     public Boolean getRepetir(){ return this.repetir; }
+    public EstadoEvento getEstado() { return this.estado; }
 }

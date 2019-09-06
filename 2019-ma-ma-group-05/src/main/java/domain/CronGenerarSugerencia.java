@@ -29,6 +29,9 @@ public class CronGenerarSugerencia extends TimerTask{
 	public void agregarEvento(Evento evento){
 		this.eventos.add(evento);
 	}
+	public void sacarEvento(Evento evento){
+		this.eventos.remove(evento);
+	}
 	
 	@Override
 	public void run() {
