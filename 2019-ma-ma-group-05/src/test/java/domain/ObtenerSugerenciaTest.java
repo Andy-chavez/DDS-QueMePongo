@@ -12,7 +12,7 @@ import org.junit.Test;
 import domain.Tipos.Short;
 import dtoClases.EventoDto;
 import domain.Categorias.SuperiorExtra;
-import domain.EstadosEvento.Activo;
+import domain.EstadosEvento.Pendiente;
 import domain.Telas.Algodon;
 import domain.Telas.Cuero;
 import domain.Tipos.*;
@@ -266,7 +266,7 @@ public class ObtenerSugerenciaTest {
 		eventoDto.repeticionDias = 2000;
 		eventoDto.anticipacionHoras = 2;
 		eventoDto.fecha = "2019-09-02T13:04:00Z";
-		eventoDto.estado = new Activo();
+		eventoDto.estado = new Pendiente();
 		eventoDto.guardarropa = guardarropa;
 		eventoDto.usuario = usuario;
 		Evento evento = new Evento(eventoDto);

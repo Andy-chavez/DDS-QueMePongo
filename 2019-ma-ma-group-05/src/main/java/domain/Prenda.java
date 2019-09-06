@@ -37,15 +37,14 @@ public class Prenda implements Cloneable {
 	}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
-	}
-	public Prenda(Tipo unTipo, Color colorPrim) {
-		this.setTipo(unTipo);
-		this.setColorPrimario(colorPrim);
 		this.fechasReservadas = new ArrayList<LocalDate>();
 	}
-	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
-		this.setTipo(unTipo);
+	public Prenda(Tipo unTipo, Color colorPrim) {
+		this(unTipo);
 		this.setColorPrimario(colorPrim);
+	}
+	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
+		this(unTipo, colorPrim);
 		this.setColorSecundario(colorSecun);
 	}
 	public void setColorPrimario(Color colorPrimario) {
@@ -131,5 +130,9 @@ public class Prenda implements Cloneable {
 	public void liberarFecha(Instant fecha){
 		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
 		this.fechasReservadas.removeIf(f -> f.compareTo(fechaLocalDate) == 0);
+	}
+	public Boolean estaReservada(Instant fecha){
+		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
+		return this.fechasReservadas.contains(fechaLocalDate);
 	}
 }

@@ -109,4 +109,7 @@ public class Atuendo {
 	public void reservarPrendas(){
 		reservarPrendas(Instant.now());
 	}
+	public void liberarPrendas(Instant fecha){
+		this.prendas.forEach(p -> p.liberarFecha(fecha));
+	}
 }

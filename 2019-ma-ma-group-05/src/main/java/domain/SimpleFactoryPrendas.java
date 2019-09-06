@@ -52,6 +52,7 @@ public class SimpleFactoryPrendas {
 		else if(tipo == "zapatillas") {
 			return new Prenda(Zapatillas.getInstance());
 		}
+
 		throw new CrearPrendaException("Tipo de Prenda inexistente");
 	}
 }
