@@ -9,14 +9,14 @@ import java.time.Duration;
 import domain.Evento;
 
 
-public class CronGenerarSugerencia extends TimerTask{
+public class CronGenerarSugerencia extends TimerTask implements Observee{
 	private static CronGenerarSugerencia singleInstance = null;
 	private Timer timer;
-	private List<Evento> eventos;
+	private List<Observer> eventos;
 	
 	private CronGenerarSugerencia(){
 		timer = new Timer();
-		eventos = new ArrayList<Evento>();
+		eventos = new ArrayList<Observer>();
 //		timer.schedule(this, 0, Duration.ofHours(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
 	}
 	public static CronGenerarSugerencia getInstance(){
@@ -26,19 +26,23 @@ public class CronGenerarSugerencia extends TimerTask{
 		return singleInstance;
 	}
 
-	public void agregarEvento(Evento evento){
-		this.eventos.add(evento);
-	}
-	public void sacarEvento(Evento evento){
-		this.eventos.remove(evento);
-	}
-	
 	@Override
 	public void run() {
+		this.notificarObservers();
+	}
+	@Override
+	public void registrar(Observer o) {
+		this.eventos.add(o);
+	}
+	@Override
+	public void sacar(Observer o) {
+		this.eventos.remove(o);	
+	}
+	@Override
+	public void notificarObservers() {
 		eventos.forEach(e -> e.ejecutar());
 	}
-	
-	public  List<Evento> getEventos(){
+	public  List<Observer> getEventos(){
 		return this.eventos;
 	}
 	

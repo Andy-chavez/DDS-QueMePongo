@@ -16,6 +16,7 @@ public class Pendiente implements EstadoEvento{
 			evento.setAtuendo(atuendo);
 			atuendo.reservarPrendas(evento.getFecha());			
 			evento.setEstado(new AtuendoListo());
+			evento.getCronNotificarSugerencia().registrar(evento);
 			evento.getAtuendo().printPrendas();
 		}
 	}
