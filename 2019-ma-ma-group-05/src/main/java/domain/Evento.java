@@ -1,17 +1,12 @@
 package domain;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
 
-public class Evento{
+public class Evento implements Observer{
 	private String nombre;
 	private String lugar;
 	private Instant fecha;
@@ -24,9 +19,12 @@ public class Evento{
     private EstadoEvento estado;
     private Boolean repetir;
     private int repeticionDias;
+	private GestorDeClima gestorClima;
+	private CronNotificarSugerencia cronNotificarSugerencia;
 	
     public Evento(EventoDto eventoDto){
     	this.gestorSugerencia = GestorSugerencia.getInstance();
+    	this.cronNotificarSugerencia = CronNotificarSugerencia.getInstance();
     	this.cronSugerencia = CronGenerarSugerencia.getInstance();
     	this.gestorClima = GestorDeClima.getInstance();
     	this.nombre = eventoDto.nombre;
@@ -42,18 +40,19 @@ public class Evento{
 	    
     public void confirmarEvento(){
     	this.estado = new Pendiente();
-    	this.cronSugerencia.agregarEvento(this);
+    	this.cronSugerencia.registrar(this);
     }
     public void cancelarEvento(){
     	this.estado = new Inactivo();
-    	this.cronSugerencia.sacarEvento(this);
+    	this.cronSugerencia.sacar(this);
     }
+    
+    @Override
     public void ejecutar() {
     	this.estado.ejecutar(this);
     }
    
-    
-    
+        
 
     // --- GETTERS Y SETTERS --- 
     
@@ -81,4 +80,5 @@ public class Evento{
     public void setEstado(EstadoEvento estado) { this.estado = estado; }
     public Boolean getRepetir(){ return this.repetir; }
     public EstadoEvento getEstado() { return this.estado; }
+    public CronNotificarSugerencia getCronNotificarSugerencia() { return this.cronNotificarSugerencia; }
 }
