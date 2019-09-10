@@ -1,4 +1,4 @@
-package domain.Tipos;
+	 package domain.Tipos;
 
 import domain.Capa;
 import domain.Categorias.*;
