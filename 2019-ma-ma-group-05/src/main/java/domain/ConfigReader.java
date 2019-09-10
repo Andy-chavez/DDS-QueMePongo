@@ -6,8 +6,6 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import services.WppSender;
-
 public class ConfigReader {
     private static ConfigReader singleInstance = null;
 

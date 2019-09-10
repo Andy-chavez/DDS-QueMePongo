@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import domain.Guardarropa;
 import domain.Suscripciones.Free;
 import dtoClases.EventoDto;
-
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -46,30 +44,15 @@ public class Usuario {
 		otroUsuario.getGuardarropas().remove(g);
 		this.guardarropasCompartidos.remove(otroUsuario, g);
 	}
-	public String getMail() {
-		return mail;
-	}
-	public void setMail(String nuevoMail) {
-		mail = nuevoMail;
-	}
-	public String getCelular() {
-		return celular;
-	}
-	public void setCelular(String nuevoNumero) {
-		celular = nuevoNumero;
-	}
-	public void cambiarAPremium(){
-		this.suscripcion.cambiarAPremium(this);
-	}
-	public void cambiarAFree(){
-		this.suscripcion.cambiarAFree(this);
-	}
+	// --- GETTERS Y SETTERS ---
+	public String getMail() { return mail; }
+	public void setMail(String nuevoMail) {	mail = nuevoMail;	}
+	public String getCelular() { return celular; }
+	public void setCelular(String nuevoNumero) { celular = nuevoNumero;	}
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
 	public Suscripcion getSuscripcion(){return this.suscripcion;}
-	
 	public String getNombre(){return this.nombre;}
-	public void setNombre(String unNombre){this.nombre=unNombre;}
-	
+	public void setNombre(String unNombre){this.nombre=unNombre;}	
 	public Guardarropa getGuardarropa(String unNombre){
 		return this.getGuardarropas().stream().filter(g -> g.getNombre().toLowerCase()==unNombre.toLowerCase())
 				.collect(Collectors.toList()).get(0);
@@ -78,6 +61,14 @@ public class Usuario {
 	public List<Prenda> getPrendasDelguardarropa(String nombre){
 		Guardarropa g =  this.getGuardarropa(nombre);
 		return this.suscripcion.getPrendasDelGuardarropa(g);
+	}
+	
+	
+	public void cambiarAPremium(){
+		this.suscripcion.cambiarAPremium(this);
+	}
+	public void cambiarAFree(){
+		this.suscripcion.cambiarAFree(this);
 	}
 	
 	public void agregarPrenda(Guardarropa armario,Prenda prenda){

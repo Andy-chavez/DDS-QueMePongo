@@ -52,8 +52,6 @@ public class Evento implements Observer{
     	this.estado.ejecutar(this);
     }
    
-        
-
     // --- GETTERS Y SETTERS --- 
     
     public Instant getFecha(){ return this.fecha; }

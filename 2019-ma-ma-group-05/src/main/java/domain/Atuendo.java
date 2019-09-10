@@ -20,20 +20,14 @@ public class Atuendo {
 		this.nivelAbrigo = nivelAbrigo;
 		this.sensibilidadFrio = sensibilidadFrio;
 	}
-	public void setNivelAbrigo(int nivelAbrigo){
-		this.nivelAbrigo = nivelAbrigo;
-	}
-	
-	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){
-		this.sensibilidadFrio = sensibilidadFrio;
-	}
-	
-	public SensibilidadFrio getSensibilidadFrio(){
-		return this.sensibilidadFrio;
-	}
-	
-	public void setRechazado(Boolean flag){this.rechazado=flag;}
-	public Boolean getRechazado(){return this.rechazado;}
+	// --- GETTERS Y SETTERS ---
+	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
+	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
+	public SensibilidadFrio getSensibilidadFrio(){	return this.sensibilidadFrio;	}
+	public void setRechazado(Boolean flag){	this.rechazado=flag;}
+	public Boolean getRechazado(){	return this.rechazado;	}
+	public int getNivelAbrigo() {	return this.nivelAbrigo;	}
+	public List<Prenda> getPrendas(){	return this.prendas;	}
 	
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
@@ -47,7 +41,6 @@ public class Atuendo {
 		}
 	}
 	
-	public List<Prenda> getPrendas(){return this.prendas;}
 
 	public Boolean compararConOtroAtuendo(Atuendo atuendo){
 		if(this.prendas.size() != atuendo.getPrendas().size()){
@@ -90,11 +83,7 @@ public class Atuendo {
 		return nivelAbrigo;
 	}
 	
-	public int getNivelAbrigo() {
-		return this.nivelAbrigo;
-	}
 
-	
 	public void printPrendas(){
 		System.out.print("Atuendo: ");
 

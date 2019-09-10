@@ -10,7 +10,5 @@ public abstract class EntidadPersistente {
     @GeneratedValue
     private int id;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {	return id; }
 }

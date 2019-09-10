@@ -5,17 +5,12 @@ import static org.junit.Assert.*;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import domain.Suscripciones.Free;
 import domain.Suscripciones.Premium;
-import domain.Telas.Algodon;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 import static org.mockito.Mockito.*;
-import domain.Tipos.*;
-import domain.Tipos.Short;
 
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;
@@ -25,7 +20,6 @@ public class SuscripcionesTest {
 	private Guardarropa guardarropa2;
 	private Usuario usuario2;
 	private List<Prenda> prendas;
-	private Tela algodon;
 	
 	@Before
 	public void init(){

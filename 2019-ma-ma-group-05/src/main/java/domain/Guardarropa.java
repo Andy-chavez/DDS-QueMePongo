@@ -21,33 +21,20 @@ public class Guardarropa {
 		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}
-	
-	public List<MoldeAtuendo> getMoldesAtuendos(){
-		return this.moldesAtuendos;
-	}
-	
+	// --- GETTERS Y SETTERS ---
+	public List<MoldeAtuendo> getMoldesAtuendos(){ 	return this.moldesAtuendos;	}
 	public void agregarMoldeAtuendo(MoldeAtuendo moldeAtuendo){
-		this.moldesAtuendos.add(moldeAtuendo);
-	}
-	
-	public String getNombre() {
-		return this.nombre;
-	}
-	
-	public void setNombre(String unNombre) {
-		this.nombre = unNombre;
-	}
+		this.moldesAtuendos.add(moldeAtuendo); 	}
+	public String getNombre() { return this.nombre;	}
+	public void setNombre(String unNombre) { this.nombre = unNombre;}
+	public List<Prenda> getPrendas() {	return this.prendas; }
+	public List<Atuendo> getAtuendosSugeridos(){ return this.atuendosSugeridos;	}
 
-	public List<Prenda> getPrendas() {
-		return this.prendas;
+	public void agregarPrenda(Prenda prenda) { 
+		this.prendas.add(prenda); 
 	}
-
-	public void agregarPrenda(Prenda prenda) {
-		this.prendas.add(prenda);
-	}
-
-	public void agregarPrendas(List<Prenda> unasPrendas) {
-		this.prendas.addAll(unasPrendas);
+	public void agregarPrendas(List<Prenda> unasPrendas) { 
+		this.prendas.addAll(unasPrendas); 
 	}
 
 	public int cantidadDePrendas() {
@@ -69,29 +56,6 @@ public class Guardarropa {
 			}
 		}
 	}
-	
-	public List<Atuendo> getAtuendosSugeridos(){
-		return this.atuendosSugeridos;
-	}
-
-	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(String tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario){
-		Prenda prenda = SimpleFactoryPrendas.crearPrenda(tipoDeEstaPrenda);
-		prenda.setTela(unaTela);
-		prenda.setColorPrimario(colorPrimario);
-		prenda.setColorSecundario(colorSecundario);
-		return prenda;
-	}
-	@SuppressWarnings("unused")
-	private Prenda crearNuevaPrenda(String tipoDeEstaPrenda, Tela unaTela, Color colorPrimario,Color colorSecundario, String pathToImg){
-		Prenda prenda = SimpleFactoryPrendas.crearPrenda(tipoDeEstaPrenda);
-		prenda.setTela(unaTela);
-		prenda.setColorPrimario(colorPrimario);
-		prenda.setColorSecundario(colorSecundario);
-		prenda.setImage(pathToImg);
-		return prenda;
-	}
-	
 
 //	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
 //		return obtenerSugerencia.obtenerSugerencia(this, temperatura, sensibilidadFrio);

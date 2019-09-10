@@ -14,20 +14,13 @@ public class MoldeAtuendo {
 		this.nivelAbrigo = atuendo.getNivelAbrigo();
 		this.sensibilidadFrio = atuendo.getSensibilidadFrio();
 	}
-	
-	public List<Tipo> getMoldeTipos(){
-		return this.moldeTipos;
-	}
+	// --- GETTERS Y SETTERS ---
+	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
+	public int getNivelAbrigo(){	return this.nivelAbrigo;	}
+	public SensibilidadFrio getSensibilidadFrio(){ return this.sensibilidadFrio; }
 	
 	public void agregarTipos(Atuendo atuendo){
 		atuendo.getPrendas().forEach( prenda -> this.moldeTipos.add(prenda.getTipo()));
 
-	}
-	public int getNivelAbrigo(){
-		return this.nivelAbrigo;
-	}
-	
-	public SensibilidadFrio getSensibilidadFrio(){
-		return this.sensibilidadFrio;
 	}
 }
