@@ -1,9 +1,6 @@
 package services;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -11,11 +8,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.JOptionPane;
-
 import domain.ConfigReader;
 import domain.Sender;
-import domain.Usuario;
 import dtoClases.SenderDto;
 
 public class EmailSender extends Sender{
@@ -32,7 +26,6 @@ public class EmailSender extends Sender{
           this.configurar();
     }
     private static EmailSender singleInstance = null;
-
 	public static EmailSender getInstance(){
 		if(singleInstance == null){
 			singleInstance = new EmailSender();
@@ -45,24 +38,22 @@ public class EmailSender extends Sender{
     	this.contraDeEmisor=ConfigReader.getStringValue(nombreConfig, "contraEmisor");
     }
     public void enviar(SenderDto dto){ 
-          this.configurar();
-          //get Session   
-          Session session = Session.getInstance(props,    
-           new javax.mail.Authenticator() {    
-           protected PasswordAuthentication getPasswordAuthentication() {    
-           return new PasswordAuthentication(emisor,contraDeEmisor);  
-           }    
-          });    
-          //compose message    
-          try {    
-           MimeMessage message = new MimeMessage(session);    
-           message.addRecipient(Message.RecipientType.TO,new InternetAddress(dto.mail));    
-           message.setSubject(dto.asunto);    
-           message.setText(dto.mensaje);    
-           //send message  
-           Transport.send(message);    
-           //System.out.println("message sent successfully");    
-          } catch (MessagingException e) {throw new RuntimeException(e);}    
-             
+    	this.configurar();
+    	//get Session   
+    	Session session = Session.getInstance(props,    
+    			new javax.mail.Authenticator() {    
+    		protected PasswordAuthentication getPasswordAuthentication() {    
+    			return new PasswordAuthentication(emisor,contraDeEmisor);  
+    		}    
+    	});    
+    	//compose message    
+    	try {    
+    		MimeMessage message = new MimeMessage(session);    
+    		message.addRecipient(Message.RecipientType.TO,new InternetAddress(dto.mail));    
+    		message.setSubject(dto.asunto);    
+    		message.setText(dto.mensaje);      
+    		Transport.send(message); //send message        
+    	} catch (MessagingException e) {throw new RuntimeException(e);}    
+
     }  
 }

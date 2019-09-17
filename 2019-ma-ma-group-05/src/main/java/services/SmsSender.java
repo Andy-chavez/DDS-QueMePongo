@@ -1,17 +1,9 @@
 package services;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.swing.JOptionPane;
-
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-
 import domain.ConfigReader;
 import domain.Sender;
-import domain.Usuario;
 import dtoClases.SenderDto;
 
 public class SmsSender extends Sender {
@@ -37,10 +29,9 @@ public class SmsSender extends Sender {
 	    }
 	    
 	    public void enviar(SenderDto dto) {
-	    //public void enviar(String mensaje, Usuario usuario) {
+	    	this.configurar();
 	        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 	        Message message = Message.creator( /*(from, to, menssage) */
-	                //new com.twilio.type.PhoneNumber("+541173612330"), //aca va el numero del usuario, dejo temporalmente eso asi voy viendo si puedo mandar un wpp
 	                new com.twilio.type.PhoneNumber(dto.celular),
 	                new com.twilio.type.PhoneNumber(TWILIO),
 	                dto.mensaje)
