@@ -1,11 +1,9 @@
 package domain;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import domain.Categorias.*;

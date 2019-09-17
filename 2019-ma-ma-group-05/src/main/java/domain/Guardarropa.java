@@ -1,16 +1,31 @@
 package domain;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import domain.Atuendo;
 import domain.Prenda;
 
+@Entity
+@Table(name = "guardarropa")
 public class Guardarropa {
+	@Column(name = "COMPLETAR")
 	private String nombre;
+	@OneToMany
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private List<Prenda> prendas;
+	@OneToMany
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
-	private GestorSugerencia obtenerSugerencia;
+	@Transient //TODO cambiar cuando decidamos eso bien
 	private List<MoldeAtuendo> moldesAtuendos;
 
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {

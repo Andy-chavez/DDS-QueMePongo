@@ -2,20 +2,27 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import domain.Categoria;
-import domain.Categorias.*;
 
 public abstract class Tipo extends EntidadPersistente{
+	@ManyToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	protected Categoria categoria;
-	
+	@ManyToMany
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
-	
+	@Column(name = "COMPLETAR")
 	protected String nombre;
-	
+	@Column(name = "COMPLETAR")
 	protected int capa;
-	
+	@Column(name = "COMPLETAR")
 	protected int nivelAbrigo;
 	
 	// --- GETTERS Y SETTERS ---

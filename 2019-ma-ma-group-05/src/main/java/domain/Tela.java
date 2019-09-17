@@ -1,6 +1,9 @@
 package domain;
 
-public class Tela {
+import javax.persistence.Column;
+
+public class Tela extends EntidadPersistente{
+	@Column(name = "COMPLETAR")
 	protected String nombre;
 	
 	public void setNombre(String unNombre) {

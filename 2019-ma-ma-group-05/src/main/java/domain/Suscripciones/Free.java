@@ -2,6 +2,10 @@ package domain.Suscripciones;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import domain.ConfigReader;
 import domain.Guardarropa;
 import domain.Prenda;
@@ -9,7 +13,10 @@ import domain.Suscripcion;
 import domain.Usuario;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 
+@Entity
+@DiscriminatorValue("free")
 public class Free extends Suscripcion {
+	@Transient
 	private int limiteDePrendas;
 	public Free(){
 		this.inicializarVariablesDesdeConfig();

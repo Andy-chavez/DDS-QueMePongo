@@ -1,8 +1,17 @@
 package domain;
 
-public class SensibilidadFrio {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COMPLETAR")
+public class SensibilidadFrio extends EntidadPersistente {
+	@Column(name = "COMPLETAR")
 	private int incremento = 5;
+	@Column(name = "COMPLETAR")
 	private int superior;
+	@Column(name = "COMPLETAR")
 	private int inferior;
 	
 	public SensibilidadFrio(){
