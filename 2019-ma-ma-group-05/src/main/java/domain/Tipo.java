@@ -7,11 +7,15 @@ import java.util.stream.Stream;
 import domain.Categoria;
 import domain.Categorias.*;
 
-public abstract class Tipo {
+public abstract class Tipo extends EntidadPersistente{
 	protected Categoria categoria;
+	
 	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
+	
 	protected String nombre;
+	
 	protected int capa;
+	
 	protected int nivelAbrigo;
 	
 	// --- GETTERS Y SETTERS ---

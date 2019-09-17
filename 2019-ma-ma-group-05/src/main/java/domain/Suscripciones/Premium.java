@@ -1,6 +1,5 @@
 package domain.Suscripciones;
 
-
 import java.util.List;
 
 import domain.Guardarropa;
@@ -8,7 +7,7 @@ import domain.Prenda;
 import domain.Suscripcion;
 import domain.Usuario;
 
-public class Premium implements Suscripcion{
+public class Premium extends Suscripcion{
 	public void cambiarAFree(Usuario usuario){
 		usuario.setSuscripcion(new Free());
 	}

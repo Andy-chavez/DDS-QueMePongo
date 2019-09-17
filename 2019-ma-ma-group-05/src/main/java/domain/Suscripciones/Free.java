@@ -1,11 +1,6 @@
 package domain.Suscripciones;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
-
-import javax.swing.JOptionPane;
 
 import domain.ConfigReader;
 import domain.Guardarropa;
@@ -14,7 +9,7 @@ import domain.Suscripcion;
 import domain.Usuario;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 
-public class Free implements Suscripcion {
+public class Free extends Suscripcion {
 	private int limiteDePrendas;
 	public Free(){
 		this.inicializarVariablesDesdeConfig();

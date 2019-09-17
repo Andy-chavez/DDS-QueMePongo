@@ -1,9 +1,12 @@
 package domain.Categorias;
 
+import javax.persistence.Transient;
+
 import domain.Atuendo;
 import domain.Categoria;
 
 public class SuperiorBase extends Categoria{
+	@Transient
 	private static SuperiorBase singleInstance = null;
 	public static SuperiorBase getInstance(){
 		if(singleInstance == null){

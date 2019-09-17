@@ -4,22 +4,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.persistence.*;
 import domain.Guardarropa;
 import domain.Suscripciones.Free;
 import dtoClases.EventoDto;
 import java.time.Instant;
-import java.time.LocalDate;
 
-public class Usuario {
+@Entity
+@Table(name = "usuario")
+public class Usuario extends EntidadPersistente {
+	@ManyToMany
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private List<Guardarropa> guardarropas;
+	@Column(name = "COMPLETAR")
 	private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private Suscripcion suscripcion;
+	@ManyToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private List<Evento> eventos;
+	@Column(name = "COMPLETAR")
 	private String celular;
+	@Column(name = "COMPLETAR")
 	private String mail;
+	@OneToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
+	@Transient
 	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
+	@Transient
 	private GestorSugerencia gestorSugerencia;
+	@Transient
 	private GestorDeOperaciones gestorOperaciones;
 	
 	public Usuario(String nombre){
