@@ -17,7 +17,7 @@ import domain.Telas.Algodon;
 import domain.Telas.Cuero;
 import domain.Tipos.*;
 import services.ApiDs;
-//import static org.mockito.Mockito.*
+
 public class ObtenerSugerenciaTest {
 	private Guardarropa guardarropa;
 

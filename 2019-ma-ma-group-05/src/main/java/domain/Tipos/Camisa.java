@@ -12,7 +12,7 @@ import domain.Categorias.*;
 public class Camisa extends Tipo{
 	private static Camisa instancia;
 	public Camisa(){
-		this.categoria = new SuperiorBase();
+		this.categoria = SuperiorBase.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());

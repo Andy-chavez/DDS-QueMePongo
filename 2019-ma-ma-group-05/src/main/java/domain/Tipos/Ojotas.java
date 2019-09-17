@@ -12,7 +12,7 @@ import domain.Telas.Seda;
 public class Ojotas extends Tipo{
 	private static Ojotas instancia;
 	public Ojotas(){
-		this.categoria = new Calzado();
+		this.categoria = Calzado.getInstance();
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
 		this.telasPosibles.add(new Cuero());

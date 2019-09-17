@@ -12,7 +12,7 @@ import domain.Telas.Seda;
 public class Sweater extends Tipo{
 	private static Sweater instancia;
 	public Sweater(){
-		this.categoria = new SuperiorExtra();
+		this.categoria = SuperiorExtra.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());

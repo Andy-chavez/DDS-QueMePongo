@@ -13,7 +13,7 @@ import domain.Telas.Seda;
 public class Campera extends Tipo{
 	private static Campera instancia;
 	public Campera(){
-		this.categoria = new SuperiorExtra();
+		this.categoria = SuperiorExtra.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
