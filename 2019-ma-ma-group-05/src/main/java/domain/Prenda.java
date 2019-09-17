@@ -14,7 +14,7 @@ import domain.Excepciones.ColoresIgualesException;
 import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
-public class Prenda implements Cloneable {
+public class Prenda {
 	private Color colorPrimario;
 	private Color colorSecundario;
 	private Tipo tipo;
@@ -23,16 +23,6 @@ public class Prenda implements Cloneable {
 	private Tela tela;
 	private List<LocalDate> fechasReservadas;
 
-	public Prenda makeCopy(){
-		Prenda prendaCopy = null;
-		try {
-			prendaCopy = (Prenda) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return prendaCopy;
-	}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.fechasReservadas = new ArrayList<LocalDate>();
