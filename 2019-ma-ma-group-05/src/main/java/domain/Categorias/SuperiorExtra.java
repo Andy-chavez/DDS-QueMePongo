@@ -10,7 +10,13 @@ import domain.Prenda;
 import domain.Tipo;
 
 public class SuperiorExtra extends Categoria{
-	
+	private static SuperiorExtra singleInstance = null;
+	public static SuperiorExtra getInstance(){
+		if(singleInstance == null){
+			singleInstance = new SuperiorExtra();
+		}
+		return singleInstance;
+	}
 	private List<Prenda> filtrarTipoYaUsado(List<Prenda> prendas, Tipo tipo){
 		List<Prenda> prendasFiltradas =  prendas.stream().filter(p -> !p.esDeTipo(tipo)).collect(Collectors.toList());
 		return prendasFiltradas;

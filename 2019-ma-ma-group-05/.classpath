@@ -12,7 +12,7 @@
 	<classpathentry kind="var" path="M2_REPO/javax/mail/mail/1.4/mail-1.4.jar" sourcepath="M2_REPO/javax/mail/mail/1.4/mail-1.4-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/xml/bind/jaxb-api/2.2/jaxb-api-2.2.jar" sourcepath="M2_REPO/javax/xml/bind/jaxb-api/2.2/jaxb-api-2.2-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar" sourcepath="M2_REPO/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"/>
 	<classpathentry kind="var" path="M2_REPO/org/uqbar-project/jpa-java8-extras/1.0-alpha-1/jpa-java8-extras-1.0-alpha-1.jar" sourcepath="M2_REPO/org/uqbar-project/jpa-java8-extras/1.0-alpha-1/jpa-java8-extras-1.0-alpha-1-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Andy/.m2/repository/org/uqbar-project/jpa-java8-extras/1.0-alpha-1/jpa-java8-extras-1.0-alpha-1-javadoc.jar!/"/>
