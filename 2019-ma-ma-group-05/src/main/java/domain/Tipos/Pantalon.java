@@ -13,7 +13,7 @@ import domain.Telas.Seda;
 public class Pantalon extends Tipo{
 	private static Pantalon instancia;
 	public Pantalon(){
-		this.categoria = new Inferior();
+		this.categoria = Inferior.getInstance();
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
 		this.telasPosibles.add(new Cuero());

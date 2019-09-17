@@ -9,7 +9,7 @@ public class Antiparras extends Tipo{
 	private static Antiparras instancia;
 
 	public Antiparras(){
-		this.categoria = new Accesorio();
+		this.categoria = Accesorio.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.nombre = "antiparras";

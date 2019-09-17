@@ -9,7 +9,7 @@ import domain.Telas.Cuero;
 public class Reloj extends Tipo{
 	private static Reloj instancia;
 	public Reloj(){
-		this.categoria = new Accesorio();
+		this.categoria = Accesorio.getInstance();
 		this.telasPosibles.add(new Cuero());
 		this.nombre = "reloj";
 		this.capa = 0;

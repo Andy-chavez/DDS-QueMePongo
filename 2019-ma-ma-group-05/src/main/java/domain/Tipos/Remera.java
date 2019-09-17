@@ -8,7 +8,7 @@ import domain.Telas.Nylon;
 public class Remera extends Tipo{
 	private static Remera instancia;
 	public Remera(){
-		this.categoria = new SuperiorBase();
+		this.categoria = SuperiorBase.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.nombre = "remera";

@@ -12,7 +12,7 @@ import domain.Telas.Seda;
 public class Short extends Tipo{
 	private static Short instancia;
 	public Short(){
-		this.categoria = new Inferior();
+		this.categoria = Inferior.getInstance();
 		this.telasPosibles.add(new Algodon());
 		this.telasPosibles.add(new Nylon());
 		this.telasPosibles.add(new Seda());
