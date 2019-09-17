@@ -20,6 +20,7 @@ public class Usuario {
 	private SensibilidadFrio sensibilidadFrio;
 	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
 	private GestorSugerencia gestorSugerencia;
+	private GestorDeOperaciones gestorOperaciones;
 	
 	public Usuario(String nombre){
 		this.nombre=nombre;
@@ -28,11 +29,13 @@ public class Usuario {
 		this.sensibilidadFrio = new SensibilidadFrio();
 		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 		this.gestorSugerencia = GestorSugerencia.getInstance();
+		this.gestorOperaciones = new  GestorDeOperaciones();
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
 		this(unNombre);
 		this.agregarGuardarropa(guardarropa);
 	}
+	public GestorDeOperaciones getGestorOperaciones(){return this.gestorOperaciones;}
 	public HashMap<Usuario,Guardarropa> getGuardarropasCompartidos(){
 		return this.guardarropasCompartidos;
 	}
