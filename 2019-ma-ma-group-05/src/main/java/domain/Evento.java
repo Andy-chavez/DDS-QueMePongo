@@ -6,7 +6,7 @@ import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
 
-public class Evento implements Observer{
+public class Evento implements Observee{
 	private String nombre;
 	private String lugar;
 	private Instant fecha;

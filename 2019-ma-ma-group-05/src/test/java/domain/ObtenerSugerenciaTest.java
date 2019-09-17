@@ -272,6 +272,5 @@ public class ObtenerSugerenciaTest {
 		Evento evento = new Evento(eventoDto);
 		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();
 		
-		cron.planificarEvento(evento);
 		}
 }
