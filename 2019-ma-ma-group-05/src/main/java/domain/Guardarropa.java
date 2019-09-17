@@ -57,9 +57,4 @@ public class Guardarropa {
 		}
 	}
 
-//	public Atuendo obtenerSugerencia(double temperatura, SensibilidadFrio sensibilidadFrio) {
-//		return obtenerSugerencia.obtenerSugerencia(this, temperatura, sensibilidadFrio);
-//	}
-	
-
 }
