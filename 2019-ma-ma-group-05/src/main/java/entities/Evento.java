@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -30,14 +31,13 @@ public class Evento extends EntidadPersistente implements Observee{
     private String tipo;
 	
 	@OneToOne(mappedBy = "evento", cascade = {CascadeType.ALL})
-	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")	
     private Atuendo atuendo;
 	
 	@OneToOne(mappedBy = "evento")
-	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")    
 	private Guardarropa guardarropa;
 	
-	@Column(name = "tipo")
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 	
 	@Column(name = "tipo")

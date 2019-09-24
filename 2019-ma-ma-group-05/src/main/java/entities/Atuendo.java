@@ -6,28 +6,34 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import entities.Prenda;
 
+@Entity
+@Table(name = "atuendo")
 public class Atuendo {
-
-	private List<Prenda> prendas = new ArrayList<Prenda>();;
+	@OneToMany(mappedBy ="atuendo")
+	private List<Prenda> prendas = new ArrayList<Prenda>();
+	
+	@Column(name = "rechazado")
 	private Boolean rechazado;
+	
+	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
+	
+	@OneToOne(mappedBy = "atuendo")
 	private SensibilidadFrio sensibilidadFrio;
 
 	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
 		this.nivelAbrigo = nivelAbrigo;
 		this.sensibilidadFrio = sensibilidadFrio;
 	}
-	// --- GETTERS Y SETTERS ---
-	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
-	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
-	public SensibilidadFrio getSensibilidadFrio(){	return this.sensibilidadFrio;	}
-	public void setRechazado(Boolean flag){	this.rechazado=flag;}
-	public Boolean getRechazado(){	return this.rechazado;	}
-	public int getNivelAbrigo() {	return this.nivelAbrigo;	}
-	public List<Prenda> getPrendas(){	return this.prendas;	}
-	
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
 			this.prendas.add(prenda);
@@ -85,7 +91,6 @@ public class Atuendo {
 
 	public void printPrendas(){
 		System.out.print("Atuendo: ");
-
 		for(Prenda prenda : this.prendas){
 			System.out.print(prenda.getTipo().getNombre() + " ");
 		}
@@ -100,4 +105,14 @@ public class Atuendo {
 	public void liberarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.liberarFecha(fecha));
 	}
+	
+	// --- GETTERS Y SETTERS ---
+	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
+	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
+	public SensibilidadFrio getSensibilidadFrio(){	return this.sensibilidadFrio;	}
+	public void setRechazado(Boolean flag){	this.rechazado=flag;}
+	public Boolean getRechazado(){	return this.rechazado;	}
+	public int getNivelAbrigo() {	return this.nivelAbrigo;	}
+	public List<Prenda> getPrendas(){	return this.prendas;	}
 }
+
