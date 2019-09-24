@@ -5,13 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="COMPLETAR")
+@Table(name="sensibilidadFrio")
 public class SensibilidadFrio extends EntidadPersistente {
-	@Column(name = "COMPLETAR")
+	@Column(name = "incremento")
 	private int incremento = 5;
-	@Column(name = "COMPLETAR")
+	@Column(name = "superior")
 	private int superior;
-	@Column(name = "COMPLETAR")
+	@Column(name = "inferior")
 	private int inferior;
 	
 	public SensibilidadFrio(){

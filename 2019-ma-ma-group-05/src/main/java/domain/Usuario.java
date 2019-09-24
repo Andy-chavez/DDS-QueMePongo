@@ -22,7 +22,7 @@ public class Usuario extends EntidadPersistente {
 	private String nombre;
 	
 	@ManyToOne
-	@JoinColumn(name = "suscripcion", referencedColumnName = "id")
+	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
 	private Suscripcion suscripcion;
 	
 	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -36,7 +36,7 @@ public class Usuario extends EntidadPersistente {
 	private String mail;
 	
 	@OneToOne(mappedBy = "usuario", cascade = {CascadeType.ALL})
-	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
+	@JoinColumn(name = "sensibilidad_frio_id", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	@Transient

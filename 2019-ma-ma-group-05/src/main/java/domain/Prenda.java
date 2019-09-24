@@ -5,13 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -27,21 +21,22 @@ import domain.Excepciones.ValidacionException;
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
 
-	@Column(name = "colorPrimario")
+	@Column(name = "color_primario")
 	private Color colorPrimario;
-	@Column(name = "colorSecundario")
+	@Column(name = "color_secundario")
 	private Color colorSecundario;
 	@Column(name = "imagen")
 	private String imagen;
 
-	@ManyToOne
-	@JoinColumn(name = "tipo", referencedColumnName = "id")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
+	@ManyToOne
+	@JoinColumn(name = "tela_id", referencedColumnName = "id")
+	private Tela tela;
+
 	@Transient
 	private ImgResizer resizer;
-	@ManyToOne
-	@JoinColumn(name = "tela", referencedColumnName = "id")
-	private Tela tela;
 	//TODO preguntar
 	@Transient
 	private List<LocalDate> fechasReservadas;

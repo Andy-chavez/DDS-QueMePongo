@@ -22,10 +22,11 @@ public class Guardarropa {
 	private String nombre;
 
 	@OneToMany
-	@JoinColumn(name = "prendas", referencedColumnName = "id")
+	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
-	@OneToMany
-	@JoinColumn(name = "atuendosSugeridos", referencedColumnName = "id")
+//	@OneToMany
+//	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
+	@Transient
 	private List<Atuendo> atuendosSugeridos;
 
 	@Transient //TODO cambiar cuando decidamos eso bien
