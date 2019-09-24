@@ -23,7 +23,8 @@ public class SuscripcionAttributeConverter implements AttributeConverter<Suscrip
 		
 		case "premium":
 			return Premium.getInstance();
-	
+		default:
+			return Free.getInstance();
 		}
 	}
 }
