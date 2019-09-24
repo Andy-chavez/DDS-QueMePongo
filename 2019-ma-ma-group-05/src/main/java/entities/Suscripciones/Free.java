@@ -3,6 +3,7 @@ package entities.Suscripciones;
 import java.util.List;
 
 import entities.ConfigReader;
+import entities.GestorSugerencia;
 import entities.Guardarropa;
 import entities.Prenda;
 import entities.Suscripcion;
@@ -11,7 +12,14 @@ import entities.Excepciones.LimiteDePrendasAlcanzadoException;
 
 public class Free extends Suscripcion {
 	private int limiteDePrendas;
-	public Free(){
+	private static Free singleInstance = null;
+	public static Free getInstance(){
+		if(singleInstance == null){
+			singleInstance = new Free();
+		}
+		return singleInstance;
+	}
+	private Free(){
 		this.inicializarVariablesDesdeConfig();
 	}
 	private void inicializarVariablesDesdeConfig(){
@@ -24,7 +32,7 @@ public class Free extends Suscripcion {
 		System.out.println("El usuario ya es free");
 	}
 	public void cambiarAPremium(Usuario usuario){
-		usuario.setSuscripcion(new Premium());
+		usuario.setSuscripcion(Premium.getInstance());
 	}
 	public void agregarPrenda(Guardarropa armario,Prenda prenda) {
 		if(armario.cantidadDePrendas()<this.limiteDePrendas){

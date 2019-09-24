@@ -24,7 +24,7 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@Transient
+	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
 	
 	@ManyToOne
@@ -32,7 +32,6 @@ public class Usuario extends EntidadPersistente {
 	private SuscripcionEnum suscripcionEnum;
 	
 	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "evento_id", referencedColumnName = "id")
 	private List<Evento> eventos;
 	
 	@Column(name = "celular")
@@ -42,7 +41,6 @@ public class Usuario extends EntidadPersistente {
 	private String mail;
 	
 	@OneToOne(mappedBy = "usuario", cascade = {CascadeType.ALL})
-	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	@Transient
@@ -57,7 +55,7 @@ public class Usuario extends EntidadPersistente {
 	public Usuario(String nombre){
 		this.nombre=nombre;
 		this.guardarropas= new ArrayList<Guardarropa>();
-		this.suscripcion=new Free();
+		this.suscripcion= Free.getInstance();
 		this.sensibilidadFrio = new SensibilidadFrio();
 		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 		this.gestorSugerencia = GestorSugerencia.getInstance();
