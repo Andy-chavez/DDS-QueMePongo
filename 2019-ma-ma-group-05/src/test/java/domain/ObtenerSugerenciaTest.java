@@ -28,8 +28,6 @@ import entities.Categorias.SuperiorExtra;
 import entities.EstadosEvento.Pendiente;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
-import entities.Tipos.*;
-import services.ApiDs;
 
 public class ObtenerSugerenciaTest {
 	private Guardarropa guardarropa;
@@ -273,7 +271,7 @@ public class ObtenerSugerenciaTest {
 	}
 	
 	@Test
-	public void cronSugerencia(){
+	public void cronSugerencia(){ //todo kind of faltan cosas aca
 		System.out.println("\ncronSugerencia()");
 		EventoDto eventoDto = new EventoDto();
 		eventoDto.repeticionDias = 2000;

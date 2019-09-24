@@ -16,8 +16,6 @@ import entities.Excepciones.LimiteDePrendasAlcanzadoException;
 import entities.Suscripciones.Free;
 import entities.Suscripciones.Premium;
 
-import static org.mockito.Mockito.*;
-
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;
 	

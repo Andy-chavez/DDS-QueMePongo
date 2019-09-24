@@ -2,9 +2,6 @@ package domain;
 
 import static org.junit.Assert.*;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 

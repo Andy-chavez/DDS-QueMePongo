@@ -8,12 +8,6 @@ import entities.Prenda;
 import entities.SimpleFactoryPrendas;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
-import entities.Tipos.Antiparras;
-import entities.Tipos.Musculosa;
-import entities.Tipos.Ojotas;
-import entities.Tipos.Remera;
-import entities.Tipos.Short;
-import entities.Tipos.Zapatillas;
 
 public class TestCargaDePrendas {
 	public static List<Prenda> init(){

@@ -12,7 +12,6 @@ import entities.Tela;
 import entities.Categorias.*;
 import entities.Excepciones.ColoresIgualesException;
 import entities.Excepciones.TelaIncompatibleException;
-import entities.Excepciones.ValidacionException;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
 import entities.Tipos.*;
@@ -20,7 +19,6 @@ import entities.Tipos.*;
 public class PrendaTest {
 	private Prenda prenda;
 	private Prenda zapatillas;
-	private Zapatillas tipo;
 	private Remera remeraTipo;
 	private Tela algodon;
 	private Tela cuero;
