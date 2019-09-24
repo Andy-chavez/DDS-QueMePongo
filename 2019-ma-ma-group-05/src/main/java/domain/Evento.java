@@ -3,8 +3,11 @@ package domain;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -12,30 +15,49 @@ import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
 
-public class Evento implements Observee{
-
 @Entity
-@Table(name = "usuario")
-public class Evento extends EntidadPersistente implements Observer{
-	@Column(name = "COMPLETAR")
+@Table(name = "evento")
+public class Evento extends EntidadPersistente implements Observee{
+	@Column(name = "nombre")
 	private String nombre;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "lugar")
 	private String lugar;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "fecha")
 	private Instant fecha;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "tipo")
     private String tipo;
+	
+	@OneToOne(mappedBy = "evento", cascade = {CascadeType.ALL})
+	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")	
+    private Atuendo atuendo;
+	
+	@OneToOne(mappedBy = "evento")
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")    
+	private Guardarropa guardarropa;
+	
+	@Column(name = "tipo")
+    private Usuario usuario;
+	
+	@Column(name = "tipo")
+    private EstadoEvento estado;
+	
+	@Column(name = "repetir")
+    private Boolean repetir;
+	
+	@Column(name = "repeticion_dias")
+    private int repeticionDias;
+
+    @Transient
     private GestorSugerencia gestorSugerencia;
     @Transient
     private CronGenerarSugerencia cronSugerencia;
-    private Atuendo atuendo;
-    private Guardarropa guardarropa;
-    private Usuario usuario;
-    private EstadoEvento estado;
-    private Boolean repetir;
-    private int repeticionDias;
-	private GestorDeClima gestorClima;
-	private CronNotificarSugerencia cronNotificarSugerencia;
+    @Transient
+    private GestorDeClima gestorClima;
+    @Transient
+    private CronNotificarSugerencia cronNotificarSugerencia;
 	
     public Evento(EventoDto eventoDto){
     	this.gestorSugerencia = GestorSugerencia.getInstance();
