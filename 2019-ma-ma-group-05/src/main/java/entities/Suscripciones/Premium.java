@@ -11,9 +11,17 @@ import entities.Suscripcion;
 import entities.Usuario;
 
 public class Premium extends Suscripcion{
-	public void cambiarAFree(Usuario usuario){
-		usuario.setSuscripcion(new Free());
+	private static Premium singleInstance = null;
+	public static Premium getInstance(){
+		if(singleInstance == null){
+			singleInstance = new Premium();
+		}
+		return singleInstance;
 	}
+	public void cambiarAFree(Usuario usuario){
+		usuario.setSuscripcion(Free.getInstance());
+	}
+	private Premium(){};
 	public void cambiarAPremium(Usuario usuario){
 		//no sé si lanzar exception o simplemente no hacer nada, me parece too much lanzar una excepción.
 		System.out.println("El usuario ya es premium");
