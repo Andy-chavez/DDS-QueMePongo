@@ -2,10 +2,6 @@ package entities.Suscripciones;
 
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
-
 import entities.ConfigReader;
 import entities.Guardarropa;
 import entities.Prenda;
