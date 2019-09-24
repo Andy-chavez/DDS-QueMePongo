@@ -23,6 +23,7 @@ import domain.Excepciones.ColoresIgualesException;
 import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
+public class Prenda {
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
@@ -43,16 +44,6 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	//TODO preguntar
 	private List<LocalDate> fechasReservadas;
 
-	public Prenda makeCopy(){
-		Prenda prendaCopy = null;
-		try {
-			prendaCopy = (Prenda) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return prendaCopy;
-	}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.fechasReservadas = new ArrayList<LocalDate>();
