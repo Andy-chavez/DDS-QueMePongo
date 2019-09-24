@@ -23,7 +23,6 @@ import domain.Excepciones.ColoresIgualesException;
 import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
-public class Prenda {
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {

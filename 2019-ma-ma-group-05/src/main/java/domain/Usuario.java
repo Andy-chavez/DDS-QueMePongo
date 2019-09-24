@@ -14,28 +14,37 @@ import java.time.Instant;
 @Entity
 @Table(name = "usuario")
 public class Usuario extends EntidadPersistente {
-	@ManyToMany
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@ManyToMany(mappedBy = "usuario", cascade = {CascadeType.ALL})
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Guardarropa> guardarropas;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "nombre")
 	private String nombre;
+	
 	@ManyToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@JoinColumn(name = "suscripcion", referencedColumnName = "id")
 	private Suscripcion suscripcion;
-	@ManyToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	
+	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "evento_id", referencedColumnName = "id")
 	private List<Evento> eventos;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "celular")
 	private String celular;
-	@Column(name = "COMPLETAR")
+	
+	@Column(name = "mail")
 	private String mail;
-	@OneToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	
+	@OneToOne(mappedBy = "usuario", cascade = {CascadeType.ALL})
+	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
+	
 	@Transient
 	private HashMap<Usuario,Guardarropa> guardarropasCompartidos;
+	
 	@Transient
 	private GestorSugerencia gestorSugerencia;
+	
 	@Transient
 	private GestorDeOperaciones gestorOperaciones;
 	
