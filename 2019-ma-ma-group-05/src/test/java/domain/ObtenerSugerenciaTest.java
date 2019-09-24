@@ -54,7 +54,7 @@ public class ObtenerSugerenciaTest {
 	private Cuero cuero;
 	private List<Prenda> prendas;
 	
-	private GestorDeClima gestor;
+
 	GestorSugerencia gestorSugerencia;
 	private Tela algodon;
 	
@@ -141,7 +141,6 @@ public class ObtenerSugerenciaTest {
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 		gestorSugerencia = GestorSugerencia.getInstance();
-		gestor = GestorDeClima.getInstance();
 		List<ApiClima> apis= new ArrayList<ApiClima>();
 	}
 	@Test

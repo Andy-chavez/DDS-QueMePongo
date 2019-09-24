@@ -9,11 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dtoClases.EventoDto;
-import entities.ApiClima;
 import entities.Atuendo;
 import entities.CronGenerarSugerencia;
 import entities.Evento;
-import entities.GestorDeClima;
 import entities.GestorSugerencia;
 import entities.Guardarropa;
 import entities.Prenda;
@@ -24,7 +22,6 @@ public class EventoTest {
 	private Guardarropa guardarropa;
 	private Usuario usuario;
 	private List<Prenda> prendas;
-	private GestorDeClima gestor;
 	GestorSugerencia gestorSugerencia;
 	private EventoDto eventoDto;
 	private CronGenerarSugerencia cron;
@@ -36,8 +33,6 @@ public class EventoTest {
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 		gestorSugerencia = GestorSugerencia.getInstance();
-		gestor = GestorDeClima.getInstance();
-		List<ApiClima> apis= new ArrayList<ApiClima>();
 		
 		eventoDto = new EventoDto();
 		eventoDto.repetir = false;
