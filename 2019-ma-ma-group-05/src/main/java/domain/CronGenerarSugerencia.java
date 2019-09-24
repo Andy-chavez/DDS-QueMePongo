@@ -9,15 +9,18 @@ import java.time.Duration;
 import domain.Evento;
 
 
-public class CronGenerarSugerencia extends TimerTask implements Observee{
+public class CronGenerarSugerencia extends TimerTask implements Observer{
 	private static CronGenerarSugerencia singleInstance = null;
 	private Timer timer;
-	private List<Observer> eventos;
+	private List<Observee> eventos;
 	
 	private CronGenerarSugerencia(){
 		timer = new Timer();
-		eventos = new ArrayList<Observer>();
-//		timer.schedule(this, 0, Duration.ofHours(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
+		eventos = new ArrayList<Observee>();
+		// para cronTestMain
+//		timer.schedule(this, 1000, 2000, 3000);
+
+		timer.schedule(this, 0, Duration.ofHours(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
 	}
 	public static CronGenerarSugerencia getInstance(){
 		if(singleInstance == null){
@@ -31,18 +34,18 @@ public class CronGenerarSugerencia extends TimerTask implements Observee{
 		this.notificarObservers();
 	}
 	@Override
-	public void registrar(Observer o) {
+	public void registrar(Observee o) {
 		this.eventos.add(o);
 	}
 	@Override
-	public void sacar(Observer o) {
+	public void sacar(Observee o) {
 		this.eventos.remove(o);	
 	}
 	@Override
 	public void notificarObservers() {
 		eventos.forEach(e -> e.ejecutar());
 	}
-	public  List<Observer> getEventos(){
+	public  List<Observee> getEventos(){
 		return this.eventos;
 	}
 	

@@ -12,6 +12,8 @@ import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
 
+public class Evento implements Observee{
+
 @Entity
 @Table(name = "usuario")
 public class Evento extends EntidadPersistente implements Observer{

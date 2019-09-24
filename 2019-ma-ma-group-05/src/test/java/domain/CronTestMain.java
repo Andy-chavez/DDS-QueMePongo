@@ -81,15 +81,15 @@ public class CronTestMain {
 
     
 		// Prendas para el test de sugerencias
-		remeraTipo.establecerTela(algodon);
-		camisaTipo.establecerTela(algodon);
-		sweaterTipo.establecerTela(algodon);
-		antiparrasTipo.establecerTela(algodon);
-		shortsTipo.establecerTela(algodon);
-		musculosaTipo.establecerTela(algodon);
-		ojotasTipo.establecerTela(algodon);
-		zapatillasTipo.establecerTela(algodon);
-		camperaTipo.establecerTela(algodon);
+		remeraTipo.setTela(algodon);
+		camisaTipo.setTela(algodon);
+		sweaterTipo.setTela(algodon);
+		antiparrasTipo.setTela(algodon);
+		shortsTipo.setTela(algodon);
+		musculosaTipo.setTela(algodon);
+		ojotasTipo.setTela(algodon);
+		zapatillasTipo.setTela(algodon);
+		camperaTipo.setTela(algodon);
 
 		remera = new Prenda(remeraTipo,Color.black,Color.blue);
 		camisa = new Prenda(camisaTipo,Color.black,Color.blue);
@@ -147,6 +147,6 @@ public class CronTestMain {
 		
 		Evento evento = new Evento(eventoDto);
 		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();		
-		cron.planificarEvento(evento);
+		cron.run();
 	}
 }
