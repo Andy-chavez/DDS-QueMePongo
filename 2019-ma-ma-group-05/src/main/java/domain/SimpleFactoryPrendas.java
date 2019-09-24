@@ -25,9 +25,6 @@ public class SimpleFactoryPrendas {
 		else if(tipo == "musculosa") {
 			return new Prenda(Musculosa.getInstance());
 		}
-		else if(tipo == "camisa") {
-			return new Prenda(Camisa.getInstance());
-		}
 		else if(tipo == "campera") {
 			return new Prenda(Campera.getInstance());
 		}
