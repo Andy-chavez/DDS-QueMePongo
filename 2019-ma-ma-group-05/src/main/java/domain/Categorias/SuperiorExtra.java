@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.persistence.Transient;
+
 import domain.Atuendo;
 import domain.Categoria;
 import domain.Prenda;
 import domain.Tipo;
 
 public class SuperiorExtra extends Categoria{
+	@Transient
 	private static SuperiorExtra singleInstance = null;
 	public static SuperiorExtra getInstance(){
 		if(singleInstance == null){

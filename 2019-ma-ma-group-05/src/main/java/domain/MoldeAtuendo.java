@@ -3,9 +3,24 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoldeAtuendo {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="molde")
+public class MoldeAtuendo extends EntidadPersistente{
+	@ManyToMany //TODO asi?
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private List<Tipo> moldeTipos;
+	@Column(name = "puntos")
 	private int nivelAbrigo;
+	@OneToOne //TODO asi?
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	public MoldeAtuendo(Atuendo atuendo){

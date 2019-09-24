@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public abstract class Categoria {
+public abstract class Categoria extends EntidadPersistente {
 	// devuelve el nivel de abrigo requerido para esta categoria
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){
 		return atuendo.getNivelAbrigo();

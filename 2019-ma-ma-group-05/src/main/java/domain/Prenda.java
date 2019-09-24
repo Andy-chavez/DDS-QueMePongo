@@ -4,6 +4,15 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,12 +24,24 @@ import domain.Excepciones.TelaIncompatibleException;
 import domain.Excepciones.ValidacionException;
 
 public class Prenda {
+@Entity
+@Table(name="prenda")
+public class Prenda extends EntidadPersistente  implements Cloneable {
+	@Column(name = "COMPLETAR")
 	private Color colorPrimario;
+	@Column(name = "COMPLETAR")
 	private Color colorSecundario;
+	@ManyToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private Tipo tipo;
+	@Column(name = "COMPLETAR")
 	private String imagen;
+	@Transient
 	private ImgResizer resizer;
+	@ManyToOne
+	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
 	private Tela tela;
+	//TODO preguntar
 	private List<LocalDate> fechasReservadas;
 
 	public Prenda(Tipo unTipo) {

@@ -2,9 +2,15 @@ package domain;
 
 import java.util.List;
 
-public interface Suscripcion {
-	public void agregarPrenda(Guardarropa armario,Prenda prenda);
-	public void cambiarAPremium(Usuario u);
-	public void cambiarAFree(Usuario u);
-	public List<Prenda> getPrendasDelGuardarropa(Guardarropa g);
+import javax.persistence.*;
+
+@Entity
+@Table(name="suscripcion")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "discriminador")
+public abstract class Suscripcion extends EntidadPersistente {
+	protected abstract void agregarPrenda(Guardarropa armario,Prenda prenda);
+	protected abstract void cambiarAPremium(Usuario u);
+	protected abstract void cambiarAFree(Usuario u);
+	protected abstract List<Prenda> getPrendasDelGuardarropa(Guardarropa g);
 }

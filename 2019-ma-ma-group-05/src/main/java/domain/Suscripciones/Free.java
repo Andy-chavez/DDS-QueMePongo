@@ -1,11 +1,10 @@
 package domain.Suscripciones;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.List;
-import java.util.Properties;
 
-import javax.swing.JOptionPane;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import domain.ConfigReader;
 import domain.Guardarropa;
@@ -14,7 +13,10 @@ import domain.Suscripcion;
 import domain.Usuario;
 import domain.Excepciones.LimiteDePrendasAlcanzadoException;
 
-public class Free implements Suscripcion {
+@Entity
+@DiscriminatorValue("free")
+public class Free extends Suscripcion {
+	@Transient
 	private int limiteDePrendas;
 	public Free(){
 		this.inicializarVariablesDesdeConfig();

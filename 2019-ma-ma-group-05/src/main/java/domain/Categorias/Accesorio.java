@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.persistence.Transient;
+
 import domain.Atuendo;
 import domain.Categoria;
 import domain.Prenda;
 
 public class Accesorio extends Categoria{
+	@Transient
 	private static Accesorio singleInstance = null;
 	public static Accesorio getInstance(){
 		if(singleInstance == null){

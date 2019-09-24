@@ -1,14 +1,18 @@
 package domain.Suscripciones;
 
-
 import java.util.List;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import domain.Guardarropa;
 import domain.Prenda;
 import domain.Suscripcion;
 import domain.Usuario;
 
-public class Premium implements Suscripcion{
+@Entity
+@DiscriminatorValue("free")
+public class Premium extends Suscripcion{
 	public void cambiarAFree(Usuario usuario){
 		usuario.setSuscripcion(new Free());
 	}

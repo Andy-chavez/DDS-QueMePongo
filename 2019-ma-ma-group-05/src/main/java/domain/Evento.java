@@ -2,16 +2,31 @@ package domain;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
 
 public class Evento implements Observee{
+
+@Entity
+@Table(name = "usuario")
+public class Evento extends EntidadPersistente implements Observer{
+	@Column(name = "COMPLETAR")
 	private String nombre;
+	@Column(name = "COMPLETAR")
 	private String lugar;
+	@Column(name = "COMPLETAR")
 	private Instant fecha;
+	@Column(name = "COMPLETAR")
     private String tipo;
     private GestorSugerencia gestorSugerencia;
+    @Transient
     private CronGenerarSugerencia cronSugerencia;
     private Atuendo atuendo;
     private Guardarropa guardarropa;
