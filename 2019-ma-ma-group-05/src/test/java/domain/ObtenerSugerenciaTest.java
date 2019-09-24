@@ -1,8 +1,8 @@
 package domain;
-
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -158,7 +158,7 @@ public class ObtenerSugerenciaTest {
 		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo(40, usuario.getSensibilidadFrio());
 		System.out.println("PREPARANDO ATUENDO");
-		atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(20, guardarropa, usuario.getSensibilidadFrio());
+		atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.printPrendas();
 		
@@ -229,13 +229,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void nivelAbrigoAtuendo(){
 		System.out.println("\nnivelAbrigoAtuendo()");
-		double temperatura = 24.0;
-		int nivelAbrigoRequerido = 40 - (int)temperatura;
-		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
+		//double temperatura = 24.0;
+		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
+		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
 
 		atuendoSugerido.printPrendas();
-		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido);
+		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
 	}
 	
 	@Test
@@ -245,8 +245,8 @@ public class ObtenerSugerenciaTest {
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
-		gestorSugerencia.obtenerSugerenciaParaTemperatura(4.0, guardarropa, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		
 		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
 		for(Tipo t : moldeAtuendo.getMoldeTipos()){
