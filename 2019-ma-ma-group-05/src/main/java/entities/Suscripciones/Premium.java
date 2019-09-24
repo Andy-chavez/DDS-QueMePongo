@@ -10,8 +10,6 @@ import entities.Prenda;
 import entities.Suscripcion;
 import entities.Usuario;
 
-@Entity
-@DiscriminatorValue("free")
 public class Premium extends Suscripcion{
 	public void cambiarAFree(Usuario usuario){
 		usuario.setSuscripcion(new Free());

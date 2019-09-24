@@ -13,10 +13,7 @@ import entities.Suscripcion;
 import entities.Usuario;
 import entities.Excepciones.LimiteDePrendasAlcanzadoException;
 
-@Entity
-@DiscriminatorValue("free")
 public class Free extends Suscripcion {
-	@Transient
 	private int limiteDePrendas;
 	public Free(){
 		this.inicializarVariablesDesdeConfig();

@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import dtoClases.EventoDto;
 import entities.Guardarropa;
+import entities.EnumsNecesarios.SuscripcionEnum;
 import entities.Suscripciones.Free;
 
 import java.time.Instant;
@@ -23,9 +24,12 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@ManyToOne
-	@JoinColumn(name = "suscripcion", referencedColumnName = "id")
+	@Transient
 	private Suscripcion suscripcion;
+	
+	@ManyToOne
+	@JoinColumn(name = "suscripcionEnum", referencedColumnName = "suscripcion_id")
+	private SuscripcionEnum suscripcionEnum;
 	
 	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "evento_id", referencedColumnName = "id")
