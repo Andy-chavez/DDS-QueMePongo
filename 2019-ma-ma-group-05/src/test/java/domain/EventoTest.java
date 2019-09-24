@@ -11,8 +11,17 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
+import entities.ApiClima;
+import entities.Atuendo;
+import entities.CronGenerarSugerencia;
+import entities.Evento;
+import entities.GestorDeClima;
+import entities.GestorSugerencia;
+import entities.Guardarropa;
+import entities.Prenda;
+import entities.Usuario;
+import entities.EstadosEvento.*;
 
 public class EventoTest {
 	private Guardarropa guardarropa;

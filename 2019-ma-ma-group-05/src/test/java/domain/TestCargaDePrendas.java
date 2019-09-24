@@ -4,14 +4,16 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import domain.Telas.Algodon;
-import domain.Telas.Cuero;
-import domain.Tipos.Antiparras;
-import domain.Tipos.Musculosa;
-import domain.Tipos.Ojotas;
-import domain.Tipos.Remera;
-import domain.Tipos.Short;
-import domain.Tipos.Zapatillas;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
+import entities.Telas.Algodon;
+import entities.Telas.Cuero;
+import entities.Tipos.Antiparras;
+import entities.Tipos.Musculosa;
+import entities.Tipos.Ojotas;
+import entities.Tipos.Remera;
+import entities.Tipos.Short;
+import entities.Tipos.Zapatillas;
 
 public class TestCargaDePrendas {
 	public static List<Prenda> init(){

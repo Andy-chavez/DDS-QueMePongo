@@ -6,6 +6,8 @@ import java.util.Timer;
 
 import org.junit.Test;
 
+import entities.ConfigReader;
+
 public class CronTest {
 //	private Evento evento;
 	

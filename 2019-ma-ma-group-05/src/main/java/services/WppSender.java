@@ -2,9 +2,10 @@ package services;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
-import domain.ConfigReader;
-import domain.Sender;
+
 import dtoClases.SenderDto;
+import entities.ConfigReader;
+import entities.Sender;
 
 public class WppSender extends Sender{
 	//No me parece mala idea leer estos datos del properties y el numero de twilio tmb

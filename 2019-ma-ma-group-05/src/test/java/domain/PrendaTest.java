@@ -6,15 +6,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Categorias.*;
-import domain.Prenda;
-import domain.Tela;
-import domain.Excepciones.ColoresIgualesException;
-import domain.Excepciones.TelaIncompatibleException;
-import domain.Tipos.*;
-import domain.Excepciones.ValidacionException;
-import domain.Telas.Algodon;
-import domain.Telas.Cuero;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
+import entities.Tela;
+import entities.Categorias.*;
+import entities.Excepciones.ColoresIgualesException;
+import entities.Excepciones.TelaIncompatibleException;
+import entities.Excepciones.ValidacionException;
+import entities.Telas.Algodon;
+import entities.Telas.Cuero;
+import entities.Tipos.*;
 
 public class PrendaTest {
 	private Prenda prenda;

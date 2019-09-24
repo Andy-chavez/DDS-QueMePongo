@@ -7,9 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import domain.Suscripciones.Free;
-import domain.Suscripciones.Premium;
-import domain.Excepciones.LimiteDePrendasAlcanzadoException;
+
+import entities.Guardarropa;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
+import entities.Usuario;
+import entities.Excepciones.LimiteDePrendasAlcanzadoException;
+import entities.Suscripciones.Free;
+import entities.Suscripciones.Premium;
+
 import static org.mockito.Mockito.*;
 
 public class SuscripcionesTest {

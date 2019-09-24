@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.ApiClima;
-import domain.GestorDeClima;
-import domain.Excepciones.FallaronTodasLasApisException;
+import entities.ApiClima;
+import entities.GestorDeClima;
+import entities.Excepciones.FallaronTodasLasApisException;
 
 import static org.mockito.Mockito.*;
 

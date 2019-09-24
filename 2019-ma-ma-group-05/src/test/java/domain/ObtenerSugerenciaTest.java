@@ -9,13 +9,26 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Tipos.Short;
 import dtoClases.EventoDto;
-import domain.Categorias.SuperiorExtra;
-import domain.EstadosEvento.Pendiente;
-import domain.Telas.Algodon;
-import domain.Telas.Cuero;
-import domain.Tipos.*;
+import entities.ApiClima;
+import entities.Atuendo;
+import entities.Categoria;
+import entities.CronGenerarSugerencia;
+import entities.Evento;
+import entities.GestorDeClima;
+import entities.GestorSugerencia;
+import entities.Guardarropa;
+import entities.MoldeAtuendo;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
+import entities.Tela;
+import entities.Tipo;
+import entities.Usuario;
+import entities.Categorias.SuperiorExtra;
+import entities.EstadosEvento.Pendiente;
+import entities.Telas.Algodon;
+import entities.Telas.Cuero;
+import entities.Tipos.*;
 import services.ApiDs;
 
 public class ObtenerSugerenciaTest {
