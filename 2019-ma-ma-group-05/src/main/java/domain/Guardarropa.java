@@ -17,14 +17,17 @@ import domain.Prenda;
 @Entity
 @Table(name = "guardarropa")
 public class Guardarropa {
-	@Column(name = "COMPLETAR")
+
+	@Column(name = "nombre")
 	private String nombre;
+
 	@OneToMany
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@JoinColumn(name = "prendas", referencedColumnName = "id")
 	private List<Prenda> prendas;
 	@OneToMany
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@JoinColumn(name = "atuendosSugeridos", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
+
 	@Transient //TODO cambiar cuando decidamos eso bien
 	private List<MoldeAtuendo> moldesAtuendos;
 

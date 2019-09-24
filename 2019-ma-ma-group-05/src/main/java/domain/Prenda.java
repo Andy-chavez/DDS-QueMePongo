@@ -26,21 +26,24 @@ import domain.Excepciones.ValidacionException;
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
-	@Column(name = "COMPLETAR")
+
+	@Column(name = "colorPrimario")
 	private Color colorPrimario;
-	@Column(name = "COMPLETAR")
+	@Column(name = "colorSecundario")
 	private Color colorSecundario;
-	@ManyToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
-	private Tipo tipo;
-	@Column(name = "COMPLETAR")
+	@Column(name = "imagen")
 	private String imagen;
+
+	@ManyToOne
+	@JoinColumn(name = "tipo", referencedColumnName = "id")
+	private Tipo tipo;
 	@Transient
 	private ImgResizer resizer;
 	@ManyToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@JoinColumn(name = "tela", referencedColumnName = "id")
 	private Tela tela;
 	//TODO preguntar
+	@Transient
 	private List<LocalDate> fechasReservadas;
 
 	public Prenda(Tipo unTipo) {
