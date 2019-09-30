@@ -4,27 +4,33 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import entities.Categoria;
 
+@Entity
+@Table(name = "tipo")
+@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "nombre")
 public abstract class Tipo extends EntidadPersistente{
-	@ManyToOne
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
-	protected Categoria categoria;
-	@ManyToMany
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
-	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
-	@Column(name = "COMPLETAR")
+
+	@Column(name = "nombre")
 	protected String nombre;
-	@Column(name = "COMPLETAR")
+	@Column(name = "capa")
 	protected int capa;
-	@Column(name = "COMPLETAR")
+	@Column(name = "nivel_abrigo")
 	protected int nivelAbrigo;
+
+	@ManyToOne
+	@JoinColumn(name = "categoria", referencedColumnName = "id")
+	protected Categoria categoria;
 	
+//	@ManyToMany
+//	@JoinColumn(name = "telas_posibles", referencedColumnName = "id")
+	@Transient
+	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
+
+
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}

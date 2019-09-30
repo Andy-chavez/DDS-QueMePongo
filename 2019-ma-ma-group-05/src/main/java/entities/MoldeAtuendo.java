@@ -13,13 +13,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name="molde")
 public class MoldeAtuendo extends EntidadPersistente{
-	@ManyToMany //TODO asi?
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
-	private List<Tipo> moldeTipos;
-	@Column(name = "puntos")
+
+	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
+
+	@ManyToMany //TODO asi?
+	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
+	private List<Tipo> moldeTipos;
 	@OneToOne //TODO asi?
-	@JoinColumn(name = "COMPLETAR", referencedColumnName = "id")
+	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	public MoldeAtuendo(Atuendo atuendo){

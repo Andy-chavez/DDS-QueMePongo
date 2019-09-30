@@ -30,17 +30,20 @@ public class Evento extends EntidadPersistente implements Observee{
 	@Column(name = "tipo")
     private String tipo;
 	
-	@OneToOne(mappedBy = "evento", cascade = {CascadeType.ALL})
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")
     private Atuendo atuendo;
 	
-	@OneToOne(mappedBy = "evento")
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")    
 	private Guardarropa guardarropa;
-	
-	@ManyToOne
+
+	@ManyToOne( cascade = {CascadeType.ALL})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 	
-	@Column(name = "tipo")
+//	@Column(name = "estado")
+    @Transient
     private EstadoEvento estado;
 	
 	@Column(name = "repetir")

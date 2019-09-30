@@ -9,29 +9,25 @@ import javax.persistence.*;
 
 import dtoClases.EventoDto;
 import entities.Guardarropa;
-import entities.EnumsNecesarios.SuscripcionEnum;
 import entities.Suscripciones.Free;
 
 import java.time.Instant;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario extends EntidadPersistente {
-	@ManyToMany(mappedBy = "usuario", cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Guardarropa> guardarropas;
 	
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column(name = "suscripcion")
+	@ManyToOne
+	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
 	private Suscripcion suscripcion;
 	
-	@ManyToOne
-	@JoinColumn(name = "suscripcionEnum", referencedColumnName = "suscripcion_id")
-	private SuscripcionEnum suscripcionEnum;
-	
-	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Evento> eventos;
 	
 	@Column(name = "celular")
@@ -40,7 +36,9 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "mail")
 	private String mail;
 	
-	@OneToOne(mappedBy = "usuario", cascade = {CascadeType.ALL})
+
+	@OneToOne( cascade = {CascadeType.ALL})
+	@JoinColumn(name = "sensibilidad_frio_id", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	@Transient

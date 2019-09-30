@@ -13,21 +13,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import entities.Prenda;
-
 @Entity
 @Table(name = "atuendo")
-public class Atuendo {
-	@OneToMany(mappedBy ="atuendo")
+public class Atuendo extends EntidadPersistente {
+
+	@OneToMany
+	@JoinColumn(name = "prendas",referencedColumnName = "id")
 	private List<Prenda> prendas = new ArrayList<Prenda>();
-	
+
 	@Column(name = "rechazado")
 	private Boolean rechazado;
-	
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
-	
-	@OneToOne(mappedBy = "atuendo")
+
+	@OneToOne
+	@JoinColumn(name = "sensibilidad_frio",referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 
 	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
@@ -39,13 +39,13 @@ public class Atuendo {
 			this.prendas.add(prenda);
 		}
 	}
-	
+
 	public void agregarPrendas(List<Prenda> prendas){
 		for(Prenda p : prendas){
 			agregarPrenda(p);
 		}
 	}
-	
+
 
 	public Boolean compararConOtroAtuendo(Atuendo atuendo){
 		if(this.prendas.size() != atuendo.getPrendas().size()){
@@ -56,7 +56,7 @@ public class Atuendo {
 			for(Prenda otraPrenda : atuendo.getPrendas()){
 				if(unaPrenda.equals(otraPrenda)){
 					contienePrenda = true;
-				}	
+				}
 			}
 			if(!contienePrenda){
 				return false;
@@ -64,7 +64,7 @@ public class Atuendo {
 		}
 		return true;
 	}
-	
+
 	public boolean tieneTipo(Tipo tipo) {
 		for (Prenda prenda : this.prendas) {
 			if(prenda.getTipo().getClass().equals(tipo.getClass())) {
@@ -73,11 +73,11 @@ public class Atuendo {
 		}
 		return false;
 	}
-	
+
 	public List<Prenda> filtrarPrendasSegunCondicion(List<Prenda> prendas, Predicate<Prenda> predicado) {
 		return prendas.stream().filter(predicado).collect(Collectors.toList());
 	}
-	
+
 	public int getNivelAbrigoDeCategoria(Categoria unaCategoria){
 		int nivelAbrigo = 0;
 		for(Prenda p : this.prendas){
@@ -87,7 +87,7 @@ public class Atuendo {
 		}
 		return nivelAbrigo;
 	}
-	
+
 
 	public void printPrendas(){
 		System.out.print("Atuendo: ");
@@ -96,6 +96,7 @@ public class Atuendo {
 		}
 		System.out.println();
 	}
+
 	public void reservarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.reservarFecha(fecha));
 	}
@@ -105,7 +106,6 @@ public class Atuendo {
 	public void liberarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.liberarFecha(fecha));
 	}
-	
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
 	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}

@@ -1,6 +1,5 @@
 package entities.Tipos;
-import entities.Capa;
-import entities.Categoria;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;

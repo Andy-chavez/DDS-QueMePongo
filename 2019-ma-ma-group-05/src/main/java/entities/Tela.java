@@ -1,11 +1,14 @@
 package entities;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "tela")
 public class Tela extends EntidadPersistente{
-	@Column(name = "COMPLETAR")
+
+	@Column(name = "nombre")
 	protected String nombre;
-	
+
 	public void setNombre(String unNombre) {
 		this.nombre = unNombre;
 	}

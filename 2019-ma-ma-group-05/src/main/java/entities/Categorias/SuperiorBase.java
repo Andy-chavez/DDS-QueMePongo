@@ -1,13 +1,18 @@
 package entities.Categorias;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import entities.Atuendo;
 import entities.Categoria;
 
+@Entity
+@DiscriminatorValue("superior_base")
 public class SuperiorBase extends Categoria{
-	@Transient
+
+	@ManyToOne
+	@JoinColumn(name = "categoria",referencedColumnName = "id")
 	private static SuperiorBase singleInstance = null;
+
 	public static SuperiorBase getInstance(){
 		if(singleInstance == null){
 			singleInstance = new SuperiorBase();

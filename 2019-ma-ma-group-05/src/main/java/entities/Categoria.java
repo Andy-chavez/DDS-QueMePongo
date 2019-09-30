@@ -1,11 +1,16 @@
 package entities;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name = "categoria")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo")
 public abstract class Categoria extends EntidadPersistente {
 	// devuelve el nivel de abrigo requerido para esta categoria
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){

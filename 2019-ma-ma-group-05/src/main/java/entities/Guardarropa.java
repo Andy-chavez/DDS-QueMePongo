@@ -10,21 +10,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import entities.Atuendo;
-import entities.Prenda;
-
 @Entity
 @Table(name = "guardarropa")
-public class Guardarropa {
+public class Guardarropa extends EntidadPersistente{
 
 	@Column(name = "nombre")
 	private String nombre;
 
 	@OneToMany
-	@JoinColumn(name = "prendas", referencedColumnName = "id")
+	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
+
 	@OneToMany
-	@JoinColumn(name = "atuendosSugeridos", referencedColumnName = "id")
+	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
 	@Transient //TODO cambiar cuando decidamos eso bien
