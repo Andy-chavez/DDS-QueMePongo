@@ -8,9 +8,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import domain.ConfigReader;
-import domain.Sender;
+
 import dtoClases.SenderDto;
+import entities.ConfigReader;
+import entities.Sender;
 
 public class EmailSender extends Sender{
 	static Properties props = new Properties();  

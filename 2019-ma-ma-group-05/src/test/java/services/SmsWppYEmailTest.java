@@ -3,8 +3,8 @@ package services;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Usuario;
 import dtoClases.SenderDto;
+import entities.Usuario;
 
 public class SmsWppYEmailTest { 
 	

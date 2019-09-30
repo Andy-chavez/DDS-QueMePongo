@@ -1,22 +1,33 @@
 package domain;
-
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.Tipos.Short;
 import dtoClases.EventoDto;
-import domain.Categorias.SuperiorExtra;
-import domain.EstadosEvento.Pendiente;
-import domain.Telas.Algodon;
-import domain.Telas.Cuero;
-import domain.Tipos.*;
-import services.ApiDs;
+import entities.ApiClima;
+import entities.Atuendo;
+import entities.Categoria;
+import entities.CronGenerarSugerencia;
+import entities.Evento;
+import entities.GestorDeClima;
+import entities.GestorSugerencia;
+import entities.Guardarropa;
+import entities.MoldeAtuendo;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
+import entities.Tela;
+import entities.Tipo;
+import entities.Usuario;
+import entities.Categorias.SuperiorExtra;
+import entities.EstadosEvento.Pendiente;
+import entities.Telas.Algodon;
+import entities.Telas.Cuero;
 
 public class ObtenerSugerenciaTest {
 	private Guardarropa guardarropa;
@@ -43,7 +54,7 @@ public class ObtenerSugerenciaTest {
 	private Cuero cuero;
 	private List<Prenda> prendas;
 	
-	private GestorDeClima gestor;
+
 	GestorSugerencia gestorSugerencia;
 	private Tela algodon;
 	
@@ -130,7 +141,6 @@ public class ObtenerSugerenciaTest {
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 		gestorSugerencia = GestorSugerencia.getInstance();
-		gestor = GestorDeClima.getInstance();
 		List<ApiClima> apis= new ArrayList<ApiClima>();
 	}
 	@Test
@@ -145,7 +155,7 @@ public class ObtenerSugerenciaTest {
 		System.out.println("\nobtenerSugerencia()");
 		Atuendo atuendoSugerido = new Atuendo(40, usuario.getSensibilidadFrio());
 		System.out.println("PREPARANDO ATUENDO");
-		atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(20, guardarropa, usuario.getSensibilidadFrio());
+		atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
 		atuendoSugerido.printPrendas();
 		
@@ -216,13 +226,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void nivelAbrigoAtuendo(){
 		System.out.println("\nnivelAbrigoAtuendo()");
-		double temperatura = 24.0;
-		int nivelAbrigoRequerido = 40 - (int)temperatura;
-		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
+		//double temperatura = 24.0;
+		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
+		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
 
 		atuendoSugerido.printPrendas();
-		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido);
+		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
 	}
 	
 	@Test
@@ -232,8 +242,8 @@ public class ObtenerSugerenciaTest {
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		gestorSugerencia.obtenerSugerenciaParaTemperatura(temperatura, guardarropa, usuario.getSensibilidadFrio());
-		gestorSugerencia.obtenerSugerenciaParaTemperatura(4.0, guardarropa, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario.getSensibilidadFrio());
 		
 		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
 		for(Tipo t : moldeAtuendo.getMoldeTipos()){
@@ -260,7 +270,7 @@ public class ObtenerSugerenciaTest {
 	}
 	
 	@Test
-	public void cronSugerencia(){
+	public void cronSugerencia(){ //todo kind of faltan cosas aca
 		System.out.println("\ncronSugerencia()");
 		EventoDto eventoDto = new EventoDto();
 		eventoDto.repeticionDias = 2000;

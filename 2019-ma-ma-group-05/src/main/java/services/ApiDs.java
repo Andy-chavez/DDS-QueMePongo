@@ -6,8 +6,8 @@ import java.util.Properties;
 
 import javax.swing.JOptionPane;
 
-import domain.ApiClima;
 import dtoClases.ResponseClimaApiDarkSkyDto;
+import entities.ApiClima;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;

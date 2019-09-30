@@ -2,23 +2,26 @@ package domain;
 
 import static org.junit.Assert.*;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.EstadosEvento.*;
 import dtoClases.EventoDto;
+import entities.Atuendo;
+import entities.CronGenerarSugerencia;
+import entities.Evento;
+import entities.GestorSugerencia;
+import entities.Guardarropa;
+import entities.Prenda;
+import entities.Usuario;
+import entities.EstadosEvento.*;
 
 public class EventoTest {
 	private Guardarropa guardarropa;
 	private Usuario usuario;
 	private List<Prenda> prendas;
-	private GestorDeClima gestor;
 	GestorSugerencia gestorSugerencia;
 	private EventoDto eventoDto;
 	private CronGenerarSugerencia cron;
@@ -30,8 +33,6 @@ public class EventoTest {
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);
 		gestorSugerencia = GestorSugerencia.getInstance();
-		gestor = GestorDeClima.getInstance();
-		List<ApiClima> apis= new ArrayList<ApiClima>();
 		
 		eventoDto = new EventoDto();
 		eventoDto.repetir = false;

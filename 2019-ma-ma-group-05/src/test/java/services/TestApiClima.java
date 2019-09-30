@@ -5,14 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.ApiClima;
-import domain.GestorDeClima;
-import domain.Excepciones.FallaronTodasLasApisException;
+import entities.ApiClima;
+import entities.GestorDeClima;
+import entities.Excepciones.FallaronTodasLasApisException;
 
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class TestApiClima {
 	private GestorDeClima gestor;
 	private ApiDs apiDs;
@@ -57,6 +58,7 @@ public class TestApiClima {
 		System.out.println(temp);
 		assertNotNull(temp);
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void mocks(){
 		ApiDs mockApi=mock(ApiDs.class);
@@ -66,6 +68,7 @@ public class TestApiClima {
 		assertEquals(gestor.getTemperaturaActual(),new Double(10));
 		verify(mockApi,times(1)).getTemperaturaActual();
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void laPrimerApiFallaPeroLaSegundaNo(){
 		ApiDs mockApiDs=mock(ApiDs.class);

@@ -1,8 +1,8 @@
 package dtoClases;
 
-import domain.Guardarropa;
-import domain.Usuario;
-import domain.EstadosEvento.EstadoEvento;
+import entities.Guardarropa;
+import entities.Usuario;
+import entities.EstadosEvento.EstadoEvento;
 
 public class EventoDto {
 	public Usuario usuario;
