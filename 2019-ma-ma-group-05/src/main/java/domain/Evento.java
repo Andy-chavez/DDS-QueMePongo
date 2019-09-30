@@ -3,13 +3,7 @@ package domain;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import domain.EstadosEvento.EstadoEvento;
 import domain.EstadosEvento.*;
@@ -30,19 +24,20 @@ public class Evento extends EntidadPersistente implements Observee{
 	@Column(name = "tipo")
     private String tipo;
 	
-//	@OneToOne(mappedBy = "evento", cascade = {CascadeType.ALL})
-//	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")
-	@Transient
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")
     private Atuendo atuendo;
 	
-	@OneToOne(mappedBy = "evento")
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")    
 	private Guardarropa guardarropa;
-	
-	@Column(name = "usuario")
+
+	@ManyToOne( cascade = {CascadeType.ALL})
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
 	
-	@Column(name = "estado")
+//	@Column(name = "estado")
+    @Transient
     private EstadoEvento estado;
 	
 	@Column(name = "repetir")

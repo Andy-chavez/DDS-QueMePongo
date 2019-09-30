@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="sensibilidadFrio")
+@Table(name="sensibilidad_frio")
 public class SensibilidadFrio extends EntidadPersistente {
 	@Column(name = "incremento")
 	private int incremento = 5;

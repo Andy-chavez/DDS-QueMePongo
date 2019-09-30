@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 public class ImgResizer {
 
+
 	private static int MAX_ANCHO=800; //TODO leer de archivo de sistema
 	private static int MAX_ALTO=800;
 	private static String pathEnSistema; //habria que obtenerlo del sistema?

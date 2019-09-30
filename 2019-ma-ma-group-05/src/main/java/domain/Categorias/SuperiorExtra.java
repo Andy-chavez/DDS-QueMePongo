@@ -4,16 +4,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import domain.Atuendo;
 import domain.Categoria;
 import domain.Prenda;
 import domain.Tipo;
 
+@Entity
+@DiscriminatorValue("superior_extra")
 public class SuperiorExtra extends Categoria{
-	@Transient
+
+	@ManyToOne
+	@JoinColumn(name = "categoria",referencedColumnName = "id")
 	private static SuperiorExtra singleInstance = null;
+
 	public static SuperiorExtra getInstance(){
 		if(singleInstance == null){
 			singleInstance = new SuperiorExtra();

@@ -12,9 +12,9 @@ import dtoClases.EventoDto;
 import java.time.Instant;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario extends EntidadPersistente {
-	@ManyToMany(mappedBy = "usuario", cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Guardarropa> guardarropas;
 	
@@ -25,8 +25,7 @@ public class Usuario extends EntidadPersistente {
 	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
 	private Suscripcion suscripcion;
 	
-	@OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "evento_id", referencedColumnName = "id")
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Evento> eventos;
 	
 	@Column(name = "celular")
@@ -35,7 +34,7 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "mail")
 	private String mail;
 	
-	@OneToOne(mappedBy = "usuario", cascade = {CascadeType.ALL})
+	@OneToOne( cascade = {CascadeType.ALL})
 	@JoinColumn(name = "sensibilidad_frio_id", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	

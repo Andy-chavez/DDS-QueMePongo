@@ -25,8 +25,10 @@ public abstract class Tipo extends EntidadPersistente{
 	@ManyToOne
 	@JoinColumn(name = "categoria", referencedColumnName = "id")
 	protected Categoria categoria;
-	@ManyToMany
-	@JoinColumn(name = "telas_posibles", referencedColumnName = "id")
+	
+//	@ManyToMany
+//	@JoinColumn(name = "telas_posibles", referencedColumnName = "id")
+	@Transient
 	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
 
 

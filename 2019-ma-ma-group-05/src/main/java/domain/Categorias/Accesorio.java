@@ -4,15 +4,20 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import domain.Atuendo;
 import domain.Categoria;
 import domain.Prenda;
 
+@Entity
+@DiscriminatorValue("accesorio")
 public class Accesorio extends Categoria{
-	@Transient
+
+	@ManyToOne
+	@JoinColumn(name = "categoria",referencedColumnName = "id")
 	private static Accesorio singleInstance = null;
+
 	public static Accesorio getInstance(){
 		if(singleInstance == null){
 			singleInstance = new Accesorio();

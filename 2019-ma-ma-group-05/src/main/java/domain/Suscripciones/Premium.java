@@ -11,7 +11,7 @@ import domain.Suscripcion;
 import domain.Usuario;
 
 @Entity
-@DiscriminatorValue("free")
+@DiscriminatorValue("premium")
 public class Premium extends Suscripcion{
 	public void cambiarAFree(Usuario usuario){
 		usuario.setSuscripcion(new Free());

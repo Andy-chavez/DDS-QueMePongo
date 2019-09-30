@@ -16,7 +16,7 @@ import domain.Prenda;
 
 @Entity
 @Table(name = "guardarropa")
-public class Guardarropa {
+public class Guardarropa extends EntidadPersistente{
 
 	@Column(name = "nombre")
 	private String nombre;
@@ -24,9 +24,9 @@ public class Guardarropa {
 	@OneToMany
 	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
-//	@OneToMany
-//	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
-	@Transient
+
+	@OneToMany
+	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
 	@Transient //TODO cambiar cuando decidamos eso bien
