@@ -23,8 +23,9 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@ManyToOne
-	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
+//	@ManyToOne
+//	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
+	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

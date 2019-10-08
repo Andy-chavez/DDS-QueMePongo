@@ -3,8 +3,10 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,11 +19,11 @@ public class Guardarropa extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
 	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
 	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
@@ -33,6 +35,13 @@ public class Guardarropa extends EntidadPersistente{
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
+		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
+
+	}
+	public Guardarropa(String unNombre) {
+		this.nombre = unNombre;
+		this.prendas = new ArrayList<Prenda>();
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}

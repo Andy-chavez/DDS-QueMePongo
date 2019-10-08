@@ -1,16 +1,23 @@
 package bd;
 
 import db.EntityManagerHelper;
+import entities.Guardarropa;
+import entities.Prenda;
+import entities.SimpleFactoryPrendas;
 import entities.Usuario;
+import entities.Telas.Algodon;
+import entities.Telas.Cuero;
+
+import java.awt.Color;
+
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class DBTest{
-
+public class DBTest{	
     @Test
     public void persistir1UsuarioTest(){
         Usuario usuario = new Usuario("mati");
-
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
@@ -18,29 +25,51 @@ public class DBTest{
 
     @Test
     public void recuperandoAMati(){
-        Usuario eze = (Usuario) EntityManagerHelper.createQuery("from Usuario where nombre = 'mati'").getSingleResult();
-        Assert.assertEquals("mati", eze.getNombre());
+        Usuario mati = (Usuario) EntityManagerHelper.createQuery("from Usuario where nombre = 'mati'").getSingleResult();
+        Assert.assertEquals("mati", mati.getNombre());
     }
-
-//    @Test
-//    public void persistir2Aporte(){
-//        Topico topicoApunte = new Topico();
-//        topicoApunte.setNombre("Apunte");
-//        topicoApunte.setDescripcion("Colaboración de un apunte");
-//
-//        EntityManagerHelper.beginTransaction();
-//        EntityManagerHelper.getEntityManager().persist(topicoApunte);
-//        EntityManagerHelper.commit();
-//
-//        Aporte unAporte = new Aporte();
-//        unAporte.setTopico(topicoApunte);
-//        Usuario eze = (Usuario) EntityManagerHelper.createQuery("from Usuario where nombre = 'Eze'").getSingleResult();
-//        unAporte.setUsuario(eze);
-//        unAporte.setNombre("Apunte de diseño");
-//        unAporte.setDescripcion("Taller ORM");
-//
-//        EntityManagerHelper.beginTransaction();
-//        EntityManagerHelper.getEntityManager().persist(unAporte);
-//        EntityManagerHelper.commit();
-//    }
+    
+    @Test
+    public void persistirGuardarropaTest(){
+    	Guardarropa g = new Guardarropa("formal");
+    	
+//    	Prenda remera  = SimpleFactoryPrendas.crearPrenda("remera");
+//		remera.setTela(Algodon.getInstance());
+//		remera.setColorPrimario(Color.pink);
+//		
+//    	Prenda pantalon  = SimpleFactoryPrendas.crearPrenda("pantalon");
+//		pantalon.setTela(Cuero.getInstance());
+//		pantalon.setColorPrimario(Color.black);
+//    	
+//		g.agregarPrenda(remera);
+//		g.agregarPrenda(pantalon);
+		
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(g);
+        EntityManagerHelper.commit();
+    }
+    
+    @Test
+    public void recuperandoGuardarropa(){
+        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Guardarropa where nombre = 'formal'").getSingleResult();
+        Assert.assertEquals("formal", g.getNombre());
+    }
+    
+    @Test
+    public void persistirPrenda(){
+    	Prenda remera  = SimpleFactoryPrendas.crearPrenda("remera");
+		remera.setTela(Algodon.getInstance());
+		remera.setColorPrimario(Color.pink);
+        EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(remera);
+        EntityManagerHelper.commit();
+    }
+    
+    @Test
+    public void recuperandoPrendas(){
+//        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
+        Prenda remera = (Prenda) EntityManagerHelper.createQuery("from Prendas where tipo = 'remera'").getSingleResult();
+        
+        Assert.assertEquals("remera", remera.getTipo().toString());
+    }
 }
