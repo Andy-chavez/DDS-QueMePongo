@@ -1,6 +1,7 @@
 package entities;
 
-import java.awt.Color;
+import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +26,6 @@ import entities.Excepciones.ValidacionException;
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
-
 	@Column(name = "color_primario")
 	private Color colorPrimario;
 	@Column(name = "color_secundario")
