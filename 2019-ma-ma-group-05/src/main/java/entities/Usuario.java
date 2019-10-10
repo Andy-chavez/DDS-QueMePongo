@@ -14,7 +14,7 @@ import entities.Suscripciones.Free;
 import java.time.Instant;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario extends EntidadPersistente {
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")

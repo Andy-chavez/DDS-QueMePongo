@@ -11,7 +11,7 @@ import entities.Categoria;
 @Entity
 @Table(name = "tipo")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "nombre")
+@DiscriminatorColumn(name = "discriminador")
 public abstract class Tipo extends EntidadPersistente{
 
 	@Column(name = "nombre")

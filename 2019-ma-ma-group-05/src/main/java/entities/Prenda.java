@@ -5,22 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
 import entities.Tipo;
-import entities.Excepciones.ColoresIgualesException;
-import entities.Excepciones.TelaIncompatibleException;
-import entities.Excepciones.ValidacionException;
+import entities.Excepciones.*;
 
 @Entity
 @Table(name="prenda")
@@ -33,7 +25,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private String imagen;
 
 	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
+	@JoinColumn(name = "tipo_nombre", referencedColumnName = "nombre")
 	private Tipo tipo;
 	@ManyToOne
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")

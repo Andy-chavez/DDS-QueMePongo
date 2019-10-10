@@ -16,7 +16,12 @@
     	<class>entities.SensibilidadFrio</class>
     	<class>entities.Tela</class>
     	<class>entities.Tipo</class>
+    	<class>entities.Atuendo</class>
+    	<class>entities.MoldeAtuendo</class>
+    	<class>entities.SensibilidadFrio</class>
     	<class>entities.Categoria</class>
+    	<class>entities.Tipos.Remera</class>
+    	
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

@@ -9,6 +9,8 @@ import entities.Usuario;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
 import entities.Tipos.Camisa;
+import entities.Tipos.Remera;
+
 import java.awt.Color;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,6 +19,8 @@ public class DBTest{
     @Test
     public void persistir1UsuarioTest(){
         Usuario usuario = new Usuario("mati");
+        usuario.setCelular("123456789");
+        usuario.setMail("X@gmail.com");
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
@@ -24,7 +28,7 @@ public class DBTest{
 
     @Test
     public void recuperandoAMati(){
-        Usuario mati = (Usuario) EntityManagerHelper.createQuery("from Usuario where nombre = 'mati'").getSingleResult();
+        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class,1); //createQuery("from usuario where nombre = 'mati'").getSingleResult();
         Assert.assertEquals("mati", mati.getNombre());
     }
     
@@ -50,7 +54,7 @@ public class DBTest{
     
     @Test
     public void recuperandoGuardarropa(){
-        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Guardarropa where nombre = 'formal'").getSingleResult();
+        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from guardarropa where nombre = 'formal'").getSingleResult();
         Assert.assertEquals("formal", g.getNombre());
     }
     
@@ -63,15 +67,23 @@ public class DBTest{
 		remera.setTela(Algodon.getInstance());
 		remera.setColorPrimario(Color.pink);
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(remera);
+        EntityManagerHelper.getEntityManager().persist(remera.getTipo());
         EntityManagerHelper.commit();
+        
+        EntityManagerHelper.beginTransaction();        
+        EntityManagerHelper.getEntityManager().persist(remera);
+        EntityManagerHelper.commit();   
     }
     
     @Test
     public void recuperandoPrendas(){
 //        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
-        Prenda remera = (Prenda) EntityManagerHelper.createQuery("from Prendas where tipo = 'remera'").getSingleResult();
-        
+    	Remera remeraTipo = new Remera();
+    	EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.getEntityManager().persist(remeraTipo);
+        EntityManagerHelper.commit();
+       //aca el problema esta en que jamas se linkea prenda con remera, creo que lo arregle pero todavia no puedo hacer que remera se persista bien
+    	Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
         Assert.assertEquals("remera", remera.getTipo().toString());
     }
 }
