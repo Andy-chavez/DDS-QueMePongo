@@ -1,7 +1,6 @@
 package entities;
 
 import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +32,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	@Column(name = "tipo")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
 	@ManyToOne
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
