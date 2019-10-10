@@ -1,5 +1,6 @@
 package entities;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,11 @@ public class MoldeAtuendo extends EntidadPersistente{
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
 
-	@ManyToMany //TODO asi?
-	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
+//	@ManyToMany //TODO asi?
+//	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
+	
 	private List<Tipo> moldeTipos;
+	
 	@OneToOne //TODO asi?
 	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;

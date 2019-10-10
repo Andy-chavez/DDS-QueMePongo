@@ -1,16 +1,15 @@
 package bd;
 
 import db.EntityManagerHelper;
+import db.TipoAttributeConverter;
 import entities.Guardarropa;
 import entities.Prenda;
 import entities.SimpleFactoryPrendas;
 import entities.Usuario;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
-
+import entities.Tipos.Camisa;
 import java.awt.Color;
-
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -57,6 +56,9 @@ public class DBTest{
     
     @Test
     public void persistirPrenda(){
+//    	TipoAttributeConverter tipoAttr = new TipoAttributeConverter();
+//    	System.out.println(tipoAttr.convertToDatabaseColumn(Camisa.getInstance()));
+//    	System.out.println(tipoAttr.convertToEntityAttribute("Remera"));
     	Prenda remera  = SimpleFactoryPrendas.crearPrenda("remera");
 		remera.setTela(Algodon.getInstance());
 		remera.setColorPrimario(Color.pink);
