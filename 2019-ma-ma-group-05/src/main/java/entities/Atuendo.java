@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -17,23 +21,27 @@ import javax.persistence.Table;
 @Table(name = "atuendo")
 public class Atuendo extends EntidadPersistente {
 
-	@OneToMany
-	@JoinColumn(name = "prendas",referencedColumnName = "id")
+	@ManyToMany
+	@JoinColumn(name = "prenda_id",referencedColumnName = "id")
 	private List<Prenda> prendas = new ArrayList<Prenda>();
-
 	@Column(name = "rechazado")
 	private Boolean rechazado;
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
-
+	@Column(name = "calificacion")
+	private int calificacion;
 	@OneToOne
-	@JoinColumn(name = "sensibilidad_frio",referencedColumnName = "id")
-	private SensibilidadFrio sensibilidadFrio;
+	@JoinColumn(name = "usuario_id",referencedColumnName = "id")
+	private Usuario usuario;
 
-	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
+	public Atuendo(int nivelAbrigo, Usuario u) {
 		this.nivelAbrigo = nivelAbrigo;
-		this.sensibilidadFrio = sensibilidadFrio;
+		this.usuario = u;
 	}
+//	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
+//		this.nivelAbrigo = nivelAbrigo;
+//		this.sensibilidadFrio = sensibilidadFrio;
+//	}
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
 			this.prendas.add(prenda);
@@ -108,8 +116,8 @@ public class Atuendo extends EntidadPersistente {
 	}
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
-	public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
-	public SensibilidadFrio getSensibilidadFrio(){	return this.sensibilidadFrio;	}
+	//public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
+	public SensibilidadFrio getSensibilidadFrio(){	return this.usuario.getSensibilidadFrio();	}
 	public void setRechazado(Boolean flag){	this.rechazado=flag;}
 	public Boolean getRechazado(){	return this.rechazado;	}
 	public int getNivelAbrigo() {	return this.nivelAbrigo;	}

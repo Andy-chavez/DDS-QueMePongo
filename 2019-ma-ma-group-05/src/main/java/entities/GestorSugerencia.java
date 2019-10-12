@@ -31,14 +31,14 @@ public class GestorSugerencia {
 		return singleInstance;
 	}
 
-	public Atuendo crearAtuendoConMolde(List<Prenda> prendas, MoldeAtuendo moldeAtuendo){
+	public Atuendo crearAtuendoConMolde(List<Prenda> prendas, MoldeAtuendo moldeAtuendo, Usuario u){
 		List <Prenda> prendasElegidas = new ArrayList<Prenda>();
 		for(Tipo tipo : moldeAtuendo.getMoldeTipos()){
 			List<Prenda> prendasDeTipo = prendas.stream().filter(p -> p.esDeTipo(tipo)).collect(Collectors.toList());
 			Random random = new Random();
 			prendasElegidas.add(prendasDeTipo.get(random.nextInt(prendasDeTipo.size())));
 		}
-		Atuendo atuendo = new Atuendo(moldeAtuendo.getNivelAbrigo(), moldeAtuendo.getSensibilidadFrio());
+		Atuendo atuendo = new Atuendo(moldeAtuendo.getNivelAbrigo(),u);//, moldeAtuendo.getSensibilidadFrio());
 		atuendo.agregarPrendas(prendasElegidas);
 		atuendo.setNivelAbrigo(moldeAtuendo.getNivelAbrigo());
 		return atuendo;
@@ -57,7 +57,7 @@ public class GestorSugerencia {
 	
 	
 	// hago este metodo aparte para poder probar con una temperatura especifica
-	public Atuendo obtenerSugerencia(Instant fecha, Guardarropa g, SensibilidadFrio sensibilidadFrio) {
+	public Atuendo obtenerSugerencia(Instant fecha, Guardarropa g, Usuario u) {
 		int variableTemperaturaSarasa = 40;
 		double temperatura = this.gestorDeClima.getTemperaturaActual();
 		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
@@ -66,12 +66,12 @@ public class GestorSugerencia {
 		MoldeAtuendo moldeAtuendo = buscarMoldeParaNivelAbrigo(g, nivelAbrigoRequerido);
 		List<Prenda> prendasLibres = g.getPrendas().stream().filter(p -> !p.estaReservada(fecha)).collect(Collectors.toList());
 		if(moldeAtuendo != null){
-			Atuendo atuendo = crearAtuendoConMolde(prendasLibres, moldeAtuendo);
+			Atuendo atuendo = crearAtuendoConMolde(prendasLibres, moldeAtuendo, u);
 			g.agregarSugerencia(atuendo);
 			return atuendo;
 		}
 		
-		Atuendo atuendo = new Atuendo(nivelAbrigoRequerido, sensibilidadFrio);	
+		Atuendo atuendo = new Atuendo(nivelAbrigoRequerido, u);//, sensibilidadFrio);	
 		this.categorias.forEach(c -> c.agregarPrendas(atuendo, prendasLibres, nivelAbrigoRequerido));
 		g.agregarSugerencia(atuendo);
 		

@@ -1,10 +1,15 @@
 package entities.Tipos;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;
 import entities.Telas.Nylon;
 
+@Entity
+@DiscriminatorValue("antiparras")
 public class Antiparras extends Tipo{
 	private static Antiparras instancia;
 

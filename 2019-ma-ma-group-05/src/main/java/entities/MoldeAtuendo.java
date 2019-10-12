@@ -19,23 +19,22 @@ public class MoldeAtuendo extends EntidadPersistente{
 
 	@ManyToMany //TODO asi?
 	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
-	
 	private List<Tipo> moldeTipos;
 	
-	@OneToOne //TODO asi?
-	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
-	private SensibilidadFrio sensibilidadFrio;
+//	@OneToOne //TODO asi?
+//	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
+//	private SensibilidadFrio sensibilidadFrio;
 	
 	public MoldeAtuendo(Atuendo atuendo){
 		this.moldeTipos = new ArrayList<Tipo>();
 		this.agregarTipos(atuendo);
 		this.nivelAbrigo = atuendo.getNivelAbrigo();
-		this.sensibilidadFrio = atuendo.getSensibilidadFrio();
+		//this.sensibilidadFrio = atuendo.getSensibilidadFrio();
 	}
 	// --- GETTERS Y SETTERS ---
 	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
 	public int getNivelAbrigo(){	return this.nivelAbrigo;	}
-	public SensibilidadFrio getSensibilidadFrio(){ return this.sensibilidadFrio; }
+	public SensibilidadFrio getSensibilidadFrio(Usuario u){ return u.getSensibilidadFrio(); }
 	
 	public void agregarTipos(Atuendo atuendo){
 		atuendo.getPrendas().forEach( prenda -> this.moldeTipos.add(prenda.getTipo()));

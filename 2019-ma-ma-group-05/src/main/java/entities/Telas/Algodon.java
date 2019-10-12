@@ -1,7 +1,12 @@
 package entities.Telas;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tela;
 
+@Entity
+@DiscriminatorValue("algodon")
 public class Algodon extends Tela{
     private static Algodon singleInstance = null;
 

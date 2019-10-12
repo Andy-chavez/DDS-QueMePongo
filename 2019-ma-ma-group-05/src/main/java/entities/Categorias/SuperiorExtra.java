@@ -15,8 +15,7 @@ import entities.Tipo;
 @DiscriminatorValue("superior_extra")
 public class SuperiorExtra extends Categoria{
 
-	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName = "id")
+	@Transient
 	private static SuperiorExtra singleInstance = null;
 
 	public static SuperiorExtra getInstance(){

@@ -51,7 +51,7 @@ public class SuscripcionesTest {
 	}
 	@Test
 	public void limiteDePrendasDeLaSuscrpcionFreeEs12(){
-		Free f = new Free();
+		Free f = Free.getInstance();
 		assertEquals(f.getLimiteDePrendas(),12);
 	}
 	@Test
@@ -111,13 +111,13 @@ public class SuscripcionesTest {
 	@Test
 	public void usuarioPremiumAgregaPrendasAGuardarropaCompartido(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
-		usuario2.setSuscripcion(new Premium());
+		usuario2.setSuscripcion(Premium.getInstance());
 		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
 	}
 	@Test
 	public void usuarioFreeAgregaPrendaPeroElGuardarropaEstaAlLimite(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
-		usuario2.setSuscripcion(new Free());
+		usuario2.setSuscripcion(Free.getInstance());
 		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
 	}
 }

@@ -1,11 +1,16 @@
 package entities.Tipos;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;
 import entities.Telas.Cuero;
 import entities.Telas.Seda;
 
+@Entity
+@DiscriminatorValue("zapatillas")
 public class Zapatillas extends Tipo{
 	private static Zapatillas instancia;
 	public Zapatillas(){

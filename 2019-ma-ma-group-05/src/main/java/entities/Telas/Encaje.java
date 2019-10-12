@@ -1,7 +1,12 @@
 package entities.Telas;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tela;
 
+@Entity
+@DiscriminatorValue("encaje")
 public class Encaje extends Tela{
     private static Encaje singleInstance = null;
 

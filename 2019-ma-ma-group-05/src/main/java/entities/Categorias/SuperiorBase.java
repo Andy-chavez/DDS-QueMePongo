@@ -9,8 +9,7 @@ import entities.Categoria;
 @DiscriminatorValue("superior_base")
 public class SuperiorBase extends Categoria{
 
-	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName = "id")
+	@Transient
 	private static SuperiorBase singleInstance = null;
 
 	public static SuperiorBase getInstance(){

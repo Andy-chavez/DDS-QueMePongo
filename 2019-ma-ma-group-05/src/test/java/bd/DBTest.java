@@ -30,7 +30,7 @@ public class DBTest{
     @Test
     public void recuperandoAMati(){
     	
-        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, 2);//createQuery("from usuario where nombre = 'mati'").getSingleResult();
+        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, 1);//createQuery("from usuario where nombre = 'mati'").getSingleResult();
         EntityManagerHelper.closeEntityManager();;
         Assert.assertEquals("mati", mati.getNombre());
     }
@@ -59,7 +59,7 @@ public class DBTest{
     @Test
     public void recuperandoGuardarropa(){
     	//EntityManagerHelper.beginTransaction();
-        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, 2);//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
+        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, 1);//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
         EntityManagerHelper.closeEntityManager();
         Assert.assertEquals("formal", g.getNombre());
     }
@@ -87,7 +87,7 @@ public class DBTest{
     	//EntityManagerHelper.beginTransaction();
         //EntityManagerHelper.persist(remeraTipo);
         //EntityManagerHelper.commit();
-    	Prenda remera = (Prenda) EntityManagerHelper.getEntityManager().find(Prenda.class, 2);
+    	Prenda remera = (Prenda) EntityManagerHelper.getEntityManager().find(Prenda.class, 1);
     	//Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
     	EntityManagerHelper.closeEntityManager();
     	Assert.assertEquals("remera", remera.getTipo().toString());

@@ -13,9 +13,7 @@ import entities.Prenda;
 @Entity
 @DiscriminatorValue("accesorio")
 public class Accesorio extends Categoria{
-
-	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName = "id")
+	@Transient
 	private static Accesorio singleInstance = null;
 
 	public static Accesorio getInstance(){

@@ -112,7 +112,7 @@ public class Usuario extends EntidadPersistente {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, sensibilidadFrio);
+		return gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, this);
 	}
 	
 	public void crearEvento(EventoDto unEvento) {

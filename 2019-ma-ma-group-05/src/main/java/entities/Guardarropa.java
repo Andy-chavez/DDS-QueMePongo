@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -19,12 +20,12 @@ public class Guardarropa extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
 	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
-	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
 	@Transient //TODO cambiar cuando decidamos eso bien

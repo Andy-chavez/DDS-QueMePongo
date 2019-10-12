@@ -8,8 +8,7 @@ import entities.Categoria;
 @DiscriminatorValue("inferior")
 public class Inferior extends Categoria {
 
-	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName = "id")
+	@Transient
 	private static Inferior singleInstance = null;
 
 	public static Inferior getInstance(){
