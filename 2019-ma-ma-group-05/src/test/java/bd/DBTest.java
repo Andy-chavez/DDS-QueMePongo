@@ -21,8 +21,8 @@ public class DBTest{
         Usuario usuario = new Usuario("mati");
         usuario.setCelular("123456789");
         usuario.setMail("X@gmail.com");
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(usuario);
+       // EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(usuario);
         EntityManagerHelper.commit();
         EntityManagerHelper.getEntityManager().close();
     }
@@ -31,7 +31,7 @@ public class DBTest{
     public void recuperandoAMati(){
     	
         Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, 2);//createQuery("from usuario where nombre = 'mati'").getSingleResult();
-        EntityManagerHelper.getEntityManager().close();
+        EntityManagerHelper.closeEntityManager();;
         Assert.assertEquals("mati", mati.getNombre());
     }
     
@@ -50,20 +50,21 @@ public class DBTest{
 //		g.agregarPrenda(remera);
 //		g.agregarPrenda(pantalon);
 		
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(g);
+        //EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(g);
         EntityManagerHelper.commit();
-        EntityManagerHelper.getEntityManager().close();
+        EntityManagerHelper.closeEntityManager();
     }
     
     @Test
     public void recuperandoGuardarropa(){
-    	EntityManagerHelper.beginTransaction();
+    	//EntityManagerHelper.beginTransaction();
         Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, 2);//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
+        EntityManagerHelper.closeEntityManager();
         Assert.assertEquals("formal", g.getNombre());
     }
     
-    /*@Test
+    @Test
     public void persistirPrenda(){
 //    	TipoAttributeConverter tipoAttr = new TipoAttributeConverter();
 //    	System.out.println(tipoAttr.convertToDatabaseColumn(Camisa.getInstance()));
@@ -71,16 +72,14 @@ public class DBTest{
     	Prenda remera  = SimpleFactoryPrendas.crearPrenda("remera");
 		remera.setTela(Algodon.getInstance());
 		remera.setColorPrimario(Color.pink);
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(remera.getTipo());
-        EntityManagerHelper.commit();
-        
-        EntityManagerHelper.beginTransaction();        
+
+        //EntityManagerHelper.beginTransaction();        
         EntityManagerHelper.getEntityManager().persist(remera);
         EntityManagerHelper.commit();   
+        EntityManagerHelper.closeEntityManager();
     }
     
-    @Test
+    /*@Test
     public void recuperandoPrendas(){
 //        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
     	Remera remeraTipo = new Remera();

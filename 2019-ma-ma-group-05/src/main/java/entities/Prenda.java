@@ -38,6 +38,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Transient
 	private List<LocalDate> fechasReservadas;
 
+	public Prenda() {}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.fechasReservadas = new ArrayList<LocalDate>();
