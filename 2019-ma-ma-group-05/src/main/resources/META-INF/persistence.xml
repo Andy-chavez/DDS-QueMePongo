@@ -13,7 +13,6 @@
     	<class>entities.Evento</class>
     	<class>entities.Prenda</class>
     	<class>entities.Guardarropa</class>
-    	<class>entities.SensibilidadFrio</class>
     	<class>entities.Tela</class>
     	<class>entities.Tipo</class>
     	<class>entities.Atuendo</class>

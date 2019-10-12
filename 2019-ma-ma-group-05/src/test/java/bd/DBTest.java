@@ -65,30 +65,32 @@ public class DBTest{
     }
     
     @Test
-    public void persistirPrenda(){
+    public void persistirPrenda(){ //TODO esto parece no tener efecto
 //    	TipoAttributeConverter tipoAttr = new TipoAttributeConverter();
 //    	System.out.println(tipoAttr.convertToDatabaseColumn(Camisa.getInstance()));
 //    	System.out.println(tipoAttr.convertToEntityAttribute("Remera"));
     	Prenda remera  = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setTela(Algodon.getInstance());
-		remera.setColorPrimario(Color.pink);
+    	remera.setTela(Algodon.getInstance());
+    	remera.setColorPrimario(Color.pink);
 
-        //EntityManagerHelper.beginTransaction();        
-        EntityManagerHelper.getEntityManager().persist(remera);
+        //EntityManagerHelper.beginTransaction();
+    	EntityManagerHelper.persist(remera.getTipo());
+        EntityManagerHelper.persist(remera);
         EntityManagerHelper.commit();   
         EntityManagerHelper.closeEntityManager();
     }
     
-    /*@Test
-    public void recuperandoPrendas(){
+    @Test
+    public void recuperandoPrendas(){ //TODO este no funciona, parece ser que prenda jamas llego a estar en la bd o mismo que no le gusta el create query
 //        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
-    	Remera remeraTipo = new Remera();
-    	EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(remeraTipo);
-        EntityManagerHelper.commit();
-       //aca el problema esta en que jamas se linkea prenda con remera, creo que lo arregle pero todavia no puedo hacer que remera se persista bien
-    	Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
-        Assert.assertEquals("remera", remera.getTipo().toString());
+    	//Remera remeraTipo = new Remera();
+    	//EntityManagerHelper.beginTransaction();
+        //EntityManagerHelper.persist(remeraTipo);
+        //EntityManagerHelper.commit();
+    	Prenda remera = (Prenda) EntityManagerHelper.getEntityManager().find(Prenda.class, 2);
+    	//Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
+    	EntityManagerHelper.closeEntityManager();
+    	Assert.assertEquals("remera", remera.getTipo().toString());
     }
-    */
+    
 }
