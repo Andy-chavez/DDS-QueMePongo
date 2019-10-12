@@ -50,7 +50,7 @@ public class Usuario extends EntidadPersistente {
 	
 	@Transient
 	private GestorDeOperaciones gestorOperaciones;
-	
+	public Usuario() {}
 	public Usuario(String nombre){
 		this.nombre=nombre;
 		this.guardarropas= new ArrayList<Guardarropa>();

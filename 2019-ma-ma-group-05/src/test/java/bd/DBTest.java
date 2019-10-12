@@ -24,11 +24,14 @@ public class DBTest{
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
+        EntityManagerHelper.getEntityManager().close();
     }
 
     @Test
     public void recuperandoAMati(){
-        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class,1); //createQuery("from usuario where nombre = 'mati'").getSingleResult();
+    	
+        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, 2);//createQuery("from usuario where nombre = 'mati'").getSingleResult();
+        EntityManagerHelper.getEntityManager().close();
         Assert.assertEquals("mati", mati.getNombre());
     }
     
@@ -50,15 +53,17 @@ public class DBTest{
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(g);
         EntityManagerHelper.commit();
+        EntityManagerHelper.getEntityManager().close();
     }
     
     @Test
     public void recuperandoGuardarropa(){
-        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from guardarropa where nombre = 'formal'").getSingleResult();
+    	EntityManagerHelper.beginTransaction();
+        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, 2);//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
         Assert.assertEquals("formal", g.getNombre());
     }
     
-    @Test
+    /*@Test
     public void persistirPrenda(){
 //    	TipoAttributeConverter tipoAttr = new TipoAttributeConverter();
 //    	System.out.println(tipoAttr.convertToDatabaseColumn(Camisa.getInstance()));
@@ -86,4 +91,5 @@ public class DBTest{
     	Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
         Assert.assertEquals("remera", remera.getTipo().toString());
     }
+    */
 }

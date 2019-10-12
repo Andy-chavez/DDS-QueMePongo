@@ -29,7 +29,8 @@ public class Guardarropa extends EntidadPersistente{
 
 	@Transient //TODO cambiar cuando decidamos eso bien
 	private List<MoldeAtuendo> moldesAtuendos;
-
+	
+	public Guardarropa() {}
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
