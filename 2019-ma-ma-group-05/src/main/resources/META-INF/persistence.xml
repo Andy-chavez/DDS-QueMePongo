@@ -9,7 +9,7 @@
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
     	<class>entities.Usuario</class>
-    	<class>entities.Suscripcion</class>
+<!--    	<class>entities.Suscripcion</class>  TODO -->
     	<class>entities.Evento</class> <!-- CHECK -->
     	<class>entities.Prenda</class> <!-- CHECK -->
     	<class>entities.Guardarropa</class> <!-- CHECK falta ver algo de los moldes que quedo medio inconcluso creo -->

@@ -12,8 +12,8 @@ public class Guardarropa extends EntidadPersistente{
 	private String nombre;
 
 //Mati Coto
-	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
-	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
+	//@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
+	//@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 //Mati Jurado
 	@OneToMany(cascade = {CascadeType.ALL})
 //	@JoinColumn(name = "prenda_id", referencedColumnName = "id")

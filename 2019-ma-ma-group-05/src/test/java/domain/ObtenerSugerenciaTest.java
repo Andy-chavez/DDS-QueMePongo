@@ -13,6 +13,7 @@ import dtoClases.EventoDto;
 import entities.ApiClima;
 import entities.Atuendo;
 import entities.Categoria;
+import entities.ColorPersistible;
 import entities.CronGenerarSugerencia;
 import entities.Evento;
 import entities.GestorDeClima;
@@ -64,71 +65,71 @@ public class ObtenerSugerenciaTest {
 		cuero = Cuero.getInstance();
 		
 		camisa = SimpleFactoryPrendas.crearPrenda("camisa");
-		camisa.setColorPrimario(Color.BLACK);
+		camisa.setColorPrimario(ColorPersistible.BLACK);
 		camisa.setTela(algodon);
 		sweater = SimpleFactoryPrendas.crearPrenda("sweater");
-		sweater.setColorPrimario(Color.BLACK);
+		sweater.setColorPrimario(ColorPersistible.BLACK);
 		sweater.setTela(algodon);
 		campera = SimpleFactoryPrendas.crearPrenda("campera");
-		campera.setColorPrimario(Color.BLACK);
+		campera.setColorPrimario(ColorPersistible.BLACK);
 		campera.setTela(algodon);
 		
 		camisa2 = SimpleFactoryPrendas.crearPrenda("camisa");
-		camisa2.setColorPrimario(Color.BLACK);
+		camisa2.setColorPrimario(ColorPersistible.BLACK);
 		camisa2.setTela(algodon);
 		sweater2 = SimpleFactoryPrendas.crearPrenda("sweater");
-		sweater2.setColorPrimario(Color.BLACK);
+		sweater2.setColorPrimario(ColorPersistible.BLACK);
 		sweater2.setTela(algodon);
 		campera2 = SimpleFactoryPrendas.crearPrenda("campera");
-		campera2.setColorPrimario(Color.BLACK);
+		campera2.setColorPrimario(ColorPersistible.BLACK);
 		campera2.setTela(algodon);
 		
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setColorPrimario(Color.BLACK);
+		remera.setColorPrimario(ColorPersistible.BLACK);
 		remera.setTela(algodon);
 		
 		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras.setColorPrimario(Color.BLACK);
+		antiparras.setColorPrimario(ColorPersistible.BLACK);
 		antiparras.setTela(algodon);
 		
 		shorts = SimpleFactoryPrendas.crearPrenda("short");
-		shorts.setColorPrimario(Color.BLACK);
+		shorts.setColorPrimario(ColorPersistible.BLACK);
 		shorts.setTela(algodon);
 		
 		musculosa = SimpleFactoryPrendas.crearPrenda("musculosa");
-		musculosa.setColorPrimario(Color.BLACK);
+		musculosa.setColorPrimario(ColorPersistible.BLACK);
 		musculosa.setTela(algodon);
 		
 		ojotas = SimpleFactoryPrendas.crearPrenda("ojotas");
-		ojotas.setColorPrimario(Color.BLACK);
+		ojotas.setColorPrimario(ColorPersistible.BLACK);
 		ojotas.setTela(cuero);
 		
 		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas.setColorPrimario(Color.BLACK);
+		zapatillas.setColorPrimario(ColorPersistible.BLACK);
 		zapatillas.setTela(algodon);
 		
 		remera2 = SimpleFactoryPrendas.crearPrenda("remera");
-		remera2.setColorPrimario(Color.BLACK);
+		remera2.setColorPrimario(ColorPersistible.BLACK);
 		remera2.setTela(algodon);
 		
 		antiparras2 = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras2.setColorPrimario(Color.BLACK);
+		antiparras2.setColorPrimario(ColorPersistible.BLACK);
 		antiparras2.setTela(algodon);
 		
 		shorts2 = SimpleFactoryPrendas.crearPrenda("short");
-		shorts2.setColorPrimario(Color.BLACK);
+		shorts2.setColorPrimario(ColorPersistible.BLACK);
 		shorts2.setTela(algodon);
 		
 		musculosa2 = SimpleFactoryPrendas.crearPrenda("musculosa");
-		musculosa2.setColorPrimario(Color.BLACK);
+		musculosa2.setColorPrimario(ColorPersistible.BLACK);
 		musculosa2.setTela(algodon);
 		
 		ojotas2 = SimpleFactoryPrendas.crearPrenda("ojotas");
-		ojotas2.setColorPrimario(Color.BLACK);
+		ojotas2.setColorPrimario(ColorPersistible.BLACK);
 		ojotas2.setTela(cuero);
 		
 		zapatillas2 = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas2.setColorPrimario(Color.BLACK);
+		zapatillas2.setColorPrimario(ColorPersistible.BLACK);
 		zapatillas2.setTela(algodon);
 		prendas = new ArrayList<Prenda>();
 		prendas = TestCargaDePrendas.init();

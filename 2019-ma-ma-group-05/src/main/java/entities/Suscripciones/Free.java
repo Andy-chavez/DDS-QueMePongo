@@ -3,18 +3,12 @@ package entities.Suscripciones;
 import java.util.List;
 
 import entities.ConfigReader;
-import entities.GestorSugerencia;
 import entities.Guardarropa;
 import entities.Prenda;
 import entities.Suscripcion;
 import entities.Usuario;
 import entities.Excepciones.LimiteDePrendasAlcanzadoException;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
-@Entity
-@DiscriminatorValue("free")
 public class Free extends Suscripcion {
 	private int limiteDePrendas;
 	private static Free singleInstance = null;
@@ -28,8 +22,7 @@ public class Free extends Suscripcion {
 		this.inicializarVariablesDesdeConfig();
 	}
 	private void inicializarVariablesDesdeConfig(){
-		ConfigReader cr=new ConfigReader();
-		this.limiteDePrendas=cr.getIntValue("configuraciones.properties", "limiteDePrendas");
+		this.limiteDePrendas=ConfigReader.getIntValue("configuraciones.properties", "limiteDePrendas");
 	}
 	public int getLimiteDePrendas(){return this.limiteDePrendas;}
 	public void cambiarAFree(Usuario usuario){

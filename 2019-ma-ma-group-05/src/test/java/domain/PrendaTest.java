@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.ColorPersistible;
 import entities.Prenda;
 import entities.SimpleFactoryPrendas;
 import entities.Tela;
@@ -31,27 +32,27 @@ public class PrendaTest {
 		
 		zapatillas  = SimpleFactoryPrendas.crearPrenda("zapatillas");
 		zapatillas.setTela(cuero);
-		zapatillas.setColorPrimario(Color.black);
+		zapatillas.setColorPrimario(ColorPersistible.black);
 	}
 	@Test
 	public void remeraRojaQueEsValida() {
 		Prenda remeraRoja = SimpleFactoryPrendas.crearPrenda("remera");
-		remeraRoja.setColorPrimario(Color.red);
+		remeraRoja.setColorPrimario(ColorPersistible.red);
 		Assert.assertNotNull(remeraRoja);
-		Assert.assertTrue(remeraRoja.todosLosAtributosSonIgualesA(remeraTipo, Color.red, null));
+		Assert.assertTrue(remeraRoja.todosLosAtributosSonIgualesA(remeraTipo, ColorPersistible.red, null));
 	}
 	
 	@Test(expected = TelaIncompatibleException.class)
 	public void remeraAzulDeCueroInvalida() {
 		Prenda remeraAzul = SimpleFactoryPrendas.crearPrenda("remera");
-		remeraAzul.setColorPrimario(Color.blue);
-		remeraAzul.setColorSecundario(Color.green);
+		remeraAzul.setColorPrimario(ColorPersistible.blue);
+		remeraAzul.setColorSecundario(ColorPersistible.green);
 		remeraAzul.setTela(cuero);
 	}
 	
 	@Test (expected = ColoresIgualesException.class) 
 	public void remeraDeVerdeVerdeInvalida() {
-		Prenda remeraVerde = new Prenda(remeraTipo,Color.green,Color.green);
+		Prenda remeraVerde = new Prenda(remeraTipo,ColorPersistible.green,ColorPersistible.green);
 		remeraVerde.setTela(algodon);
 
 	}
@@ -67,7 +68,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonNegrosLosZapatos() {
-		Assert.assertEquals("No eran zapatillas negros", Color.black, zapatillas.getColorPrimario());
+		Assert.assertEquals("No eran zapatillas negros", ColorPersistible.black, zapatillas.getColorPrimario());
 	}
 	
 	@Test

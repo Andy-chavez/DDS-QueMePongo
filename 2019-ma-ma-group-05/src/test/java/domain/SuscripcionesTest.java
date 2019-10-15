@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.ColorPersistible;
 import entities.Guardarropa;
 import entities.Prenda;
 import entities.SimpleFactoryPrendas;
@@ -31,7 +32,7 @@ public class SuscripcionesTest {
 		prendas = new ArrayList<Prenda>();
 		prendas = TestCargaDePrendas.init();
 		remeraBonus = SimpleFactoryPrendas.crearPrenda("remera");
-		remeraBonus.setColorPrimario(Color.BLUE);
+		remeraBonus.setColorPrimario(ColorPersistible.BLUE);
 		
 		guardarropa = new Guardarropa("guardarropa",prendas);
 		usuario= new Usuario("usuario",guardarropa);

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import entities.ColorPersistible;
 import entities.Prenda;
 import entities.SimpleFactoryPrendas;
 import entities.Telas.Algodon;
@@ -28,51 +29,51 @@ public class TestCargaDePrendas {
 		Prenda remera2;
 		
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setColorPrimario(Color.BLACK);
+		remera.setColorPrimario(ColorPersistible.black);
 		remera.setTela(algodon);
 		
 		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras.setColorPrimario(Color.BLACK);
+		antiparras.setColorPrimario(ColorPersistible.BLACK);
 		antiparras.setTela(algodon);
 		
 		unShort = SimpleFactoryPrendas.crearPrenda("short");
-		unShort.setColorPrimario(Color.BLACK);
+		unShort.setColorPrimario(ColorPersistible.BLACK);
 		unShort.setTela(algodon);
 		
 		musculosa = SimpleFactoryPrendas.crearPrenda("musculosa");
-		musculosa.setColorPrimario(Color.BLACK);
+		musculosa.setColorPrimario(ColorPersistible.BLACK);
 		musculosa.setTela(algodon);
 		
 		ojotas = SimpleFactoryPrendas.crearPrenda("ojotas");
-		ojotas.setColorPrimario(Color.BLACK);
+		ojotas.setColorPrimario(ColorPersistible.BLACK);
 		ojotas.setTela(cuero);
 		
 		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas.setColorPrimario(Color.BLACK);
+		zapatillas.setColorPrimario(ColorPersistible.BLACK);
 		zapatillas.setTela(algodon);
 		
 		remera2 = SimpleFactoryPrendas.crearPrenda("remera");
-		remera2.setColorPrimario(Color.BLACK);
+		remera2.setColorPrimario(ColorPersistible.BLACK);
 		remera2.setTela(algodon);
 		
 		antiparras2 = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras2.setColorPrimario(Color.BLACK);
+		antiparras2.setColorPrimario(ColorPersistible.BLACK);
 		antiparras2.setTela(algodon);
 		
 		short2 = SimpleFactoryPrendas.crearPrenda("short");
-		short2.setColorPrimario(Color.BLACK);
+		short2.setColorPrimario(ColorPersistible.BLACK);
 		short2.setTela(algodon);
 		
 		musculosa2 = SimpleFactoryPrendas.crearPrenda("musculosa");
-		musculosa2.setColorPrimario(Color.BLACK);
+		musculosa2.setColorPrimario(ColorPersistible.BLACK);
 		musculosa2.setTela(algodon);
 		
 		ojotas2 = SimpleFactoryPrendas.crearPrenda("ojotas");
-		ojotas2.setColorPrimario(Color.BLACK);
+		ojotas2.setColorPrimario(ColorPersistible.BLACK);
 		ojotas2.setTela(cuero);
 		
 		zapatillas2 = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas2.setColorPrimario(Color.BLACK);
+		zapatillas2.setColorPrimario(ColorPersistible.BLACK);
 		zapatillas2.setTela(algodon);
 		
 		listaDePrendas.add(remera);
