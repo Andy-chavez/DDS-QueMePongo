@@ -34,7 +34,7 @@ public class DBTest{
 	}
     @Test
     public void persistir1UsuarioTest(){
-       // EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
         EntityManagerHelper.closeEntityManager();
@@ -66,9 +66,9 @@ public class DBTest{
     
     @Test
     public void recuperandoGuardarropa(){
-        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, guardarropa.getId());//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
+        Guardarropa h = (Guardarropa)EntityManagerHelper.getEntityManager().createQuery("from Guardarropa as g where g.nombre = 'formal'");
         EntityManagerHelper.closeEntityManager();
-        Assert.assertEquals("formal", g.getNombre());
+        Assert.assertEquals("formal", h.getNombre());
     }
     
     @Test

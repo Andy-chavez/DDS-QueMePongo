@@ -17,10 +17,10 @@ import java.time.ZoneId;
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne//(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "color_id", referencedColumnName = "id")
 	private ColorPersistible colorPrimario;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne//(cascade = {CascadeType.ALL})
 	private ColorPersistible colorSecundario;
 	@Column(name = "imagen")
 	private String imagen;

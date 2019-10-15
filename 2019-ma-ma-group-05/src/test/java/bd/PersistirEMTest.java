@@ -18,11 +18,18 @@ import static org.junit.Assert.*;
 public class PersistirEMTest {
 	private Usuario usuario;
 
+    ColorPersistible verde;
+    ColorPersistible negro;
+    ColorPersistible azul;
+    ColorPersistible orange;
 	@Before
 	public void init(){
-        ColorPersistible verde = ColorPersistible.green;
-        ColorPersistible negro = ColorPersistible.black;
-        ColorPersistible azul = ColorPersistible.blue;
+
+        verde = ColorPersistible.green;
+        negro = ColorPersistible.black;
+        azul = ColorPersistible.blue;
+        orange = ColorPersistible.orange;
+		
         List<Prenda> prendas = new ArrayList<>();
         Tipo zapatillas = new Zapatillas();
         Tipo pantalon = new Pantalon();
@@ -37,12 +44,11 @@ public class PersistirEMTest {
         usuario.setCelular("1160046715");
         usuario.setMail("elpepitoRockaronlero@gmail.com");
 
-
 	}
 	@Test
 	public void persistirUsuarioTest() throws InterruptedException {
 		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(usuario);
+		EntityManagerHelper.persist(usuario);
         EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 	}
@@ -50,7 +56,7 @@ public class PersistirEMTest {
 	@Test
 	public void persistirYRemoverUsuarioTest() {
         EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(usuario);
+        EntityManagerHelper.persist(usuario);
         Usuario user = EntityManagerHelper.getEntityManager().find(usuario.getClass(), usuario.getId());
         EntityManagerHelper.getEntityManager().remove(user);
         EntityManagerHelper.commit();
@@ -59,8 +65,12 @@ public class PersistirEMTest {
 
 	@Test
 	public void eventoSeAgregaAlCron() {
-        Color negro = Color.orange;
-        ColorPersistible orange = ColorPersistible.orange;
+
+        //EntityManagerHelper.beginTransaction();
+        EntityManagerHelper.persist(orange);
+        EntityManagerHelper.commit();
+        EntityManagerHelper.closeEntityManager();
+        
         System.out.println(negro.getRGB());
         System.out.println(negro.getRed());
         System.out.println(negro.getGreen());
