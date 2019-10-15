@@ -21,14 +21,13 @@ public class PersistirEMTest {
     ColorPersistible verde;
     ColorPersistible negro;
     ColorPersistible azul;
-    ColorPersistible orange;
 	@Before
 	public void init(){
 
         verde = ColorPersistible.green;
         negro = ColorPersistible.black;
         azul = ColorPersistible.blue;
-        orange = ColorPersistible.orange;
+        
 		
         List<Prenda> prendas = new ArrayList<>();
         Tipo zapatillas = new Zapatillas();
@@ -64,9 +63,9 @@ public class PersistirEMTest {
 	}
 
 	@Test
-	public void eventoSeAgregaAlCron() {
-
-        //EntityManagerHelper.beginTransaction();
+	public void persistoColor() {
+		ColorPersistible orange = ColorPersistible.orange;
+        EntityManagerHelper.beginTransaction();
         EntityManagerHelper.persist(orange);
         EntityManagerHelper.commit();
         EntityManagerHelper.closeEntityManager();

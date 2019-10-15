@@ -13,7 +13,7 @@ import models.entities.Categoria;
 @Table(name = "tipo")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminador")
-public abstract class Tipo extends EntidadPersistente{
+public class Tipo extends EntidadPersistente{
 
 	@Column(name = "nombre")
 	protected String nombre;

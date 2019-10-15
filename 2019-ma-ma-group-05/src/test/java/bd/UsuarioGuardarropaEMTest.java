@@ -6,11 +6,9 @@ import models.entities.Prenda;
 import models.entities.SimpleFactoryPrendas;
 import models.entities.Usuario;
 import models.entities.Telas.Algodon;
-import models.entities.Telas.Cuero;
-import models.entities.Tipos.Camisa;
-import models.entities.Tipos.Remera;
+import models.entities.Telas.*;
+import models.entities.Tipos.*;
 
-import java.awt.Color;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -21,7 +19,7 @@ import org.junit.Test;
 
 import converters.TipoAttributeConverter;
 
-public class DBTest{	
+public class UsuarioGuardarropaEMTest{	
 	private Prenda remera;
 	private Usuario usuario;
 	private Guardarropa guardarropa;
@@ -46,8 +44,10 @@ public class DBTest{
 
     @Test
     public void recuperandoAMati(){
-        Usuario mati = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, usuario.getId());//createQuery("from usuario where nombre = 'mati'").getSingleResult();
-        EntityManagerHelper.closeEntityManager();;
+    	@SuppressWarnings("rawtypes")
+		List h =  EntityManagerHelper.getEntityManager().createQuery("from Usuario as u where u.nombre = 'mati'").getResultList();
+        EntityManagerHelper.closeEntityManager();
+        Usuario mati = (Usuario) h.get(0);
         Assert.assertEquals("mati", mati.getNombre());
     }
     
