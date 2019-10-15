@@ -11,6 +11,10 @@ import models.entities.Tipos.Camisa;
 import models.entities.Tipos.Remera;
 
 import java.awt.Color;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,9 +70,11 @@ public class DBTest{
     
     @Test
     public void recuperandoGuardarropa(){
-        Guardarropa h = (Guardarropa)EntityManagerHelper.getEntityManager().createQuery("from Guardarropa as g where g.nombre = 'formal'");
+        @SuppressWarnings("rawtypes")
+		List h =  EntityManagerHelper.getEntityManager().createQuery("from Guardarropa as g where g.nombre = 'formal'").getResultList();
         EntityManagerHelper.closeEntityManager();
-        Assert.assertEquals("formal", h.getNombre());
+        Guardarropa g = (Guardarropa) h.get(0);
+        Assert.assertEquals("formal", g.getNombre());
     }
     
     @Test
