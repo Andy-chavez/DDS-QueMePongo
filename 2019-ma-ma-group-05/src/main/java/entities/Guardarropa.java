@@ -3,12 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "guardarropa")
@@ -17,8 +12,9 @@ public class Guardarropa extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany
-	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
+
+	@OneToMany(cascade = {CascadeType.ALL})
+//	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
 	@OneToMany

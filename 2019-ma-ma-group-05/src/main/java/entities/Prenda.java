@@ -26,15 +26,17 @@ import entities.Excepciones.ValidacionException;
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable {
 
-	@Column(name = "color_primario")
-	private Color colorPrimario;
-	@Column(name = "color_secundario")
-	private Color colorSecundario;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "color_id", referencedColumnName = "id")
+	private ColorPersistible colorPrimario;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	private ColorPersistible colorSecundario;
 	@Column(name = "imagen")
 	private String imagen;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
+	@Transient
+//	@ManyToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
 	@ManyToOne
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
@@ -51,17 +53,17 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		this.setTipo(unTipo);
 		this.fechasReservadas = new ArrayList<LocalDate>();
 	}
-	public Prenda(Tipo unTipo, Color colorPrim) {
+	public Prenda(Tipo unTipo, ColorPersistible colorPrim) {
 		this(unTipo);
 		this.setColorPrimario(colorPrim);
 	}
-	public Prenda(Tipo unTipo, Color colorPrim, Color colorSecun) {
+	public Prenda(Tipo unTipo, ColorPersistible colorPrim, ColorPersistible colorSecun) {
 		this(unTipo, colorPrim);
 		this.setColorSecundario(colorSecun);
 	}
 	// --- GETTERS Y SETTERS ---
-	public void setColorPrimario(Color colorPrimario) { this.colorPrimario = colorPrimario;	}
-	public void setColorSecundario(Color unColorSecundario) {
+	public void setColorPrimario(ColorPersistible colorPrimario) { this.colorPrimario = colorPrimario;	}
+	public void setColorSecundario(ColorPersistible unColorSecundario) {
 		if(unColorSecundario == this.colorPrimario) {
 			throw new ColoresIgualesException("ERROR: Se ingresaron colores iguales"); 
 		}
@@ -72,8 +74,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	public void setImagenResized(String path) { this.imagen = path;	}
 	public String getImagen() {  return this.imagen; }
 	public Tipo getTipo() {	return this.tipo; 	}
-	public Color getColorPrimario() { return colorPrimario;	}
-	public Color getColorSecundario() {	return colorSecundario;	}
+	public ColorPersistible getColorPrimario() { return colorPrimario;	}
+	public ColorPersistible getColorSecundario() {	return colorSecundario;	}
 	public int getCapa() { return this.tipo.getCapa();	}
 	public Tela getTela() {	return this.tela; }
 	public int getNivelAbrigo() { return this.tipo.getNivelAbrigo(); }
@@ -101,7 +103,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.colorPrimario, this.colorSecundario);
 	}
 	
-	public Boolean todosLosAtributosSonIgualesA(Tipo unTipo, Color unColorPrimario, Color unColorSecundario) {
+	public Boolean todosLosAtributosSonIgualesA(Tipo unTipo, ColorPersistible unColorPrimario, ColorPersistible unColorSecundario) {
 		return this.tipo.esIgualAOtro(unTipo) && unColorPrimario == this.colorPrimario && unColorSecundario == this.colorSecundario;
 	}
 

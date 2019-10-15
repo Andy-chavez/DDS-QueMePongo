@@ -3,11 +3,12 @@ package entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="sensibilidad_frio")
 public class SensibilidadFrio extends EntidadPersistente {
-	@Column(name = "incremento")
+	@Transient
 	private int incremento = 5;
 	@Column(name = "superior")
 	private int superior;
