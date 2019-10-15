@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -11,7 +12,7 @@ import entities.Categoria;
 @Entity
 @Table(name = "tipo")
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "nombre")
+@DiscriminatorColumn(name = "discriminador")
 public abstract class Tipo extends EntidadPersistente{
 
 	@Column(name = "nombre")
@@ -25,12 +26,13 @@ public abstract class Tipo extends EntidadPersistente{
 	@JoinColumn(name = "categoria", referencedColumnName = "id")
 	protected Categoria categoria;
 	
-//	@ManyToMany
-//	@JoinColumn(name = "telas_posibles", referencedColumnName = "id")
-	@Transient
-	protected ArrayList<Tela> telasPosibles = new ArrayList<>();
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "tela_id", referencedColumnName = "id")
+	protected List<Tela> telasPosibles;
 
-
+	public Tipo() {
+		telasPosibles = new ArrayList<>();
+	}
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}
@@ -42,7 +44,7 @@ public abstract class Tipo extends EntidadPersistente{
 	
 	
 	public boolean estaTelaEsPosible(String nombreTela) {
-		ArrayList<Tela> lista = new ArrayList<>();
+		List<Tela> lista = new ArrayList<>();
 		lista = this.telasPosibles;
 		return lista.stream().anyMatch(t -> t.getNombre() == nombreTela);
 	}

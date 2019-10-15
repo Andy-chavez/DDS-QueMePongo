@@ -43,7 +43,7 @@ public class Evento extends EntidadPersistente implements Observee{
     private Usuario usuario;
 	
 //	@Column(name = "estado")
-    @Transient
+    @Transient //TODO no deberia de ser transient
     private EstadoEvento estado;
 	
 	@Column(name = "repetir")

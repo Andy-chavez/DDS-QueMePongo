@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "categoria")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(name = "discriminador")
 public abstract class Categoria extends EntidadPersistente {
 	// devuelve el nivel de abrigo requerido para esta categoria
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){

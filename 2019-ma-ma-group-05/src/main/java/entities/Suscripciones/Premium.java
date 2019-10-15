@@ -9,10 +9,7 @@ import entities.Guardarropa;
 import entities.Prenda;
 import entities.Suscripcion;
 import entities.Usuario;
- //en la b matt
-@Entity
-@DiscriminatorValue("premium")
-// en master
+
 public class Premium extends Suscripcion{
 	private static Premium singleInstance = null;
 	public static Premium getInstance(){

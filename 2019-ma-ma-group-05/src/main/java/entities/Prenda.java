@@ -1,26 +1,18 @@
 package entities;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
 import entities.Tipo;
-import entities.Excepciones.ColoresIgualesException;
-import entities.Excepciones.TelaIncompatibleException;
-import entities.Excepciones.ValidacionException;
+import entities.Excepciones.*;
 
 @Entity
 @Table(name="prenda")
@@ -34,9 +26,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	@Transient
-//	@ManyToOne(cascade = {CascadeType.ALL})
-//	@JoinColumn(name = "tipo_id", referencedColumnName = "id")
+	@ManyToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "tipo_nombre", referencedColumnName = "nombre")
 	private Tipo tipo;
 	@ManyToOne
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
@@ -49,6 +40,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Transient
 	private List<LocalDate> fechasReservadas;
 
+	public Prenda() {}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.fechasReservadas = new ArrayList<LocalDate>();

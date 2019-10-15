@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tela")
+@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "discriminador")
 public class Tela extends EntidadPersistente{
 
 	@Column(name = "nombre")

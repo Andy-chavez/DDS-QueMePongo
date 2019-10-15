@@ -1,7 +1,12 @@
 package entities.Telas;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tela;
 
+@Entity
+@DiscriminatorValue("seda")
 public class Seda extends Tela{
     private static Seda singleInstance = null;
 

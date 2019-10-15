@@ -1,9 +1,14 @@
 package entities.Tipos;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Cuero;
 
+@Entity
+@DiscriminatorValue("reloj")
 public class Reloj extends Tipo{
 	private static Reloj instancia;
 	public Reloj(){

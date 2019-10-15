@@ -1,6 +1,9 @@
 package entities.Tipos;
 
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;
@@ -8,6 +11,8 @@ import entities.Telas.Nylon;
 import entities.Telas.Poliester;
 import entities.Telas.Seda;
 
+@Entity
+@DiscriminatorValue("campera")
 public class Campera extends Tipo{
 	private static Campera instancia;
 	public Campera(){

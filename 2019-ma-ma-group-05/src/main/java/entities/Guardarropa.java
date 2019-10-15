@@ -2,7 +2,6 @@ package entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -12,23 +11,34 @@ public class Guardarropa extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
 
-
+//Mati Coto
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
+	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
+//Mati Jurado
 	@OneToMany(cascade = {CascadeType.ALL})
 //	@JoinColumn(name = "prenda_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
-	@OneToMany
-	@JoinColumn(name = "atuendos_sugeridos", referencedColumnName = "id")
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
 	@Transient //TODO cambiar cuando decidamos eso bien
 	private List<MoldeAtuendo> moldesAtuendos;
-
+	
+	public Guardarropa() {}
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
+		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
+
+	}
+	public Guardarropa(String unNombre) {
+		this.nombre = unNombre;
+		this.prendas = new ArrayList<Prenda>();
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}

@@ -8,8 +8,7 @@ import entities.Categoria;
 @DiscriminatorValue("calzado")
 public class Calzado extends Categoria {
 
-	@ManyToOne
-	@JoinColumn(name = "categoria",referencedColumnName = "id")
+	@Transient
 	private static Calzado singleInstance = null;
 
 	public static Calzado getInstance(){

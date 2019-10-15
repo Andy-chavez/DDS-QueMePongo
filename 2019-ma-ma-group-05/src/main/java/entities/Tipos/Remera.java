@@ -1,10 +1,15 @@
 package entities.Tipos;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;
 import entities.Telas.Nylon;
 
+@Entity
+@DiscriminatorValue("remera")
 public class Remera extends Tipo{
 	private static Remera instancia;
 	public Remera(){

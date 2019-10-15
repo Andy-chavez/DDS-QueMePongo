@@ -1,7 +1,12 @@
 package entities.Telas;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tela;
 
+@Entity
+@DiscriminatorValue("elastina")
 public class Elastina extends Tela {
     private static Elastina singleInstance = null;
 

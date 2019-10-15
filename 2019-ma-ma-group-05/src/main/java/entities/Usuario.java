@@ -14,14 +14,13 @@ import entities.Suscripciones.Free;
 import java.time.Instant;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario extends EntidadPersistente {
 	@ManyToMany(cascade = {CascadeType.ALL})
 	private List<Guardarropa> guardarropas;
 	
 	@Column(name = "nombre")
 	private String nombre;
-
 	@Transient
 //	@ManyToOne
 //	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
@@ -49,7 +48,7 @@ public class Usuario extends EntidadPersistente {
 	
 	@Transient
 	private GestorDeOperaciones gestorOperaciones;
-	
+	public Usuario() {}
 	public Usuario(String nombre){
 		this.nombre=nombre;
 		this.guardarropas= new ArrayList<Guardarropa>();
@@ -117,7 +116,7 @@ public class Usuario extends EntidadPersistente {
 	}
 	
 	public Atuendo obtenerSugerencia(Guardarropa guardarropa){
-		return gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, sensibilidadFrio);
+		return gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, this);
 	}
 	
 	public void crearEvento(EventoDto unEvento) {

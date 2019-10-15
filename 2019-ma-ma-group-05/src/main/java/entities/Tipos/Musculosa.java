@@ -1,5 +1,8 @@
 package entities.Tipos;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import entities.Tipo;
 import entities.Categorias.*;
 import entities.Telas.Algodon;
@@ -7,6 +10,8 @@ import entities.Telas.Nylon;
 import entities.Telas.Poliester;
 import entities.Telas.Seda;
 
+@Entity
+@DiscriminatorValue("musculosa")
 public class Musculosa extends Tipo{
 	private static Musculosa instancia;
 	public Musculosa(){
