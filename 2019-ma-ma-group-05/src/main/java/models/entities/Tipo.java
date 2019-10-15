@@ -23,11 +23,11 @@ public class Tipo extends EntidadPersistente{
 	protected int nivelAbrigo;
 
 	@ManyToOne
-	@JoinColumn(name = "categoria", referencedColumnName = "id")
+	//@JoinColumn(name = "categoria_id", referencedColumnName = "id")
 	protected Categoria categoria;
 	
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "tela_id", referencedColumnName = "id")
+	@ManyToMany//(cascade = {CascadeType.ALL})
+	//@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 
 	public Tipo() {
@@ -37,11 +37,13 @@ public class Tipo extends EntidadPersistente{
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}
 	public int getCapa() { return this.capa;}
+	public void setCapa(int capa) {	this.capa=capa; }
 	public String getNombre() { return nombre;	}
 	public void setNombre(String nombre) { 	this.nombre = nombre; }
 	public Categoria getCategoria() { return categoria;	}
 	public void setCategoria(Categoria categoria) {	this.categoria = categoria;	}
-	
+	public List<Tela> getTelasPosibles() {	return telasPosibles;	}
+	public void setTelasPosibles(List<Tela> telas) {	this.telasPosibles = telas;	}
 	
 	public boolean estaTelaEsPosible(String nombreTela) {
 		List<Tela> lista = new ArrayList<>();

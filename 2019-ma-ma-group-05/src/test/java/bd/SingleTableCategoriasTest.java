@@ -39,9 +39,10 @@ public class SingleTableCategoriasTest {
         EntityManagerHelper.closeEntityManager();
     }
     @Test
-    public void hidratarCategoria(){ //no se muy bien por que atributo matchear porque solo esta el id que digamos, no es muy consistente
+    public void hidratarCategoria(){ 
+    	//TODO no se muy bien por que atributo matchear porque solo esta el id que no es muy consistente
     	Categoria cat1 = (Categoria) EntityManagerHelper.getEntityManager().createQuery("from Categoria as c where c.id = 2").getSingleResult();
         EntityManagerHelper.closeEntityManager();
-        Assert.assertEquals("SuperiorBase", cat1.getClass().toString());
+        Assert.assertEquals("SuperiorBase", cat1.getClass().getSimpleName());
     }
 }

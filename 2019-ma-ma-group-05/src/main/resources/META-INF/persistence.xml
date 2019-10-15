@@ -8,13 +8,13 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-    	<class>models.entities.Usuario</class>
+    	<class>models.entities.Usuario</class> <!-- CHECK -->
     	<class>models.entities.Evento</class> <!-- CHECK -->
     	<class>models.entities.Prenda</class> <!-- CHECK -->
     	<class>models.entities.Guardarropa</class> <!-- CHECK falta ver algo de los moldes que quedo medio inconcluso creo -->
-    	<class>models.entities.ColorPersistible</class>
+    	<class>models.entities.ColorPersistible</class> <!-- CHECK -->
   
-    	<class>models.entities.Tela</class> <!-- CHECK ver si se persiste como singleTable -->
+    	<class>models.entities.Tela</class> <!-- CHECK -->
     	<class>models.entities.Telas.Cuero</class>
     	<class>models.entities.Telas.Algodon</class>
     	<class>models.entities.Telas.Elastina</class>
@@ -40,10 +40,12 @@
     	<class>models.entities.MoldeAtuendo</class>
     	<class>models.entities.SensibilidadFrio</class> <!-- CHECK -->
     	
-    	<class>models.entities.Categoria</class> <!-- CHECK ver si se persiste como singleTable -->
+    	<class>models.entities.Categoria</class> <!-- CHECK -->
     	<class>models.entities.Categorias.Accesorio</class>
     	<class>models.entities.Categorias.Calzado</class>
     	<class>models.entities.Categorias.Inferior</class>
+    	<class>models.entities.Categorias.SuperiorBase</class>
+    	<class>models.entities.Categorias.SuperiorExtra</class>
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
