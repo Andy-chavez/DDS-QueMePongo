@@ -10,6 +10,11 @@ import entities.Suscripcion;
 import entities.Usuario;
 import entities.Excepciones.LimiteDePrendasAlcanzadoException;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("free")
 public class Free extends Suscripcion {
 	private int limiteDePrendas;
 	private static Free singleInstance = null;

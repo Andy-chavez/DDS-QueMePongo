@@ -17,28 +17,28 @@ import java.time.Instant;
 @Table(name = "usuarios")
 public class Usuario extends EntidadPersistente {
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Guardarropa> guardarropas;
 	
 	@Column(name = "nombre")
 	private String nombre;
-	
-	@ManyToOne
-	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
+
+	@Transient
+//	@ManyToOne
+//	@JoinColumn(name = "suscripcion_id", referencedColumnName = "id")
 	private Suscripcion suscripcion;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Evento> eventos;
 	
-	@Column(name = "celular")
+	@Column(name = "celular", columnDefinition = "varchar(255) default '1160046715'")
 	private String celular;
 	
-	@Column(name = "mail")
+	@Column(name = "mail", columnDefinition = "varchar(255) default 'elmailcito@gmail.com'")
 	private String mail;
 	
-
-	@OneToOne( cascade = {CascadeType.ALL})
-	@JoinColumn(name = "sensibilidad_frio_id", referencedColumnName = "id")
+	@Transient
+//	@OneToOne( cascade = {CascadeType.ALL})
+//	@JoinColumn(name = "sensibilidad_frio_id", referencedColumnName = "id")
 	private SensibilidadFrio sensibilidadFrio;
 	
 	@Transient
@@ -60,8 +60,14 @@ public class Usuario extends EntidadPersistente {
 		this.gestorOperaciones = new  GestorDeOperaciones();
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
-		this(unNombre);
+		this.nombre = unNombre;
+		this.guardarropas= new ArrayList<Guardarropa>();
 		this.agregarGuardarropa(guardarropa);
+		this.suscripcion= Free.getInstance();
+		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
+		this.gestorSugerencia = GestorSugerencia.getInstance();
+		this.gestorOperaciones = new  GestorDeOperaciones();
 	}
 	public GestorDeOperaciones getGestorOperaciones(){return this.gestorOperaciones;}
 	public HashMap<Usuario,Guardarropa> getGuardarropasCompartidos(){
