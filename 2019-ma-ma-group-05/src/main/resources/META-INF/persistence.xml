@@ -13,7 +13,8 @@
     	<class>entities.Evento</class> <!-- CHECK -->
     	<class>entities.Prenda</class> <!-- CHECK -->
     	<class>entities.Guardarropa</class> <!-- CHECK falta ver algo de los moldes que quedo medio inconcluso creo -->
-    	
+    	<class>entities.ColorPersistible</class>
+  
     	<class>entities.Tela</class> <!-- CHECK ver si se persiste como singleTable -->
     	<class>entities.Telas.Cuero</class>
     	<class>entities.Telas.Algodon</class>
@@ -35,6 +36,7 @@
     	<class>entities.Tipos.Short</class>
     	<class>entities.Tipos.Sweater</class>
     	<class>entities.Tipos.Zapatillas</class>
+  
     	<class>entities.Atuendo</class> <!-- CHECK -->
     	<class>entities.MoldeAtuendo</class>
     	<class>entities.SensibilidadFrio</class> <!-- CHECK -->
@@ -43,8 +45,6 @@
     	<class>entities.Categorias.Accesorio</class>
     	<class>entities.Categorias.Calzado</class>
     	<class>entities.Categorias.Inferior</class>
-    	
-    	
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
@@ -53,6 +53,7 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/quemepongo" />
             <property name="hibernate.connection.username" value="root" /> 
             <property name="hibernate.connection.password" value="12345" />
+
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 

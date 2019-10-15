@@ -3,11 +3,14 @@ package entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="sensibilidad_frio")
 public class SensibilidadFrio extends EntidadPersistente {
-
+//TODO este atributo va o no? porque en una branch estaba en la otra no y sale confusion heavy
+	@Transient
+	private int incremento = 5;
 	@Column(name = "superior")
 	private int superior;
 	@Column(name = "inferior")
