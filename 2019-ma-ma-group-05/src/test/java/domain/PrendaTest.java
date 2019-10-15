@@ -6,16 +6,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.ColorPersistible;
-import entities.Prenda;
-import entities.SimpleFactoryPrendas;
-import entities.Tela;
-import entities.Categorias.*;
-import entities.Excepciones.ColoresIgualesException;
-import entities.Excepciones.TelaIncompatibleException;
-import entities.Telas.Algodon;
-import entities.Telas.Cuero;
-import entities.Tipos.*;
+import models.entities.ColorPersistible;
+import models.entities.Prenda;
+import models.entities.SimpleFactoryPrendas;
+import models.entities.Tela;
+import models.entities.Categorias.*;
+import models.entities.Excepciones.ColoresIgualesException;
+import models.entities.Excepciones.TelaIncompatibleException;
+import models.entities.Telas.Algodon;
+import models.entities.Telas.Cuero;
+import models.entities.Tipos.*;
 
 public class PrendaTest {
 	private Prenda prenda;

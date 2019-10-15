@@ -1,8 +1,8 @@
 package dtoClases;
 
-import entities.Guardarropa;
-import entities.Usuario;
-import entities.EstadosEvento.EstadoEvento;
+import models.entities.Guardarropa;
+import models.entities.Usuario;
+import models.entities.EstadosEvento.EstadoEvento;
 
 public class EventoDto {
 	public Usuario usuario;

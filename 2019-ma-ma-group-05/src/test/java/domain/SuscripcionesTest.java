@@ -8,14 +8,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.ColorPersistible;
-import entities.Guardarropa;
-import entities.Prenda;
-import entities.SimpleFactoryPrendas;
-import entities.Usuario;
-import entities.Excepciones.LimiteDePrendasAlcanzadoException;
-import entities.Suscripciones.Free;
-import entities.Suscripciones.Premium;
+import models.entities.ColorPersistible;
+import models.entities.Guardarropa;
+import models.entities.Prenda;
+import models.entities.SimpleFactoryPrendas;
+import models.entities.Usuario;
+import models.entities.Excepciones.LimiteDePrendasAlcanzadoException;
+import models.entities.Suscripciones.Free;
+import models.entities.Suscripciones.Premium;
 
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;

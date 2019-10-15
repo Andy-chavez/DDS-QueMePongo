@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.ColorPersistible;
-import entities.Prenda;
-import entities.SimpleFactoryPrendas;
-import entities.Telas.Algodon;
-import entities.Telas.Cuero;
+import models.entities.ColorPersistible;
+import models.entities.Prenda;
+import models.entities.SimpleFactoryPrendas;
+import models.entities.Telas.Algodon;
+import models.entities.Telas.Cuero;
 
 public class TestCargaDePrendas {
 	public static List<Prenda> init(){

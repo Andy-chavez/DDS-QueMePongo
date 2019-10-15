@@ -10,8 +10,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import dtoClases.SenderDto;
-import entities.ConfigReader;
-import entities.Sender;
+import models.entities.ConfigReader;
+import models.entities.Sender;
 
 public class EmailSender extends Sender{
 	static Properties props = new Properties();  

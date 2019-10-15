@@ -1,20 +1,21 @@
 package bd;
 
 import db.EntityManagerHelper;
-import db.TipoAttributeConverter;
-import entities.Guardarropa;
-import entities.Prenda;
-import entities.SimpleFactoryPrendas;
-import entities.Usuario;
-import entities.Telas.Algodon;
-import entities.Telas.Cuero;
-import entities.Tipos.Camisa;
-import entities.Tipos.Remera;
+import models.entities.Guardarropa;
+import models.entities.Prenda;
+import models.entities.SimpleFactoryPrendas;
+import models.entities.Usuario;
+import models.entities.Telas.Algodon;
+import models.entities.Telas.Cuero;
+import models.entities.Tipos.Camisa;
+import models.entities.Tipos.Remera;
 
 import java.awt.Color;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import converters.TipoAttributeConverter;
 
 public class DBTest{	
 	private Prenda remera;
@@ -33,7 +34,7 @@ public class DBTest{
 	}
     @Test
     public void persistir1UsuarioTest(){
-        EntityManagerHelper.beginTransaction();
+       // EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(usuario);
         EntityManagerHelper.commit();
         EntityManagerHelper.closeEntityManager();
@@ -65,7 +66,7 @@ public class DBTest{
     
     @Test
     public void recuperandoGuardarropa(){
-        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, 1);//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
+        Guardarropa g = (Guardarropa) EntityManagerHelper.getEntityManager().find(Guardarropa.class, guardarropa.getId());//createQuery("select nombre from guardarropa as g where g.nombre = 'formal'").getSingleResult();
         EntityManagerHelper.closeEntityManager();
         Assert.assertEquals("formal", g.getNombre());
     }
@@ -77,7 +78,7 @@ public class DBTest{
 //    	System.out.println(tipoAttr.convertToEntityAttribute("Remera"));
     	//remera.setColorPrimario(Color.pink);
 
-        //EntityManagerHelper.beginTransaction(); "Error while commiting the transaction"
+       // EntityManagerHelper.beginTransaction(); //"Error while commiting the transaction"
         EntityManagerHelper.persist(remera);
         EntityManagerHelper.commit();   
         EntityManagerHelper.closeEntityManager();

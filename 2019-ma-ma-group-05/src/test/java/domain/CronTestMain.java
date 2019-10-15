@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dtoClases.EventoDto;
-import entities.ApiClima;
-import entities.CronGenerarSugerencia;
-import entities.Evento;
-import entities.GestorDeClima;
-import entities.GestorSugerencia;
-import entities.Guardarropa;
-import entities.Prenda;
-import entities.Usuario;
-import entities.EstadosEvento.*;
+import models.entities.ApiClima;
+import models.entities.CronGenerarSugerencia;
+import models.entities.Evento;
+import models.entities.GestorDeClima;
+import models.entities.GestorSugerencia;
+import models.entities.Guardarropa;
+import models.entities.Prenda;
+import models.entities.Usuario;
+import models.entities.EstadosEvento.*;
 
 // esta clase existe porque en los tests no corren los timers.
 public class CronTestMain {

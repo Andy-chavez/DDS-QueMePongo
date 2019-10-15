@@ -1,10 +1,11 @@
 package bd;
 
 import db.EntityManagerHelper;
-import entities.*;
-import entities.Tipos.Camisa;
-import entities.Tipos.Pantalon;
-import entities.Tipos.Zapatillas;
+import models.entities.*;
+import models.entities.Tipos.Camisa;
+import models.entities.Tipos.Pantalon;
+import models.entities.Tipos.Zapatillas;
+
 import org.junit.Before;
 import org.junit.Test;
 

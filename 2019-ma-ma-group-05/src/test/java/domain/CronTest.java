@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 
 import org.junit.Test;
 
-import entities.ConfigReader;
+import models.entities.ConfigReader;
 
 public class CronTest {
 //	private Evento evento;

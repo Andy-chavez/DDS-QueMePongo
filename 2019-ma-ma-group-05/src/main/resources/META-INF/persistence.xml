@@ -8,43 +8,42 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-    	<class>entities.Usuario</class>
-<!--    	<class>entities.Suscripcion</class>  TODO -->
-    	<class>entities.Evento</class> <!-- CHECK -->
-    	<class>entities.Prenda</class> <!-- CHECK -->
-    	<class>entities.Guardarropa</class> <!-- CHECK falta ver algo de los moldes que quedo medio inconcluso creo -->
-    	<class>entities.ColorPersistible</class>
+    	<class>models.entities.Usuario</class>
+    	<class>models.entities.Evento</class> <!-- CHECK -->
+    	<class>models.entities.Prenda</class> <!-- CHECK -->
+    	<class>models.entities.Guardarropa</class> <!-- CHECK falta ver algo de los moldes que quedo medio inconcluso creo -->
+    	<class>models.entities.ColorPersistible</class>
   
-    	<class>entities.Tela</class> <!-- CHECK ver si se persiste como singleTable -->
-    	<class>entities.Telas.Cuero</class>
-    	<class>entities.Telas.Algodon</class>
-    	<class>entities.Telas.Elastina</class>
-    	<class>entities.Telas.Seda</class>
-    	<class>entities.Telas.Nylon</class>
-    	<class>entities.Telas.Poliester</class>
-    	<class>entities.Telas.Encaje</class>
+    	<class>models.entities.Tela</class> <!-- CHECK ver si se persiste como singleTable -->
+    	<class>models.entities.Telas.Cuero</class>
+    	<class>models.entities.Telas.Algodon</class>
+    	<class>models.entities.Telas.Elastina</class>
+    	<class>models.entities.Telas.Seda</class>
+    	<class>models.entities.Telas.Nylon</class>
+    	<class>models.entities.Telas.Poliester</class>
+    	<class>models.entities.Telas.Encaje</class>
     	
-    	<class>entities.Tipo</class> <!-- CHECK ver si se persiste como singleTable -->
-    	<class>entities.Tipos.Remera</class>
-    	<class>entities.Tipos.Antiparras</class>
-    	<class>entities.Tipos.Camisa</class>
-    	<class>entities.Tipos.Campera</class>
-    	<class>entities.Tipos.Musculosa</class>
-    	<class>entities.Tipos.Ojotas</class>
-    	<class>entities.Tipos.Pantalon</class>
-    	<class>entities.Tipos.Reloj</class>
-    	<class>entities.Tipos.Short</class>
-    	<class>entities.Tipos.Sweater</class>
-    	<class>entities.Tipos.Zapatillas</class>
+    	<class>models.entities.Tipo</class> <!-- CHECK ver si se persiste como singleTable -->
+    	<class>models.entities.Tipos.Remera</class>
+    	<class>models.entities.Tipos.Antiparras</class>
+    	<class>models.entities.Tipos.Camisa</class>
+    	<class>models.entities.Tipos.Campera</class>
+    	<class>models.entities.Tipos.Musculosa</class>
+    	<class>models.entities.Tipos.Ojotas</class>
+    	<class>models.entities.Tipos.Pantalon</class>
+    	<class>models.entities.Tipos.Reloj</class>
+    	<class>models.entities.Tipos.Short</class>
+    	<class>models.entities.Tipos.Sweater</class>
+    	<class>models.entities.Tipos.Zapatillas</class>
   
-    	<class>entities.Atuendo</class> <!-- CHECK -->
-    	<class>entities.MoldeAtuendo</class>
-    	<class>entities.SensibilidadFrio</class> <!-- CHECK -->
+    	<class>models.entities.Atuendo</class> <!-- CHECK -->
+    	<class>models.entities.MoldeAtuendo</class>
+    	<class>models.entities.SensibilidadFrio</class> <!-- CHECK -->
     	
-    	<class>entities.Categoria</class> <!-- CHECK ver si se persiste como singleTable -->
-    	<class>entities.Categorias.Accesorio</class>
-    	<class>entities.Categorias.Calzado</class>
-    	<class>entities.Categorias.Inferior</class>
+    	<class>models.entities.Categoria</class> <!-- CHECK ver si se persiste como singleTable -->
+    	<class>models.entities.Categorias.Accesorio</class>
+    	<class>models.entities.Categorias.Calzado</class>
+    	<class>models.entities.Categorias.Inferior</class>
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

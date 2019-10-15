@@ -4,8 +4,8 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
 import dtoClases.SenderDto;
-import entities.ConfigReader;
-import entities.Sender;
+import models.entities.ConfigReader;
+import models.entities.Sender;
 
 public class WppSender extends Sender{
 	//No me parece mala idea leer estos datos del properties y el numero de twilio tmb

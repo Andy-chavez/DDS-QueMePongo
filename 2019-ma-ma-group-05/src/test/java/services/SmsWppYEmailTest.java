@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dtoClases.SenderDto;
-import entities.Usuario;
+import models.entities.Usuario;
 
 public class SmsWppYEmailTest { 
 	

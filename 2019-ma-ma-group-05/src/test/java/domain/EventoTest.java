@@ -9,14 +9,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dtoClases.EventoDto;
-import entities.Atuendo;
-import entities.CronGenerarSugerencia;
-import entities.Evento;
-import entities.GestorSugerencia;
-import entities.Guardarropa;
-import entities.Prenda;
-import entities.Usuario;
-import entities.EstadosEvento.*;
+import models.entities.Atuendo;
+import models.entities.CronGenerarSugerencia;
+import models.entities.Evento;
+import models.entities.GestorSugerencia;
+import models.entities.Guardarropa;
+import models.entities.Prenda;
+import models.entities.Usuario;
+import models.entities.EstadosEvento.*;
 
 public class EventoTest {
 	private Guardarropa guardarropa;
