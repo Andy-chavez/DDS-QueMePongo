@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import models.entities.Tipo;
+import converters.GenericAttributeConverter;
 import models.entities.Excepciones.*;
 
 import java.time.Instant;
@@ -26,6 +26,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private String imagen;
 
 	@Column(name = "tipo")
+	@Convert(converter = GenericAttributeConverter.class)
 	private Tipo tipo;
 	@ManyToOne
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")

@@ -6,18 +6,12 @@ import models.entities.Prenda;
 import models.entities.SimpleFactoryPrendas;
 import models.entities.Usuario;
 import models.entities.Telas.Algodon;
-import models.entities.Telas.*;
-import models.entities.Tipos.*;
 
 import java.util.List;
-
-import javax.persistence.Query;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import converters.TipoAttributeConverter;
 
 public class UsuarioGuardarropaEMTest{	
 	private Prenda remera;
