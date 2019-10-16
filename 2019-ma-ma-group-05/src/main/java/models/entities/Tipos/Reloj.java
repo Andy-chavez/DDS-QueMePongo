@@ -7,8 +7,6 @@ import models.entities.Tipo;
 import models.entities.Categorias.*;
 import models.entities.Telas.Cuero;
 
-@Entity
-@DiscriminatorValue("reloj")
 public class Reloj extends Tipo{
 	private static Reloj instancia;
 	public Reloj(){

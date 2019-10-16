@@ -9,25 +9,11 @@ import javax.persistence.*;
 
 import models.entities.Categoria;
 
-@Entity
-@Table(name = "tipo")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "discriminador")
 public class Tipo extends EntidadPersistente{
-
-	@Column(name = "nombre")
 	protected String nombre;
-	@Column(name = "capa")
 	protected int capa;
-	@Column(name = "nivel_abrigo")
 	protected int nivelAbrigo;
-
-	@ManyToOne
-	//@JoinColumn(name = "categoria_id", referencedColumnName = "id")
 	protected Categoria categoria;
-	
-	@ManyToMany//(cascade = {CascadeType.ALL})
-	//@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 
 	public Tipo() {

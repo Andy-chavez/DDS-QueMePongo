@@ -8,8 +8,6 @@ import models.entities.Categorias.*;
 import models.entities.Telas.Algodon;
 import models.entities.Telas.Nylon;
 
-@Entity
-@DiscriminatorValue("remera")
 public class Remera extends Tipo{
 	private static Remera instancia;
 	public Remera(){

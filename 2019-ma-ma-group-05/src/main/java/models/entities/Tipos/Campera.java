@@ -11,8 +11,6 @@ import models.entities.Telas.Nylon;
 import models.entities.Telas.Poliester;
 import models.entities.Telas.Seda;
 
-@Entity
-@DiscriminatorValue("campera")
 public class Campera extends Tipo{
 	private static Campera instancia;
 	public Campera(){

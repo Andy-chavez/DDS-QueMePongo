@@ -1,16 +1,16 @@
 package models.entities.Tipos;
 
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import converters.TipoAttributeConverter;
 import models.entities.Tipo;
 import models.entities.Categorias.*;
 import models.entities.Telas.Algodon;
 import models.entities.Telas.Cuero;
 import models.entities.Telas.Seda;
 
-@Entity
-@DiscriminatorValue("zapatillas")
 public class Zapatillas extends Tipo{
 	private static Zapatillas instancia;
 	public Zapatillas(){

@@ -10,8 +10,6 @@ import models.entities.Telas.Nylon;
 import models.entities.Telas.Poliester;
 import models.entities.Telas.Seda;
 
-@Entity
-@DiscriminatorValue("camisa")
 public class Camisa extends Tipo{
 	private static Camisa instancia;
 	public Camisa(){
