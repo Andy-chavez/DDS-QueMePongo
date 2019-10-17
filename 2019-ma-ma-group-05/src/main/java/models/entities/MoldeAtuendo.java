@@ -21,15 +21,10 @@ public class MoldeAtuendo extends EntidadPersistente{
 	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
 	private List<Tipo> moldeTipos;
 	
-//	@OneToOne //TODO asi?
-//	@JoinColumn(name = "sensibilidad_frio", referencedColumnName = "id")
-//	private SensibilidadFrio sensibilidadFrio;
-	
 	public MoldeAtuendo(Atuendo atuendo){
 		this.moldeTipos = new ArrayList<Tipo>();
 		this.agregarTipos(atuendo);
 		this.nivelAbrigo = atuendo.getNivelAbrigo();
-		//this.sensibilidadFrio = atuendo.getSensibilidadFrio();
 	}
 	// --- GETTERS Y SETTERS ---
 	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
