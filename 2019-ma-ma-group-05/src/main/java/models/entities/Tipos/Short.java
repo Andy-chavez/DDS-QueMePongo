@@ -10,6 +10,7 @@ import models.entities.Telas.Nylon;
 import models.entities.Telas.Poliester;
 import models.entities.Telas.Seda;
 
+@Entity
 public class Short extends Tipo{
 	private static Short instancia;
 	public Short(){

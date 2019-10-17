@@ -8,6 +8,7 @@ import models.entities.Categorias.*;
 import models.entities.Telas.Algodon;
 import models.entities.Telas.Nylon;
 
+@Entity
 public class Antiparras extends Tipo{
 	private static Antiparras instancia;
 

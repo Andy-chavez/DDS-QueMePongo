@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "discriminador")
 public class Tela extends EntidadPersistente{
-
+	//TODO: hacer que cada nombre de tela sea unic
 	@Column(name = "nombre")
 	protected String nombre;
 

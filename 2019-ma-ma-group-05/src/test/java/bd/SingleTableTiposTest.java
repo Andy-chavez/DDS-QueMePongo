@@ -4,6 +4,7 @@ import models.entities.Tela;
 import models.entities.Telas.Algodon;
 import models.entities.Telas.Cuero;
 import models.entities.Telas.Nylon;
+import models.entities.Tipos.Campera;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -51,7 +52,7 @@ public class SingleTableTiposTest {
 	List<Tela> telasPosibles;
 	Tipo remera;
 	Tipo pantalon;
-	Tipo campera;
+	Campera campera;
 	Tipo sup;
 
 	@Before
@@ -67,7 +68,7 @@ public class SingleTableTiposTest {
 		remera.setCapa(0);
 		remera.setNivelAbrigo(10);
 
-//		telasPosibles.add(new Cuero());
+		telasPosibles.add(new Cuero());
 		pantalon = new Tipo();
 		pantalon.setCategoria(Inferior.getInstance());
 		pantalon.setTelasPosibles(telasPosibles);
@@ -75,13 +76,15 @@ public class SingleTableTiposTest {
 		pantalon.setCapa(0);
 		pantalon.setNivelAbrigo(20);
 
+		campera = Campera.getInstance();
+
 	}
 
 	@Test
 	public void persistirTipos() {
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(pantalon);
-		EntityManagerHelper.getEntityManager().persist(remera);
+		EntityManagerHelper.getEntityManager().persist(campera);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 	}

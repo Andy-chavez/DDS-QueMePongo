@@ -10,6 +10,7 @@ import models.entities.Telas.Cuero;
 import models.entities.Telas.Nylon;
 import models.entities.Telas.Seda;
 
+@Entity
 public class Pantalon extends Tipo{
 	private static Pantalon instancia;
 	public Pantalon(){
