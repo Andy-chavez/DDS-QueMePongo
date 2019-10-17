@@ -10,10 +10,8 @@ import models.entities.Atuendo;
 import models.entities.Categoria;
 import models.entities.Prenda;
 
-@Entity
-@DiscriminatorValue("accesorio")
+
 public class Accesorio extends Categoria{
-	@Transient
 	private static Accesorio singleInstance = null;
 
 	public static Accesorio getInstance(){
