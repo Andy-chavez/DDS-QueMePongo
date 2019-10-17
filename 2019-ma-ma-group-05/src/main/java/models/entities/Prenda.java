@@ -25,10 +25,9 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Column(name = "imagen")
 	private String imagen;
 
-	@Column(name = "tipo")
-	@Convert(converter = GenericAttributeConverter.class)
+	@ManyToOne(cascade = {CascadeType.ALL})
 	private Tipo tipo;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 

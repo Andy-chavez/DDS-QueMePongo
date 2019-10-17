@@ -61,6 +61,7 @@ public class SingleTableTiposTest {
 		telasPosibles.add(new Algodon());
 		telasPosibles.add(new Nylon());
 
+		// creo un tipo "nuevo" para que se agregue a la db
 		remera = new Tipo();
 		remera.setCategoria(SuperiorBase.getInstance());
 		remera.setTelasPosibles(telasPosibles);
@@ -68,6 +69,7 @@ public class SingleTableTiposTest {
 		remera.setCapa(0);
 		remera.setNivelAbrigo(10);
 
+		// creo un tipo "nuevo" para que se agregue a la db
 		telasPosibles.add(new Cuero());
 		pantalon = new Tipo();
 		pantalon.setCategoria(Inferior.getInstance());
@@ -76,6 +78,7 @@ public class SingleTableTiposTest {
 		pantalon.setCapa(0);
 		pantalon.setNivelAbrigo(20);
 
+		// uso un tipo sya definido para que se agregue a la db
 		campera = Campera.getInstance();
 
 	}
@@ -83,6 +86,7 @@ public class SingleTableTiposTest {
 	@Test
 	public void persistirTipos() {
 		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(remera);
 		EntityManagerHelper.getEntityManager().persist(pantalon);
 		EntityManagerHelper.getEntityManager().persist(campera);
 		EntityManagerHelper.commit();
