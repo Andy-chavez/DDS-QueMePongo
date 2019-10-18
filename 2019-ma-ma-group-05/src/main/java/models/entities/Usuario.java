@@ -55,6 +55,7 @@ public class Usuario extends EntidadPersistente {
 		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
 		this.gestorSugerencia = GestorSugerencia.getInstance();
 		this.gestorOperaciones = new  GestorDeOperaciones();
+		this.eventos = new ArrayList<Evento>();
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
 		this.nombre = unNombre;
