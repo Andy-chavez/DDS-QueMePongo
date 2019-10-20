@@ -9,7 +9,6 @@ import models.entities.Telas.Algodon;
 import models.entities.Telas.Nylon;
 
 @Entity
-@DiscriminatorValue("antiparras")
 public class Antiparras extends Tipo{
 	private static Antiparras instancia;
 

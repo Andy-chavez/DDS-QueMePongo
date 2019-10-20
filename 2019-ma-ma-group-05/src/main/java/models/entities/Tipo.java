@@ -7,27 +7,24 @@ import java.util.stream.Stream;
 
 import javax.persistence.*;
 
+import converters.GenericAttributeConverter;
 import models.entities.Categoria;
 
 @Entity
-@Table(name = "tipo")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "discriminador")
+@Table(name = "tipos")
 public class Tipo extends EntidadPersistente{
-
 	@Column(name = "nombre")
 	protected String nombre;
 	@Column(name = "capa")
 	protected int capa;
 	@Column(name = "nivel_abrigo")
 	protected int nivelAbrigo;
-
-	@ManyToOne
-	//@JoinColumn(name = "categoria_id", referencedColumnName = "id")
+	@Column(name = "categoria")
+	@Convert(converter = GenericAttributeConverter.class)
 	protected Categoria categoria;
-	
-	@ManyToMany//(cascade = {CascadeType.ALL})
-	//@JoinColumn(name = "tela_id", referencedColumnName = "id")
+
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 
 	public Tipo() {
@@ -44,6 +41,7 @@ public class Tipo extends EntidadPersistente{
 	public void setCategoria(Categoria categoria) {	this.categoria = categoria;	}
 	public List<Tela> getTelasPosibles() {	return telasPosibles;	}
 	public void setTelasPosibles(List<Tela> telas) {	this.telasPosibles = telas;	}
+
 	
 	public boolean estaTelaEsPosible(String nombreTela) {
 		List<Tela> lista = new ArrayList<>();

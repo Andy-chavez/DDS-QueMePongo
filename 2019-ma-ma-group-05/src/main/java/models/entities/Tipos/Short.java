@@ -11,7 +11,6 @@ import models.entities.Telas.Poliester;
 import models.entities.Telas.Seda;
 
 @Entity
-@DiscriminatorValue("short")
 public class Short extends Tipo{
 	private static Short instancia;
 	public Short(){

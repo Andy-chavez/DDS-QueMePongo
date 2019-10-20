@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class PersistirEMTest {
 	private Usuario usuario;
-
+    Zapatillas zapatillas;
     ColorPersistible verde;
     ColorPersistible negro;
     ColorPersistible azul;
@@ -52,15 +52,16 @@ public class PersistirEMTest {
 		EntityManagerHelper.closeEntityManager();
 	}
 
-	@Test
-	public void persistirYRemoverUsuarioTest() {
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.persist(usuario);
-        Usuario user = EntityManagerHelper.getEntityManager().find(usuario.getClass(), usuario.getId());
-        EntityManagerHelper.getEntityManager().remove(user);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
-	}
+//	@Test
+//	public void persistirYRemoverUsuarioTest() {
+//        EntityManagerHelper.beginTransaction();
+//        EntityManagerHelper.persist(usuario);
+//        Usuario user = EntityManagerHelper.getEntityManager().find(usuario.getClass(), usuario.getId());
+//        EntityManagerHelper.getEntityManager().remove(user);
+//        EntityManagerHelper.commit();
+//        EntityManagerHelper.closeEntityManager();
+//	}
+
 
 	@Test
 	public void persistoColor() {

@@ -3,12 +3,7 @@ package models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="molde")
@@ -17,8 +12,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
 
-	@ManyToMany //TODO asi?
-	@JoinColumn(name = "molde_tipos", referencedColumnName = "id")
+	@Transient
 	private List<Tipo> moldeTipos;
 	
 	public MoldeAtuendo(Atuendo atuendo){

@@ -19,7 +19,7 @@ public class SingleTableCategoriasTest {
 	@Before
 	public void init(){
 		
-		cuerpoEntero = new Categoria();
+//		cuerpoEntero = new Categoria();
 		superior = new SuperiorBase();
 	}
 	

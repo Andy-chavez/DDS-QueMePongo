@@ -9,9 +9,7 @@ import models.entities.Telas.Algodon;
 import models.entities.Telas.Nylon;
 import models.entities.Telas.Poliester;
 import models.entities.Telas.Seda;
-
 @Entity
-@DiscriminatorValue("sweater")
 public class Sweater extends Tipo{
 	private static Sweater instancia;
 	public Sweater(){

@@ -5,11 +5,8 @@ import javax.persistence.*;
 import models.entities.Atuendo;
 import models.entities.Categoria;
 
-@Entity
-@DiscriminatorValue("superior_base")
 public class SuperiorBase extends Categoria{
 
-	@Transient
 	private static SuperiorBase singleInstance = null;
 
 	public static SuperiorBase getInstance(){

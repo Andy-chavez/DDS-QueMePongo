@@ -11,11 +11,8 @@ import models.entities.Categoria;
 import models.entities.Prenda;
 import models.entities.Tipo;
 
-@Entity
-@DiscriminatorValue("superior_extra")
 public class SuperiorExtra extends Categoria{
 
-	@Transient
 	private static SuperiorExtra singleInstance = null;
 
 	public static SuperiorExtra getInstance(){
