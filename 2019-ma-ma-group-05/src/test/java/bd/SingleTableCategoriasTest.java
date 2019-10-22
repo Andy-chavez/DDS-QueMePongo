@@ -20,7 +20,7 @@ public class SingleTableCategoriasTest {
 	public void init(){
 		
 //		cuerpoEntero = new Categoria();
-		superior = new SuperiorBase();
+		superior = SuperiorBase.getInstance();
 	}
 	
     @Test

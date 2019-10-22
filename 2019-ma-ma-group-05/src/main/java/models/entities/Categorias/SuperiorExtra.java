@@ -10,9 +10,11 @@ import models.entities.Atuendo;
 import models.entities.Categoria;
 import models.entities.Prenda;
 import models.entities.Tipo;
-
+@Entity
 public class SuperiorExtra extends Categoria{
-
+	protected SuperiorExtra(){
+		this.setNombre("superior_extra");
+	}
 	private static SuperiorExtra singleInstance = null;
 
 	public static SuperiorExtra getInstance(){
@@ -25,13 +27,13 @@ public class SuperiorExtra extends Categoria{
 		List<Prenda> prendasFiltradas =  prendas.stream().filter(p -> !p.esDeTipo(tipo)).collect(Collectors.toList());
 		return prendasFiltradas;
 	}
-	
+
 	@Override
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){
 		int nivelAbrigoActual = atuendo.getNivelAbrigoDeCategoria(this) + atuendo.getNivelAbrigoDeCategoria(new SuperiorBase());
 		return atuendo.getNivelAbrigo() + atuendo.getSensibilidadFrio().getSuperior() - nivelAbrigoActual;
 	}
-	
+
 	@Override
 	public void agregarPrendas(Atuendo atuendo, List<Prenda> prendas, int nivelAbrigoRequerido){
 		atuendo.printPrendas();

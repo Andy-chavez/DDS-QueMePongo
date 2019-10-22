@@ -4,9 +4,11 @@ import javax.persistence.*;
 
 import models.entities.Atuendo;
 import models.entities.Categoria;
-
+@Entity
 public class SuperiorBase extends Categoria{
-
+	protected SuperiorBase(){
+		this.setNombre("superior_base");
+	}
 	private static SuperiorBase singleInstance = null;
 
 	public static SuperiorBase getInstance(){
