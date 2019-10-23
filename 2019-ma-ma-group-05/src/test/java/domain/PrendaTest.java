@@ -63,7 +63,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonCalzadoLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de calzado", new Calzado().getClass(), zapatillas.getTipo().getCategoria().getClass());
+		Assert.assertEquals("No eran zapatillas de calzado", Calzado.getInstance().getClass(), zapatillas.getTipo().getCategoria().getClass());
 	}
 	
 	@Test
