@@ -10,8 +10,11 @@ import models.entities.Atuendo;
 import models.entities.Categoria;
 import models.entities.Prenda;
 
-
+@Entity
 public class Accesorio extends Categoria{
+	protected Accesorio(){
+		this.setNombre("accesorio");
+	}
 	private static Accesorio singleInstance = null;
 
 	public static Accesorio getInstance(){

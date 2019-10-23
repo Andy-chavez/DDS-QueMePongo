@@ -54,6 +54,9 @@ public class SingleTableTiposTest {
 	Tipo pantalon;
 	Campera campera;
 	Tipo sup;
+	Inferior inferior;
+	SuperiorBase superiorBase;
+
 
 	@Before
 	public void init() {
@@ -61,9 +64,12 @@ public class SingleTableTiposTest {
 		telasPosibles.add(new Algodon());
 		telasPosibles.add(new Nylon());
 
+		superiorBase = SuperiorBase.getInstance();
+		inferior = Inferior.getInstance();
+
 		// creo un tipo "nuevo" para que se agregue a la db
 		remera = new Tipo();
-		remera.setCategoria(SuperiorBase.getInstance());
+		remera.setCategoria(superiorBase);
 		remera.setTelasPosibles(telasPosibles);
 		remera.setNombre("remera");
 		remera.setCapa(0);
@@ -72,23 +78,25 @@ public class SingleTableTiposTest {
 		// creo un tipo "nuevo" para que se agregue a la db
 		telasPosibles.add(new Cuero());
 		pantalon = new Tipo();
-		pantalon.setCategoria(Inferior.getInstance());
+		pantalon.setCategoria(inferior);
 		pantalon.setTelasPosibles(telasPosibles);
 		pantalon.setNombre("pantalon");
 		pantalon.setCapa(0);
 		pantalon.setNivelAbrigo(20);
 
 		// uso un tipo sya definido para que se agregue a la db
-		campera = Campera.getInstance();
+//		campera = Campera.getInstance();
 
 	}
 
 	@Test
 	public void persistirTipos() {
 		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(superiorBase);
+		EntityManagerHelper.getEntityManager().persist(inferior);
 		EntityManagerHelper.getEntityManager().persist(remera);
 		EntityManagerHelper.getEntityManager().persist(pantalon);
-		EntityManagerHelper.getEntityManager().persist(campera);
+//		EntityManagerHelper.getEntityManager().persist(campera);
 		EntityManagerHelper.commit();
 		EntityManagerHelper.closeEntityManager();
 	}

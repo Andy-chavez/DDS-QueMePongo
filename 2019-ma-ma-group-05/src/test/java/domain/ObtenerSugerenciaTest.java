@@ -202,7 +202,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
-		Categoria superiorExtra = new SuperiorExtra();
+		Categoria superiorExtra = SuperiorExtra.getInstance();
 		Atuendo atuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
 		superiorExtra.agregarPrendas(atuendo, prendas, 30);
 		atuendo.printPrendas();

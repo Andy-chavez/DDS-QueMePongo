@@ -19,8 +19,7 @@ public class Tipo extends EntidadPersistente{
 	protected int capa;
 	@Column(name = "nivel_abrigo")
 	protected int nivelAbrigo;
-	@Column(name = "categoria")
-	@Convert(converter = GenericAttributeConverter.class)
+	@ManyToOne
 	protected Categoria categoria;
 
 	@ManyToMany(cascade = {CascadeType.ALL})
