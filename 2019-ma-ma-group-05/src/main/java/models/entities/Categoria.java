@@ -9,8 +9,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 @Entity
-@Table(name = "categorias")
-//@Convert(converter = GenericAttributeConverter.class)
+@Table(name = "categoria")
 public abstract class Categoria  extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
@@ -50,5 +49,7 @@ public abstract class Categoria  extends EntidadPersistente{
 	protected void setNombre(String nombre){
 		this.nombre = nombre;
 	}
-
+	public String getNombre(){
+		return this.nombre;
+	}
 }

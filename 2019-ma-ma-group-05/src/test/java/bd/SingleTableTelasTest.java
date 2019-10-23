@@ -5,17 +5,15 @@ import org.junit.Test;
 
 import db.EntityManagerHelper;
 import models.entities.Tela;
-import models.entities.Telas.*;
 
 public class SingleTableTelasTest {
-	Algodon algodon;
+	Tela algodon;
 	Tela gabardina;
 	
 	@Before
 	public void init(){
-		algodon = new Algodon();
-		gabardina = new Tela();
-		gabardina.setNombre("gabardina");
+		algodon = new Tela("algodon");
+		gabardina = new Tela("gabardina");
 
 	}
     @Test

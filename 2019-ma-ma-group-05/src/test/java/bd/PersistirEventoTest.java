@@ -4,9 +4,6 @@ import db.EntityManagerHelper;
 import dtoClases.EventoDto;
 import models.entities.*;
 import models.entities.EstadosEvento.Inactivo;
-import models.entities.Telas.Algodon;
-import models.entities.Telas.Cuero;
-import models.entities.Telas.Nylon;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,26 +26,29 @@ public class PersistirEventoTest {
 		usuario.setCelular("123456789");
 		usuario.setMail("X@gmail.com");
 
+
+		Tela cuero = new Tela("cuero");
+		Tela algodon = new Tela("algodon");
 		guardarropa = new Guardarropa("deportivo");
 
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setTela(Algodon.getInstance());
+		remera.setTela(algodon);
 		remera.setColorPrimario(ColorPersistible.pink);
 
 		pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		pantalon.setTela(Cuero.getInstance());
+		pantalon.setTela(algodon);
 		pantalon.setColorPrimario(ColorPersistible.blue);
 
 		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas.setTela(Cuero.getInstance());
+		zapatillas.setTela(cuero);
 		zapatillas.setColorPrimario(ColorPersistible.white);
 
 		campera = SimpleFactoryPrendas.crearPrenda("campera");
-		campera.setTela(Nylon.getInstance());
+		campera.setTela(algodon);
 		campera.setColorPrimario(ColorPersistible.black);
 
 		reloj = SimpleFactoryPrendas.crearPrenda("reloj");
-		reloj.setTela(Cuero.getInstance());
+		reloj.setTela(cuero);
 		reloj.setColorPrimario(ColorPersistible.yellow);
 
 		usuario.agregarGuardarropa(guardarropa);

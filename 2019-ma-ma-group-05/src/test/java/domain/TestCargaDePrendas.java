@@ -7,14 +7,13 @@ import java.util.List;
 import models.entities.ColorPersistible;
 import models.entities.Prenda;
 import models.entities.SimpleFactoryPrendas;
-import models.entities.Telas.Algodon;
-import models.entities.Telas.Cuero;
+import models.entities.Tela;
 
 public class TestCargaDePrendas {
 	public static List<Prenda> init(){
 		List<Prenda> listaDePrendas = new ArrayList<Prenda>();
-		Algodon algodon=Algodon.getInstance();
-		Cuero cuero = Cuero.getInstance();
+		Tela algodon= new Tela("Algodon");
+		Tela cuero = new Tela("Cuero");
 		Prenda antiparras;
 		Prenda unShort;
 		Prenda musculosa;

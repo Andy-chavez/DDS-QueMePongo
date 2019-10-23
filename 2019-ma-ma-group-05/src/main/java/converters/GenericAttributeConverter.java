@@ -1,9 +1,5 @@
 package converters;
 
-import models.entities.Tipo;
-import models.entities.Tipos.*;
-import models.entities.Tipos.Short;
-
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 

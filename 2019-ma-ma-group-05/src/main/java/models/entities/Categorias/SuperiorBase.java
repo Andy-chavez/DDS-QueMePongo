@@ -6,16 +6,8 @@ import models.entities.Atuendo;
 import models.entities.Categoria;
 @Entity
 public class SuperiorBase extends Categoria{
-	protected SuperiorBase(){
-		this.setNombre("superior_base");
-	}
-	private static SuperiorBase singleInstance = null;
-
-	public static SuperiorBase getInstance(){
-		if(singleInstance == null){
-			singleInstance = new SuperiorBase();
-		}
-		return singleInstance;
+	public SuperiorBase(){
+		this.setNombre("SuperiorBase");
 	}
 	@Override
 	public int calcularNivelAbrigoRequerido(Atuendo atuendo){

@@ -27,8 +27,6 @@ import models.entities.Tipo;
 import models.entities.Usuario;
 import models.entities.Categorias.SuperiorExtra;
 import models.entities.EstadosEvento.Pendiente;
-import models.entities.Telas.Algodon;
-import models.entities.Telas.Cuero;
 
 public class ObtenerSugerenciaTest {
 	private Guardarropa guardarropa;
@@ -52,17 +50,16 @@ public class ObtenerSugerenciaTest {
 	private Prenda sweater2;
 	private Prenda campera2;
 	private Usuario usuario;
-	private Cuero cuero;
+	private Tela cuero;
 	private List<Prenda> prendas;
-	
 
 	GestorSugerencia gestorSugerencia;
 	private Tela algodon;
 	
 	@Before
 	public void init() {    
-		algodon = Algodon.getInstance();
-		cuero = Cuero.getInstance();
+		algodon = new Tela("Algodon");
+		cuero = new Tela("Cuero");
 		
 		camisa = SimpleFactoryPrendas.crearPrenda("camisa");
 		camisa.setColorPrimario(ColorPersistible.BLACK);
@@ -202,7 +199,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
-		Categoria superiorExtra = SuperiorExtra.getInstance();
+		Categoria superiorExtra = new SuperiorExtra();
 		Atuendo atuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
 		superiorExtra.agregarPrendas(atuendo, prendas, 30);
 		atuendo.printPrendas();

@@ -16,11 +16,11 @@ public class GestorSugerencia {
 	private GestorSugerencia(){
 		this.gestorDeClima = GestorDeClima.getInstance();
 		this.categorias = new ArrayList<Categoria>();
-		this.categorias.add(SuperiorBase.getInstance());
-		this.categorias.add(SuperiorExtra.getInstance());
-		this.categorias.add(Inferior.getInstance());
-		this.categorias.add(Calzado.getInstance());
-		this.categorias.add(Accesorio.getInstance());
+		this.categorias.add(new SuperiorBase());
+		this.categorias.add(new SuperiorExtra());
+		this.categorias.add(new Inferior());
+		this.categorias.add(new Calzado());
+		this.categorias.add(new Accesorio());
 		
 	}
 	private static GestorSugerencia singleInstance = null;

@@ -4,13 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tela")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "discriminador")
-public class Tela extends EntidadPersistente{
-	//TODO: hacer que cada nombre de tela sea unico para no tener repetidos
+public class Tela extends EntidadPersistente{//hacer que cada nombre de tela sea unico para no tener repetidos
 	@Column(name = "nombre")
 	protected String nombre;
 
+    public Tela(String unNombre) {
+        this.setNombre(unNombre);
+    }
+	public Tela() {	}
 	public void setNombre(String unNombre) {
 		this.nombre = unNombre;
 	}

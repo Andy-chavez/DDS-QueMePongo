@@ -12,16 +12,8 @@ import models.entities.Prenda;
 import models.entities.Tipo;
 @Entity
 public class SuperiorExtra extends Categoria{
-	protected SuperiorExtra(){
-		this.setNombre("superior_extra");
-	}
-	private static SuperiorExtra singleInstance = null;
-
-	public static SuperiorExtra getInstance(){
-		if(singleInstance == null){
-			singleInstance = new SuperiorExtra();
-		}
-		return singleInstance;
+	public SuperiorExtra(){
+		this.setNombre("SuperiorExtra");
 	}
 	private List<Prenda> filtrarTipoYaUsado(List<Prenda> prendas, Tipo tipo){
 		List<Prenda> prendasFiltradas =  prendas.stream().filter(p -> !p.esDeTipo(tipo)).collect(Collectors.toList());
