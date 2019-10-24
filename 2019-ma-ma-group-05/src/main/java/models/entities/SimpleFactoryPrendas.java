@@ -1,8 +1,10 @@
 package models.entities;
 
+import models.entities.Categorias.*;
 import models.entities.Excepciones.CrearPrendaException;
-import models.entities.Tipos.*;
-import models.entities.Tipos.Short;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleFactoryPrendas {
     private static SimpleFactoryPrendas singleInstance = null;
@@ -15,39 +17,47 @@ public class SimpleFactoryPrendas {
 	}
 	
 	public static Prenda crearPrenda(String tipo){
+		List<Tela> cueroYAlgodon = new ArrayList<>();
+		List<Tela> algNylPolYSed = new ArrayList<>();
+		cueroYAlgodon.add(new Tela("cuero"));
+		cueroYAlgodon.add(new Tela("algodon"));
+		algNylPolYSed.add(new Tela("algodon"));
+		algNylPolYSed.add(new Tela("nylon"));
+		algNylPolYSed.add(new Tela("seda"));
+		algNylPolYSed.add(new Tela("poliester"));
 		tipo = tipo.toLowerCase();
 		if(tipo == "remera") {
-			return new Prenda(Remera.getInstance());
+			return new Prenda(new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10));
 		}
 		else if(tipo == "camisa") {
-			return new Prenda(Camisa.getInstance());
+			return new Prenda(new Tipo("Camisa",new SuperiorBase(),algNylPolYSed,1,12));
 		}
 		else if(tipo == "musculosa") {
-			return new Prenda(Musculosa.getInstance());
+			return new Prenda(new Tipo("Musculosa",new SuperiorBase(),algNylPolYSed,0,8));
 		}
 		else if(tipo == "campera") {
-			return new Prenda(Campera.getInstance());
+			return new Prenda(new Tipo("Campera",new SuperiorExtra(),algNylPolYSed,3,25));
 		}
-		else if(tipo == "antiparras") {
-			return new Prenda(Antiparras.getInstance());
+		else if(tipo == "collar") {
+			return new Prenda(new Tipo("Collar",new Accesorio(),cueroYAlgodon,0,0));
 		}
 		else if(tipo == "ojotas") {
-			return new Prenda(Ojotas.getInstance());
+			return new Prenda(new Tipo("Ojotas",new Calzado(),cueroYAlgodon,0,1));
 		}
 		else if(tipo == "pantalon") {
-			return new Prenda(Pantalon.getInstance());
+			return new Prenda(new Tipo("Pantalon",new Inferior(),algNylPolYSed,0,30));
 		}
 		else if(tipo == "reloj") {
-			return new Prenda(Reloj.getInstance());
+			return new Prenda(new Tipo("Reloj",new Accesorio(),cueroYAlgodon,0,0));
 		}
-		else if(tipo == "short") {
-			return new Prenda(Short.getInstance());
+		else if(tipo == "shorts") {
+			return new Prenda(new Tipo("Shorts",new Inferior(),algNylPolYSed,0,15));
 		}
 		else if(tipo == "sweater") {
-			return new Prenda(Sweater.getInstance());
+			return new Prenda(new Tipo("Sweater",new SuperiorExtra(),algNylPolYSed,2,12));
 		}
 		else if(tipo == "zapatillas") {
-			return new Prenda(Zapatillas.getInstance());
+			return new Prenda(new Tipo("Zapatillas",new Calzado(),cueroYAlgodon,0,10));
 		}
 
 		throw new CrearPrendaException("Tipo de Prenda inexistente");

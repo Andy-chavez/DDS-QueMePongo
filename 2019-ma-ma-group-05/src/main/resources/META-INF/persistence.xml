@@ -15,26 +15,8 @@
     	<class>models.entities.ColorPersistible</class> <!-- CHECK -->
   
     	<class>models.entities.Tela</class> <!-- CHECK -->
-    	<class>models.entities.Telas.Cuero</class>
-    	<class>models.entities.Telas.Algodon</class>
-    	<class>models.entities.Telas.Elastina</class>
-    	<class>models.entities.Telas.Seda</class>
-    	<class>models.entities.Telas.Nylon</class>
-    	<class>models.entities.Telas.Poliester</class>
-    	<class>models.entities.Telas.Encaje</class>
     	
-    	<class>models.entities.Tipo</class> <!-- CHECK ver si se persiste como singleTable -->
-    	<class>models.entities.Tipos.Remera</class>
-    	<class>models.entities.Tipos.Antiparras</class>
-    	<class>models.entities.Tipos.Camisa</class>
-    	<class>models.entities.Tipos.Campera</class>
-    	<class>models.entities.Tipos.Musculosa</class>
-    	<class>models.entities.Tipos.Ojotas</class>
-    	<class>models.entities.Tipos.Pantalon</class>
-    	<class>models.entities.Tipos.Reloj</class>
-    	<class>models.entities.Tipos.Short</class>
-    	<class>models.entities.Tipos.Sweater</class>
-    	<class>models.entities.Tipos.Zapatillas</class>
+    	<class>models.entities.Tipo</class> <!-- CHECK -->
   
     	<class>models.entities.Atuendo</class> <!-- CHECK -->
     	<class>models.entities.MoldeAtuendo</class>

@@ -11,7 +11,7 @@ import converters.GenericAttributeConverter;
 import models.entities.Categoria;
 
 @Entity
-@Table(name = "tipos")
+@Table(name = "tipo")
 public class Tipo extends EntidadPersistente{
 	@Column(name = "nombre")
 	protected String nombre;
@@ -19,16 +19,21 @@ public class Tipo extends EntidadPersistente{
 	protected int capa;
 	@Column(name = "nivel_abrigo")
 	protected int nivelAbrigo;
-	@Column(name = "categoria")
-	@Convert(converter = GenericAttributeConverter.class)
+	@ManyToOne(cascade = {CascadeType.ALL})
 	protected Categoria categoria;
-
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 
 	public Tipo() {
 		telasPosibles = new ArrayList<>();
+	}
+	public Tipo(String nombre, Categoria c,List<Tela> telaList, int capa, int abrigo){
+		this.categoria = c;
+		this.telasPosibles = telaList;
+		this.nombre = nombre;
+		this.capa = capa;
+		this.nivelAbrigo = abrigo;
 	}
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }

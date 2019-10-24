@@ -1,32 +1,35 @@
 package domain;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
+import models.entities.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.entities.ColorPersistible;
-import models.entities.Prenda;
-import models.entities.SimpleFactoryPrendas;
-import models.entities.Tela;
 import models.entities.Categorias.*;
 import models.entities.Excepciones.ColoresIgualesException;
 import models.entities.Excepciones.TelaIncompatibleException;
-import models.entities.Telas.Algodon;
-import models.entities.Telas.Cuero;
-import models.entities.Tipos.*;
 
 public class PrendaTest {
 	private Prenda prenda;
 	private Prenda zapatillas;
-	private Remera remeraTipo;
+	private Tipo remeraTipo;
 	private Tela algodon;
 	private Tela cuero;
+
 	@Before
 	public void init() {
-		cuero = new Cuero();
-		algodon = new Algodon();
+		List<Tela> algNylPolYSed = new ArrayList<>();
+		algNylPolYSed.add(new Tela("algodon"));
+		algNylPolYSed.add(new Tela("nylon"));
+		algNylPolYSed.add(new Tela("seda"));
+		algNylPolYSed.add(new Tela("poliester"));
+		remeraTipo = new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10);
+		cuero = new Tela("Cuero");
+		algodon = new Tela("Algodon");
 		prenda = SimpleFactoryPrendas.crearPrenda("remera");
 		prenda.setTela(algodon);
 		
@@ -63,7 +66,7 @@ public class PrendaTest {
 	
 	@Test
 	public void sonCalzadoLosZapatos() {
-		Assert.assertEquals("No eran zapatillas de calzado", new Calzado().getClass(), zapatillas.getTipo().getCategoria().getClass());
+		Assert.assertEquals("No eran zapatillas de calzado", (new Calzado()).getClass(), zapatillas.getTipo().getCategoria().getClass());
 	}
 	
 	@Test

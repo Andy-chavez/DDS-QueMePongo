@@ -1,13 +1,18 @@
 package models.entities;
 
+import converters.GenericAttributeConverter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-public abstract class Categoria {
+@Entity
+@Table(name = "categoria")
+public abstract class Categoria  extends EntidadPersistente{
+	@Column(name = "nombre")
+	private String nombre;
 	// devuelve el nivel de abrigo requerido para esta categoria
 	protected int calcularNivelAbrigoRequerido(Atuendo atuendo){
 		return atuendo.getNivelAbrigo();
@@ -41,5 +46,10 @@ public abstract class Categoria {
 		atuendo.agregarPrenda(prendaElegida);
 		atuendo.printPrendas();
 	}
-	
+	protected void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	public String getNombre(){
+		return this.nombre;
+	}
 }

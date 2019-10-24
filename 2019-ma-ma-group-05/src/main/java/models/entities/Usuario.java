@@ -29,10 +29,10 @@ public class Usuario extends EntidadPersistente {
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Evento> eventos;
 	
-	@Column(name = "celular", columnDefinition = "varchar(255) default '1160046715'")
+	@Column(name = "celular")
 	private String celular;
 	
-	@Column(name = "mail", columnDefinition = "varchar(255) default 'elmailcito@gmail.com'")
+	@Column(name = "mail")
 	private String mail;
 	
 	@OneToOne( cascade = {CascadeType.ALL})

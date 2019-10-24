@@ -10,15 +10,10 @@ import models.entities.Atuendo;
 import models.entities.Categoria;
 import models.entities.Prenda;
 
-
+@Entity
 public class Accesorio extends Categoria{
-	private static Accesorio singleInstance = null;
-
-	public static Accesorio getInstance(){
-		if(singleInstance == null){
-			singleInstance = new Accesorio();
-		}
-		return singleInstance;
+	public Accesorio(){
+		this.setNombre("Accesorio");
 	}
 	public void agregarPrendas(Atuendo atuendo, List<Prenda> prendas, int nivelAbrigoRequerido){
 		List<Prenda> prendasDeEstaCategoria =  prendas.stream().filter(p -> p.esDeCategoria(this)).collect(Collectors.toList());
