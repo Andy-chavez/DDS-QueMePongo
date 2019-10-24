@@ -1,6 +1,5 @@
 package bd;
 
-import db.EntityManagerHelper;
 import models.DAOs.DAOUsuario;
 import models.entities.*;
 
@@ -24,7 +23,7 @@ public class UsuarioGuardarropaEMTest{
 		remera.setColorPrimario(ColorPersistible.blue);
 
     	pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		pantalon.setTela(new Tela("algodon"));
+    	pantalon.setTela(new Tela("algodon"));
 		pantalon.setColorPrimario(ColorPersistible.black);
 
 		usuario = new Usuario("mati");
@@ -63,7 +62,6 @@ public class UsuarioGuardarropaEMTest{
         Guardarropa g = (Guardarropa) h.get(0);
         Assert.assertEquals("formal", g.getNombre());
     }
-    
     @Test
     public void persistirPrenda(){
         EntityManagerHelper.beginTransaction();

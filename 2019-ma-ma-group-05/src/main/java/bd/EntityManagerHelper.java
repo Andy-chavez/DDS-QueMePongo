@@ -1,4 +1,4 @@
-package db;
+package bd;
 
 import java.util.function.*;
 
@@ -16,7 +16,7 @@ public class EntityManagerHelper {
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("db");
+            emf = Persistence.createEntityManagerFactory("bd");
             threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,8 +72,12 @@ public class EntityManagerHelper {
         return getEntityManager().createQuery(query);
     }
 
-    public static void persist(Object o){
-        entityManager().persist(o);
+    public static void persist(Object o){ //cambie esto por si soluciona el hecho de que se persistan repetidos
+        if (!entityManager().contains(o)) {
+            entityManager().persist(o);
+        } else {
+            entityManager().merge(o);
+        }
     }
 
     public static void withTransaction(Runnable action) {

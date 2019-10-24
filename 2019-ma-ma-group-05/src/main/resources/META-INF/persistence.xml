@@ -5,7 +5,7 @@
     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" 
     version="1.0"> 
   
-    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="bd" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
     	<class>models.entities.Usuario</class> <!-- CHECK -->

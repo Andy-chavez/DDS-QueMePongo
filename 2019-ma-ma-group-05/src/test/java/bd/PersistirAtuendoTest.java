@@ -5,8 +5,6 @@ import models.entities.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import db.EntityManagerHelper;
-
 public class PersistirAtuendoTest {
 	Usuario usuario;
 	Guardarropa guardarropa;

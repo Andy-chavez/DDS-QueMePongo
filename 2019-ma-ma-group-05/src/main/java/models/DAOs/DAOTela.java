@@ -1,6 +1,6 @@
 package models.DAOs;
 
-import db.EntityManagerHelper;
+import bd.EntityManagerHelper;
 import models.entities.Tela;
 
 import java.util.List;

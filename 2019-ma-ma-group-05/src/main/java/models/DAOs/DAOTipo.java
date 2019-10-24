@@ -1,10 +1,9 @@
 package models.DAOs;
 
-import db.EntityManagerHelper;
+import bd.EntityManagerHelper;
 import models.entities.Categorias.*;
 import models.entities.Tela;
 import models.entities.Tipo;
-import models.entities.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;

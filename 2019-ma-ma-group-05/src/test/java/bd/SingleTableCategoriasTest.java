@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import db.EntityManagerHelper;
 import models.entities.Categoria;
 import models.entities.Categorias.SuperiorBase;
 
