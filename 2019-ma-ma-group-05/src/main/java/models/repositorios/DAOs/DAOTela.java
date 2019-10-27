@@ -1,7 +1,8 @@
-package models.DAOs;
+package models.repositorios.DAOs;
 
 import bd.EntityManagerHelper;
 import models.entities.Tela;
+import models.entities.Usuario;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class DAOTela implements DAO {
     }
 
     @Override
-    public List<Object> buscarTodos() {
+    public List<Usuario> buscarTodos() {
         String query = "from Tela";
         List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();

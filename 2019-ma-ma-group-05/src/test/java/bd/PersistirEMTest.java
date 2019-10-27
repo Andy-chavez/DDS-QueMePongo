@@ -1,6 +1,6 @@
 package bd;
 
-import models.DAOs.DAOUsuario;
+import models.repositorios.DAOs.*;
 import models.entities.*;
 
 import org.junit.Before;

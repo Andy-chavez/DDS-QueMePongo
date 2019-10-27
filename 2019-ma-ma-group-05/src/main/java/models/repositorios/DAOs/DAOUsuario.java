@@ -1,4 +1,4 @@
-package models.DAOs;
+package models.repositorios.DAOs;
 
 import bd.EntityManagerHelper;
 import models.entities.Usuario;
@@ -23,7 +23,7 @@ public class DAOUsuario implements DAO {
         this.agregar(o);
     }
     @Override
-    public List<Object> buscarTodos() {
+    public List<Usuario> buscarTodos() {
         String query = "from Usuario";
         List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
