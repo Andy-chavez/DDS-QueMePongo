@@ -1,4 +1,4 @@
-package bd;
+package db;
 
 import java.util.function.*;
 
@@ -16,7 +16,7 @@ public class EntityManagerHelper {
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("bd");
+            emf = Persistence.createEntityManagerFactory("db");
             threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();

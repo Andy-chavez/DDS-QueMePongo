@@ -1,6 +1,6 @@
 package models.repositorios.DAOs;
 
-import bd.EntityManagerHelper;
+import db.EntityManagerHelper;
 import models.entities.Usuario;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class DAOUsuario implements DAO {
         this.agregar(o);
     }
     @Override
-    public List<Usuario> buscarTodos() {
+    public List<Object> buscarTodos() {
         String query = "from Usuario";
         List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();

@@ -1,10 +1,9 @@
 package models.repositorios.DAOs;
 
-import bd.EntityManagerHelper;
+import db.EntityManagerHelper;
 import models.entities.Categorias.*;
 import models.entities.Tela;
 import models.entities.Tipo;
-import models.entities.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ public class DAOTipo implements DAO {
     }
 
     @Override
-    public List<Usuario> buscarTodos() {
+    public List<Object> buscarTodos() {
         return null;
     }
 

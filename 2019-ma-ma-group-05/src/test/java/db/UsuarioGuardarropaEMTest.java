@@ -1,4 +1,4 @@
-package bd;
+package db;
 
 import models.repositorios.DAOs.*;
 import models.entities.*;
@@ -70,7 +70,7 @@ public class UsuarioGuardarropaEMTest{
         EntityManagerHelper.closeEntityManager();
     }
 //    @Test
-//    public void recuperandoPrendas(){ //TODO este no funciona, parece ser que prenda jamas llego a estar en la bd o mismo que no le gusta el create query
+//    public void recuperandoPrendas(){
 //        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
 //    	  Remera remeraTipo = new Remera();
 //    	  EntityManagerHelper.beginTransaction();

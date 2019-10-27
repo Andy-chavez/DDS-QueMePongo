@@ -1,14 +1,11 @@
-package bd;
+package db;
 
-import dtoClases.EventoDto;
 import models.entities.*;
-import models.entities.EstadosEvento.Inactivo;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.Instant;
-
-public class PersistirEventoTest {
+public class PersistirAtuendoTest {
 	Usuario usuario;
 	Guardarropa guardarropa;
 	Prenda remera;
@@ -16,15 +13,12 @@ public class PersistirEventoTest {
 	Prenda zapatillas;
 	Prenda campera;
 	Prenda reloj;
-	EventoDto eventoDto;
-	Evento evento;
 
 	@Before
 	public void init(){
 		usuario = new Usuario("mati");
 		usuario.setCelular("123456789");
 		usuario.setMail("X@gmail.com");
-
 
 		Tela cuero = new Tela("cuero");
 		Tela algodon = new Tela("algodon");
@@ -56,22 +50,12 @@ public class PersistirEventoTest {
 		usuario.agregarPrenda(guardarropa, zapatillas);
 		usuario.agregarPrenda(guardarropa, campera);
 		usuario.agregarPrenda(guardarropa, reloj);
-
-		eventoDto = new EventoDto();
-		eventoDto.usuario = usuario;
-		eventoDto.fecha = Instant.now().toString();
-		eventoDto.nombre = "fiesta";
-		eventoDto.estado = new Inactivo();
-		eventoDto.guardarropa = guardarropa;
-		eventoDto.repeticionDias = 2;
-		eventoDto.repetir = false;
-		eventoDto.lugar = "campus";
-		eventoDto.tipo = "deportivo";
-		usuario.crearEvento(eventoDto);
 	}
 
 	@Test
 	public void persistirAtuendo(){
+		usuario.obtenerSugerencia(guardarropa);
+		usuario.obtenerSugerencia(guardarropa);
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(usuario);
 		EntityManagerHelper.commit();
