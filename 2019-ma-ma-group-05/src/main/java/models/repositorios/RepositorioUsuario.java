@@ -1,5 +1,6 @@
 package models.repositorios;
 
+import db.EntityManagerHelper;
 import models.repositorios.DAOs.DAO;
 import models.entities.Usuario;
 
