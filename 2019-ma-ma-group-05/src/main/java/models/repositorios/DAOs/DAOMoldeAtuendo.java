@@ -2,7 +2,9 @@ package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.MoldeAtuendo;
+import models.entities.Usuario;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOMoldeAtuendo implements DAO {
@@ -18,10 +20,11 @@ public class DAOMoldeAtuendo implements DAO {
 
     @Override
     public List<Object> buscarTodos() {
-        String query = "from Molde";
-        List moldes =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+    	String query = "from MoldeAtuendo";
+        List listMoldes = new ArrayList<MoldeAtuendo>();
+        listMoldes =EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return moldes;
+        return listMoldes;
     }
 
 }

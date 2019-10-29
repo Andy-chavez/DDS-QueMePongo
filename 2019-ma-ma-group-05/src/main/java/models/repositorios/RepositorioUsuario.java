@@ -1,6 +1,5 @@
 package models.repositorios;
 
-import db.EntityManagerHelper;
 import models.repositorios.DAOs.DAO;
 import models.entities.Usuario;
 
@@ -27,4 +26,7 @@ public class RepositorioUsuario extends Repositorio {
     public Usuario buscarPorId(int id){
         return (Usuario) this.dao.buscarPorId(id);
     }
+
+    public Usuario buscarPorNombre(String nombre){ return (Usuario) this.dao.buscarPorNombre(nombre); }
+
 }

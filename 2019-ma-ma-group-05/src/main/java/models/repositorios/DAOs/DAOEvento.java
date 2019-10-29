@@ -3,6 +3,7 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Evento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOEvento implements DAO {
@@ -21,9 +22,10 @@ public class DAOEvento implements DAO {
 
     @Override
     public List<Object> buscarTodos() {
-    	String query = "from Evento";
-        List eventos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        String query = "from Evento";
+        List listEvento = new ArrayList<Evento>();
+        listEvento =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-    	return eventos;
+        return listEvento;
     }
 }
