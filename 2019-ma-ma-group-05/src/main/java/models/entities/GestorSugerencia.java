@@ -48,7 +48,7 @@ public class GestorSugerencia {
 	
 	public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
 		int margenAdmitido = 5;
-		for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ //TODO
+		for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance().obtenerMoldes()){ //TODO
 			if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
 				System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
 				return moldeAtuendo;
