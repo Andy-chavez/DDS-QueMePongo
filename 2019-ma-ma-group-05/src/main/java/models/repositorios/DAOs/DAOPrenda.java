@@ -3,6 +3,7 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Prenda;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOPrenda implements DAO {
@@ -29,5 +30,6 @@ public class DAOPrenda implements DAO {
     	String query = "from Prenda";
         List prendas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return prendas;    }
+        return prendas;
+    }
 }

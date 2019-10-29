@@ -27,4 +27,10 @@ public class RepositorioTipo extends Repositorio{
 
     public Tipo buscarPorNombre(String nombre){ return (Tipo) this.dao.buscarPorNombre(nombre); }
 
+    public void agregar(Object unObjeto){
+        Tipo tipo = (Tipo)unObjeto;
+        if(this.dao.buscarPorNombre(tipo.getNombre())== null){
+            dao.agregar(tipo);
+        }
+    }
 }

@@ -3,6 +3,7 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Guardarropa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOGuardarropa implements DAO {
@@ -15,15 +16,15 @@ public class DAOGuardarropa implements DAO {
         return instance;
     }
     @Override
-    public Guardarropa buscarPorId(int id) {
+    public Object buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(Guardarropa.class, id);
     }
     @Override
-    public Guardarropa buscarPorNombre(String nombre) { //obtiene el primer resultado en caso de haber varios
+    public Object buscarPorNombre(String nombre) { //obtiene el primer resultado en caso de haber varios
         String query = "from Guardarropa as g where g.nombre = '" + nombre + "'";
         List listGuardarropa =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return (Guardarropa) listGuardarropa.get(0);
+        return listGuardarropa.get(0);
     }
     @Override
     public List<Object> buscarTodos() {

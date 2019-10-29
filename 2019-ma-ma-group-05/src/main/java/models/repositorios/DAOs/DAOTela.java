@@ -3,6 +3,7 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Tela;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOTela implements DAO {
@@ -38,9 +39,9 @@ public class DAOTela implements DAO {
     @Override
     public Object buscarPorNombre(String nombre) {
         String query = "from Tela as t where t.nombre = '" + nombre + "'";
-        List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return (Tela)listUsuarios.get(0);
+        return listTelas.get(0);
     }
 
     @Override

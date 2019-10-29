@@ -1,6 +1,9 @@
 package models.repositorios;
 
+import models.entities.Evento;
 import models.repositorios.DAOs.DAO;
+
+import java.util.List;
 
 public class RepositorioEvento extends Repositorio{
     private static RepositorioEvento instance;
@@ -15,5 +18,9 @@ public class RepositorioEvento extends Repositorio{
         }
         return instance;
     }
-    //todo override de varios metodos
+    public List<Evento> buscarTodos(){ return (List<Evento>) (List<?>) this.dao.buscarTodos(); }
+
+    public Evento buscarPorId(int id){ return (Evento) this.dao.buscarPorId(id);}
+
+    public Evento buscarPorNombre(String nombre){ return (Evento) this.dao.buscarPorNombre(nombre); }
 }
