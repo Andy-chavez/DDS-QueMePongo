@@ -18,10 +18,10 @@ public class DAOMoldeAtuendo implements DAO {
 
     @Override
     public List<Object> buscarTodos() {
-        String query = "from Tela";
-        List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        String query = "from Molde";
+        List moldes =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return listTelas;
+        return moldes;
     }
 
 }

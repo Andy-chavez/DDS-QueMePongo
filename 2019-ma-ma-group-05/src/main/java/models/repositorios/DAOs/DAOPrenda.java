@@ -13,11 +13,13 @@ public class DAOPrenda implements DAO {
 
     @Override
     public Object buscarPorNombre(String nombre) {
-        return null;
+    	return null;
     }
 
     @Override
     public List<Object> buscarTodos() {
-        return null;
-    }
+    	String query = "from Prenda";
+        List prendas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return prendas;    }
 }

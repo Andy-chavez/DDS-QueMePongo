@@ -13,11 +13,17 @@ public class DAOEvento implements DAO {
 
     @Override
     public Object buscarPorNombre(String nombre) {
-        return null;
+    	String query = "from Evento as e where e.nombre = '" + nombre + "'";
+        List eventos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return (Evento)eventos.get(0);
     }
 
     @Override
     public List<Object> buscarTodos() {
-        return null;
+    	String query = "from Evento";
+        List eventos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+    	return eventos;
     }
 }
