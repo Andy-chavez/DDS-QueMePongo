@@ -24,6 +24,7 @@ public class Router {
     }
 
     private static void configure(){
+
 //        UsuarioController usuarioController = new UsuarioController();
 //
 //        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
