@@ -6,6 +6,14 @@ import models.entities.Usuario;
 import java.util.List;
 
 public class DAOUsuario implements DAO {
+    private static DAOUsuario instance;
+
+    public static DAOUsuario getInstance(DAO dao) {
+        if(instance == null){
+            instance = new DAOUsuario();
+        }
+        return instance;
+    }
     @Override
     public Usuario buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(Usuario.class, id);

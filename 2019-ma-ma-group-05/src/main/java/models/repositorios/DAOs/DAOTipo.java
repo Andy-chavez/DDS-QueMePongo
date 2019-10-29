@@ -10,6 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOTipo implements DAO {
+    private static DAOTipo instance;
+
+    public static DAOTipo getInstance(DAO dao) {
+        if(instance == null){
+            instance = new DAOTipo();
+        }
+        return instance;
+    }
     public void iniciarBase() { //(String nombre, Categoria c,List<Tela> telaList, int capa, int abrigo){
         List<Tela> cueroYAlgodon = new ArrayList<>();
         List<Tela> algNylPolYSed = new ArrayList<>();

@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DAOMoldeAtuendo implements DAO {
+    private static DAOMoldeAtuendo instance;
+
+    public static DAOMoldeAtuendo getInstance(DAO dao) {
+        if(instance == null){
+            instance = new DAOMoldeAtuendo();
+        }
+        return instance;
+    }
     @Override
     public Object buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(MoldeAtuendo.class, id);

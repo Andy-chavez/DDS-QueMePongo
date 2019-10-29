@@ -14,8 +14,6 @@ public class RepositorioGuardarropa extends Repositorio {
         }
         return instance;
     }
-
-
     public RepositorioGuardarropa(DAO dao) {
         this.setDao(dao);
     }
