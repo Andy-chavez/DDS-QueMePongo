@@ -8,7 +8,7 @@ import java.util.List;
 public class DAOCategoria implements DAO {
     private static DAOCategoria instance;
 
-    public static DAOCategoria getInstance(DAO dao) {
+    public static DAOCategoria getInstance() {
         if(instance == null){
             instance = new DAOCategoria();
         }

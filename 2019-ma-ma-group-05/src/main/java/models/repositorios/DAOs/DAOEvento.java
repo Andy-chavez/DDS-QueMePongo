@@ -9,7 +9,7 @@ import java.util.List;
 public class DAOEvento implements DAO {
     private static DAOEvento instance;
 
-    public static DAOEvento getInstance(DAO dao) {
+    public static DAOEvento getInstance() {
         if(instance == null){
             instance = new DAOEvento();
         }

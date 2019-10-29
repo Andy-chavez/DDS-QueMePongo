@@ -10,7 +10,7 @@ import java.util.List;
 public class DAOMoldeAtuendo implements DAO {
     private static DAOMoldeAtuendo instance;
 
-    public static DAOMoldeAtuendo getInstance(DAO dao) {
+    public static DAOMoldeAtuendo getInstance() {
         if(instance == null){
             instance = new DAOMoldeAtuendo();
         }

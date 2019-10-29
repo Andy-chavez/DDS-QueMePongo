@@ -8,7 +8,7 @@ import java.util.List;
 public class DAOTela implements DAO {
     private static DAOTela instance;
 
-    public static DAOTela getInstance(DAO dao) {
+    public static DAOTela getInstance() {
         if(instance == null){
             instance = new DAOTela();
         }

@@ -11,7 +11,7 @@ import java.util.List;
 public class DAOTipo implements DAO {
     private static DAOTipo instance;
 
-    public static DAOTipo getInstance(DAO dao) {
+    public static DAOTipo getInstance() {
         if(instance == null){
             instance = new DAOTipo();
         }

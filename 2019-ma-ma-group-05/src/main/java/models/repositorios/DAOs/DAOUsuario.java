@@ -8,7 +8,7 @@ import java.util.List;
 public class DAOUsuario implements DAO {
     private static DAOUsuario instance;
 
-    public static DAOUsuario getInstance(DAO dao) {
+    public static DAOUsuario getInstance() {
         if(instance == null){
             instance = new DAOUsuario();
         }

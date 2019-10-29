@@ -8,7 +8,7 @@ import java.util.List;
 public class DAOGuardarropa implements DAO {
     private static DAOGuardarropa instance;
 
-    public static DAOGuardarropa getInstance(DAO dao) {
+    public static DAOGuardarropa getInstance() {
         if(instance == null){
             instance = new DAOGuardarropa();
         }

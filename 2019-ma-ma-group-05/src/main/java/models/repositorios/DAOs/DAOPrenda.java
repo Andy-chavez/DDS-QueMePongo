@@ -8,7 +8,7 @@ import java.util.List;
 public class DAOPrenda implements DAO {
     private static DAOPrenda instance;
 
-    public static DAOPrenda getInstance(DAO dao) {
+    public static DAOPrenda getInstance() {
         if(instance == null){
             instance = new DAOPrenda();
         }
