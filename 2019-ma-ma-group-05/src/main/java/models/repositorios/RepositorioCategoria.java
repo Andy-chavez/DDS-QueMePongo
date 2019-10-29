@@ -5,13 +5,13 @@ import models.repositorios.DAOs.DAO;
 public class RepositorioCategoria extends Repositorio{
     private static RepositorioCategoria instance;
 
-    public RepositorioCategoria(DAO dao) {
-        this.setDao(dao);
+    public RepositorioCategoria() {
+        this.setDao(DaoCategoria.getInstance());
     }
 
-    public static RepositorioCategoria getInstance(DAO dao) {
+    public static RepositorioCategoria getInstance() {
         if(instance == null){
-            instance = new RepositorioCategoria(dao);
+            instance = new RepositorioCategoria();
         }
         return instance;
     }

@@ -8,13 +8,13 @@ import java.util.List;
 public class RepositorioMolde extends Repositorio {
     private static RepositorioMolde instance;
 
-    public RepositorioMolde(DAO dao) {
-        this.setDao(dao);
+    public RepositorioMolde() {
+        this.setDao(DaoMoldeAtuendo.getInstance());
     }
 
-    public static RepositorioMolde getInstance(DAO dao) {
+    public static RepositorioMolde getInstance() {
         if(instance == null){
-            instance = new RepositorioMolde(dao);
+            instance = new RepositorioMolde();
         }
         return instance;
     }
