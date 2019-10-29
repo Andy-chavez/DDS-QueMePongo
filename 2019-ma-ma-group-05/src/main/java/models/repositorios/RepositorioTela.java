@@ -1,22 +1,22 @@
 package models.repositorios;
 
 import models.entities.Tela;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOTela;
 
 import java.util.List;
 
 public class RepositorioTela extends Repositorio {
     private static RepositorioTela instance;
 
-    public static RepositorioTela getInstance(DAO dao) {
+    public static RepositorioTela getInstance() {
         if(instance == null){
-            instance = new RepositorioTela(dao);
+            instance = new RepositorioTela();
         }
         return instance;
     }
 
-    public RepositorioTela(DAO dao) {
-        this.setDao(dao);
+    public RepositorioTela() {
+        this.setDao(DAOTela.getInstance());
     }
 
     public List<Tela> buscarTodos(){ return (List<Tela>) (List<?>) this.dao.buscarTodos(); }

@@ -1,20 +1,20 @@
 package models.repositorios;
 
 import models.entities.MoldeAtuendo;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOMoldeAtuendo;
 
 import java.util.List;
 
 public class RepositorioMolde extends Repositorio {
     private static RepositorioMolde instance;
 
-    public RepositorioMolde(DAO dao) {
-        this.setDao(dao);
+    public RepositorioMolde() {
+        this.setDao(DAOMoldeAtuendo.getInstance());
     }
 
-    public static RepositorioMolde getInstance(DAO dao) {
+    public static RepositorioMolde getInstance() {
         if(instance == null){
-            instance = new RepositorioMolde(dao);
+            instance = new RepositorioMolde();
         }
         return instance;
     }

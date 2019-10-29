@@ -1,20 +1,20 @@
 package models.repositorios;
 
 import models.entities.Categoria;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOCategoria;
 
 import java.util.List;
 
 public class RepositorioCategoria extends Repositorio{
     private static RepositorioCategoria instance;
 
-    public RepositorioCategoria(DAO dao) {
-        this.setDao(dao);
+    public RepositorioCategoria() {
+        this.setDao(DAOCategoria.getInstance());
     }
 
-    public static RepositorioCategoria getInstance(DAO dao) {
+    public static RepositorioCategoria getInstance() {
         if(instance == null){
-            instance = new RepositorioCategoria(dao);
+            instance = new RepositorioCategoria();
         }
         return instance;
     }

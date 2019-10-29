@@ -1,20 +1,20 @@
 package models.repositorios;
 
 import models.entities.Evento;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOEvento;
 
 import java.util.List;
 
 public class RepositorioEvento extends Repositorio{
     private static RepositorioEvento instance;
 
-    public RepositorioEvento(DAO dao) {
-        this.setDao(dao);
+    public RepositorioEvento() {
+        this.setDao(DAOEvento.getInstance());
     }
 
-    public static RepositorioEvento getInstance(DAO dao) {
+    public static RepositorioEvento getInstance() {
         if(instance == null){
-            instance = new RepositorioEvento(dao);
+            instance = new RepositorioEvento();
         }
         return instance;
     }
