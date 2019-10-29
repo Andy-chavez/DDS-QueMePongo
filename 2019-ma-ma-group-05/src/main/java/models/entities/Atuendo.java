@@ -1,5 +1,9 @@
 package models.entities;
 
+import models.entities.Categorias.Inferior;
+import models.entities.Categorias.SuperiorBase;
+import models.entities.Categorias.SuperiorExtra;
+
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,28 +27,39 @@ public class Atuendo extends EntidadPersistente {
 
 	@ManyToMany
 	@JoinColumn(name = "prenda_id",referencedColumnName = "id")
-	private List<Prenda> prendas = new ArrayList<Prenda>();
+	private List<Prenda> prendas;
 	@Column(name = "rechazado")
 	private Boolean rechazado;
-	@Column(name = "nivel_abrigo")
-	private int nivelAbrigo;
 	@Column(name = "calificacion")
 	private int calificacion;
 	@OneToOne
-	@JoinColumn(name = "usuario_id",referencedColumnName = "id")
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
+	@Column(name = "abrigo_superior")
+	int abrigoSuperior;
+	@Column(name = "abrigo_inferior")
+	int abrigoInferior;
 
-	public Atuendo(int nivelAbrigo, Usuario u) {
-		this.nivelAbrigo = nivelAbrigo;
-		this.usuario = u;
+	public Atuendo() {
+		prendas = new ArrayList<Prenda>();
+		this.abrigoSuperior = 0;
+		this.abrigoInferior = 0;
 	}
-//	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
-//		this.nivelAbrigo = nivelAbrigo;
-//		this.sensibilidadFrio = sensibilidadFrio;
-//	}
+
+	public Atuendo(Usuario unUsuario) {
+		this();
+		this.usuario = unUsuario;
+	}
+
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
 			this.prendas.add(prenda);
+			if(prenda.esDeCategoria(new SuperiorBase()) || prenda.esDeCategoria(new SuperiorBase())){
+				this.abrigoSuperior += prenda.getNivelAbrigo();
+			}
+			if(prenda.esDeCategoria(new Inferior())){
+				this.abrigoInferior += prenda.getNivelAbrigo();
+			}
 		}
 	}
 
@@ -114,13 +129,14 @@ public class Atuendo extends EntidadPersistente {
 	public void liberarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.liberarFecha(fecha));
 	}
+
 	// --- GETTERS Y SETTERS ---
-	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
 	//public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
 	public SensibilidadFrio getSensibilidadFrio(){	return this.usuario.getSensibilidadFrio();	}
 	public void setRechazado(Boolean flag){	this.rechazado=flag;}
 	public Boolean getRechazado(){	return this.rechazado;	}
-	public int getNivelAbrigo() {	return this.nivelAbrigo;	}
 	public List<Prenda> getPrendas(){	return this.prendas;	}
+	public int getAbrigoSuperior() { return abrigoSuperior; }
+	public int getAbrigoInferior() { return abrigoInferior; }
 }
 

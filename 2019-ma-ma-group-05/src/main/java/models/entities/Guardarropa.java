@@ -38,9 +38,6 @@ public class Guardarropa extends EntidadPersistente{
 
 	}
 	// --- GETTERS Y SETTERS ---
-	public List<MoldeAtuendo> getMoldesAtuendos(){ 	return this.moldesAtuendos;	}
-	public void agregarMoldeAtuendo(MoldeAtuendo moldeAtuendo){
-		this.moldesAtuendos.add(moldeAtuendo); 	}
 	public String getNombre() { return this.nombre;	}
 	public void setNombre(String unNombre) { this.nombre = unNombre;}
 	public List<Prenda> getPrendas() {	return this.prendas; }
