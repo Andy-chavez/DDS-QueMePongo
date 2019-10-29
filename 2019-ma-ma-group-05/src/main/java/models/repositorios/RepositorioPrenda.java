@@ -1,7 +1,7 @@
 package models.repositorios;
 
 import models.entities.Prenda;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOPrenda;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class RepositorioPrenda extends Repositorio {
     }
 
     public RepositorioPrenda() {
-        this.setDao(DaoPrenda.getInstance());
+        this.setDao(DAOPrenda.getInstance());
     }
 
     public List<Prenda> buscarTodos(){ return (List<Prenda>) (List<?>) this.dao.buscarTodos(); }

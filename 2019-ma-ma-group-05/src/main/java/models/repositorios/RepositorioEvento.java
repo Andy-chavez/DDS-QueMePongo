@@ -1,12 +1,12 @@
 package models.repositorios;
 
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOEvento;
 
 public class RepositorioEvento extends Repositorio{
     private static RepositorioEvento instance;
 
     public RepositorioEvento() {
-        this.setDao(DaoEvento.getInstance());
+        this.setDao(DAOEvento.getInstance());
     }
 
     public static RepositorioEvento getInstance() {

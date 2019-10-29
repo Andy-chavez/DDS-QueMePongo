@@ -1,7 +1,7 @@
 package models.repositorios;
 
 import models.entities.Guardarropa;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOGuardarropa;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class RepositorioGuardarropa extends Repositorio {
         return instance;
     }
     public RepositorioGuardarropa() {
-        this.setDao(DaoGuardarropa.getInstance());
+        this.setDao(DAOGuardarropa.getInstance());
     }
     public List<Guardarropa> buscarTodos(){ return (List<Guardarropa>) (List<?>) this.dao.buscarTodos(); }
 

@@ -1,7 +1,7 @@
 package models.repositorios;
 
 import models.entities.Tela;
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOTela;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class RepositorioTela extends Repositorio {
     }
 
     public RepositorioTela() {
-        this.setDao(DaoTela.getInstance());
+        this.setDao(DAOTela.getInstance());
     }
 
     public List<Tela> buscarTodos(){ return (List<Tela>) (List<?>) this.dao.buscarTodos(); }

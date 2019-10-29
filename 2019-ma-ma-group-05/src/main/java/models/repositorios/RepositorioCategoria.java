@@ -1,12 +1,12 @@
 package models.repositorios;
 
-import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOCategoria;
 
 public class RepositorioCategoria extends Repositorio{
     private static RepositorioCategoria instance;
 
     public RepositorioCategoria() {
-        this.setDao(DaoCategoria.getInstance());
+        this.setDao(DAOCategoria.getInstance());
     }
 
     public static RepositorioCategoria getInstance() {
