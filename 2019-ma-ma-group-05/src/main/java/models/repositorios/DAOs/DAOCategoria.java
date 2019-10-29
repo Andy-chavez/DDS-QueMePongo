@@ -21,11 +21,17 @@ public class DAOCategoria implements DAO {
 
     @Override
     public Object buscarPorNombre(String nombre) {
-        return null;
+    	String query = "from Categoria as c where c.nombre = '" + nombre + "'";
+        List categorias =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return (Categoria)categorias.get(0);
     }
 
     @Override
     public List<Object> buscarTodos() {
-        return null;
+    	String query = "from Categoria";
+        List categorias =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return categorias;
     }
 }

@@ -2,7 +2,6 @@ package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.Categorias.*;
-import models.entities.MoldeAtuendo;
 import models.entities.Tela;
 import models.entities.Tipo;
 

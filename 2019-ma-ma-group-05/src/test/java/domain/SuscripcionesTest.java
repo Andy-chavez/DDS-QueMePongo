@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import domain.TestCargaDePrendas;
 import models.entities.ColorPersistible;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
