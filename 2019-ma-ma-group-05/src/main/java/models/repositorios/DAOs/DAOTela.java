@@ -1,4 +1,4 @@
-package models.DAOs;
+package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.Tela;

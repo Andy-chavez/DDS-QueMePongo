@@ -1,12 +1,10 @@
-package bd;
+package db;
 
-import models.entities.Categorias.SuperiorExtra;
 import models.entities.Tela;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import db.EntityManagerHelper;
 import models.entities.Tipo;
 import models.entities.Categorias.Inferior;
 import models.entities.Categorias.SuperiorBase;
@@ -14,7 +12,7 @@ import models.entities.Categorias.SuperiorBase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleTableTiposTest {
+public class TiposTest {
 	List<Tela> telasPosibles;
 	Tipo remera;
 	Tipo pantalon;

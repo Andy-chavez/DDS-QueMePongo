@@ -1,12 +1,11 @@
-package bd;
+package db;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import db.EntityManagerHelper;
 import models.entities.Tela;
 
-public class SingleTableTelasTest {
+public class TelasTest {
 	Tela algodon;
 	Tela gabardina;
 	

@@ -1,6 +1,5 @@
-package bd;
+package db;
 
-import db.EntityManagerHelper;
 import dtoClases.EventoDto;
 import models.entities.*;
 import models.entities.EstadosEvento.Inactivo;

@@ -1,4 +1,4 @@
-package models.DAOs;
+package models.repositorios.DAOs;
 
 import models.entities.Usuario;
 

@@ -1,7 +1,6 @@
-package bd;
+package db;
 
-import db.EntityManagerHelper;
-import models.DAOs.DAOUsuario;
+import models.repositorios.DAOs.*;
 import models.entities.*;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class UsuarioGuardarropaEMTest{
 		remera.setColorPrimario(ColorPersistible.blue);
 
     	pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		pantalon.setTela(new Tela("algodon"));
+    	pantalon.setTela(new Tela("algodon"));
 		pantalon.setColorPrimario(ColorPersistible.black);
 
 		usuario = new Usuario("mati");
@@ -63,7 +62,6 @@ public class UsuarioGuardarropaEMTest{
         Guardarropa g = (Guardarropa) h.get(0);
         Assert.assertEquals("formal", g.getNombre());
     }
-    
     @Test
     public void persistirPrenda(){
         EntityManagerHelper.beginTransaction();
@@ -72,7 +70,7 @@ public class UsuarioGuardarropaEMTest{
         EntityManagerHelper.closeEntityManager();
     }
 //    @Test
-//    public void recuperandoPrendas(){ //TODO este no funciona, parece ser que prenda jamas llego a estar en la bd o mismo que no le gusta el create query
+//    public void recuperandoPrendas(){
 //        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
 //    	  Remera remeraTipo = new Remera();
 //    	  EntityManagerHelper.beginTransaction();

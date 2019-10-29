@@ -1,17 +1,13 @@
-package bd;
+package db;
 
-import db.EntityManagerHelper;
-import models.DAOs.DAOUsuario;
+import models.repositorios.DAOs.*;
 import models.entities.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class PersistirEMTest {
     private DAOUsuario dao;
