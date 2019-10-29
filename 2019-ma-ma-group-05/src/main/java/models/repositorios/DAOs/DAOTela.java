@@ -6,6 +6,14 @@ import models.entities.Tela;
 import java.util.List;
 
 public class DAOTela implements DAO {
+    private static DAOTela instance;
+
+    public static DAOTela getInstance() {
+        if(instance == null){
+            instance = new DAOTela();
+        }
+        return instance;
+    }
     public void iniciarBase(){
         Tela algodon = new Tela("Algodon");
         Tela cuero = new Tela("Cuero");

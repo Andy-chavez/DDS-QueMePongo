@@ -2,15 +2,17 @@ package models.repositorios;
 
 import models.entities.Tipo;
 import models.repositorios.DAOs.DAO;
+import models.repositorios.DAOs.DAOTipo;
 
 import java.util.List;
 
 public class RepositorioTipo extends Repositorio{
     private static RepositorioTipo instance;
 
-    public static RepositorioTipo getInstance(DAO dao) {
+    public static RepositorioTipo getInstance() {
         if(instance == null){
-            instance = new RepositorioTipo(dao);
+            instance = new RepositorioTipo(DAOTipo.getInstance());
+
         }
         return instance;
     }

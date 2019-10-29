@@ -22,4 +22,7 @@ public class RepositorioMolde extends Repositorio {
         return (List<MoldeAtuendo>)(List<?>)this.dao.buscarTodos();
     }
 
+    public MoldeAtuendo buscarPorId(int id){ return (MoldeAtuendo) this.dao.buscarPorId(id); }
+
+    public MoldeAtuendo buscarPorNombre(String nombre){ return (MoldeAtuendo) this.dao.buscarPorNombre(nombre); }
 }

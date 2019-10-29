@@ -14,12 +14,9 @@ public class RepositorioGuardarropa extends Repositorio {
         }
         return instance;
     }
-
-
     public RepositorioGuardarropa() {
         this.setDao(DaoGuardarropa.getInstance());
     }
-
     public List<Guardarropa> buscarTodos(){ return (List<Guardarropa>) (List<?>) this.dao.buscarTodos(); }
 
     public Guardarropa buscarPorId(int id){ return (Guardarropa) this.dao.buscarPorId(id); }

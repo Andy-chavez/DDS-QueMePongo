@@ -6,6 +6,14 @@ import models.entities.Prenda;
 import java.util.List;
 
 public class DAOPrenda implements DAO {
+    private static DAOPrenda instance;
+
+    public static DAOPrenda getInstance() {
+        if(instance == null){
+            instance = new DAOPrenda();
+        }
+        return instance;
+    }
     @Override
     public Object buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(Prenda.class, id);

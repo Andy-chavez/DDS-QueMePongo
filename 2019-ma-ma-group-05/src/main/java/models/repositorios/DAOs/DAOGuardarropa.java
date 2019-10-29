@@ -6,6 +6,14 @@ import models.entities.Guardarropa;
 import java.util.List;
 
 public class DAOGuardarropa implements DAO {
+    private static DAOGuardarropa instance;
+
+    public static DAOGuardarropa getInstance() {
+        if(instance == null){
+            instance = new DAOGuardarropa();
+        }
+        return instance;
+    }
     @Override
     public Guardarropa buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(Guardarropa.class, id);
@@ -18,27 +26,10 @@ public class DAOGuardarropa implements DAO {
         return (Guardarropa) listGuardarropa.get(0);
     }
     @Override
-    public void modficarPorId(int id, Object o) {
-        this.eliminar(this.buscarPorId(id));
-        this.agregar(o);
-    }
-    @Override
-    public List<?> buscarTodos() {
+    public List<Object> buscarTodos() {
         String query = "from Guardarropa";
         List listGuardarropa =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return listGuardarropa;
-    }
-    @Override
-    public void eliminar(Object o) {
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().remove(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
-    @Override
-    public void agregar(Object o) { //TODO verificar que no se guarden en caso de ya haber algo de caracteristicas parecidas
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().persist(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
 }
