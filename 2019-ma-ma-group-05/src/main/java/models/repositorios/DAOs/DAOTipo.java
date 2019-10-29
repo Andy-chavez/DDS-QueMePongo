@@ -2,6 +2,7 @@ package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.Categorias.*;
+import models.entities.MoldeAtuendo;
 import models.entities.Tela;
 import models.entities.Tipo;
 
@@ -44,35 +45,24 @@ public class DAOTipo implements DAO {
     }
     @Override
     public Object buscarPorId(int id) {
-        return null;
+        return EntityManagerHelper.getEntityManager().find(Tipo.class, id);
     }
 
     @Override
     public Object buscarPorNombre(String nombre) {
-        return null;
+        //obtiene el primer resultado en caso de haber varios
+        String query = "from Tipo as u where u.nombre = '" + nombre + "'";
+        List listTipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return (Tipo)listTipos.get(0);
     }
 
     @Override
     public List<Object> buscarTodos() {
-        return null;
+        String query = "from Tipo";
+        List listTipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return listTipos;
     }
 
-    @Override
-    public void modficarPorId(int id, Object o) {
-
-    }
-
-    @Override
-    public void eliminar(Object o) {
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().remove(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
-
-    @Override
-    public void agregar(Object o) {//TODO verificar que no se guarden en caso de ya haber algo de caracteristicas parecidas
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().persist(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
 }

@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import models.entities.Categorias.*;
+import models.repositorios.DAOs.DAOMoldeAtuendo;
+import models.repositorios.RepositorioMolde;
 
 public class GestorSugerencia {
 	private List<Categoria> categorias;
@@ -46,7 +48,7 @@ public class GestorSugerencia {
 	
 	public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
 		int margenAdmitido = 5;
-		for(MoldeAtuendo moldeAtuendo : g.getMoldesAtuendos()){
+		for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ //TODO
 			if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
 				System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
 				return moldeAtuendo;
@@ -76,8 +78,6 @@ public class GestorSugerencia {
 		g.agregarSugerencia(atuendo);
 		
 		moldeAtuendo = new MoldeAtuendo(atuendo);
-		g.agregarMoldeAtuendo(moldeAtuendo);
-		
 		return atuendo;
 	}
 }
