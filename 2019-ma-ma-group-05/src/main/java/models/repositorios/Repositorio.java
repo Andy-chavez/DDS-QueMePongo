@@ -13,8 +13,8 @@ public abstract class Repositorio {
         this.dao.agregar(unObjeto);
     }
 
-    public void modficarPorId(int id,Object unObjeto){
-        this.dao.modficarPorId(id, unObjeto);
+    public void modficar(Object unObjeto){
+        this.dao.modficar(unObjeto);
     }
 
     public void eliminar(Object unObjeto){

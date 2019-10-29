@@ -34,8 +34,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@Transient
 	private ImgResizer resizer;
 
-	//TODO preguntar
-	@Transient
+	@Transient //TODO preguntar
 	private List<LocalDate> fechasReservadas;
 
 	public Prenda() {}

@@ -17,11 +17,7 @@ public class DAOUsuario implements DAO {
         EntityManagerHelper.closeEntityManager();
         return (Usuario)listUsuarios.get(0);
     }
-    @Override
-    public void modficarPorId(int id, Object o) {
-        this.eliminar(this.buscarPorId(id));
-        this.agregar(o);
-    }
+
     @Override
     public List<Object> buscarTodos() {
         String query = "from Usuario";
@@ -29,16 +25,5 @@ public class DAOUsuario implements DAO {
         EntityManagerHelper.closeEntityManager();
         return listUsuarios;
     }
-    @Override
-    public void eliminar(Object o) {
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().remove(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
-    @Override
-    public void agregar(Object o) { //TODO verificar que no se guarden en caso de ya haber algo de caracteristicas parecidas
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().persist(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
+
 }
