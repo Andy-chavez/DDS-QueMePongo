@@ -30,7 +30,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
-
+	
+	private List<Reserva> reservas;
 	@Transient
 	private ImgResizer resizer;
 
