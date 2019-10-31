@@ -3,6 +3,7 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Categoria;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOCategoria implements DAO {
@@ -24,7 +25,7 @@ public class DAOCategoria implements DAO {
     	String query = "from Categoria as c where c.nombre = '" + nombre + "'";
         List categorias =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return (Categoria)categorias.get(0);
+        return categorias.get(0);
     }
 
     @Override

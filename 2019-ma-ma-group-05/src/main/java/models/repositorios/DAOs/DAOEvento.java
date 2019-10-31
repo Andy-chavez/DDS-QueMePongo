@@ -25,14 +25,13 @@ public class DAOEvento implements DAO {
     	String query = "from Evento as e where e.nombre = '" + nombre + "'";
         List eventos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return (Evento)eventos.get(0);
+        return eventos.get(0);
     }
 
     @Override
     public List<Object> buscarTodos() {
         String query = "from Evento";
-        List listEvento = new ArrayList<Evento>();
-        listEvento =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        List listEvento =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return listEvento;
     }

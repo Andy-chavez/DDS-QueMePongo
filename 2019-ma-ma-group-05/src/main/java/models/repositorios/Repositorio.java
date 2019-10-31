@@ -2,6 +2,8 @@ package models.repositorios;
 
 import models.repositorios.DAOs.DAO;
 
+import java.util.List;
+
 public abstract class Repositorio {
     protected DAO dao;
 
@@ -20,4 +22,5 @@ public abstract class Repositorio {
     public void eliminar(Object unObjeto){
         this.dao.eliminar(unObjeto);
     }
+
 }
