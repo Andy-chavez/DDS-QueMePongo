@@ -24,18 +24,14 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private ColorPersistible colorSecundario;
 	@Column(name = "imagen")
 	private String imagen;
-
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Tipo tipo;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
-
 	@Transient
 	private ImgResizer resizer;
-
-	//TODO preguntar
-	@Transient
+	@Transient //TODO cambiar a tabla reservas con prenda y fecha de reserva
 	private List<LocalDate> fechasReservadas;
 
 	public Prenda() {}

@@ -18,29 +18,21 @@ public class Guardarropa extends EntidadPersistente{
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
 
-	@Transient //TODO cambiar cuando decidamos eso bien
-	private List<MoldeAtuendo> moldesAtuendos;
-	
 	public Guardarropa() {}
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
-		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}
 	public Guardarropa(String unNombre) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
-		this.moldesAtuendos = new ArrayList<MoldeAtuendo>();
 
 	}
 	// --- GETTERS Y SETTERS ---
-	public List<MoldeAtuendo> getMoldesAtuendos(){ 	return this.moldesAtuendos;	}
-	public void agregarMoldeAtuendo(MoldeAtuendo moldeAtuendo){
-		this.moldesAtuendos.add(moldeAtuendo); 	}
 	public String getNombre() { return this.nombre;	}
 	public void setNombre(String unNombre) { this.nombre = unNombre;}
 	public List<Prenda> getPrendas() {	return this.prendas; }

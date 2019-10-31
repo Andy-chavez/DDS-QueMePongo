@@ -2,6 +2,8 @@ package models.repositorios;
 
 import models.repositorios.DAOs.DAO;
 
+import java.util.List;
+
 public abstract class Repositorio {
     protected DAO dao;
 
@@ -13,11 +15,12 @@ public abstract class Repositorio {
         this.dao.agregar(unObjeto);
     }
 
-    public void modficarPorId(int id,Object unObjeto){
-        this.dao.modficarPorId(id, unObjeto);
+    public void modficar(Object unObjeto){
+        this.dao.modficar(unObjeto);
     }
 
     public void eliminar(Object unObjeto){
         this.dao.eliminar(unObjeto);
     }
+
 }

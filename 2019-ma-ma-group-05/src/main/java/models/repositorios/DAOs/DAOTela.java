@@ -3,9 +3,18 @@ package models.repositorios.DAOs;
 import db.EntityManagerHelper;
 import models.entities.Tela;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOTela implements DAO {
+    private static DAOTela instance;
+
+    public static DAOTela getInstance() {
+        if(instance == null){
+            instance = new DAOTela();
+        }
+        return instance;
+    }
     public void iniciarBase(){
         Tela algodon = new Tela("Algodon");
         Tela cuero = new Tela("Cuero");
@@ -30,9 +39,9 @@ public class DAOTela implements DAO {
     @Override
     public Object buscarPorNombre(String nombre) {
         String query = "from Tela as t where t.nombre = '" + nombre + "'";
-        List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return (Tela)listUsuarios.get(0);
+        return listTelas.get(0);
     }
 
     @Override
@@ -43,22 +52,4 @@ public class DAOTela implements DAO {
         return listTelas;
     }
 
-    @Override
-    public void modficarPorId(int id, Object o) {
-        this.eliminar(this.buscarPorId(id));
-        this.agregar(o);
-    }
-    @Override
-    public void eliminar(Object o) {
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().remove(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
-
-    @Override
-    public void agregar(Object o) {//TODO verificar que no se guarden en caso de ya haber algo de caracteristicas parecidas
-        EntityManagerHelper.getEntityManager().getTransaction().begin();
-        EntityManagerHelper.getEntityManager().persist(o);
-        EntityManagerHelper.getEntityManager().getTransaction().commit();
-    }
 }

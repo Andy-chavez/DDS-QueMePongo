@@ -266,19 +266,4 @@ public class ObtenerSugerenciaTest {
 		}
 		System.out.println(moldeAtuendo.getNivelAbrigo());
 	}
-	
-	@Test
-	public void cronSugerencia(){ //todo kind of faltan cosas aca
-		System.out.println("\ncronSugerencia()");
-		EventoDto eventoDto = new EventoDto();
-		eventoDto.repeticionDias = 2000;
-		eventoDto.anticipacionHoras = 2;
-		eventoDto.fecha = "2019-09-02T13:04:00Z";
-		eventoDto.estado = new Pendiente();
-		eventoDto.guardarropa = guardarropa;
-		eventoDto.usuario = usuario;
-		Evento evento = new Evento(eventoDto);
-		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();
-		
-		}
 }
