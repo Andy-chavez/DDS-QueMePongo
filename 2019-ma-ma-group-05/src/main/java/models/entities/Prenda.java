@@ -28,17 +28,16 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private Tipo tipo;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
-	private Tela tela;	
+	private Tela tela;
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
 	@Transient
 	private ImgResizer resizer;
-	@Transient //TODO cambiar a tabla reservas con prenda y fecha de reserva
-	private List<LocalDate> fechasReservadas;
-
+	
 	public Prenda() {}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
-		this.fechasReservadas = new ArrayList<LocalDate>();
+		this.reservas = new ArrayList<Reserva>();
 	}
 	public Prenda(Tipo unTipo, ColorPersistible colorPrim) {
 		this(unTipo);
@@ -100,16 +99,19 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	public Boolean noEsDeTipo(Tipo tipo){ //hago este metodo pedorro porque estaba teniendo problemas usando el de arriba en las lambda
 		return !esDeTipo(tipo);
 	}
-	public void reservarFecha(Instant fecha){
+	public void reservarFecha(Instant fecha,Usuario us){
 		// casteo Instant a LocalDate porque sino es un quilombo comparar Instants porque tienen hasta milisegundos
-		this.fechasReservadas.add(fecha.atZone(ZoneId.systemDefault()).toLocalDate());
+		//this.fechasReservadas.add(fecha.atZone(ZoneId.systemDefault()).toLocalDate());
+		this.reservas.add(new Reserva(fecha.atZone(ZoneId.systemDefault()).toLocalDate(),this,us));
 	}
 	public void liberarFecha(Instant fecha){
 		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
-		this.fechasReservadas.removeIf(f -> f.compareTo(fechaLocalDate) == 0);
+		//this.fechasReservadas.removeIf(f -> f.compareTo(fechaLocalDate) == 0);
+		this.reservas.removeIf(reserva -> reserva.getFechaReserva().compareTo(fechaLocalDate)==0);
 	}
 	public Boolean estaReservada(Instant fecha){
 		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
-		return this.fechasReservadas.contains(fechaLocalDate);
+		//return this.fechasReservadas.contains(fechaLocalDate);
+		return this.reservas.stream().anyMatch(reserva -> reserva.getFechaReserva().equals(fechaLocalDate));
 	}
 }
