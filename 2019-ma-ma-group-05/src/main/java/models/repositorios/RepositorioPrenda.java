@@ -1,7 +1,9 @@
 package models.repositorios;
 
 import models.entities.Prenda;
+import models.repositorios.DAOs.DAOCategoria;
 import models.repositorios.DAOs.DAOPrenda;
+import models.repositorios.DAOs.DAOTipo;
 
 import java.util.List;
 
@@ -22,4 +24,25 @@ public class RepositorioPrenda extends Repositorio {
     public List<Prenda> buscarTodos(){ return (List<Prenda>) (List<?>) this.dao.buscarTodos(); }
 
     public Prenda buscarPorId(int id){ return (Prenda) this.dao.buscarPorId(id);}
+
+    @Override
+    public void agregar(Object unObjeto){
+        Prenda prenda = (Prenda)unObjeto;
+        if(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre())!= null ){
+            prenda.setTipo(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre()));
+        }
+        if(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre())!= null ){
+            prenda.setTela(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre()));
+        }
+        if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex())!= null ){
+            prenda.setColorPrimario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex()));
+        }
+        if(prenda.getColorSecundario() != null){
+            if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex())!= null ){
+                prenda.setColorSecundario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex()));
+            }
+        }
+        this.dao.agregar(prenda);
+
+    }
 }
