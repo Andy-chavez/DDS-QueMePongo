@@ -15,6 +15,8 @@ public class MoldeAtuendo extends EntidadPersistente{
 	private int abrigoSuperior;
 	@Column(name = "abrigo_inferior")
 	private int abrigoInferior;
+	@Column(name = "abrigo_calzado")
+	private int abrigoCalzado;
 
 	@Transient
 	private List<Tipo> moldeTipos;
@@ -27,13 +29,19 @@ public class MoldeAtuendo extends EntidadPersistente{
 		this.agregarTipos(atuendo);
 		this.abrigoSuperior = atuendo.getAbrigoSuperior();
 		this.abrigoInferior = atuendo.getAbrigoInferior();
+		this.abrigoCalzado = atuendo.getAbrigoCalzado();
 	}
 
 	public void agregarTipos(Atuendo atuendo){
 		atuendo.getPrendas().forEach( prenda -> this.moldeTipos.add(prenda.getTipo()));
 	}
 
-
+	public Boolean moldeAbrigaLoSuficiente(SensibilidadFrio sf, int nivelAbrigoRequerido){
+		int margenAdmitido = 5;
+		return Math.abs(getAbrigoSuperior() - nivelAbrigoRequerido - sf.getSuperior()) <= margenAdmitido &&
+				Math.abs(getAbrigoInferior() - nivelAbrigoRequerido - sf.getInferior()) <= margenAdmitido &&
+				Math.abs(getAbrigoCalzado() - nivelAbrigoRequerido) <= margenAdmitido;
+	}
 	// --- GETTERS Y SETTERS ---
 	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
 	public SensibilidadFrio getSensibilidadFrio(Usuario u){ return u.getSensibilidadFrio(); }
@@ -43,5 +51,8 @@ public class MoldeAtuendo extends EntidadPersistente{
 	}
 	public int getAbrigoInferior() {
 		return abrigoInferior;
+	}
+	public int getAbrigoCalzado() {
+		return abrigoCalzado;
 	}
 }

@@ -151,7 +151,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerSugerenciaTest(){
 		System.out.println("\nobtenerSugerencia()");
-		Atuendo atuendoSugerido = new Atuendo(40, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);//.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
@@ -163,13 +163,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void compararAtuendosDaTrue(){
 		System.out.println("\ncompararAtuendosDaTrue()");
-		Atuendo atuendoSugerido=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
 
-		Atuendo otroAtuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo otroAtuendo = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		otroAtuendo.agregarPrenda(remera);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
@@ -181,13 +181,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void compararAtuendosDaFalse(){
 		System.out.println("\ncompararAtuendosDaFalse()");
-		Atuendo atuendoSugerido=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
 
-		Atuendo otroAtuendo=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo otroAtuendo=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		otroAtuendo.agregarPrenda(remera2);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
@@ -200,7 +200,7 @@ public class ObtenerSugerenciaTest {
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
 		Categoria superiorExtra = new SuperiorExtra();
-		Atuendo atuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendo = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		superiorExtra.agregarPrendas(atuendo, prendas, 30);
 		atuendo.printPrendas();
 	}
@@ -209,7 +209,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void crearMoldeTest(){
 		System.out.println("\ncrearMoldeTest()");
-		Atuendo atuendoSugerido = new Atuendo(16, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
@@ -221,17 +221,17 @@ public class ObtenerSugerenciaTest {
 		}
 	}
 	
-	@Test
-	public void nivelAbrigoAtuendo(){
-		System.out.println("\nnivelAbrigoAtuendo()");
-		//double temperatura = 24.0;
-		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
-		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
-		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
-
-		atuendoSugerido.printPrendas();
-		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
-	}
+//	@Test
+//	public void nivelAbrigoAtuendo(){
+//		System.out.println("\nnivelAbrigoAtuendo()");
+//		//double temperatura = 24.0;
+//		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
+//		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
+//		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
+//
+//		atuendoSugerido.printPrendas();
+//		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
+//	}
 	
 	@Test
 	public void buscarMoldeAtuendo(){ //TODO printea bien pero no se porque da null pointer
@@ -243,30 +243,30 @@ public class ObtenerSugerenciaTest {
 		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		
-		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
+		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(usuario.getSensibilidadFrio(), nivelAbrigoRequerido);
 		for(Tipo t : moldeAtuendo.getMoldeTipos()){
 			System.out.println(t);
 		}
 
 	}
 	
-	@Test
-	public void crearAtuendoConMolde(){
-		System.out.println("\ncrearAtuendoConMolde()");
-		Atuendo atuendoSugerido = new Atuendo(16, usuario);//, usuario.getSensibilidadFrio());
-		atuendoSugerido.agregarPrenda(remera);
-		atuendoSugerido.agregarPrenda(ojotas);
-		atuendoSugerido.agregarPrenda(antiparras);
-		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.setNivelAbrigo(16);
-		
-		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
-		for(Tipo t : moldeAtuendo.getMoldeTipos()){
-			System.out.println(t);
-		}
-		System.out.println(moldeAtuendo.getNivelAbrigo());
-	}
-	
+//	@Test
+//	public void crearAtuendoConMolde(){
+//		System.out.println("\ncrearAtuendoConMolde()");
+//		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
+//		atuendoSugerido.agregarPrenda(remera);
+//		atuendoSugerido.agregarPrenda(ojotas);
+//		atuendoSugerido.agregarPrenda(antiparras);
+//		atuendoSugerido.agregarPrenda(shorts);
+//		atuendoSugerido.setNivelAbrigo(16);
+//
+//		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
+//		for(Tipo t : moldeAtuendo.getMoldeTipos()){
+//			System.out.println(t);
+//		}
+//		System.out.println(moldeAtuendo.getNivelAbrigo());
+//	}
+//
 	@Test
 	public void cronSugerencia(){ //todo kind of faltan cosas aca
 		System.out.println("\ncronSugerencia()");

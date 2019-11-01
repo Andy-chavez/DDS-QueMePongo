@@ -45,21 +45,15 @@ public class GestorSugerencia {
 		return atuendo;
 	}
 	
-	protected Boolean moldeAbrigaLoSuficiente(MoldeAtuendo molde, int temperaturaSuperior, int temperaturaInferior){
-		int margenAdmitido = 5;
-		return Math.abs(molde.getAbrigoSuperior() - temperaturaSuperior) <= margenAdmitido &&
-				Math.abs(molde.getAbrigoInferior() - temperaturaInferior) <= margenAdmitido;
-	}
-	public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, SensibilidadFrio sf, int nivelAbrigoRequerido){
-		int temperaturaSuperior = nivelAbrigoRequerido - sf.getSuperior();
-		int temperaturaInferior = nivelAbrigoRequerido - sf.getInferior();
+
+	public MoldeAtuendo buscarMoldeParaNivelAbrigo(SensibilidadFrio sf, int nivelAbrigoRequerido){
 		for(MoldeAtuendo moldeAtuendo : this.moldesAtuendos){
-			if(moldeAbrigaLoSuficiente(moldeAtuendo, temperaturaSuperior, temperaturaInferior)) return moldeAtuendo;
+			if(moldeAtuendo.moldeAbrigaLoSuficiente(sf, nivelAbrigoRequerido)) return moldeAtuendo;
 		}
 		return null;
 	}
 
-	protected void agregarPrendasSegunCategoria(Atuendo atuendo, List<Prenda> prendasLibres, int nivelAbrigoRequerido){
+	public void agregarPrendasSegunCategoria(Atuendo atuendo, List<Prenda> prendasLibres, int nivelAbrigoRequerido){
 		this.categorias.forEach(c -> c.agregarPrendas(atuendo, prendasLibres, nivelAbrigoRequerido));
 	}
 	
@@ -70,7 +64,7 @@ public class GestorSugerencia {
 		int nivelAbrigoRequerido = variableTemperaturaSarasa - (int) temperatura;
 		
 		// se fija si ya hay un molde hecho, y lo rellena con otras prendas
-		MoldeAtuendo moldeAtuendo = buscarMoldeParaNivelAbrigo(g, u.getSensibilidadFrio(), nivelAbrigoRequerido);
+		MoldeAtuendo moldeAtuendo = buscarMoldeParaNivelAbrigo(u.getSensibilidadFrio(), nivelAbrigoRequerido);
 		List<Prenda> prendasLibres = g.getPrendas().stream().filter(p -> !p.estaReservada(fecha)).collect(Collectors.toList());
 		if(moldeAtuendo != null){
 			Atuendo atuendo = crearAtuendoConMolde(prendasLibres, moldeAtuendo, u);
