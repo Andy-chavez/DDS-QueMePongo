@@ -10,10 +10,13 @@ import javax.imageio.ImageIO;
 public class ImgResizer {
 
 
-	private static int MAX_ANCHO=800; //TODO leer de archivo de sistema
-	private static int MAX_ALTO=800;
+	private static int MAX_ANCHO;
+	private static int MAX_ALTO;
 	private static String pathEnSistema; //habria que obtenerlo del sistema?
-	
+	public ImgResizer(){
+		this.MAX_ALTO = ConfigReader.getIntValue("configuraciones.properties","max_alto");
+		this.MAX_ANCHO = ConfigReader.getIntValue("configuraciones.properties","max_ancho");
+	}
 	public void copyImage(String filePath, Prenda prenda) { //guarda la imagen resizeada
         BufferedImage bimage = getImagen(filePath);
         if(bimage.getHeight()>bimage.getWidth()){

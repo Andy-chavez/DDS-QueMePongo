@@ -1,19 +1,25 @@
 package models.repositorios;
 
-import models.repositorios.DAOs.DAO;
+import models.entities.Guardarropa;
+import models.repositorios.DAOs.DAOGuardarropa;
+
+import java.util.List;
 
 public class RepositorioGuardarropa extends Repositorio {
     private static RepositorioGuardarropa instance;
 
-    public RepositorioGuardarropa(DAO dao) {
-        this.setDao(dao);
-    }
-
-    public static RepositorioGuardarropa getInstance(DAO dao) {
+    public static RepositorioGuardarropa getInstance() {
         if(instance == null){
-            instance = new RepositorioGuardarropa(dao);
+            instance = new RepositorioGuardarropa();
         }
         return instance;
     }
-    //todo override de varios metodos
+    public RepositorioGuardarropa() {
+        this.setDao(DAOGuardarropa.getInstance());
+    }
+    public List<Guardarropa> buscarTodos(){ return (List<Guardarropa>) (List<?>) this.dao.buscarTodos(); }
+
+    public Guardarropa buscarPorId(int id){ return (Guardarropa) this.dao.buscarPorId(id); }
+
+    public Guardarropa buscarPorNombre(String nombre){ return (Guardarropa) this.dao.buscarPorNombre(nombre); }
 }

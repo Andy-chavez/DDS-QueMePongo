@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import models.entities.Categorias.*;
+import models.repositorios.DAOs.DAOMoldeAtuendo;
+import models.repositorios.RepositorioMolde;
 
 public class GestorSugerencia {
 	private List<Categoria> categorias;
@@ -49,6 +51,13 @@ public class GestorSugerencia {
 	public MoldeAtuendo buscarMoldeParaNivelAbrigo(SensibilidadFrio sf, int nivelAbrigoRequerido){
 		for(MoldeAtuendo moldeAtuendo : this.moldesAtuendos){
 			if(moldeAtuendo.moldeAbrigaLoSuficiente(sf, nivelAbrigoRequerido)) return moldeAtuendo;
+	//public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
+	//	int margenAdmitido = 5;
+	//	for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ //TODO
+  //		if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
+	//			System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
+	//			return moldeAtuendo;
+	//		}
 		}
 		return null;
 	}
@@ -76,7 +85,7 @@ public class GestorSugerencia {
 		agregarPrendasSegunCategoria(atuendo, prendasLibres, nivelAbrigoRequerido);
 		g.agregarSugerencia(atuendo);
 		agregarMoldeAtuendo(new MoldeAtuendo(atuendo));
-		
+
 		return atuendo;
 	}
 }

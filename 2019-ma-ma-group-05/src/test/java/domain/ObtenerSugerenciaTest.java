@@ -281,4 +281,5 @@ public class ObtenerSugerenciaTest {
 		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();
 		
 		}
+
 }
