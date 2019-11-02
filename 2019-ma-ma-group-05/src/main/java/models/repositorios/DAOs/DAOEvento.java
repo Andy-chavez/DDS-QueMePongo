@@ -25,7 +25,10 @@ public class DAOEvento implements DAO {
     	String query = "from Evento as e where e.nombre = '" + nombre + "'";
         List eventos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return eventos.get(0);
+        if(eventos.size()>0){
+            return eventos.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -37,7 +40,10 @@ public class DAOEvento implements DAO {
     }
 
     @Override
-    public List<Object> buscarTodos(int id) { //todo escribir el override
-        return null;
+    public List<Object> buscarTodos(int id) {
+        String query = "from Evento where usuario_id = "+ id;
+        List listEvento =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return listEvento;
     }
 }

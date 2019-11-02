@@ -44,7 +44,7 @@ public class RepositorioMolde extends Repositorio {
         molde.getMoldeTipos().clear();
         molde.setMoldeTipos(tiposNuevos);
     }
-    @Override //todo verificar cuando mati suba la nueva version de moldeAtuendo
+    @Override
     public void agregar(Object unObjeto){
         MoldeAtuendo molde = (MoldeAtuendo) unObjeto;
         this.verificarListaDeTipos(molde);

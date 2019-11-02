@@ -25,7 +25,10 @@ public class DAOCategoria implements DAO {
     	String query = "from Categoria as c where c.nombre = '" + nombre + "'";
         List categorias =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return categorias.get(0);
+        if(categorias.size()>0){
+            return categorias.get(0);
+        }
+        return null;
     }
 
     @Override

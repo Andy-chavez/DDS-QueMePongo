@@ -1,7 +1,6 @@
 package db;
 
-import java.util.List;
-
+import models.repositorios.RepositorioCategoria;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,16 +18,11 @@ public class SingleTableCategoriasTest {
 	
     @Test
     public void persistirCategorias(){
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(superior);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
+        RepositorioCategoria.getInstance().agregar(superior);
     }
     @Test
     public void hidratarCategoria(){
-    	List<Categoria> cat1 = (List<Categoria>) EntityManagerHelper.getEntityManager().createQuery("from Categoria as c where c.nombre = 'SuperiorBase'").getResultList();
-        Categoria g = (Categoria) cat1.get(0);
-        EntityManagerHelper.closeEntityManager();
-        Assert.assertEquals("SuperiorBase", g.getNombre());
+	    Categoria categ = RepositorioCategoria.getInstance().buscarPorNombre("SuperiorBase");
+        Assert.assertEquals("SuperiorBase", categ.getNombre());
     }
 }
