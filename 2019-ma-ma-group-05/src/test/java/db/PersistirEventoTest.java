@@ -3,6 +3,8 @@ package db;
 import dtoClases.EventoDto;
 import models.entities.*;
 import models.entities.EstadosEvento.Inactivo;
+import models.repositorios.Repositorio;
+import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -72,9 +74,6 @@ public class PersistirEventoTest {
 
 	@Test
 	public void persistirAtuendo(){
-		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(usuario);
-		EntityManagerHelper.commit();
-		EntityManagerHelper.closeEntityManager();
+		RepositorioUsuario.getInstance().agregar(usuario);
 	}
 }

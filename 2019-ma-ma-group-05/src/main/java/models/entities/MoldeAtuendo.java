@@ -22,6 +22,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	}
 	// --- GETTERS Y SETTERS ---
 	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
+	public void setMoldeTipos(List<Tipo> tipos){ 	this.moldeTipos.addAll(tipos);	}
 	public int getNivelAbrigo(){	return this.nivelAbrigo;	}
 	public SensibilidadFrio getSensibilidadFrio(Usuario u){ return u.getSensibilidadFrio(); }
 	

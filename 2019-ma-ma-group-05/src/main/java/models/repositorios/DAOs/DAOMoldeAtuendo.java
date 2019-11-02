@@ -34,4 +34,9 @@ public class DAOMoldeAtuendo implements DAO {
         return listMoldes;
     }
 
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
+
 }

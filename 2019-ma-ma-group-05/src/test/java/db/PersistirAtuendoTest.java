@@ -2,6 +2,7 @@ package db;
 
 import models.entities.*;
 
+import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,9 +57,6 @@ public class PersistirAtuendoTest {
 	public void persistirAtuendo(){
 		usuario.obtenerSugerencia(guardarropa);
 		usuario.obtenerSugerencia(guardarropa);
-		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(usuario);
-		EntityManagerHelper.commit();
-		EntityManagerHelper.closeEntityManager();
+		RepositorioUsuario.getInstance().agregar(usuario);
 	}
 }

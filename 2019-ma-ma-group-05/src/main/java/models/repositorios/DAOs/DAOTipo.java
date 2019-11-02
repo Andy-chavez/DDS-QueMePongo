@@ -61,7 +61,10 @@ public class DAOTipo implements DAO {
         String query = "from Tipo as u where u.nombre = '" + nombre + "'";
         List listTipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return listTipos.get(0);
+        if(listTipos.size()>0){
+            return listTipos.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -70,6 +73,11 @@ public class DAOTipo implements DAO {
         List listTipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return listTipos;
+    }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
     }
 
 }

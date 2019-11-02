@@ -24,7 +24,10 @@ public class DAOUsuario implements DAO {
         String query = "from Usuario as u where u.nombre = '" + nombre + "'";
         List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return listUsuarios.get(0);
+        if(listUsuarios.size()>0){
+            return listUsuarios.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -33,6 +36,11 @@ public class DAOUsuario implements DAO {
         List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return listUsuarios;
+    }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
     }
 
 }

@@ -9,6 +9,7 @@ public interface DAO {
     public Object buscarPorId(int id);
     public Object buscarPorNombre(String nombre);
     public List<Object> buscarTodos();
+    public List<Object> buscarTodos(int id);
     default void modficar(Object o){
         EntityManagerHelper.getEntityManager().getTransaction().begin();
         EntityManagerHelper.getEntityManager().merge(o);

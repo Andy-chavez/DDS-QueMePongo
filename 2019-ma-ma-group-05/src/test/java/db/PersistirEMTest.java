@@ -3,6 +3,8 @@ package db;
 import models.repositorios.DAOs.*;
 import models.entities.*;
 
+import models.repositorios.RepositorioColor;
+import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,22 +43,19 @@ public class PersistirEMTest {
 	}
 	@Test
 	public void persistirUsuarioTest() {
-		dao.agregar(usuario);
+		RepositorioUsuario.getInstance().agregar(usuario);
 	}
 
 	@Test
 	public void persistirYRemoverUsuarioTest() {
-	    dao.agregar(usuario);
-	    dao.buscarPorId(usuario.getId());
-	    dao.eliminar(usuario);
+        RepositorioUsuario.getInstance().agregar(usuario);
+        RepositorioUsuario.getInstance().buscarPorId(usuario.getId());
+        RepositorioUsuario.getInstance().eliminar(usuario);
 	}
 
 	@Test
 	public void persistoColor() {
 		ColorPersistible orange = ColorPersistible.orange;
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.persist(orange);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
+        RepositorioColor.getInstance().agregar(orange);
 	}
 }

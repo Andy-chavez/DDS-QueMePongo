@@ -21,7 +21,7 @@ public class RepositorioPrenda extends Repositorio {
         this.setDao(DAOPrenda.getInstance());
     }
 
-    public List<Prenda> buscarTodos(){ return (List<Prenda>) (List<?>) this.dao.buscarTodos(); }
+    public List<Prenda> buscarTodos(int id){ return (List<Prenda>) (List<?>) this.dao.buscarTodos(id); }
 
     public Prenda buscarPorId(int id){ return (Prenda) this.dao.buscarPorId(id);}
 

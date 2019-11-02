@@ -32,4 +32,12 @@ public class DAOPrenda implements DAO {
         EntityManagerHelper.closeEntityManager();
         return prendas;
     }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        String query = "from Prenda where guardarropa_id =" + id;
+        List listGuardarropa =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return listGuardarropa;
+    }
 }

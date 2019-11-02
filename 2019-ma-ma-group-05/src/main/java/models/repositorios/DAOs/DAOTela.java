@@ -41,7 +41,10 @@ public class DAOTela implements DAO {
         String query = "from Tela as t where t.nombre = '" + nombre + "'";
         List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return listTelas.get(0);
+        if(listTelas.size()>0){
+            return listTelas.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -50,6 +53,11 @@ public class DAOTela implements DAO {
         List listTelas =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return listTelas;
+    }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
     }
 
 }
