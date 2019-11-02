@@ -12,15 +12,13 @@ import models.entities.Tela;
 public class TestCargaDePrendas {
 	public static List<Prenda> init(){
 		List<Prenda> listaDePrendas = new ArrayList<Prenda>();
-		Tela algodon= new Tela("Algodon");
-		Tela cuero = new Tela("Cuero");
-		Prenda antiparras;
+		Tela algodon= new Tela("algodon");
+		Tela cuero = new Tela("cuero");
 		Prenda unShort;
 		Prenda musculosa;
 		Prenda ojotas;
 		Prenda zapatillas;
 		Prenda remera;
-		Prenda antiparras2;
 		Prenda short2;
 		Prenda musculosa2;
 		Prenda ojotas2;
@@ -30,12 +28,8 @@ public class TestCargaDePrendas {
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
 		remera.setColorPrimario(ColorPersistible.black);
 		remera.setTela(algodon);
-		
-		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras.setColorPrimario(ColorPersistible.BLACK);
-		antiparras.setTela(algodon);
-		
-		unShort = SimpleFactoryPrendas.crearPrenda("short");
+
+		unShort = SimpleFactoryPrendas.crearPrenda("shorts");
 		unShort.setColorPrimario(ColorPersistible.BLACK);
 		unShort.setTela(algodon);
 		
@@ -55,11 +49,7 @@ public class TestCargaDePrendas {
 		remera2.setColorPrimario(ColorPersistible.BLACK);
 		remera2.setTela(algodon);
 		
-		antiparras2 = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras2.setColorPrimario(ColorPersistible.BLACK);
-		antiparras2.setTela(algodon);
-		
-		short2 = SimpleFactoryPrendas.crearPrenda("short");
+		short2 = SimpleFactoryPrendas.crearPrenda("shorts");
 		short2.setColorPrimario(ColorPersistible.BLACK);
 		short2.setTela(algodon);
 		
@@ -83,8 +73,6 @@ public class TestCargaDePrendas {
 		listaDePrendas.add(short2);
 		listaDePrendas.add(ojotas);
 		listaDePrendas.add(ojotas2);
-		listaDePrendas.add(antiparras);
-		listaDePrendas.add(antiparras2);
 		listaDePrendas.add(zapatillas2);
 		listaDePrendas.add(zapatillas);
 		

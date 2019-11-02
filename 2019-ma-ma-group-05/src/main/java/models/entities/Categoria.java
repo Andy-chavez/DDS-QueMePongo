@@ -35,7 +35,7 @@ public abstract class Categoria  extends EntidadPersistente{
 
 	protected Prenda obtenerPrendaParaNivelAbrigo(List<Prenda> prendas, int nivelAbrigoRequerido) {
 		if(prendas.size() == 0) return null; // si prendas esta vacio, retorno un null. Cuando se intente agregar al atuendo no lo agrega
-		int margenAdmitido = 5;
+		int margenAdmitido = ConfigReader.getIntValue("configuraciones.properties","margenAdmitido");//5;
 		List<Prenda> prendasConAbrigoOk = obtenerPrendasConAbrigoOk(prendas, nivelAbrigoRequerido, margenAdmitido);
 		// si no esta vacio quiere decir que las prendas de la lista cumplen exactamente con el nivel de abrigo
 		if(!prendasConAbrigoOk.isEmpty()) {

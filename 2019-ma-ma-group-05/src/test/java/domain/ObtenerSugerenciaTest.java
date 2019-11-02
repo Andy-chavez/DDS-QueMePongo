@@ -58,8 +58,8 @@ public class ObtenerSugerenciaTest {
 	
 	@Before
 	public void init() {    
-		algodon = new Tela("Algodon");
-		cuero = new Tela("Cuero");
+		algodon = new Tela("algodon");
+		cuero = new Tela("cuero");
 		
 		camisa = SimpleFactoryPrendas.crearPrenda("camisa");
 		camisa.setColorPrimario(ColorPersistible.BLACK);
@@ -85,11 +85,7 @@ public class ObtenerSugerenciaTest {
 		remera.setColorPrimario(ColorPersistible.BLACK);
 		remera.setTela(algodon);
 		
-		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras.setColorPrimario(ColorPersistible.BLACK);
-		antiparras.setTela(algodon);
-		
-		shorts = SimpleFactoryPrendas.crearPrenda("short");
+		shorts = SimpleFactoryPrendas.crearPrenda("shorts");
 		shorts.setColorPrimario(ColorPersistible.BLACK);
 		shorts.setTela(algodon);
 		
@@ -109,11 +105,7 @@ public class ObtenerSugerenciaTest {
 		remera2.setColorPrimario(ColorPersistible.BLACK);
 		remera2.setTela(algodon);
 		
-		antiparras2 = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras2.setColorPrimario(ColorPersistible.BLACK);
-		antiparras2.setTela(algodon);
-		
-		shorts2 = SimpleFactoryPrendas.crearPrenda("short");
+		shorts2 = SimpleFactoryPrendas.crearPrenda("shorts");
 		shorts2.setColorPrimario(ColorPersistible.BLACK);
 		shorts2.setTela(algodon);
 		
@@ -234,13 +226,13 @@ public class ObtenerSugerenciaTest {
 //	}
 	
 	@Test
-	public void buscarMoldeAtuendo(){ //TODO printea bien pero no se porque da null pointer
+	public void buscarMoldeAtuendo(){
 		System.out.println("\nBuscarMoldeAtuendo()");
 
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario); //todo bound must be positive ese es el error que me estaria mostrando
 		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		
 		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(usuario.getSensibilidadFrio(), nivelAbrigoRequerido);

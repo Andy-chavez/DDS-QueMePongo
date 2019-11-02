@@ -53,7 +53,7 @@ public class GestorSugerencia {
 			if(moldeAtuendo.moldeAbrigaLoSuficiente(sf, nivelAbrigoRequerido)) return moldeAtuendo;
 	//public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
 	//	int margenAdmitido = 5;
-	//	for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ //TODO
+	//	for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ 
   //		if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
 	//			System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
 	//			return moldeAtuendo;

@@ -37,7 +37,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	}
 
 	public Boolean moldeAbrigaLoSuficiente(SensibilidadFrio sf, int nivelAbrigoRequerido){
-		int margenAdmitido = 5;
+		int margenAdmitido = ConfigReader.getIntValue("configuraciones.properties","margenAdmitido");//5;
 		return Math.abs(getAbrigoSuperior() - nivelAbrigoRequerido - sf.getSuperior()) <= margenAdmitido &&
 				Math.abs(getAbrigoInferior() - nivelAbrigoRequerido - sf.getInferior()) <= margenAdmitido &&
 				Math.abs(getAbrigoCalzado() - nivelAbrigoRequerido) <= margenAdmitido;
