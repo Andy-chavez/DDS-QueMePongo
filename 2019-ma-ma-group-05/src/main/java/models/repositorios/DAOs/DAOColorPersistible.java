@@ -34,4 +34,9 @@ public class DAOColorPersistible implements DAO {
         EntityManagerHelper.closeEntityManager();
         return colores;
     }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
 }

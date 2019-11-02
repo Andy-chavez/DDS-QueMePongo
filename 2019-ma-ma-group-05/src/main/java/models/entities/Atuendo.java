@@ -113,10 +113,10 @@ public class Atuendo extends EntidadPersistente {
 	}
 
 	public void reservarPrendas(Instant fecha){
-		this.prendas.forEach(p -> p.reservarFecha(fecha));
+		this.prendas.forEach(p -> p.reservarFecha(fecha,this.usuario));
 	}
 	public void reservarPrendas(){
-		reservarPrendas(Instant.now());
+		this.reservarPrendas(Instant.now());
 	}
 	public void liberarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.liberarFecha(fecha));

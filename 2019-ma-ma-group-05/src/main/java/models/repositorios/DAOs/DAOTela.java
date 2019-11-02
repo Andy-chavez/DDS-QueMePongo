@@ -52,4 +52,9 @@ public class DAOTela implements DAO {
         return listTelas;
     }
 
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
+
 }

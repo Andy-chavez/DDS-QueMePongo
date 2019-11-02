@@ -35,4 +35,9 @@ public class DAOCategoria implements DAO {
         EntityManagerHelper.closeEntityManager();
         return categorias;
     }
+
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
 }
