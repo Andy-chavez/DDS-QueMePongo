@@ -39,7 +39,6 @@ public class TiposTest {
 		remera.setCapa(0);
 		remera.setNivelAbrigo(10);
 
-		// creo un tipo "nuevo" para que se agregue a la db
 		telasPosibles.add(new Tela("Cuero"));
 		pantalon = new Tipo();
 		pantalon.setCategoria(inferior);
@@ -47,10 +46,6 @@ public class TiposTest {
 		pantalon.setNombre("pantalon");
 		pantalon.setCapa(0);
 		pantalon.setNivelAbrigo(20);
-
-		// uso un tipo sya definido para que se agregue a la db
-//		campera = Campera.getInstance();
-
 	}
 
 	@Test

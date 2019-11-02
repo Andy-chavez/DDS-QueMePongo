@@ -1,5 +1,6 @@
 package db;
 
+import models.repositorios.RepositorioTela;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,14 +18,8 @@ public class TelasTest {
 	}
     @Test
     public void persistirTelas(){
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(algodon);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
-        
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(gabardina);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
+        RepositorioTela.getInstance().agregar(algodon);
+
+        RepositorioTela.getInstance().agregar(gabardina);
     }
 }

@@ -24,7 +24,11 @@ public class DAOGuardarropa implements DAO {
         String query = "from Guardarropa as g where g.nombre = '" + nombre + "'";
         List listGuardarropa =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return listGuardarropa.get(0);
+        if(listGuardarropa.size()>0){
+            return listGuardarropa.get(0);
+        }
+        return null;
+
     }
     @Override
     public List<Object> buscarTodos() {

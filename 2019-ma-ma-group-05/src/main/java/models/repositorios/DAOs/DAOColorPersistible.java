@@ -24,7 +24,11 @@ public class DAOColorPersistible implements DAO {
         String query = "from ColorPersistible as c where c.hex = '" + hex + "'";
         List color =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        return color.get(0);
+        if(color.size()>0){
+            return color.get(0);
+        }
+        return null;
+
     }
 
     @Override

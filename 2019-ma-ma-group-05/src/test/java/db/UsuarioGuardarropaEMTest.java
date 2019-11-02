@@ -5,6 +5,9 @@ import models.entities.*;
 
 import java.util.List;
 
+import models.repositorios.RepositorioGuardarropa;
+import models.repositorios.RepositorioPrenda;
+import models.repositorios.RepositorioUsuario;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,51 +37,32 @@ public class UsuarioGuardarropaEMTest{
 	}
     @Test
     public void persistir1UsuarioTest(){
-	    dao.agregar(usuario);
+        RepositorioUsuario.getInstance().agregar(usuario);
     }
 
     @Test
     public void recuperandoAMati(){
-        Usuario mati = (Usuario) dao.buscarPorNombre("mati");
+        Usuario mati = (Usuario) RepositorioUsuario.getInstance().buscarPorNombre("mati");
         Assert.assertEquals("mati", mati.getNombre());
     }
 
     @Test
     public void persistirGuardarropaTest(){
-//		guardarropa.agregarPrenda(remera); // si se persiste remera aca, no se puede persistir en el otro test
         guardarropa.agregarPrenda(pantalon);
-
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.getEntityManager().persist(guardarropa);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
+        RepositorioGuardarropa.getInstance().agregar(guardarropa);
     }
     
     @Test
     public void recuperandoGuardarropa(){
-        @SuppressWarnings("rawtypes")
-		List h =  EntityManagerHelper.getEntityManager().createQuery("from Guardarropa as g where g.nombre = 'formal'").getResultList();
-        EntityManagerHelper.closeEntityManager();
-        Guardarropa g = (Guardarropa) h.get(0);
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorNombre("formal");
         Assert.assertEquals("formal", g.getNombre());
     }
     @Test
     public void persistirPrenda(){
+        RepositorioPrenda.getInstance().agregar(remera);
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.persist(remera);
         EntityManagerHelper.commit();
         EntityManagerHelper.closeEntityManager();
     }
-//    @Test
-//    public void recuperandoPrendas(){
-//        Guardarropa g = (Guardarropa) EntityManagerHelper.createQuery("from Prendas where nombre = 'formal'").getSingleResult();
-//    	  Remera remeraTipo = new Remera();
-//    	  EntityManagerHelper.beginTransaction();
-//        EntityManagerHelper.persist(remeraTipo);
-//        EntityManagerHelper.commit();
-//    	  Prenda rem = (Prenda) EntityManagerHelper.getEntityManager().find(Prenda.class, remera.getId());
-//    	  Prenda remera = (Prenda) EntityManagerHelper.createQuery("from prenda where tipo_nombre = 'remera'").getSingleResult();
-//    	  EntityManagerHelper.closeEntityManager();
-//    	  Assert.assertEquals("remera", rem.getTipo().toString());
-//    }
 }
