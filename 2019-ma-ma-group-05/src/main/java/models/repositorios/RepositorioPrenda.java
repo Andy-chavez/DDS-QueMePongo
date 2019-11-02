@@ -25,9 +25,7 @@ public class RepositorioPrenda extends Repositorio {
 
     public Prenda buscarPorId(int id){ return (Prenda) this.dao.buscarPorId(id);}
 
-    @Override
-    public void agregar(Object unObjeto){
-        Prenda prenda = (Prenda)unObjeto;
+    public void verificarAtributosPersistidosDePrenda(Prenda prenda){
         if(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre())!= null ){
             prenda.setTipo(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre()));
         }
@@ -42,6 +40,11 @@ public class RepositorioPrenda extends Repositorio {
                 prenda.setColorSecundario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex()));
             }
         }
+    }
+    @Override
+    public void agregar(Object unObjeto){
+        Prenda prenda = (Prenda)unObjeto;
+        this.verificarAtributosPersistidosDePrenda(prenda);
         this.dao.agregar(prenda);
 
     }

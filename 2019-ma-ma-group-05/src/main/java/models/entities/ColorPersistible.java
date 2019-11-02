@@ -379,7 +379,7 @@ public class ColorPersistible extends EntidadPersistente implements java.io.Seri
         this.name = this.getClass().getClasses().toString();
         this.hex = "#"+Integer.toHexString(this.getRGB()).substring(2);
     }
-
+    public ColorPersistible(){}
     /**
      * Creates an sRGB color with the specified red, green, blue, and alpha
      * values in the range (0 - 255).

@@ -17,10 +17,8 @@ public class UsuarioGuardarropaEMTest{
 	private Prenda pantalon;
 	private Usuario usuario;
 	private Guardarropa guardarropa;
-	private DAOUsuario dao;
 	@Before
 	public void init(){
-	    dao = new DAOUsuario();
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
 		remera.setTela(new Tela("algodon"));
 		remera.setColorPrimario(ColorPersistible.blue);
@@ -60,9 +58,5 @@ public class UsuarioGuardarropaEMTest{
     @Test
     public void persistirPrenda(){
         RepositorioPrenda.getInstance().agregar(remera);
-        EntityManagerHelper.beginTransaction();
-        EntityManagerHelper.persist(remera);
-        EntityManagerHelper.commit();
-        EntityManagerHelper.closeEntityManager();
     }
 }
