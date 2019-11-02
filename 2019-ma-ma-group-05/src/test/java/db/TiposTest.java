@@ -2,6 +2,7 @@ package db;
 
 import models.entities.Tela;
 
+import models.repositorios.RepositorioTipo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,8 +17,6 @@ public class TiposTest {
 	List<Tela> telasPosibles;
 	Tipo remera;
 	Tipo pantalon;
-	Tipo campera;
-	Tipo sup;
 	Inferior inferior;
 	SuperiorBase superiorBase;
 
@@ -50,13 +49,7 @@ public class TiposTest {
 
 	@Test
 	public void persistirTipos() {
-		EntityManagerHelper.beginTransaction();
-		EntityManagerHelper.getEntityManager().persist(superiorBase);
-		EntityManagerHelper.getEntityManager().persist(inferior);
-		EntityManagerHelper.getEntityManager().persist(remera);
-		EntityManagerHelper.getEntityManager().persist(pantalon);
-//		EntityManagerHelper.getEntityManager().persist(campera);
-		EntityManagerHelper.commit();
-		EntityManagerHelper.closeEntityManager();
+		RepositorioTipo.getInstance().agregar(remera);
+		RepositorioTipo.getInstance().agregar(pantalon);
 	}
 }

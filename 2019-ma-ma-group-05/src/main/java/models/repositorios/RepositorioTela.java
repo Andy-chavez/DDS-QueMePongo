@@ -25,6 +25,7 @@ public class RepositorioTela extends Repositorio {
 
     public Tela buscarPorNombre(String nombre){ return (Tela) this.dao.buscarPorNombre(nombre); }
 
+    @Override
     public void agregar(Object unObjeto){
         Tela tela = (Tela)unObjeto;
         if(this.dao.buscarPorNombre(tela.getNombre())== null){
