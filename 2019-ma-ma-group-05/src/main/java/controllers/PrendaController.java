@@ -17,7 +17,7 @@ public class PrendaController {
         this.repo = RepositorioPrenda.getInstance();
     }
 
-    public ModelAndView mostrarTodos(Request request, Response response) {
+   /* public ModelAndView mostrarTodos(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         List<Prenda> prendas = this.repo.buscarTodosDeCiertoGuardarropa();
         parametros.put("prendas", prendas);
@@ -100,5 +100,5 @@ public class PrendaController {
         Usuario usuario = this.repo.buscar(new Integer(request.params("id")));
         this.repo.eliminar(usuario);
         return response;
-    }
+    }*/
 }

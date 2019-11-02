@@ -20,6 +20,7 @@
   
     	<class>models.entities.Atuendo</class> <!-- CHECK -->
     	<class>models.entities.MoldeAtuendo</class>
+		<class>models.entities.Reserva</class>
     	<class>models.entities.SensibilidadFrio</class> <!-- CHECK -->
     	
     	<class>models.entities.Categoria</class> <!-- CHECK -->

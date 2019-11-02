@@ -37,7 +37,10 @@ public class DAOEvento implements DAO {
     }
 
     @Override
-    public List<Object> buscarTodos(int id) { //todo escribir el override
-        return null;
+    public List<Object> buscarTodos(int id) {
+        String query = "from Evento where usuario_id = "+ id;
+        List listEvento =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        return listEvento;
     }
 }
