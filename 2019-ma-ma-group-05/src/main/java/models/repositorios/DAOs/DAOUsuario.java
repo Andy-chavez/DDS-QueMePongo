@@ -35,4 +35,9 @@ public class DAOUsuario implements DAO {
         return listUsuarios;
     }
 
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
+
 }

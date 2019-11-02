@@ -72,4 +72,9 @@ public class DAOTipo implements DAO {
         return listTipos;
     }
 
+    @Override
+    public List<Object> buscarTodos(int id) {
+        return null;
+    }
+
 }

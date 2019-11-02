@@ -33,4 +33,9 @@ public class DAOGuardarropa implements DAO {
         EntityManagerHelper.closeEntityManager();
         return listGuardarropa;
     }
+
+    @Override
+    public List<Object> buscarTodos(int id) { //todo escribir el override
+        return null;
+    }
 }

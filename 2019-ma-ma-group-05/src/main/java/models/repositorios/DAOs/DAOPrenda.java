@@ -32,4 +32,9 @@ public class DAOPrenda implements DAO {
         EntityManagerHelper.closeEntityManager();
         return prendas;
     }
+
+    @Override
+    public List<Object> buscarTodos(int id) { //todo escribir el override
+        return null;
+    }
 }
