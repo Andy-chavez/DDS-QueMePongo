@@ -15,9 +15,12 @@ public class Accesorio extends Categoria{
 	public Accesorio(){
 		this.setNombre("Accesorio");
 	}
+
+	// hace lo mismo que Categoria pero no checkea temperatura
 	public void agregarPrendas(Atuendo atuendo, List<Prenda> prendas, int nivelAbrigoRequerido){
-		List<Prenda> prendasDeEstaCategoria =  prendas.stream().filter(p -> p.esDeCategoria(this)).collect(Collectors.toList());
+		List<Prenda> prendasDeEstaCategoria = obtenerPrendasCategoria(prendas, this);
 		Random random = new Random();
-		atuendo.agregarPrenda(prendasDeEstaCategoria.get(random.nextInt(prendasDeEstaCategoria.size())));
+		Prenda prendaElegida = prendasDeEstaCategoria.get(random.nextInt(prendasDeEstaCategoria.size()));
+		agregarPrenda(atuendo, prendaElegida);
 	}
 }

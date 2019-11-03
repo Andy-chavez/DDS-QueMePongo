@@ -28,8 +28,8 @@ public class PrendaTest {
 		algNylPolYSed.add(new Tela("seda"));
 		algNylPolYSed.add(new Tela("poliester"));
 		remeraTipo = new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10);
-		cuero = new Tela("Cuero");
-		algodon = new Tela("Algodon");
+		cuero = new Tela("cuero");
+		algodon = new Tela("algodon");
 		prenda = SimpleFactoryPrendas.crearPrenda("remera");
 		prenda.setTela(algodon);
 		
@@ -61,7 +61,7 @@ public class PrendaTest {
 	}
 	@Test
 	public void sonZapatillas() {
-		Assert.assertEquals("No eran zapatillas", "zapatillas", zapatillas.getTipo().getNombre());
+		Assert.assertEquals("No eran zapatillas", "Zapatillas", zapatillas.getTipo().getNombre());
 	}
 	
 	@Test

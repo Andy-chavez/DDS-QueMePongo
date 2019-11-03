@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import converters.GenericAttributeConverter;
 import models.entities.Excepciones.*;
 
 import java.time.Instant;
@@ -82,7 +81,10 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	public Boolean esDeCategoria(Categoria unaCategoria) {
 		return this.tipo.esDeCategoria(unaCategoria);
 	}
-	
+
+	public void agregarAbrigoCategoria(Atuendo atuendo){
+		this.getCategoria().agregarAbrigoCategoria(atuendo, this);
+	}
 	
 	// Para tests(?
 	public Boolean esIgualA(Prenda otraPrenda) {
@@ -113,5 +115,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
 		//return this.fechasReservadas.contains(fechaLocalDate);
 		return this.reservas.stream().anyMatch(reserva -> reserva.getFechaReserva().equals(fechaLocalDate));
+	}
+	public Categoria getCategoria(){
+		return this.getTipo().getCategoria();
 	}
 }

@@ -58,8 +58,8 @@ public class ObtenerSugerenciaTest {
 	
 	@Before
 	public void init() {    
-		algodon = new Tela("Algodon");
-		cuero = new Tela("Cuero");
+		algodon = new Tela("algodon");
+		cuero = new Tela("cuero");
 		
 		camisa = SimpleFactoryPrendas.crearPrenda("camisa");
 		camisa.setColorPrimario(ColorPersistible.BLACK);
@@ -85,11 +85,7 @@ public class ObtenerSugerenciaTest {
 		remera.setColorPrimario(ColorPersistible.BLACK);
 		remera.setTela(algodon);
 		
-		antiparras = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras.setColorPrimario(ColorPersistible.BLACK);
-		antiparras.setTela(algodon);
-		
-		shorts = SimpleFactoryPrendas.crearPrenda("short");
+		shorts = SimpleFactoryPrendas.crearPrenda("shorts");
 		shorts.setColorPrimario(ColorPersistible.BLACK);
 		shorts.setTela(algodon);
 		
@@ -109,11 +105,7 @@ public class ObtenerSugerenciaTest {
 		remera2.setColorPrimario(ColorPersistible.BLACK);
 		remera2.setTela(algodon);
 		
-		antiparras2 = SimpleFactoryPrendas.crearPrenda("antiparras");
-		antiparras2.setColorPrimario(ColorPersistible.BLACK);
-		antiparras2.setTela(algodon);
-		
-		shorts2 = SimpleFactoryPrendas.crearPrenda("short");
+		shorts2 = SimpleFactoryPrendas.crearPrenda("shorts");
 		shorts2.setColorPrimario(ColorPersistible.BLACK);
 		shorts2.setTela(algodon);
 		
@@ -151,7 +143,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerSugerenciaTest(){
 		System.out.println("\nobtenerSugerencia()");
-		Atuendo atuendoSugerido = new Atuendo(40, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		System.out.println("PREPARANDO ATUENDO");
 		atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);//.getSensibilidadFrio());
 		System.out.println("Atuendo sugerido: ");
@@ -163,13 +155,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void compararAtuendosDaTrue(){
 		System.out.println("\ncompararAtuendosDaTrue()");
-		Atuendo atuendoSugerido=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
 
-		Atuendo otroAtuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo otroAtuendo = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		otroAtuendo.agregarPrenda(remera);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
@@ -181,13 +173,13 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void compararAtuendosDaFalse(){
 		System.out.println("\ncompararAtuendosDaFalse()");
-		Atuendo atuendoSugerido=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
 		atuendoSugerido.agregarPrenda(shorts);
 
-		Atuendo otroAtuendo=new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo otroAtuendo=new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		otroAtuendo.agregarPrenda(remera2);
 		otroAtuendo.agregarPrenda(ojotas);
 		otroAtuendo.agregarPrenda(antiparras);
@@ -200,7 +192,7 @@ public class ObtenerSugerenciaTest {
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
 		Categoria superiorExtra = new SuperiorExtra();
-		Atuendo atuendo = new Atuendo(30, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendo = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		superiorExtra.agregarPrendas(atuendo, prendas, 30);
 		atuendo.printPrendas();
 	}
@@ -209,7 +201,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void crearMoldeTest(){
 		System.out.println("\ncrearMoldeTest()");
-		Atuendo atuendoSugerido = new Atuendo(16, usuario);//, usuario.getSensibilidadFrio());
+		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		atuendoSugerido.agregarPrenda(remera);
 		atuendoSugerido.agregarPrenda(ojotas);
 		atuendoSugerido.agregarPrenda(antiparras);
@@ -221,49 +213,65 @@ public class ObtenerSugerenciaTest {
 		}
 	}
 	
-	@Test
-	public void nivelAbrigoAtuendo(){
-		System.out.println("\nnivelAbrigoAtuendo()");
-		//double temperatura = 24.0;
-		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
-		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
-		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
-
-		atuendoSugerido.printPrendas();
-		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
-	}
+//	@Test
+//	public void nivelAbrigoAtuendo(){
+//		System.out.println("\nnivelAbrigoAtuendo()");
+//		//double temperatura = 24.0;
+//		double nivelAbrigoRequerido = (40 - GestorDeClima.getInstance().getTemperaturaActual());
+//		Atuendo atuendoSugerido = gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
+//		System.out.println("Nivel abrigo atuendo: " + atuendoSugerido.getNivelAbrigo());
+//
+//		atuendoSugerido.printPrendas();
+//		assertEquals(atuendoSugerido.getNivelAbrigo(), nivelAbrigoRequerido,1);
+//	}
 	
 	@Test
-	public void buscarMoldeAtuendo(){ //TODO printea bien pero no se porque da null pointer
+	public void buscarMoldeAtuendo(){
 		System.out.println("\nBuscarMoldeAtuendo()");
 
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario); //todo bound must be positive ese es el error que me estaria mostrando
 		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		
-		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(guardarropa, nivelAbrigoRequerido);
+		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(usuario.getSensibilidadFrio(), nivelAbrigoRequerido);
 		for(Tipo t : moldeAtuendo.getMoldeTipos()){
 			System.out.println(t);
 		}
 
 	}
 	
+//	@Test
+//	public void crearAtuendoConMolde(){
+//		System.out.println("\ncrearAtuendoConMolde()");
+//		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
+//		atuendoSugerido.agregarPrenda(remera);
+//		atuendoSugerido.agregarPrenda(ojotas);
+//		atuendoSugerido.agregarPrenda(antiparras);
+//		atuendoSugerido.agregarPrenda(shorts);
+//		atuendoSugerido.setNivelAbrigo(16);
+//
+//		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
+//		for(Tipo t : moldeAtuendo.getMoldeTipos()){
+//			System.out.println(t);
+//		}
+//		System.out.println(moldeAtuendo.getNivelAbrigo());
+//	}
+//
 	@Test
-	public void crearAtuendoConMolde(){
-		System.out.println("\ncrearAtuendoConMolde()");
-		Atuendo atuendoSugerido = new Atuendo(16, usuario);//, usuario.getSensibilidadFrio());
-		atuendoSugerido.agregarPrenda(remera);
-		atuendoSugerido.agregarPrenda(ojotas);
-		atuendoSugerido.agregarPrenda(antiparras);
-		atuendoSugerido.agregarPrenda(shorts);
-		atuendoSugerido.setNivelAbrigo(16);
+	public void cronSugerencia(){ //todo kind of faltan cosas aca
+		System.out.println("\ncronSugerencia()");
+		EventoDto eventoDto = new EventoDto();
+		eventoDto.repeticionDias = 2000;
+		eventoDto.anticipacionHoras = 2;
+		eventoDto.fecha = "2019-09-02T13:04:00Z";
+		eventoDto.estado = new Pendiente();
+		eventoDto.guardarropa = guardarropa;
+		eventoDto.usuario = usuario;
+		Evento evento = new Evento(eventoDto);
+		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();
 		
-		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
-		for(Tipo t : moldeAtuendo.getMoldeTipos()){
-			System.out.println(t);
 		}
-		System.out.println(moldeAtuendo.getNivelAbrigo());
-	}
+
 }
