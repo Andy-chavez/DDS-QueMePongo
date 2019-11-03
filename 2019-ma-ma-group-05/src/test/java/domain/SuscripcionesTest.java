@@ -17,7 +17,7 @@ import models.entities.Usuario;
 import models.entities.Excepciones.LimiteDePrendasAlcanzadoException;
 import models.entities.Suscripciones.Free;
 import models.entities.Suscripciones.Premium;
-
+//Nota este test funciona con un limite de 10 prendas
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;
 	
@@ -54,11 +54,11 @@ public class SuscripcionesTest {
 	@Test
 	public void limiteDePrendasDeLaSuscrpcionFreeEs12(){
 		Free f = Free.getInstance();
-		assertEquals(f.getLimiteDePrendas(),12);
+		assertEquals(f.getLimiteDePrendas(),10);
 	}
 	@Test
 	public void cantidadDePrendasDelGuardarropaEs12(){
-		assertEquals(guardarropa.cantidadDePrendas(),12);
+		assertEquals(guardarropa.cantidadDePrendas(),10);
 	}
 	@Test(expected=LimiteDePrendasAlcanzadoException.class)
 	public void usuarioFreeSePasaDelLimite(){
@@ -70,11 +70,11 @@ public class SuscripcionesTest {
 		usuario.cambiarAPremium();
 		
 		usuario.agregarPrenda(guardarropa, remeraBonus);
-		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),13);
+		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),11);
 
 		usuario.cambiarAFree();
 		
-		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),12);
+		assertEquals(usuario.getPrendasDelguardarropa("guardarropa").size(),10);
 	}
 	
 	@Test
@@ -89,7 +89,7 @@ public class SuscripcionesTest {
 		usuario.agregarPrenda(guardarropa, remeraBonus);
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
-		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),12);
+		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),10);
 	}
 	
 	@Test
@@ -98,7 +98,7 @@ public class SuscripcionesTest {
 		usuario2.cambiarAPremium();
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		
-		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),12);
+		assertEquals(usuario2.getPrendasDelguardarropa("guardarropa").size(),10);
 	}
 	
 	@Test
@@ -114,12 +114,12 @@ public class SuscripcionesTest {
 	public void usuarioPremiumAgregaPrendasAGuardarropaCompartido(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		usuario2.setSuscripcion(Premium.getInstance());
-		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
+		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),10);
 	}
 	@Test
 	public void usuarioFreeAgregaPrendaPeroElGuardarropaEstaAlLimite(){
 		usuario.compartirGuardarropa(usuario2, guardarropa);
 		usuario2.setSuscripcion(Free.getInstance());
-		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),12);
+		assertEquals(usuario2.getGuardarropa(guardarropa.getNombre()).cantidadDePrendas(),10);
 	}
 }

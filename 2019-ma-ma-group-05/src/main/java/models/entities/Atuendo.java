@@ -6,16 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "atuendo")
@@ -23,29 +14,45 @@ public class Atuendo extends EntidadPersistente {
 
 	@ManyToMany
 	@JoinColumn(name = "prenda_id",referencedColumnName = "id")
-	private List<Prenda> prendas = new ArrayList<Prenda>();
+	private List<Prenda> prendas;
 	@Column(name = "rechazado")
 	private Boolean rechazado;
-	@Column(name = "nivel_abrigo")
-	private int nivelAbrigo;
 	@Column(name = "calificacion")
 	private int calificacion;
 	@OneToOne
-	@JoinColumn(name = "usuario_id",referencedColumnName = "id")
+	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
+	@Column(name = "abrigo_superior")
+	int abrigoSuperior;
+	@Column(name = "abrigo_inferior")
+	int abrigoInferior;
+	@Column(name = "abrigo_calzado")
+	int abrigoCalzado;
+//	@Transient
+//	Boolean optimo; // este atributo lo uso solo para decidir si genero el molde o no despues de generar la sugerencia. Se vuelve false si usa alguna prenda que exeda el margen de nivel de abrigo
 
-	public Atuendo(int nivelAbrigo, Usuario u) {
-		this.nivelAbrigo = nivelAbrigo;
-		this.usuario = u;
+	public Atuendo() {
+		prendas = new ArrayList<Prenda>();
+		this.abrigoSuperior = 0;
+		this.abrigoInferior = 0;
+		this.abrigoCalzado = 0;
 	}
-//	public Atuendo(int nivelAbrigo, SensibilidadFrio sensibilidadFrio){
-//		this.nivelAbrigo = nivelAbrigo;
-//		this.sensibilidadFrio = sensibilidadFrio;
-//	}
+
+	public Atuendo(Usuario unUsuario) {
+		this();
+		this.usuario = unUsuario;
+	}
+
+	public void addPrenda(Prenda prenda){
+		this.prendas.add(prenda);
+	}
+
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
-			this.prendas.add(prenda);
+			prendas.add(prenda);
+//			System.out.println("Abrigo " + prenda.getTipo().getNombre() + ": " + prenda.getNivelAbrigo());
 		}
+		else System.out.println("prenda null o ya tiene tipo");
 	}
 
 	public void agregarPrendas(List<Prenda> prendas){
@@ -75,7 +82,7 @@ public class Atuendo extends EntidadPersistente {
 
 	public boolean tieneTipo(Tipo tipo) {
 		for (Prenda prenda : this.prendas) {
-			if(prenda.getTipo().getClass().equals(tipo.getClass())) {
+			if(prenda.getTipo().getNombre().equals(tipo.getNombre())) {
 				return true;
 			}
 		}
@@ -114,13 +121,16 @@ public class Atuendo extends EntidadPersistente {
 	public void liberarPrendas(Instant fecha){
 		this.prendas.forEach(p -> p.liberarFecha(fecha));
 	}
+
 	// --- GETTERS Y SETTERS ---
-	public void setNivelAbrigo(int nivelAbrigo){	this.nivelAbrigo = nivelAbrigo;		}
-	//public void setSensibilidadFrio(SensibilidadFrio sensibilidadFrio){	this.sensibilidadFrio = sensibilidadFrio;	}
-	public SensibilidadFrio getSensibilidadFrio(){	return this.usuario.getSensibilidadFrio();	}
 	public void setRechazado(Boolean flag){	this.rechazado=flag;}
 	public Boolean getRechazado(){	return this.rechazado;	}
-	public int getNivelAbrigo() {	return this.nivelAbrigo;	}
 	public List<Prenda> getPrendas(){	return this.prendas;	}
+	public int getAbrigoSuperior() { return abrigoSuperior; }
+	public int getAbrigoInferior() { return abrigoInferior; }
+	public int getAbrigoCalzado() { return abrigoCalzado; }
+	public void addAbrigoSuperior(int cantidad) { this.abrigoSuperior += cantidad; }
+	public void addAbrigoInferior(int cantidad) { this.abrigoInferior += cantidad; }
+	public void addAbrigoCalzado(int cantidad) { this.abrigoCalzado += cantidad; }
 }
 
