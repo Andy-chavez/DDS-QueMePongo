@@ -44,6 +44,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	}
 	// --- GETTERS Y SETTERS ---
 	public List<Tipo> getMoldeTipos(){ 	return this.moldeTipos;	}
+
 	public void setMoldeTipos(List<Tipo> listaDeMoldes){
 		this.moldeTipos.clear();
 		this.moldeTipos.addAll(listaDeMoldes);
