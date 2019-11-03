@@ -1,6 +1,8 @@
 package controllers;
 
+import models.entities.Guardarropa;
 import models.entities.Prenda;
+import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
 import spark.ModelAndView;
 import spark.Request;
@@ -17,29 +19,20 @@ public class PrendaController {
         this.repo = RepositorioPrenda.getInstance();
     }
 
-   /* public ModelAndView mostrarTodos(Request request, Response response) {
+   public ModelAndView mostrarTodos(Request request, Response response) {
+
         Map<String, Object> parametros = new HashMap<>();
-        List<Prenda> prendas = this.repo.buscarTodosDeCiertoGuardarropa();
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.params("idGuardarropa")));
+        List<Prenda> prendas = g.getPrendas();
         parametros.put("prendas", prendas);
         return new ModelAndView(parametros, "prendasDeGuardarropa.hbs");
     }
 
-    public ModelAndView mostrar(Request request, Response response){
-        Prenda prenda = this.repo.buscarPorId(new Integer(request.params("id")));
-        RepositorioRol repoRol = FactoryRepositorioRol.get();
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("usuario", usuario);
-        parametros.put("roles", repoRol.buscarTodos());
-        return new ModelAndView(parametros, "usuario.hbs");
-    }
-
-    public Response modificar(Request request, Response response){
-        Usuario usuario = this.repo.buscar(new Integer(request.params("id")));
-        asignarAtributosA(usuario, request);
-        this.repo.modificar(usuario);
-        response.redirect("/usuarios");
+    public Response eliminar(Request request, Response response){
+        this.repo.eliminar(this.repo.buscarPorId(new Integer(request.params("idPrenda"))));
         return response;
     }
+/*
 
     private void asignarAtributosA(Usuario usuario, Request request){
         if(request.queryParams("telefono") != null){
@@ -95,10 +88,6 @@ public class PrendaController {
         response.redirect("/usuarios");
         return response;
     }
+*/
 
-    public Response eliminar(Request request, Response response){
-        Usuario usuario = this.repo.buscar(new Integer(request.params("id")));
-        this.repo.eliminar(usuario);
-        return response;
-    }*/
 }

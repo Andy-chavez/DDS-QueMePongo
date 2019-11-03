@@ -25,13 +25,11 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private String imagen;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Tipo tipo;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne()
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
-	@Transient
-	private ImgResizer resizer;
 	
 	public Prenda() {}
 	public Prenda(Tipo unTipo) {
@@ -55,7 +53,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		else { this.colorSecundario = unColorSecundario; }
 	}
 	public void setTipo(Tipo tipo) { this.tipo = tipo;	}
-	public void setImage(String path) { this.resizer.copyImage(path,this);	}
+	public void setImage(String path) { ImgResizer.copyImage(path,this);	}
 	public void setImagenResized(String path) { this.imagen = path;	}
 	public String getImagen() {  return this.imagen; }
 	public Tipo getTipo() {	return this.tipo; 	}

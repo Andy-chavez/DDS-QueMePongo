@@ -1,5 +1,6 @@
 package server;
 
+import controllers.PrendaController;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -25,11 +26,13 @@ public class Router {
 
     private static void configure(){
 
-//        UsuarioController usuarioController = new UsuarioController();
+        PrendaController prendaController = new PrendaController();
 //
 //        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
 //
-//        Spark.get("/usuario/:id", usuarioController::mostrar, Router.engine);
+        Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        Spark.delete("/idUsuario/:idGuardarropa/:idPrenda", prendaController::eliminar);
+        Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
 //
 //        Spark.get("/usuario", usuarioController::crear, Router.engine);
 //
@@ -38,9 +41,9 @@ public class Router {
 //        Spark.post("/usuario", usuarioController::guardar);
 //
 //        Spark.delete("/usuario/:id", usuarioController::eliminar);
-
-        Spark.after((req, res) -> {
-            PerThreadEntityManagers.closeEntityManager();
-        });
+//
+//        Spark.after((req, res) -> {
+//            PerThreadEntityManagers.closeEntityManager();
+//        });
     }
 }
