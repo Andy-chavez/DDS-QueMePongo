@@ -32,4 +32,5 @@ public class RepositorioColor extends Repositorio{
     public ColorPersistible buscarPorId(int id){ return (ColorPersistible) this.dao.buscarPorId(id);}
 
     public ColorPersistible buscarPorNombre(String hex){ return (ColorPersistible) this.dao.buscarPorNombre(hex); }
+
 }

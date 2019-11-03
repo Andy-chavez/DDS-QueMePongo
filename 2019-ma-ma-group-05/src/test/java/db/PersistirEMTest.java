@@ -31,6 +31,9 @@ public class PersistirEMTest {
         pantalon.setColorPrimario(azul);
         Prenda camisa = SimpleFactoryPrendas.crearPrenda("camisa");
         camisa.setColorPrimario(verde);
+        camisa.setTela(new Tela("algodon"));
+        zapatillas.setTela(new Tela("algodon"));
+        pantalon.setTela(new Tela("algodon"));
         prendas.add(zapatillas);
         prendas.add(pantalon);
         prendas.add(camisa);

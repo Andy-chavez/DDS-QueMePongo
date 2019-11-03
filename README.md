@@ -9,3 +9,6 @@
 
 ## Hidratar strategies
 > https://stackoverflow.com/questions/51138344/hibernate-persisting-a-composition-interface-of-strategy-pattern
+
+### Colores base
+> 78c1ad

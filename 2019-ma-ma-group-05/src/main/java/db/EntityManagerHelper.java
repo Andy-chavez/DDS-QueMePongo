@@ -72,7 +72,7 @@ public class EntityManagerHelper {
         return getEntityManager().createQuery(query);
     }
 
-    public static void persist(Object o){ //cambie esto por si soluciona el hecho de que se persistan repetidos
+    public static void persist(Object o){
         if (!entityManager().contains(o)) {
             entityManager().persist(o);
         } else {
