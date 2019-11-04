@@ -23,6 +23,7 @@ public interface DAO {
     default void agregar(Object o){
         EntityManagerHelper.getEntityManager().getTransaction().begin();
         EntityManagerHelper.getEntityManager().persist(o);
+//        EntityManagerHelper.getEntityManager().flush();
         EntityManagerHelper.getEntityManager().getTransaction().commit();
     };
 

@@ -1,0 +1,64 @@
+{{#partial "contenido"}}
+    <header>
+<!--        <h6 class="title">Guardarropas</h6>-->
+    </header>
+
+<!--    <form align="right" name="logout" method="POST" action="session_logout.php">-->
+<!--        <label>-->
+<!--            <input class="btn btn-secondary" name="logout" type="submit" id="logout" value="log out">-->
+<!--        </label>-->
+<!--    </form>-->
+    <h1 class="text-center p-4"> Guardarropas</h1>
+
+    <div class="col-md-12 text-center">
+<!--        <form class="was-validated" method="get">-->
+<!--            -->
+<!--            <input type="text" name="filtro" placeholder = "Filtro" value = "" >-->
+
+<!--            <button type="submit">Filtrar</button>-->
+<!--        </form>-->
+    </div>
+
+    <div class = "container">
+
+        <!-- <table class="table table-hover table-dark"> -->
+        <table class="col-md-12 table table-hover" style="width:100%">
+
+            <thead class="col-md-12 thead-dark">
+            <tr>
+                <th class="text-center"  style="width:25%">Guardarropa</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Agregar prenda</th>
+                <th scope="col">Visualizar prendas</th>
+            </tr>
+            </thead>
+
+<!--            <tbody>-->
+            {{#each guardarropas}}
+                <tr>
+                    <td class="text-center">
+                        <a href="default.asp">
+                            <img src="../images/sport-wardrobe-icon.jpg" alt="HTML tutorial" style="width:42px;height:42px;border:0">
+                        </a>
+<!--                        <a rel="icon" href="/images/sport-wardrobe-icon.jpg" ></a>-->
+                    </td>
+                    <td><i class="text-center fas fa-user"></i> {{nombre}}</td>
+                    <td>
+                        <a class="btn btn-outline-warning" href="google.com.ar"> Agregar</a>
+                        <!--<a href="/usuario/{{id}}" name="button" style="margin:0px;" class="btn btn-border btn-border-blue" ><i class="far fa-eye"></i></a>-->
+<!--                        <a href="www.google.com.ar" name="button" class=" btn btn-edit"><i class="fas fa-user-edit"></i></a>-->
+<!--                        <button type="button" name="button" class="btn" onclick="confirmarEliminacion('{{id}}')"><i class="fas fa-trash"></i></button>-->
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-info" href="google.com.ar"> Visualizar prendas de {{nombre}}</a>
+                    </td>
+
+                    <!--                    <td></td>-->
+                </tr>
+            {{/each}}
+<!--            </tbody>-->
+        </table>
+    </div>
+<!--<script type="text/javascript" src="/js/usuarios.js"></script>-->
+{{/partial}}
+{{>pagina_base.hbs}}
