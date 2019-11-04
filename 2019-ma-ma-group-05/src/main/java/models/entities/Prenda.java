@@ -6,7 +6,6 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import converters.GenericAttributeConverter;
 import models.entities.Excepciones.*;
 
 import java.time.Instant;
@@ -26,13 +25,11 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	private String imagen;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	private Tipo tipo;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne()
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
-	@Transient
-	private ImgResizer resizer;
 	
 	public Prenda() {}
 	public Prenda(Tipo unTipo) {
@@ -56,7 +53,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		else { this.colorSecundario = unColorSecundario; }
 	}
 	public void setTipo(Tipo tipo) { this.tipo = tipo;	}
-	public void setImage(String path) { this.resizer.copyImage(path,this);	}
+	public void setImage(String path) { ImgResizer.copyImage(path,this);	}
 	public void setImagenResized(String path) { this.imagen = path;	}
 	public String getImagen() {  return this.imagen; }
 	public Tipo getTipo() {	return this.tipo; 	}
@@ -82,7 +79,10 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	public Boolean esDeCategoria(Categoria unaCategoria) {
 		return this.tipo.esDeCategoria(unaCategoria);
 	}
-	
+
+	public void agregarAbrigoCategoria(Atuendo atuendo){
+		this.getCategoria().agregarAbrigoCategoria(atuendo, this);
+	}
 	
 	// Para tests(?
 	public Boolean esIgualA(Prenda otraPrenda) {
@@ -113,5 +113,8 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		LocalDate fechaLocalDate = fecha.atZone(ZoneId.systemDefault()).toLocalDate();
 		//return this.fechasReservadas.contains(fechaLocalDate);
 		return this.reservas.stream().anyMatch(reserva -> reserva.getFechaReserva().equals(fechaLocalDate));
+	}
+	public Categoria getCategoria(){
+		return this.getTipo().getCategoria();
 	}
 }

@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 import converters.GenericAttributeConverter;
 import models.entities.Categoria;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "tipo")
@@ -21,7 +23,8 @@ public class Tipo extends EntidadPersistente{
 	protected int nivelAbrigo;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	protected Categoria categoria;
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL},  fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 

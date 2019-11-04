@@ -1,7 +1,9 @@
 package controllers;
+import models.entities.*;
 import models.entities.Guardarropa;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
+import models.repositorios.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -30,7 +32,7 @@ public class GuardarropaController {
         RepositorioPrenda repoPrendas = RepositorioPrenda.getInstance();
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("guardarropa", guardarropa);
-        parametros.put("prendas", repoPrendas.buscarTodos(guardarropa.getId()));
+        parametros.put("prendas", repoPrendas.buscarTodos());
         return new ModelAndView(parametros, "guardarropa.hbs");
     }
 
