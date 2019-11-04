@@ -22,7 +22,10 @@ public class Usuario extends EntidadPersistente {
 	
 	@Column(name = "nombre")
 	private String nombre;
-	
+
+	@Column(name = "contraseña")
+	private String contraseña; //normalmente esto deberia de guardarse hasheado o algo pero como no lo pide no lo agrego
+
 	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
 	
