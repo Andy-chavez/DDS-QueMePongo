@@ -1,6 +1,5 @@
 package domain;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class PrendaTest {
 		algNylPolYSed.add(new Tela("nylon"));
 		algNylPolYSed.add(new Tela("seda"));
 		algNylPolYSed.add(new Tela("poliester"));
-		remeraTipo = new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10);
+		remeraTipo = new Tipo("Remera",new Superior(),algNylPolYSed,0,10);
 		cuero = new Tela("cuero");
 		algodon = new Tela("algodon");
 		prenda = SimpleFactoryPrendas.crearPrenda("remera");

@@ -1,19 +1,13 @@
 package domain;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import models.entities.*;
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import models.entities.Categorias.*;
-import models.entities.Excepciones.ColoresIgualesException;
-import models.entities.Excepciones.TelaIncompatibleException;
 
 public class MoldeTest {
     Usuario usuario;
@@ -60,11 +54,11 @@ public class MoldeTest {
         algNylPolYSed.add(new Tela("seda"));
         algNylPolYSed.add(new Tela("poliester"));
 
-        remera = new Tipo("Remera",new SuperiorExtra(),algNylPolYSed,0,10);
-        musculosa = new Tipo("Musculosa",new SuperiorExtra(),algNylPolYSed,0,8);
-        camisa = new Tipo("Camisa",new SuperiorExtra(),algNylPolYSed,1,12);
-        sweater = new Tipo("Sweater",new SuperiorExtra(),algNylPolYSed,2,12);
-        campera = new Tipo("Campera",new SuperiorExtra(),algNylPolYSed,3,25);
+        remera = new Tipo("Remera",new Superior(),algNylPolYSed,0,10);
+        musculosa = new Tipo("Musculosa",new Superior(),algNylPolYSed,0,8);
+        camisa = new Tipo("Camisa",new Superior(),algNylPolYSed,1,12);
+        sweater = new Tipo("Sweater",new Superior(),algNylPolYSed,2,12);
+        campera = new Tipo("Campera",new Superior(),algNylPolYSed,3,25);
         shorts = new Tipo("Shorts",new Inferior(),algNylPolYSed,0,15);
         pantalon = new Tipo("Pantalon",new Inferior(),algNylPolYSed,0,30);
         ojotas = new Tipo("Ojotas",new Calzado(),cueroYAlgodon,0,1);

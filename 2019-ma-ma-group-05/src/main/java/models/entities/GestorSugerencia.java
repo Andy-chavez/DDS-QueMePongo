@@ -4,12 +4,9 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import models.entities.Categorias.*;
-import models.repositorios.DAOs.DAOMoldeAtuendo;
-import models.repositorios.RepositorioMolde;
 
 public class GestorSugerencia {
 	private List<Categoria> categorias;
@@ -19,8 +16,7 @@ public class GestorSugerencia {
 	private GestorSugerencia(){
 		this.gestorDeClima = GestorDeClima.getInstance();
 		this.categorias = new ArrayList<Categoria>();
-		this.categorias.add(new SuperiorBase());
-		this.categorias.add(new SuperiorExtra());
+		this.categorias.add(new Superior());
 		this.categorias.add(new Inferior());
 		this.categorias.add(new Calzado());
 		this.categorias.add(new Accesorio());
@@ -51,13 +47,6 @@ public class GestorSugerencia {
 	public MoldeAtuendo buscarMoldeParaNivelAbrigo(SensibilidadFrio sf, int nivelAbrigoRequerido){
 		for(MoldeAtuendo moldeAtuendo : this.moldesAtuendos){
 			if(moldeAtuendo.moldeAbrigaLoSuficiente(sf, nivelAbrigoRequerido)) return moldeAtuendo;
-	//public MoldeAtuendo buscarMoldeParaNivelAbrigo(Guardarropa g, int nivelAbrigoRequerido){
-	//	int margenAdmitido = 5;
-	//	for(MoldeAtuendo moldeAtuendo : RepositorioMolde.getInstance(new DAOMoldeAtuendo()).obtenerMoldes()){ 
-  //		if(Math.abs(moldeAtuendo.getNivelAbrigo() - nivelAbrigoRequerido) <= margenAdmitido){
-	//			System.out.println("Nivel abrigo del molde: " + moldeAtuendo.getNivelAbrigo());
-	//			return moldeAtuendo;
-	//		}
 		}
 		return null;
 	}
@@ -84,8 +73,9 @@ public class GestorSugerencia {
 		Atuendo atuendo = new Atuendo(u);
 		agregarPrendasSegunCategoria(atuendo, prendasLibres, nivelAbrigoRequerido);
 		g.agregarSugerencia(atuendo);
-		agregarMoldeAtuendo(new MoldeAtuendo(atuendo));
-
+		MoldeAtuendo molde = new MoldeAtuendo(atuendo);
+		// si el molde tiene tipos que se agregaron por descarte (no habia prenda mejor), no lo agrego 
+		if(molde.moldeAbrigaLoSuficiente(u.getSensibilidadFrio(), nivelAbrigoRequerido)) agregarMoldeAtuendo(molde);
 		return atuendo;
 	}
 }

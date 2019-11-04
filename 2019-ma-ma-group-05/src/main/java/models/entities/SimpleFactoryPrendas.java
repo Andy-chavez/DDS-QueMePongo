@@ -27,16 +27,16 @@ public class SimpleFactoryPrendas {
 		algNylPolYSed.add(new Tela("poliester"));
 		tipo = tipo.toLowerCase();
 		if(tipo == "remera") {
-			return new Prenda(new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10));
-		}
-		else if(tipo == "camisa") {
-			return new Prenda(new Tipo("Camisa",new SuperiorBase(),algNylPolYSed,1,12));
+			return new Prenda(new Tipo("Remera",new Superior(),algNylPolYSed,0,10));
 		}
 		else if(tipo == "musculosa") {
-			return new Prenda(new Tipo("Musculosa",new SuperiorBase(),algNylPolYSed,0,8));
+			return new Prenda(new Tipo("Musculosa",new Superior(),algNylPolYSed,0,8));
+		}
+		else if(tipo == "camisa") {
+			return new Prenda(new Tipo("Camisa",new Superior(),algNylPolYSed,1,12));
 		}
 		else if(tipo == "campera") {
-			return new Prenda(new Tipo("Campera",new SuperiorExtra(),algNylPolYSed,3,25));
+			return new Prenda(new Tipo("Campera",new Superior(),algNylPolYSed,3,25));
 		}
 		else if(tipo == "collar") {
 			return new Prenda(new Tipo("Collar",new Accesorio(),cueroYAlgodon,0,0));
@@ -54,7 +54,7 @@ public class SimpleFactoryPrendas {
 			return new Prenda(new Tipo("Shorts",new Inferior(),algNylPolYSed,0,15));
 		}
 		else if(tipo == "sweater") {
-			return new Prenda(new Tipo("Sweater",new SuperiorExtra(),algNylPolYSed,2,12));
+			return new Prenda(new Tipo("Sweater",new Superior(),algNylPolYSed,2,12));
 		}
 		else if(tipo == "zapatillas") {
 			return new Prenda(new Tipo("Zapatillas",new Calzado(),cueroYAlgodon,0,10));

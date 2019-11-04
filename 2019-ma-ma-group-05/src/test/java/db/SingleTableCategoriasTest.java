@@ -6,14 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import models.entities.Categoria;
-import models.entities.Categorias.SuperiorBase;
+import models.entities.Categorias.Superior;
 
 public class SingleTableCategoriasTest {
 
-	SuperiorBase superior;
+	Superior superior;
 	@Before
 	public void init(){
-		superior = new SuperiorBase();
+		superior = new Superior();
 	}
 	
     @Test
@@ -22,7 +22,7 @@ public class SingleTableCategoriasTest {
     }
     @Test
     public void hidratarCategoria(){
-	    Categoria categ = RepositorioCategoria.getInstance().buscarPorNombre("SuperiorBase");
-        Assert.assertEquals("SuperiorBase", categ.getNombre());
+	    Categoria categ = RepositorioCategoria.getInstance().buscarPorNombre("Superior");
+        Assert.assertEquals("Superior", categ.getNombre());
     }
 }
