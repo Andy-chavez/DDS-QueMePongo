@@ -27,8 +27,8 @@
     	<class>models.entities.Categorias.Accesorio</class>
     	<class>models.entities.Categorias.Calzado</class>
     	<class>models.entities.Categorias.Inferior</class>
-    	<class>models.entities.Categorias.SuperiorBase</class>
-    	<class>models.entities.Categorias.SuperiorExtra</class>
+    	<class>models.entities.Categorias.Superior</class>
+    	<class>models.entities.Categorias.Superior</class>
 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

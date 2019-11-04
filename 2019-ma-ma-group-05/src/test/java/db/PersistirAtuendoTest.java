@@ -55,8 +55,11 @@ public class PersistirAtuendoTest {
 
 	@Test
 	public void persistirAtuendo(){
-		usuario.obtenerSugerencia(guardarropa);
-		usuario.obtenerSugerencia(guardarropa);
-		RepositorioUsuario.getInstance().agregar(usuario);
+		Atuendo atuendo1 = usuario.obtenerSugerencia(guardarropa);
+		Atuendo atuendo2 = usuario.obtenerSugerencia(guardarropa);
+//		RepositorioUsuario.getInstance().agregar(usuario);
+		atuendo1.printPrendas();
+		atuendo2.printPrendas();
+
 	}
 }

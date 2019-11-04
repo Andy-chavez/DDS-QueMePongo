@@ -1,5 +1,6 @@
 package db;
 
+import models.entities.Categorias.Superior;
 import models.entities.Tela;
 
 import models.repositorios.RepositorioTipo;
@@ -8,7 +9,6 @@ import org.junit.Test;
 
 import models.entities.Tipo;
 import models.entities.Categorias.Inferior;
-import models.entities.Categorias.SuperiorBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class TiposTest {
 	Tipo remera;
 	Tipo pantalon;
 	Inferior inferior;
-	SuperiorBase superiorBase;
+	Superior superior;
 
 
 	@Before
@@ -27,12 +27,12 @@ public class TiposTest {
 		telasPosibles.add(new Tela("algodon"));
 		telasPosibles.add(new Tela("nylon"));
 
-		superiorBase = new SuperiorBase();
+		superior = new Superior();
 		inferior = new Inferior();
 
 		// creo un tipo "nuevo" para que se agregue a la db
 		remera = new Tipo();
-		remera.setCategoria(superiorBase);
+		remera.setCategoria(superior);
 		remera.setTelasPosibles(telasPosibles);
 		remera.setNombre("remera");
 		remera.setCapa(0);
