@@ -1,11 +1,11 @@
 package domain;
 import static org.junit.Assert.*;
 
-import java.awt.Color;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.entities.Categorias.Superior;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +16,6 @@ import models.entities.Categoria;
 import models.entities.ColorPersistible;
 import models.entities.CronGenerarSugerencia;
 import models.entities.Evento;
-import models.entities.GestorDeClima;
 import models.entities.GestorSugerencia;
 import models.entities.Guardarropa;
 import models.entities.MoldeAtuendo;
@@ -25,7 +24,6 @@ import models.entities.SimpleFactoryPrendas;
 import models.entities.Tela;
 import models.entities.Tipo;
 import models.entities.Usuario;
-import models.entities.Categorias.SuperiorExtra;
 import models.entities.EstadosEvento.Pendiente;
 
 public class ObtenerSugerenciaTest {
@@ -191,7 +189,7 @@ public class ObtenerSugerenciaTest {
 	@Test
 	public void obtenerCapasParaTemperatura(){
 		System.out.println("\nobtenerCapasParaTemperatura()");
-		Categoria superiorExtra = new SuperiorExtra();
+		Categoria superiorExtra = new Superior();
 		Atuendo atuendo = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
 		superiorExtra.agregarPrendas(atuendo, prendas, 30);
 		atuendo.printPrendas();
