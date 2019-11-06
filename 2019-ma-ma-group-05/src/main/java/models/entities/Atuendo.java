@@ -19,7 +19,7 @@ public class Atuendo extends EntidadPersistente {
 	private Boolean rechazado;
 	@Column(name = "calificacion")
 	private int calificacion;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 	@Column(name = "abrigo_superior")

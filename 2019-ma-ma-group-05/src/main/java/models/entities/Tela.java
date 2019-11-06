@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tela")
-public class Tela extends EntidadPersistente{//hacer que cada nombre de tela sea unico para no tener repetidos
+public class Tela extends EntidadPersistente{
 	@Column(name = "nombre")
 	protected String nombre;
 

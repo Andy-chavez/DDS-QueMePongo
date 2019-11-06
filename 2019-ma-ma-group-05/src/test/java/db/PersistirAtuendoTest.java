@@ -2,6 +2,7 @@ package db;
 
 import models.entities.*;
 
+import models.repositorios.RepositorioTela;
 import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,9 +58,7 @@ public class PersistirAtuendoTest {
 	public void persistirAtuendo(){
 		Atuendo atuendo1 = usuario.obtenerSugerencia(guardarropa);
 		Atuendo atuendo2 = usuario.obtenerSugerencia(guardarropa);
-//		RepositorioUsuario.getInstance().agregar(usuario);
-		atuendo1.printPrendas();
-		atuendo2.printPrendas();
+		RepositorioUsuario.getInstance().agregar(usuario);
 
 	}
 }

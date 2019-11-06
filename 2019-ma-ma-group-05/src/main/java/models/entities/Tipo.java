@@ -21,7 +21,7 @@ public class Tipo extends EntidadPersistente{
 	protected int nivelAbrigo;
 	@ManyToOne(cascade = {CascadeType.ALL})
 	protected Categoria categoria;
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	protected List<Tela> telasPosibles;
 
@@ -49,9 +49,7 @@ public class Tipo extends EntidadPersistente{
 
 	
 	public boolean estaTelaEsPosible(String nombreTela) {
-		List<Tela> lista = new ArrayList<>();
-		lista = this.telasPosibles;
-		return lista.stream().anyMatch(t -> t.getNombre() == nombreTela);
+		return this.getTelasPosibles().stream().anyMatch(t -> t.getNombre().equals(nombreTela));
 	}
 	
 	public Boolean validarAtributosDeTipo() {
