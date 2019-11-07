@@ -18,7 +18,6 @@ public class UsuarioGuardarropaEMTest{
 	private Guardarropa guardarropa;
 	@Before
 	public void init(){
-	    DAOTipo.getInstance().iniciarBase();
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
 		remera.setTela(new Tela("algodon"));
 		remera.setColorPrimario(ColorPersistible.blue);

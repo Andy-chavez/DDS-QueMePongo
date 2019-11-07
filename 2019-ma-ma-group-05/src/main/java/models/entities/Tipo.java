@@ -14,16 +14,16 @@ import models.entities.Categoria;
 @Table(name = "tipo")
 public class Tipo extends EntidadPersistente{
 	@Column(name = "nombre")
-	protected String nombre;
+	private String nombre;
 	@Column(name = "capa")
-	protected int capa;
+	private int capa;
 	@Column(name = "nivel_abrigo")
-	protected int nivelAbrigo;
+	private int nivelAbrigo;
 	@ManyToOne(cascade = {CascadeType.ALL})
-	protected Categoria categoria;
+	private Categoria categoria;
 	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
-	protected List<Tela> telasPosibles;
+	private List<Tela> telasPosibles;
 
 	public Tipo() {
 		telasPosibles = new ArrayList<>();

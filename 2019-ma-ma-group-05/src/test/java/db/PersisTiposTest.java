@@ -15,7 +15,7 @@ import models.entities.Categorias.Inferior;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TiposTest {
+public class PersisTiposTest {
 	Tipo remera;
 	Tipo pantalon;
 
