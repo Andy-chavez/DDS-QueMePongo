@@ -75,7 +75,7 @@ public class GestorSugerencia {
 		agregarPrendasSegunCategoria(atuendo, prendasLibres, nivelAbrigoRequerido);
 		g.agregarSugerencia(atuendo);
 		MoldeAtuendo molde = new MoldeAtuendo(atuendo);
-		// si el molde tiene tipos que se agregaron por descarte (no habia prenda mejor), no lo agrego 
+		// si el molde tiene tipos que se agregaron por descarte (no habia prenda mejor), no lo agrego
 		if(molde.moldeAbrigaLoSuficiente(u.getSensibilidadFrio(), nivelAbrigoRequerido)) agregarMoldeAtuendo(molde);
 		return atuendo;
 	}

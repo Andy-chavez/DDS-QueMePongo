@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/27517fada0.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/js/generales.js"></script>
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="icon" href="img/Logo.png">
+    <link rel="stylesheet" href="/css/prendas.estilos.css">
+    <title>Eventos</title>
+  </head>
+
+  <body id="body">
+    <header>
+      <img src="/img/logo.png" alt="logo" class="Logo">
+        <h1  class="encabezado"><i class="fas fa-tshirt"></i>Eventos</h1>
+    </header>
+
+    <!-- Add an additional blue button style -->
+    <div class="main_container" style="top: 100px">
+
+        <style>
+        .yui3-button {
+            margin:10px 0px 10px 0px;
+            color: #fff;
+            background-color: #3476b7;
+        }
+        .event-day {
+            color: white !important;
+            background-color: rgb(250, 110, 133) !important;
+            border-radius: 25px;
+        }
+        .yui3-calendarnav-nextmonth{
+            display:none;
+        }
+        .yui3-calendarnav-prevmonth{
+            display:none;
+        }
+        tr.yui3-calendar-row > td {
+            border: 0px !important;
+        }
+        .yui3-calendarbase{
+            width: auto !important;
+            margin: 4px;
+        }
+        </style>
+
+
+        <div id="demo" class="yui3-skin-sam yui3-g" style="padding: 30px 0px"> <!-- You need this skin class -->
+          <div id="leftcolumn" class="yui3-u" style="margin:auto;">
+             <!-- Container for the calendar -->
+             <div id="mycalendar"></div>
+          </div>
+          <div id="rightcolumn" class="yui3-u" style="display:none;">
+           <div id="links" style="padding-left:20px;">
+              Selected date: <span id="selecteddate"></span>
+           </div>
+          </div>
+        </div>
+        <button type="button" name="button" class="btn" onclick="crear(req, res)">Nuevo evento</button>
+
+        {{#each eventos}}
+        <div class="fecha-evento" hidden>{{fecha}}</div>
+        {{/each}}
+    </div>
+
+    <script type="text/javascript">
+
+        YUI().use('calendar', 'datatype-date', 'cssbutton',  function(Y) {
+            // Create a new instance of calendar, placing it in
+            // #mycalendar container, setting its width to 340px,
+                // the flags for showing previous and next month's
+            // dates in available empty cells to true, and setting
+            // the date to today's date.
+            var calendar = new Y.Calendar({
+              contentBox: "#mycalendar",
+              width:'340px',
+              showPrevMonth: true,
+              showNextMonth: true,
+              date: new Date()}).render();
+
+            // Get a reference to Y.DataType.Date
+            var dtdate = Y.DataType.Date;
+
+            // Listen to calendar's selectionChange event.
+            calendar.on("selectionChange", function (ev) {
+
+              // Get the date from the list of selected
+              // dates returned with the event (since only
+              // single selection is enabled by default,
+              // we expect there to be only one date)
+              var newDate = ev.newSelection[0];
+
+              // Format the date and output it to a DOM
+              // element.
+              Y.one("#selecteddate").setHTML(dtdate.format(newDate));
+            });
+        });
+
+        onload = function(){
+            var fechasEventos = document.querySelectorAll(".fecha-evento");
+            var days = document.querySelectorAll(".yui3-calendar-day");
+            fechasEventos.forEach(function(fecha){
+                days.forEach(function(day){
+                    if(day.innerHTML == new Date(fecha.innerHTML).getDate()){
+                        day.setAttribute('onclick', "mostrar(request, response)");
+                        day.classList.add("event-day");
+                    }
+                });
+            });
+        };
+
+    </script>
+  </body>
+</html>

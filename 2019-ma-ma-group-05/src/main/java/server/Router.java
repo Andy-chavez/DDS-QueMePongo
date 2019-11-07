@@ -1,5 +1,6 @@
 package server;
 
+import controllers.EventoController;
 import controllers.PrendaController;
 import controllers.UsuarioController;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -27,8 +28,9 @@ public class Router {
 
     private static void configure(){
 
-        PrendaController prendaController = new PrendaController();
         UsuarioController usuarioController = new UsuarioController();
+        EventoController eventoController = new EventoController();
+        PrendaController prendaController = new PrendaController();
 
 //        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
         Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
@@ -36,7 +38,8 @@ public class Router {
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
 
         Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
-
+        Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
+        Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
 
 //        Spark.get("/usuario", usuarioController::crear, Router.engine);
 //
