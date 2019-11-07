@@ -14,10 +14,7 @@ public class RepositorioTipo extends Repositorio{
     private static RepositorioTipo instance;
 
     public static RepositorioTipo getInstance() {
-        if(instance == null){
-            instance = new RepositorioTipo(DAOTipo.getInstance());
-
-        }
+        if(instance == null){  instance = new RepositorioTipo(DAOTipo.getInstance());        }
         return instance;
     }
 
@@ -54,7 +51,7 @@ public class RepositorioTipo extends Repositorio{
     public void setCategoria(Tipo unTipo, String categoria){
         Categoria nuevaCategoria = RepositorioCategoria.getInstance().buscarPorNombre(categoria);
         if(nuevaCategoria != null)
-            unTipo.setCategoria(nuevaCategoria);
+            unTipo.setCategoria(nuevaCategoria); //categoria se hidrata y se setea bien
         else
             unTipo.setCategoria(new Categoria(categoria));
     }
@@ -69,7 +66,7 @@ public class RepositorioTipo extends Repositorio{
         Tipo tipo = (Tipo)unObjeto;
         if(this.dao.buscarPorNombre(tipo.getNombre())== null){
             this.verificarListaDeTelas(tipo);
-            dao.agregar(tipo);
+            dao.agregar(tipo); //aca tiene problemas al persistir una FK a una fila de categoria existente
         }
     }
 }

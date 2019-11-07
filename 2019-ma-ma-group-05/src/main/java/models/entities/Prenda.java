@@ -23,7 +23,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable{
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
     @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
