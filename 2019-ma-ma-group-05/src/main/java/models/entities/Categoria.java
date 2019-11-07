@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 @Entity
 @Table(name = "categoria")
+@DiscriminatorColumn(name = "discriminador")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Categoria  extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;

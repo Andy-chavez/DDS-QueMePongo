@@ -11,6 +11,7 @@ import models.entities.Categoria;
 import models.entities.Prenda;
 import models.entities.Tipo;
 @Entity
+@DiscriminatorValue(value = "Superior")
 public class Superior extends Categoria{
 	public Superior(){
 		this.setNombre("Superior");

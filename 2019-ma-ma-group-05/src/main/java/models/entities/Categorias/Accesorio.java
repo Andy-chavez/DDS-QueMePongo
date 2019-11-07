@@ -11,6 +11,7 @@ import models.entities.Categoria;
 import models.entities.Prenda;
 
 @Entity
+@DiscriminatorValue(value = "Accesorio")
 public class Accesorio extends Categoria{
 	public Accesorio(){
 		this.setNombre("Accesorio");

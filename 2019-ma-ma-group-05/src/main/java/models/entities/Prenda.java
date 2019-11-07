@@ -16,21 +16,15 @@ import java.time.ZoneId;
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable{
-//	@ManyToOne(cascade = {CascadeType.ALL})
-//	@JoinColumn(name = "color1_id", referencedColumnName = "id")
-//	private ColorPersistible colorPrimario;
-//	@ManyToOne(cascade = {CascadeType.ALL})
-//	@JoinColumn(name = "color2_id", referencedColumnName = "id")
-//	private ColorPersistible colorSecundario;
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    //@JoinColumn(name = "tipo_id", referencedColumnName = "id")
+	@OneToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST})
+    @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST})
-	//@JoinColumn(name = "tela_id", referencedColumnName = "id")
+	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
