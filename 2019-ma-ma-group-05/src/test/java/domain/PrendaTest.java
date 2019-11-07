@@ -3,14 +3,15 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.domain.SimpleFactoryPrendas;
 import models.entities.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import models.entities.Categorias.*;
-import models.entities.Excepciones.ColoresIgualesException;
-import models.entities.Excepciones.TelaIncompatibleException;
+import models.domain.Excepciones.ColoresIgualesException;
+import models.domain.Excepciones.TelaIncompatibleException;
 
 public class PrendaTest {
 	private Prenda prenda;

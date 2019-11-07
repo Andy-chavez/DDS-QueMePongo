@@ -6,11 +6,12 @@ import java.time.format.DateTimeFormatter;
 import javax.persistence.*;
 
 import dtoClases.EventoDto;
+import models.domain.*;
 import models.entities.EstadosEvento.*;
 
 @Entity
 @Table(name = "evento")
-public class Evento extends EntidadPersistente implements Observee{
+public class Evento extends EntidadPersistente implements Observee {
 	@Column(name = "nombre")
 	private String nombre;
 	

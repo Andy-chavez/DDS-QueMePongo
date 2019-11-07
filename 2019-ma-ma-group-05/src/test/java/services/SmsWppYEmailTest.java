@@ -1,5 +1,8 @@
 package services;
 
+import models.domain.services.EmailSender;
+import models.domain.services.SmsSender;
+import models.domain.services.WppSender;
 import org.junit.Before;
 import org.junit.Test;
 

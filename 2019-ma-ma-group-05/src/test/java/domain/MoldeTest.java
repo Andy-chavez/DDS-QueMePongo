@@ -2,6 +2,7 @@ package domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.domain.GestorSugerencia;
 import models.entities.*;
 import org.junit.Assert;
 import org.junit.Before;

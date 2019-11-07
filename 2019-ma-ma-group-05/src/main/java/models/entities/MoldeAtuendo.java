@@ -1,6 +1,6 @@
 package models.entities;
 
-import models.entities.Categorias.*;
+import models.domain.ConfigReader;
 
 import java.util.ArrayList;
 import java.util.List;

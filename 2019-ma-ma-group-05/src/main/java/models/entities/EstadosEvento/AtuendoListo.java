@@ -3,7 +3,7 @@ package models.entities.EstadosEvento;
 import java.time.Duration;
 import java.time.Instant;
 
-import models.entities.ConfigReader;
+import models.domain.ConfigReader;
 import models.entities.Evento;
 
 public class AtuendoListo implements EstadoEvento{

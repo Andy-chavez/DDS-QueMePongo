@@ -1,9 +1,8 @@
 package db;
 
+import models.domain.SimpleFactoryPrendas;
 import models.repositorios.DAOs.*;
 import models.entities.*;
-
-import java.util.List;
 
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;

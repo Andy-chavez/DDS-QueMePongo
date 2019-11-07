@@ -1,5 +1,7 @@
 package models.entities;
 
+import models.domain.ConfigReader;
+
 import javax.persistence.*;
 import java.util.*;
 import java.util.function.Predicate;

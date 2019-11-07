@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 import models.entities.Atuendo;
-import models.entities.ConfigReader;
+import models.domain.ConfigReader;
 import models.entities.Evento;
 
 public class Pendiente implements EstadoEvento{

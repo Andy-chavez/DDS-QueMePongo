@@ -2,12 +2,14 @@ package services;
 
 import static org.junit.Assert.*;
 
+import models.domain.services.ApiDs;
+import models.domain.services.ApiOwm;
 import org.junit.Before;
 import org.junit.Test;
 
-import models.entities.ApiClima;
-import models.entities.GestorDeClima;
-import models.entities.Excepciones.FallaronTodasLasApisException;
+import models.domain.ApiClima;
+import models.domain.GestorDeClima;
+import models.domain.Excepciones.FallaronTodasLasApisException;
 
 import static org.mockito.Mockito.*;
 

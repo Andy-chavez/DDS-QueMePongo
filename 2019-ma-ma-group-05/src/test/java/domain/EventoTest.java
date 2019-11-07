@@ -10,9 +10,9 @@ import org.junit.Test;
 
 import dtoClases.EventoDto;
 import models.entities.Atuendo;
-import models.entities.CronGenerarSugerencia;
+import models.domain.CronGenerarSugerencia;
 import models.entities.Evento;
-import models.entities.GestorSugerencia;
+import models.domain.GestorSugerencia;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
 import models.entities.Usuario;

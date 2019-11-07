@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
-import converters.SuscripcionAttributeConverter;
 import dtoClases.EventoDto;
-import models.entities.Guardarropa;
-import models.entities.Suscripciones.Free;
+import models.domain.GestorDeOperaciones;
+import models.domain.GestorSugerencia;
+import models.domain.Suscripciones.Free;
 
 import java.time.Instant;
 

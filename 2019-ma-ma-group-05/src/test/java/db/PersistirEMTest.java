@@ -1,5 +1,6 @@
 package db;
 
+import models.domain.SimpleFactoryPrendas;
 import models.repositorios.DAOs.*;
 import models.entities.*;
 

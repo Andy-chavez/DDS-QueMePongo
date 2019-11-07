@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dtoClases.EventoDto;
-import models.entities.ApiClima;
-import models.entities.CronGenerarSugerencia;
+import models.domain.ApiClima;
+import models.domain.CronGenerarSugerencia;
 import models.entities.Evento;
-import models.entities.GestorDeClima;
-import models.entities.GestorSugerencia;
+import models.domain.GestorDeClima;
+import models.domain.GestorSugerencia;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
 import models.entities.Usuario;

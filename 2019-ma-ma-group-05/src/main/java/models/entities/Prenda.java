@@ -6,8 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import models.entities.Excepciones.*;
-import org.hibernate.annotations.Cascade;
+import models.domain.Excepciones.*;
+import models.domain.ImgResizer;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable{
     private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
-	@OneToOne(fetch = FetchType.LAZY,cascade = { CascadeType.PERSIST})
+	@OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
 	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST})

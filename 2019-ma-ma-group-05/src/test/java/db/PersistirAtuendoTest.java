@@ -1,13 +1,11 @@
 package db;
 
+import models.domain.SimpleFactoryPrendas;
 import models.entities.*;
 
-import models.repositorios.RepositorioTela;
 import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.transaction.Transactional;
 
 public class PersistirAtuendoTest {
 	Usuario usuario;
