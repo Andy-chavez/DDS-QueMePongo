@@ -40,10 +40,7 @@ public class TiposTest {
 
 	@Test
 	public void persistirTipos() {
-		//EntityManagerHelper.getEntityManager().getTransaction().begin();
-		//EntityManagerHelper.getEntityManager().persist(remera);
-		//EntityManagerHelper.getEntityManager().getTransaction().commit();
-		//RepositorioTipo.getInstance().agregar(remera);
+		RepositorioTipo.getInstance().agregar(remera);
 		RepositorioTipo.getInstance().agregar(pantalon);
 	}
 }
