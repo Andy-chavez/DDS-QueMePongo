@@ -3,6 +3,8 @@ package db;
 import models.entities.Categorias.Superior;
 import models.entities.Tela;
 
+import models.repositorios.Repositorio;
+import models.repositorios.RepositorioTela;
 import models.repositorios.RepositorioTipo;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,42 +16,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TiposTest {
-	List<Tela> telasPosibles;
 	Tipo remera;
 	Tipo pantalon;
-	Inferior inferior;
-	Superior superior;
-
 
 	@Before
 	public void init() {
-		telasPosibles = new ArrayList<Tela>();
-		telasPosibles.add(new Tela("algodon"));
-		telasPosibles.add(new Tela("nylon"));
-
-		superior = new Superior();
-		inferior = new Inferior();
-
 		// creo un tipo "nuevo" para que se agregue a la db
-		remera = new Tipo();
-		remera.setCategoria(superior);
-		remera.setTelasPosibles(telasPosibles);
-		remera.setNombre("remera");
+		remera = RepositorioTipo.getInstance().crearNuevoTipo("remera");
+		RepositorioTipo.getInstance().setTela(remera,"algodon");
+		RepositorioTipo.getInstance().setTela(remera,"nylon");
+		RepositorioTipo.getInstance().setCategoria(remera, "Superior");
 		remera.setCapa(0);
 		remera.setNivelAbrigo(10);
 
-		telasPosibles.add(new Tela("Cuero"));
-		pantalon = new Tipo();
-		pantalon.setCategoria(inferior);
-		pantalon.setTelasPosibles(telasPosibles);
-		pantalon.setNombre("pantalon");
+		pantalon = RepositorioTipo.getInstance().crearNuevoTipo("pantalon");
+		RepositorioTipo.getInstance().setCategoria(pantalon, "Inferior");
+		RepositorioTipo.getInstance().setTela(pantalon,"algodon");
+		RepositorioTipo.getInstance().setTela(pantalon,"nylon");
+		RepositorioTipo.getInstance().setTela(pantalon,"cuero");
 		pantalon.setCapa(0);
 		pantalon.setNivelAbrigo(20);
 	}
 
 	@Test
 	public void persistirTipos() {
-		RepositorioTipo.getInstance().agregar(remera);
+		//EntityManagerHelper.getEntityManager().getTransaction().begin();
+		//EntityManagerHelper.getEntityManager().persist(remera);
+		//EntityManagerHelper.getEntityManager().getTransaction().commit();
+		//RepositorioTipo.getInstance().agregar(remera);
 		RepositorioTipo.getInstance().agregar(pantalon);
 	}
 }

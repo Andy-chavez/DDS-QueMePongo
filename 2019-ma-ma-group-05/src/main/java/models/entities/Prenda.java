@@ -20,10 +20,10 @@ public class Prenda extends EntidadPersistente  implements Cloneable{
     private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
-	@OneToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE})
     @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
-	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST})
+	@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)

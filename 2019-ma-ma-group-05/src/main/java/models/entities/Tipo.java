@@ -35,7 +35,13 @@ public class Tipo extends EntidadPersistente{
 		this.capa = capa;
 		this.nivelAbrigo = abrigo;
 	}
-	// --- GETTERS Y SETTERS ---
+
+    public Tipo(String nombre) {
+        this.setNombre(nombre);
+		this.telasPosibles = new ArrayList<>();
+    }
+
+    // --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}
 	public int getCapa() { return this.capa;}

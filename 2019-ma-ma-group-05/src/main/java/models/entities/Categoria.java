@@ -10,9 +10,13 @@ import java.util.stream.Collectors;
 @Table(name = "categoria")
 @DiscriminatorColumn(name = "discriminador")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Categoria  extends EntidadPersistente{
+public class Categoria  extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
+	public Categoria(){}
+	public Categoria(String categoria) {
+		this.setNombre(categoria);
+	}
 
 	public static class ComparatorAbrigoPrendas implements Comparator<Prenda> {
 		public int compare(Prenda a, Prenda b) {

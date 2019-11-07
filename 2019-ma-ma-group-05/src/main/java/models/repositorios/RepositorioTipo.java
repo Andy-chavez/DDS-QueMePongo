@@ -1,5 +1,6 @@
 package models.repositorios;
 
+import models.entities.Categoria;
 import models.entities.Tela;
 import models.entities.Tipo;
 import models.repositorios.DAOs.DAO;
@@ -46,10 +47,32 @@ public class RepositorioTipo extends Repositorio{
         tipo.getTelasPosibles().clear();
         tipo.setTelasPosibles(telasNuevas);
     }
+    public Tipo crearNuevoTipo(String nombre){
+        Tipo tipo = this.buscarPorNombre(nombre);
+        if(tipo != null)
+            return tipo;
+        else
+            return new Tipo(nombre);
+    }
+
+    public void setCategoria(Tipo unTipo, String categoria){
+        Categoria nuevaCategoria = RepositorioCategoria.getInstance().buscarPorNombre(categoria);
+        if(nuevaCategoria != null)
+            unTipo.setCategoria(nuevaCategoria);
+        else
+            unTipo.setCategoria(new Categoria(categoria));
+    }
+    public void setTela(Tipo unTipo, String tela){
+        Tela nuevaTela = RepositorioTela.getInstance().buscarPorNombre(tela);
+        if(nuevaTela != null)
+            unTipo.getTelasPosibles().add(nuevaTela);
+        else
+            unTipo.getTelasPosibles().add(new Tela(tela));
+    }
     public void agregar(Object unObjeto){
         Tipo tipo = (Tipo)unObjeto;
         if(this.dao.buscarPorNombre(tipo.getNombre())== null){
-            this.verificarListaDeTelas(tipo);
+            //this.verificarListaDeTelas(tipo);
             if(RepositorioCategoria.getInstance().buscarPorNombre(tipo.getCategoria().getNombre()) != null) {
                 tipo.setCategoria(RepositorioCategoria.getInstance().buscarPorNombre(tipo.getCategoria().getNombre()));
             }

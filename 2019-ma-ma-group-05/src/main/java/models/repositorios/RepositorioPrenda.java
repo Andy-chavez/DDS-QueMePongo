@@ -29,23 +29,32 @@ public class RepositorioPrenda extends Repositorio {
         if(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre())!= null ){
             prenda.setTipo(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre()));
         }
+        else
+            RepositorioTipo.getInstance().agregar(prenda.getTipo());
         if(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre())!= null ){
             prenda.setTela(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre()));
         }
+        else
+            RepositorioTela.getInstance().agregar(prenda.getTela());
         if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex())!= null ){
             prenda.setColorPrimario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex()));
         }
+        else
+            RepositorioColor.getInstance().agregar(prenda.getColorPrimario());
         if(prenda.getColorSecundario() != null){
             if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex())!= null ){
                 prenda.setColorSecundario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex()));
             }
+            else
+                RepositorioColor.getInstance().agregar(prenda.getColorSecundario());
         }
+        this.dao.agregar(prenda);
     }
     @Override
     public void agregar(Object unObjeto){
         Prenda prenda = (Prenda)unObjeto;
         this.verificarAtributosPersistidosDePrenda(prenda);
-        this.dao.agregar(prenda);
+        //this.dao.agregar(prenda);
 
     }
 }
