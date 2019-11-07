@@ -7,6 +7,8 @@ import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.transaction.Transactional;
+
 public class PersistirAtuendoTest {
 	Usuario usuario;
 	Guardarropa guardarropa;

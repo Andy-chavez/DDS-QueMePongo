@@ -7,6 +7,7 @@ import java.util.Objects;
 import javax.persistence.*;
 
 import models.entities.Excepciones.*;
+import org.hibernate.annotations.Cascade;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,15 +22,15 @@ public class Prenda extends EntidadPersistente  implements Cloneable{
 //	@ManyToOne(cascade = {CascadeType.ALL})
 //	@JoinColumn(name = "color2_id", referencedColumnName = "id")
 //	private ColorPersistible colorSecundario;
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "tipo_id", referencedColumnName = "id")
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    //@JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
-	@ManyToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "tela_id", referencedColumnName = "id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	//@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
