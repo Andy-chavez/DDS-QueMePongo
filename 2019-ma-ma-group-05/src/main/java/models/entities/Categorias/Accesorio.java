@@ -21,7 +21,9 @@ public class Accesorio extends Categoria{
 	public void agregarPrendas(Atuendo atuendo, List<Prenda> prendas, int nivelAbrigoRequerido){
 		List<Prenda> prendasDeEstaCategoria = obtenerPrendasCategoria(prendas, this);
 		Random random = new Random();
-		Prenda prendaElegida = prendasDeEstaCategoria.get(random.nextInt(prendasDeEstaCategoria.size()));
+		Prenda prendaElegida = null;
+		if(prendasDeEstaCategoria.size()>0)
+			prendaElegida = prendasDeEstaCategoria.get(random.nextInt(prendasDeEstaCategoria.size()));
 		agregarPrenda(atuendo, prendaElegida);
 	}
 }

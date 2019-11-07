@@ -41,11 +41,7 @@ public class RepositorioTipo extends Repositorio{
     }
 
     private void verificarListaDeTelas(Tipo tipo){
-        List<Tela> telasNuevas;
-        telasNuevas = new ArrayList<Tela>();
-        tipo.getTelasPosibles().forEach(tela -> {this.hidratarTelaEnCasoDeExistir(tela,telasNuevas);});
-        tipo.getTelasPosibles().clear();
-        tipo.setTelasPosibles(telasNuevas);
+        tipo.getTelasPosibles().forEach(tela -> {RepositorioTela.getInstance().agregar(tela);});
     }
     public Tipo crearNuevoTipo(String nombre){
         Tipo tipo = this.buscarPorNombre(nombre);
@@ -72,10 +68,7 @@ public class RepositorioTipo extends Repositorio{
     public void agregar(Object unObjeto){
         Tipo tipo = (Tipo)unObjeto;
         if(this.dao.buscarPorNombre(tipo.getNombre())== null){
-            //this.verificarListaDeTelas(tipo);
-            if(RepositorioCategoria.getInstance().buscarPorNombre(tipo.getCategoria().getNombre()) != null) {
-                tipo.setCategoria(RepositorioCategoria.getInstance().buscarPorNombre(tipo.getCategoria().getNombre()));
-            }
+            this.verificarListaDeTelas(tipo);
             dao.agregar(tipo);
         }
     }

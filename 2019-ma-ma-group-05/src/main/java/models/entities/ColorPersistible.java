@@ -19,6 +19,10 @@ public class ColorPersistible extends EntidadPersistente implements java.io.Seri
     @Column(name = "hex")
     public String hex;
 
+    public ColorPersistible(String hexColor) {
+        this.setHex(hexColor);
+    }
+
     public String getHex(){
         return this.hex;
     }

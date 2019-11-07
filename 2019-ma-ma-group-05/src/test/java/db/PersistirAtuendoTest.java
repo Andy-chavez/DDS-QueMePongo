@@ -3,6 +3,7 @@ package db;
 import models.domain.SimpleFactoryPrendas;
 import models.entities.*;
 
+import models.repositorios.RepositorioPrenda;
 import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,29 +23,27 @@ public class PersistirAtuendoTest {
 		usuario.setCelular("123456789");
 		usuario.setMail("X@gmail.com");
 
-		Tela cuero = new Tela("cuero");
-		Tela algodon = new Tela("algodon");
 		guardarropa = new Guardarropa("deportivo");
 
 		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setTela(algodon);
-		remera.setColorPrimario(ColorPersistible.pink);
+		RepositorioPrenda.getInstance().setTela(remera,"algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(remera, ColorPersistible.pink.getHex());
 
 		pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		pantalon.setTela(algodon);
-		pantalon.setColorPrimario(ColorPersistible.blue);
+		RepositorioPrenda.getInstance().setTela(pantalon,"algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(pantalon, ColorPersistible.blue.getHex());
 
 		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas.setTela(cuero);
-		zapatillas.setColorPrimario(ColorPersistible.white);
+		RepositorioPrenda.getInstance().setTela(zapatillas,"cuero");
+		RepositorioPrenda.getInstance().setColorPrimario(zapatillas, ColorPersistible.white.getHex());
 
 		campera = SimpleFactoryPrendas.crearPrenda("campera");
-		campera.setTela(algodon);
-		campera.setColorPrimario(ColorPersistible.black);
+		RepositorioPrenda.getInstance().setTela(campera,"algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(campera, ColorPersistible.black.getHex());
 
 		reloj = SimpleFactoryPrendas.crearPrenda("reloj");
-		reloj.setTela(cuero);
-		reloj.setColorPrimario(ColorPersistible.yellow);
+		RepositorioPrenda.getInstance().setTela(reloj,"cuero");
+		RepositorioPrenda.getInstance().setColorPrimario(reloj, ColorPersistible.yellow.getHex());
 
 		usuario.agregarGuardarropa(guardarropa);
 		usuario.agregarPrenda(guardarropa, remera);

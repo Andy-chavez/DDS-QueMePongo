@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import models.entities.Tela;
 
-public class TelasTest {
+public class PersisTelasTest {
 	Tela algodon;
 	Tela gabardina;
 	Tela alg2;
