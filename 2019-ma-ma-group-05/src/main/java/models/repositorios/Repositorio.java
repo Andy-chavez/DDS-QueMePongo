@@ -15,6 +15,7 @@ public abstract class Repositorio {
         this.dao.agregar(unObjeto);
     }
 
+    public void iniciarBase(){ }
     public void modficar(Object unObjeto){
         this.dao.modficar(unObjeto);
     }

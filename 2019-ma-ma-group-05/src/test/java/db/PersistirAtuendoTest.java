@@ -25,24 +25,24 @@ public class PersistirAtuendoTest {
 
 		guardarropa = new Guardarropa("deportivo");
 
-		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		RepositorioPrenda.getInstance().setTela(remera,"algodon");
+		remera = SimpleFactoryPrendas.crearPrenda("Remera");
+		RepositorioPrenda.getInstance().setTela(remera,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(remera, ColorPersistible.pink.getHex());
 
-		pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		RepositorioPrenda.getInstance().setTela(pantalon,"algodon");
+		pantalon = SimpleFactoryPrendas.crearPrenda("Pantalon");
+		RepositorioPrenda.getInstance().setTela(pantalon,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(pantalon, ColorPersistible.blue.getHex());
 
-		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		RepositorioPrenda.getInstance().setTela(zapatillas,"cuero");
+		zapatillas = SimpleFactoryPrendas.crearPrenda("Zapatillas");
+		RepositorioPrenda.getInstance().setTela(zapatillas,"Cuero");
 		RepositorioPrenda.getInstance().setColorPrimario(zapatillas, ColorPersistible.white.getHex());
 
-		campera = SimpleFactoryPrendas.crearPrenda("campera");
-		RepositorioPrenda.getInstance().setTela(campera,"algodon");
+		campera = SimpleFactoryPrendas.crearPrenda("Campera");
+		RepositorioPrenda.getInstance().setTela(campera,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(campera, ColorPersistible.black.getHex());
 
-		reloj = SimpleFactoryPrendas.crearPrenda("reloj");
-		RepositorioPrenda.getInstance().setTela(reloj,"cuero");
+		reloj = SimpleFactoryPrendas.crearPrenda("Reloj");
+		RepositorioPrenda.getInstance().setTela(reloj,"Cuero");
 		RepositorioPrenda.getInstance().setColorPrimario(reloj, ColorPersistible.yellow.getHex());
 
 		usuario.agregarGuardarropa(guardarropa);

@@ -1,6 +1,10 @@
 package models.repositorios;
 
 import models.entities.Categoria;
+import models.entities.Categorias.Accesorio;
+import models.entities.Categorias.Calzado;
+import models.entities.Categorias.Inferior;
+import models.entities.Categorias.Superior;
 import models.repositorios.DAOs.DAOCategoria;
 
 import java.util.List;
@@ -24,6 +28,13 @@ public class RepositorioCategoria extends Repositorio{
         if(this.dao.buscarPorNombre(categ.getNombre())== null){
             dao.agregar(categ);
         }
+    }
+    @Override
+    public void iniciarBase(){
+        this.agregar(new Superior());
+        this.agregar(new Inferior());
+        this.agregar(new Calzado());
+        this.agregar(new Accesorio());
     }
     public List<Categoria> buscarTodos(){ return (List<Categoria>) (List<?>) this.dao.buscarTodos(); }
 
