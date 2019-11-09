@@ -16,17 +16,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "tipo")
 public class Tipo extends EntidadPersistente{
 	@Column(name = "nombre")
-	protected String nombre;
+	private String nombre;
 	@Column(name = "capa")
-	protected int capa;
+	private int capa;
 	@Column(name = "nivel_abrigo")
-	protected int nivelAbrigo;
-	@ManyToOne(cascade = {CascadeType.ALL})
-	protected Categoria categoria;
-	@ManyToMany(cascade = {CascadeType.ALL},  fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
+	private int nivelAbrigo;
+	@ManyToOne//(cascade = {CascadeType.PERSIST})
+	private Categoria categoria;
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
-	protected List<Tela> telasPosibles;
+	private List<Tela> telasPosibles;
 
 	public Tipo() {
 		telasPosibles = new ArrayList<>();
@@ -38,6 +37,19 @@ public class Tipo extends EntidadPersistente{
 		this.capa = capa;
 		this.nivelAbrigo = abrigo;
 	}
+
+    public Tipo(String nombre) {
+        this.setNombre(nombre);
+		this.telasPosibles = new ArrayList<>();
+    }
+
+	public Tipo(String nombre,int capa, int nivelAbrigo) {
+		this.setNombre(nombre);
+		this.telasPosibles = new ArrayList<>();
+		this.setNivelAbrigo(nivelAbrigo);
+		this.setCapa(capa);
+	}
+
 	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}
@@ -52,9 +64,7 @@ public class Tipo extends EntidadPersistente{
 
 	
 	public boolean estaTelaEsPosible(String nombreTela) {
-		List<Tela> lista = new ArrayList<>();
-		lista = this.telasPosibles;
-		return lista.stream().anyMatch(t -> t.getNombre() == nombreTela);
+		return this.getTelasPosibles().stream().anyMatch(t -> t.getNombre().equals(nombreTela));
 	}
 	
 	public Boolean validarAtributosDeTipo() {

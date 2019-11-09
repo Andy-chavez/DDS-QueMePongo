@@ -4,8 +4,8 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 import models.entities.Suscripcion;
-import models.entities.Suscripciones.Free;
-import models.entities.Suscripciones.Premium;
+import models.domain.Suscripciones.Free;
+import models.domain.Suscripciones.Premium;
 
 @Converter(autoApply = true)
 public class SuscripcionAttributeConverter implements AttributeConverter<Suscripcion, String>{

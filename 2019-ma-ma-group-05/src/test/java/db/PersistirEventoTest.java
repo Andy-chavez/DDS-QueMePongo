@@ -1,9 +1,10 @@
 package db;
 
 import dtoClases.EventoDto;
+import models.domain.SimpleFactoryPrendas;
 import models.entities.*;
 import models.entities.EstadosEvento.Inactivo;
-import models.repositorios.Repositorio;
+import models.repositorios.RepositorioPrenda;
 import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,25 +33,25 @@ public class PersistirEventoTest {
 		Tela algodon = new Tela("algodon");
 		guardarropa = new Guardarropa("deportivo");
 
-		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setTela(algodon);
-		remera.setColorPrimario(ColorPersistible.pink);
+		remera = SimpleFactoryPrendas.crearPrenda("Remera");
+		RepositorioPrenda.getInstance().setTela(remera,"Algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(remera, ColorPersistible.pink.getHex());
 
-		pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-		pantalon.setTela(algodon);
-		pantalon.setColorPrimario(ColorPersistible.blue);
+		pantalon = SimpleFactoryPrendas.crearPrenda("Pantalon");
+		RepositorioPrenda.getInstance().setTela(pantalon,"Algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(pantalon, ColorPersistible.blue.getHex());
 
-		zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-		zapatillas.setTela(cuero);
-		zapatillas.setColorPrimario(ColorPersistible.white);
+		zapatillas = SimpleFactoryPrendas.crearPrenda("Zapatillas");
+		RepositorioPrenda.getInstance().setTela(zapatillas,"Cuero");
+		RepositorioPrenda.getInstance().setColorPrimario(zapatillas, ColorPersistible.white.getHex());
 
-		campera = SimpleFactoryPrendas.crearPrenda("campera");
-		campera.setTela(algodon);
-		campera.setColorPrimario(ColorPersistible.black);
+		campera = SimpleFactoryPrendas.crearPrenda("Campera");
+		RepositorioPrenda.getInstance().setTela(campera,"Algodon");
+		RepositorioPrenda.getInstance().setColorPrimario(campera, ColorPersistible.black.getHex());
 
-		reloj = SimpleFactoryPrendas.crearPrenda("reloj");
-		reloj.setTela(cuero);
-		reloj.setColorPrimario(ColorPersistible.yellow);
+		reloj = SimpleFactoryPrendas.crearPrenda("Reloj");
+		RepositorioPrenda.getInstance().setTela(reloj,"Cuero");
+		RepositorioPrenda.getInstance().setColorPrimario(reloj, ColorPersistible.yellow.getHex());
 
 		usuario.agregarGuardarropa(guardarropa);
 		usuario.agregarPrenda(guardarropa, remera);
@@ -73,7 +74,7 @@ public class PersistirEventoTest {
 	}
 
 	@Test
-	public void persistirAtuendo(){
+	public void persistirUsuarioConEvento(){
 		RepositorioUsuario.getInstance().agregar(usuario);
 	}
 }

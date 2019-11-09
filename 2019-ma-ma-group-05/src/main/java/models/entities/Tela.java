@@ -1,14 +1,16 @@
 package models.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tela")
-public class Tela extends EntidadPersistente{//hacer que cada nombre de tela sea unico para no tener repetidos
-	@OrderColumn(name = "nombre")
+public class Tela extends EntidadPersistente{
+
+	@Column(name = "nombre")
 	protected String nombre;
 
-    public Tela(String unNombre) {
+	public Tela(String unNombre) {
         this.setNombre(unNombre);
     }
 	public Tela() {	}

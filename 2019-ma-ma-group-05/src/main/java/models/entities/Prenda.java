@@ -6,7 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-import models.entities.Excepciones.*;
+import models.domain.Excepciones.*;
+import models.domain.ImgResizer;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -14,18 +15,15 @@ import java.time.ZoneId;
 
 @Entity
 @Table(name="prenda")
-public class Prenda extends EntidadPersistente  implements Cloneable {
-
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "color_id", referencedColumnName = "id")
-	private ColorPersistible colorPrimario;
-	@ManyToOne(cascade = {CascadeType.ALL})
-	private ColorPersistible colorSecundario;
+public class Prenda extends EntidadPersistente  implements Cloneable{
+    @ManyToMany//(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne//(fetch = FetchType.LAZY,cascade = {CascadeType.ALL})
+    @JoinColumn(name = "tipo_id", referencedColumnName = "id")
 	private Tipo tipo;
-	@ManyToOne()
+	@ManyToOne//(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private Tela tela;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
@@ -35,6 +33,9 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.reservas = new ArrayList<Reserva>();
+		this.colores = new ArrayList<ColorPersistible>();
+        this.colores.add(0,null);
+		this.colores.add(1,null);
 	}
 	public Prenda(Tipo unTipo, ColorPersistible colorPrim) {
 		this(unTipo);
@@ -45,20 +46,30 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 		this.setColorSecundario(colorSecun);
 	}
 	// --- GETTERS Y SETTERS ---
-	public void setColorPrimario(ColorPersistible colorPrimario) { this.colorPrimario = colorPrimario;	}
+    public List<ColorPersistible> getColores(){ return this.colores;}
+    public void setColores(List<ColorPersistible> nuevaLista){
+	    this.colores.clear();
+	    this.colores.addAll(nuevaLista);
+	}
+	public void setColorPrimario(ColorPersistible colorPrimario) { this.colores.add(0,colorPrimario); }
 	public void setColorSecundario(ColorPersistible unColorSecundario) {
-		if(unColorSecundario == this.colorPrimario) {
-			throw new ColoresIgualesException("ERROR: Se ingresaron colores iguales"); 
+		if(unColorSecundario == this.getColorPrimario()) {
+			throw new ColoresIgualesException("ERROR: Se ingresaron colores iguales");
 		}
-		else { this.colorSecundario = unColorSecundario; }
+		else { this.colores.add(1,unColorSecundario); }
 	}
 	public void setTipo(Tipo tipo) { this.tipo = tipo;	}
 	public void setImage(String path) { ImgResizer.copyImage(path,this);	}
 	public void setImagenResized(String path) { this.imagen = path;	}
 	public String getImagen() {  return this.imagen; }
 	public Tipo getTipo() {	return this.tipo; 	}
-	public ColorPersistible getColorPrimario() { return colorPrimario;	}
-	public ColorPersistible getColorSecundario() {	return colorSecundario;	}
+	public ColorPersistible getColorPrimario() { return this.colores.get(0);	}
+	public ColorPersistible getColorSecundario() {
+	    if(this.getColores().size()>1)
+            return this.colores.get(1);
+	    else
+	        return null;
+	}
 	public int getCapa() { return this.tipo.getCapa();	}
 	public Tela getTela() {	return this.tela; }
 	public int getNivelAbrigo() { return this.tipo.getNivelAbrigo(); }
@@ -71,7 +82,7 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	}
 	
 	public void validarAtributos() {
-		if(Objects.isNull(colorPrimario) || this.tipo.validarAtributosDeTipo()) {
+		if(Objects.isNull(this.getColorPrimario()) || this.tipo.validarAtributosDeTipo()) {
 			throw new ValidacionException("ERROR: Alguno de los atributos ingresados es NULL");
 		}
 	}
@@ -86,11 +97,11 @@ public class Prenda extends EntidadPersistente  implements Cloneable {
 	
 	// Para tests(?
 	public Boolean esIgualA(Prenda otraPrenda) {
-		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.colorPrimario, this.colorSecundario);
+		return otraPrenda.todosLosAtributosSonIgualesA(this.tipo, this.getColorPrimario(), this.getColorSecundario());
 	}
-	
+
 	public Boolean todosLosAtributosSonIgualesA(Tipo unTipo, ColorPersistible unColorPrimario, ColorPersistible unColorSecundario) {
-		return this.tipo.esIgualAOtro(unTipo) && unColorPrimario == this.colorPrimario && unColorSecundario == this.colorSecundario;
+		return this.tipo.esIgualAOtro(unTipo) && unColorPrimario == this.getColorPrimario() && unColorSecundario == this.getColorSecundario();
 	}
 
 	public Boolean esDeTipo(Tipo tipo) {

@@ -1,17 +1,17 @@
 package domain;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.domain.SimpleFactoryPrendas;
 import models.entities.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import models.entities.Categorias.*;
-import models.entities.Excepciones.ColoresIgualesException;
-import models.entities.Excepciones.TelaIncompatibleException;
+import models.domain.Excepciones.ColoresIgualesException;
+import models.domain.Excepciones.TelaIncompatibleException;
 
 public class PrendaTest {
 	private Prenda prenda;
@@ -27,7 +27,7 @@ public class PrendaTest {
 		algNylPolYSed.add(new Tela("nylon"));
 		algNylPolYSed.add(new Tela("seda"));
 		algNylPolYSed.add(new Tela("poliester"));
-		remeraTipo = new Tipo("Remera",new SuperiorBase(),algNylPolYSed,0,10);
+		remeraTipo = new Tipo("Remera",new Superior(),algNylPolYSed,0,10);
 		cuero = new Tela("cuero");
 		algodon = new Tela("algodon");
 		prenda = SimpleFactoryPrendas.crearPrenda("remera");

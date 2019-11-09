@@ -1,9 +1,11 @@
 package db;
 
+import models.domain.SimpleFactoryPrendas;
 import models.repositorios.DAOs.*;
 import models.entities.*;
 
 import models.repositorios.RepositorioColor;
+import models.repositorios.RepositorioPrenda;
 import models.repositorios.RepositorioUsuario;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,21 +21,20 @@ public class PersistirEMTest {
     ColorPersistible azul;
 	@Before
 	public void init(){
-        dao = new DAOUsuario();
         verde = ColorPersistible.green;
         negro = ColorPersistible.black;
         azul = ColorPersistible.blue;
-		
+
         List<Prenda> prendas = new ArrayList<>();
         Prenda zapatillas = SimpleFactoryPrendas.crearPrenda("zapatillas");
-        zapatillas.setColorPrimario(negro);
+        RepositorioPrenda.getInstance().setColorPrimario(zapatillas,negro.getHex());
+        RepositorioPrenda.getInstance().setTela(zapatillas,"algodon");
         Prenda pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-        pantalon.setColorPrimario(azul);
+        RepositorioPrenda.getInstance().setColorPrimario(pantalon,azul.getHex());
+        RepositorioPrenda.getInstance().setTela(pantalon,"algodon");
         Prenda camisa = SimpleFactoryPrendas.crearPrenda("camisa");
-        camisa.setColorPrimario(verde);
-        camisa.setTela(new Tela("algodon"));
-        zapatillas.setTela(new Tela("algodon"));
-        pantalon.setTela(new Tela("algodon"));
+        RepositorioPrenda.getInstance().setColorPrimario(camisa,verde.getHex());
+        RepositorioPrenda.getInstance().setTela(camisa,"algodon");
         prendas.add(zapatillas);
         prendas.add(pantalon);
         prendas.add(camisa);
@@ -56,9 +57,4 @@ public class PersistirEMTest {
         RepositorioUsuario.getInstance().eliminar(usuario);
 	}
 
-	@Test
-	public void persistoColor() {
-		ColorPersistible orange = ColorPersistible.orange;
-        RepositorioColor.getInstance().agregar(orange);
-	}
 }

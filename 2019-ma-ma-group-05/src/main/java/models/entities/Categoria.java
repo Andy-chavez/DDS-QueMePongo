@@ -1,7 +1,6 @@
 package models.entities;
 
-import converters.GenericAttributeConverter;
-import models.entities.Categorias.SuperiorExtra;
+import models.domain.ConfigReader;
 
 import javax.persistence.*;
 import java.util.*;
@@ -9,9 +8,15 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 @Entity
 @Table(name = "categoria")
-public abstract class Categoria  extends EntidadPersistente{
+@DiscriminatorColumn(name = "discriminador")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Categoria  extends EntidadPersistente{
 	@Column(name = "nombre")
 	private String nombre;
+	public Categoria(){}
+	public Categoria(String categoria) {
+		this.setNombre(categoria);
+	}
 
 	public static class ComparatorAbrigoPrendas implements Comparator<Prenda> {
 		public int compare(Prenda a, Prenda b) {
@@ -33,10 +38,12 @@ public abstract class Categoria  extends EntidadPersistente{
 		return prendas.get(random.nextInt(prendas.size()));
 	}
 
+	// obtiene la prenda que tenga el nivel de abrigo +- margen. O la que mas se acerque en caso de que no
 	protected Prenda obtenerPrendaParaNivelAbrigo(List<Prenda> prendas, int nivelAbrigoRequerido) {
 		if(prendas.size() == 0) return null; // si prendas esta vacio, retorno un null. Cuando se intente agregar al atuendo no lo agrega
 		int margenAdmitido = ConfigReader.getIntValue("configuraciones.properties","margenAdmitido");//5;
 		List<Prenda> prendasConAbrigoOk = obtenerPrendasConAbrigoOk(prendas, nivelAbrigoRequerido, margenAdmitido);
+
 		// si no esta vacio quiere decir que las prendas de la lista cumplen exactamente con el nivel de abrigo
 		if(!prendasConAbrigoOk.isEmpty()) {
 			return prendasConAbrigoOk.get(0);
@@ -48,6 +55,7 @@ public abstract class Categoria  extends EntidadPersistente{
 		return Math.abs(nivelAbrigoRequerido - prendaMasAbrigada.getNivelAbrigo()) <= Math.abs(nivelAbrigoRequerido - prendaMenosAbrigada.getNivelAbrigo()) ? prendaMasAbrigada : prendaMenosAbrigada;
 	}
 
+	// filtra las prendas que cumplan con el nivel de abrigo +- margen. (puede quedar vacio)
 	protected List<Prenda> obtenerPrendasConAbrigoOk(List<Prenda> prendas, int nivelAbrigoRequerido, int margen){
 		Predicate<Prenda> cubreLoNecesario = p -> Math.abs(nivelAbrigoRequerido - p.getNivelAbrigo()) <= margen;
 		return prendas.stream().filter(cubreLoNecesario).collect(Collectors.toList());

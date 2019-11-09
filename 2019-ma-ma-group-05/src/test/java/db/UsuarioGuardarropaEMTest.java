@@ -1,9 +1,8 @@
 package db;
 
+import models.domain.SimpleFactoryPrendas;
 import models.repositorios.DAOs.*;
 import models.entities.*;
-
-import java.util.List;
 
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
@@ -19,13 +18,13 @@ public class UsuarioGuardarropaEMTest{
 	private Guardarropa guardarropa;
 	@Before
 	public void init(){
-		remera = SimpleFactoryPrendas.crearPrenda("remera");
-		remera.setTela(new Tela("algodon"));
-		remera.setColorPrimario(ColorPersistible.blue);
+        remera = SimpleFactoryPrendas.crearPrenda("Remera");
+        RepositorioPrenda.getInstance().setTela(remera,"Algodon");
+        RepositorioPrenda.getInstance().setColorPrimario(remera, ColorPersistible.pink.getHex());
 
-    	pantalon = SimpleFactoryPrendas.crearPrenda("pantalon");
-    	pantalon.setTela(new Tela("algodon"));
-		pantalon.setColorPrimario(ColorPersistible.black);
+        pantalon = SimpleFactoryPrendas.crearPrenda("Pantalon");
+        RepositorioPrenda.getInstance().setTela(pantalon,"Algodon");
+        RepositorioPrenda.getInstance().setColorPrimario(pantalon, ColorPersistible.blue.getHex());
 
 		usuario = new Usuario("mati");
         usuario.setCelular("123456789");

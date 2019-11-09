@@ -2,21 +2,19 @@ package domain;
 
 import static org.junit.Assert.*;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import domain.TestCargaDePrendas;
 import models.entities.ColorPersistible;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
-import models.entities.SimpleFactoryPrendas;
+import models.domain.SimpleFactoryPrendas;
 import models.entities.Usuario;
-import models.entities.Excepciones.LimiteDePrendasAlcanzadoException;
-import models.entities.Suscripciones.Free;
-import models.entities.Suscripciones.Premium;
+import models.domain.Excepciones.LimiteDePrendasAlcanzadoException;
+import models.domain.Suscripciones.Free;
+import models.domain.Suscripciones.Premium;
 //Nota este test funciona con un limite de 10 prendas
 public class SuscripcionesTest {
 	private Guardarropa guardarropa;

@@ -1,12 +1,11 @@
 package domain;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import models.entities.ColorPersistible;
 import models.entities.Prenda;
-import models.entities.SimpleFactoryPrendas;
+import models.domain.SimpleFactoryPrendas;
 import models.entities.Tela;
 
 public class TestCargaDePrendas {

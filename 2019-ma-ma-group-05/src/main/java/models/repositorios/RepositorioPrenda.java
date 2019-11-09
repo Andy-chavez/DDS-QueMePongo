@@ -1,6 +1,6 @@
 package models.repositorios;
 
-import models.entities.Prenda;
+import models.entities.*;
 import models.repositorios.DAOs.DAOCategoria;
 import models.repositorios.DAOs.DAOPrenda;
 import models.repositorios.DAOs.DAOTipo;
@@ -25,27 +25,43 @@ public class RepositorioPrenda extends Repositorio {
 
     public Prenda buscarPorId(int id){ return (Prenda) this.dao.buscarPorId(id);}
 
+    public void setColorPrimario(Prenda unaPrenda, String hexColor){
+        ColorPersistible nuevoColor = RepositorioColor.getInstance().buscarPorNombre(hexColor);
+        if(nuevoColor != null)
+            unaPrenda.setColorPrimario(nuevoColor);
+        else
+            unaPrenda.setColorPrimario(new ColorPersistible(hexColor));
+    }
+    public void setColorSecundario(Prenda unaPrenda, String hexColor){
+        ColorPersistible nuevoColor = RepositorioColor.getInstance().buscarPorNombre(hexColor);
+        if(nuevoColor != null)
+            unaPrenda.setColorSecundario(nuevoColor);
+        else
+            unaPrenda.setColorSecundario(new ColorPersistible(hexColor));
+    }
+    public void setTela(Prenda unaPrenda, String tela){
+        Tela nuevaTela = RepositorioTela.getInstance().buscarPorNombre(tela);
+        if(nuevaTela != null)
+            unaPrenda.setTela(nuevaTela);
+        else
+            unaPrenda.setTela((new Tela(tela)));
+    }
+
+    public void setTipo(Prenda unaPrenda, String tipo){
+        Tipo nuevoTipo = RepositorioTipo.getInstance().buscarPorNombre(tipo);
+        if(nuevoTipo != null)
+            unaPrenda.setTipo(nuevoTipo);
+        else
+            unaPrenda.setTipo((new Tipo(tipo)));
+    }
     public void verificarAtributosPersistidosDePrenda(Prenda prenda){
-        if(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre())!= null ){
-            prenda.setTipo(RepositorioTipo.getInstance().buscarPorNombre(prenda.getTipo().getNombre()));
-        }
-        if(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre())!= null ){
-            prenda.setTela(RepositorioTela.getInstance().buscarPorNombre(prenda.getTela().getNombre()));
-        }
-        if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex())!= null ){
-            prenda.setColorPrimario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorPrimario().getHex()));
-        }
-        if(prenda.getColorSecundario() != null){
-            if(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex())!= null ){
-                prenda.setColorSecundario(RepositorioColor.getInstance().buscarPorNombre(prenda.getColorSecundario().getHex()));
-            }
-        }
+        this.dao.agregar(prenda);
     }
     @Override
     public void agregar(Object unObjeto){
         Prenda prenda = (Prenda)unObjeto;
         this.verificarAtributosPersistidosDePrenda(prenda);
-        this.dao.agregar(prenda);
+        //this.dao.agregar(prenda);
 
     }
 }

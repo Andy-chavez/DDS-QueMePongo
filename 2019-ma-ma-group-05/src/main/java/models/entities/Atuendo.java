@@ -19,7 +19,7 @@ public class Atuendo extends EntidadPersistente {
 	private Boolean rechazado;
 	@Column(name = "calificacion")
 	private int calificacion;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
 	private Usuario usuario;
 	@Column(name = "abrigo_superior")
@@ -28,8 +28,6 @@ public class Atuendo extends EntidadPersistente {
 	int abrigoInferior;
 	@Column(name = "abrigo_calzado")
 	int abrigoCalzado;
-//	@Transient
-//	Boolean optimo; // este atributo lo uso solo para decidir si genero el molde o no despues de generar la sugerencia. Se vuelve false si usa alguna prenda que exeda el margen de nivel de abrigo
 
 	public Atuendo() {
 		prendas = new ArrayList<Prenda>();

@@ -4,6 +4,7 @@ import models.repositorios.DAOs.DAO;
 import models.entities.Usuario;
 import models.repositorios.DAOs.DAOUsuario;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class RepositorioUsuario extends Repositorio {
@@ -31,12 +32,4 @@ public class RepositorioUsuario extends Repositorio {
 
     public Usuario buscarPorNombre(String nombre){ return (Usuario) this.dao.buscarPorNombre(nombre); }
 
-    @Override
-    public void agregar(Object unObject){
-        Usuario u = (Usuario) unObject;
-        if(u.getGuardarropas()!=null){
-            u.getGuardarropas().forEach(guardarropa -> {RepositorioGuardarropa.getInstance().recorrerPrendas(guardarropa);});
-        }
-        dao.agregar(u);
-    }
 }

@@ -7,6 +7,7 @@ import models.entities.Categoria;
 import models.entities.Prenda;
 
 @Entity
+@DiscriminatorValue(value = "Inferior")
 public class Inferior extends Categoria {
 	public Inferior(){
 		this.setNombre("Inferior");

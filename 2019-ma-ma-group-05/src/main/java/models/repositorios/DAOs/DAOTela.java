@@ -15,22 +15,7 @@ public class DAOTela implements DAO {
         }
         return instance;
     }
-    public void iniciarBase(){
-        Tela algodon = new Tela("Algodon");
-        Tela cuero = new Tela("Cuero");
-        Tela elastina = new Tela ("Elastina");
-        Tela encaje = new Tela ("Encaje");
-        Tela nylon = new Tela("Nylon");
-        Tela poliester = new Tela("Poliester");
-        Tela seda = new Tela("Seda");
-        this.agregar(algodon);
-        this.agregar(cuero);
-        this.agregar(elastina);
-        this.agregar(encaje);
-        this.agregar(nylon);
-        this.agregar(poliester);
-        this.agregar(seda);
-    }
+
     @Override
     public Object buscarPorId(int id) {
         return EntityManagerHelper.getEntityManager().find(Tela.class, id);

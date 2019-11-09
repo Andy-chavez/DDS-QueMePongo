@@ -15,7 +15,6 @@ public class SalvaPapasTest {
 
     @Test
     public void salvaPapinesTest(){
-        Map<String, Object> parametros = new HashMap<>();
         Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(1);
         List<Prenda> prendas = g.getPrendas();
         prendas.forEach(prenda->{System.out.println(prenda.getId());});

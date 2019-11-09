@@ -2,6 +2,10 @@ package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.Categoria;
+import models.entities.Categorias.Accesorio;
+import models.entities.Categorias.Calzado;
+import models.entities.Categorias.Inferior;
+import models.entities.Categorias.Superior;
 
 import java.util.ArrayList;
 import java.util.List;
