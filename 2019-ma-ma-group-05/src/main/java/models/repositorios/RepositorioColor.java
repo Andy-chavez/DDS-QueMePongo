@@ -27,6 +27,16 @@ public class RepositorioColor extends Repositorio{
             dao.agregar(color);
         }
     }
+    @Override
+    public void iniciarBase(){ //Se podrian ir agregando mas
+        this.agregar(ColorPersistible.black);
+        this.agregar(ColorPersistible.green);
+        this.agregar(ColorPersistible.blue);
+        this.agregar(ColorPersistible.red);
+        this.agregar(ColorPersistible.pink);
+        this.agregar(ColorPersistible.orange);
+        this.agregar(ColorPersistible.yellow);
+    }
     public List<ColorPersistible> buscarTodos(){ return (List<ColorPersistible>) (List<?>) this.dao.buscarTodos(); }
 
     public ColorPersistible buscarPorId(int id){ return (ColorPersistible) this.dao.buscarPorId(id);}
