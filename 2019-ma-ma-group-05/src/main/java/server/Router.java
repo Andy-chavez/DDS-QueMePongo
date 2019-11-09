@@ -1,5 +1,6 @@
 package server;
 
+import controllers.GuardarropaController;
 import controllers.EventoController;
 import controllers.PrendaController;
 import controllers.UsuarioController;
@@ -29,6 +30,7 @@ public class Router {
     private static void configure(){
 
         UsuarioController usuarioController = new UsuarioController();
+        GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
 
@@ -38,6 +40,8 @@ public class Router {
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
 
         Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
+        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
+//        Spark.get("/:idUsuario/guardarropas", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
         Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
 

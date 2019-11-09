@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 import converters.GenericAttributeConverter;
 import models.entities.Categoria;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "tipo")

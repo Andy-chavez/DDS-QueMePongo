@@ -45,7 +45,7 @@ public class RepositorioTela extends Repositorio {
     @Override
     public void agregar(Object unObjeto){
         Tela tela = (Tela)unObjeto;
-        if(this.dao.buscarPorNombre(tela.getNombre())== null){
+        if(this.dao.buscarPorNombre(tela.getNombre())== null || this.dao.buscarPorNombre(((Tela) unObjeto).getNombre()).getClass().getSimpleName() == ((Tela) unObjeto).getClass().getSimpleName()){
             dao.agregar(tela);
         }
     }
