@@ -57,9 +57,4 @@ public class PersistirEMTest {
         RepositorioUsuario.getInstance().eliminar(usuario);
 	}
 
-	@Test
-	public void persistoColor() {
-		ColorPersistible orange = ColorPersistible.orange;
-        RepositorioColor.getInstance().agregar(orange);
-	}
 }

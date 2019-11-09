@@ -36,6 +36,7 @@ public class RepositorioColor extends Repositorio{
         this.agregar(ColorPersistible.pink);
         this.agregar(ColorPersistible.orange);
         this.agregar(ColorPersistible.yellow);
+        this.agregar(ColorPersistible.white);
     }
     public List<ColorPersistible> buscarTodos(){ return (List<ColorPersistible>) (List<?>) this.dao.buscarTodos(); }
 
