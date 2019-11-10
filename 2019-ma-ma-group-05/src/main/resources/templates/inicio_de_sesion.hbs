@@ -1,0 +1,34 @@
+{{#partial "contenido"}}
+    <header>
+<!--        <h6 class="title">Guardarropas</h6>-->
+    </header>
+    <div class="container"><br>
+        <h3 align="center">Complete los siguentes campos para iniciar sesión</h3>
+
+        <form class="form-horizontal" method="POST">
+            <br>
+            <div class="form-group row text-left">
+                <label class="control-label col-lg-2 my-1" for="usuario"><b>Nombre de Usuario:</b></label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control"  id="usuario" placeholder="Ingrese su nombre de Usuario" name="usuario">
+                </div>
+            </div>
+
+            <div class="form-group row text-left">
+                <label class="control-label col-sm-2 my-1" for="contrasenia"><b>Contrase&ntildea:</b></label>
+
+                <div class="col-sm-4">
+                    <input class="form-control" type="password" placeholder="Ingrese su password" name="contrasenia" pattern=".{6,}"><br/>
+                </div>
+
+            </div>
+
+            <div class="col-sm-offset-2 col-sm-2">
+                <button type="submit"> Iniciar Sesion</button>
+            </div>
+
+        </form>
+    </div>
+<!--<script type="text/javascript" src="/js/usuarios.js"></script>-->
+{{/partial}}
+{{>pagina_base.hbs}}

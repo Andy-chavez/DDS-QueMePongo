@@ -18,7 +18,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	@Column(name = "abrigo_calzado")
 	private int abrigoCalzado;
 
-	@Transient
+	@Transient //TODO nos quedo esto inconcluso muchachos
 	private List<Tipo> moldeTipos;
 	
 	public MoldeAtuendo() {

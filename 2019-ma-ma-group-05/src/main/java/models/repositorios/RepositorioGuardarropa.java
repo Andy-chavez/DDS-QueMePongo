@@ -28,7 +28,7 @@ public class RepositorioGuardarropa extends Repositorio {
         if(g.getPrendas()!= null){
             List<Prenda> prendas = g.getPrendas();
             for (Prenda prenda : prendas) {
-                RepositorioPrenda.getInstance().verificarAtributosPersistidosDePrenda(prenda);
+                RepositorioPrenda.getInstance().agregar(prenda);
             }
         }
 
