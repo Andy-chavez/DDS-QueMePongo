@@ -21,8 +21,11 @@ public class GuardarropaController {
     }
 
     public ModelAndView mostrarTodos(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
-        List<Guardarropa> guardarropas = this.repo.buscarTodos();
+
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        List<Guardarropa> guardarropas = usuario.getGuardarropas();
         parametros.put("guardarropas", guardarropas);
         return new ModelAndView(parametros, "guardarropas.hbs");
     }

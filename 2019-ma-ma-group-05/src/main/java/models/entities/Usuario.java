@@ -90,7 +90,9 @@ public class Usuario extends EntidadPersistente {
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
 	public Suscripcion getSuscripcion(){return this.suscripcion;}
 	public String getNombre(){return this.nombre;}
-	public void setNombre(String unNombre){this.nombre=unNombre;}	
+	public String getContraseña(){ return this.contraseña; }
+	public List<Evento> getEventos(){ return this.eventos; }
+	public void setNombre(String unNombre){this.nombre=unNombre;}
 	public Guardarropa getGuardarropa(String unNombre){
 		return this.getGuardarropas().stream().filter(g -> g.getNombre().toLowerCase()==unNombre.toLowerCase())
 				.collect(Collectors.toList()).get(0);
