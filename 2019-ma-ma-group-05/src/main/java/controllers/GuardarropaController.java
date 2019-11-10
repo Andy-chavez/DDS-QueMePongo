@@ -35,7 +35,7 @@ public class GuardarropaController {
         RepositorioPrenda repoPrendas = RepositorioPrenda.getInstance();
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("guardarropa", guardarropa);
-        parametros.put("prendas", repoPrendas.buscarTodos(Integer.valueOf(request.params("id"))));
+        parametros.put("prendas", repoPrendas.buscarTodos(guardarropa.getId()));
         return new ModelAndView(parametros, "guardarropa.hbs");
     }
 

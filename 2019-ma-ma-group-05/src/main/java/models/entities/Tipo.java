@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 import converters.GenericAttributeConverter;
 import models.entities.Categoria;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "tipo")
@@ -19,9 +21,9 @@ public class Tipo extends EntidadPersistente{
 	private int capa;
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
-	@ManyToOne(cascade = {CascadeType.PERSIST})
+	@ManyToOne
 	private Categoria categoria;
-	@ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")
 	private List<Tela> telasPosibles;
 
@@ -41,7 +43,14 @@ public class Tipo extends EntidadPersistente{
 		this.telasPosibles = new ArrayList<>();
     }
 
-    // --- GETTERS Y SETTERS ---
+	public Tipo(String nombre,int capa, int nivelAbrigo) {
+		this.setNombre(nombre);
+		this.telasPosibles = new ArrayList<>();
+		this.setNivelAbrigo(nivelAbrigo);
+		this.setCapa(capa);
+	}
+
+	// --- GETTERS Y SETTERS ---
 	public void setNivelAbrigo(int nivelAbrigo){ this.nivelAbrigo = nivelAbrigo; }
 	public int getNivelAbrigo() { return this.nivelAbrigo;	}
 	public int getCapa() { return this.capa;}

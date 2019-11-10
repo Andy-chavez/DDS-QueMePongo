@@ -26,6 +26,23 @@ public class RepositorioTela extends Repositorio {
     public Tela buscarPorNombre(String nombre){ return (Tela) this.dao.buscarPorNombre(nombre); }
 
     @Override
+    public void iniciarBase(){
+        Tela algodon = new Tela("Algodon");
+        Tela cuero = new Tela("Cuero");
+        Tela elastina = new Tela ("Elastina");
+        Tela encaje = new Tela ("Encaje");
+        Tela nylon = new Tela("Nylon");
+        Tela poliester = new Tela("Poliester");
+        Tela seda = new Tela("Seda");
+        this.agregar(algodon);
+        this.agregar(cuero);
+        this.agregar(elastina);
+        this.agregar(encaje);
+        this.agregar(nylon);
+        this.agregar(poliester);
+        this.agregar(seda);
+    }
+    @Override
     public void agregar(Object unObjeto){
         Tela tela = (Tela)unObjeto;
         if(this.dao.buscarPorNombre(tela.getNombre())== null){
