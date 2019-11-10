@@ -21,7 +21,7 @@ public class Tipo extends EntidadPersistente{
 	private int capa;
 	@Column(name = "nivel_abrigo")
 	private int nivelAbrigo;
-	@ManyToOne//(cascade = {CascadeType.PERSIST})
+	@ManyToOne
 	private Categoria categoria;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tela_id", referencedColumnName = "id")

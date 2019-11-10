@@ -230,7 +230,7 @@ public class ObtenerSugerenciaTest {
 		double temperatura = 24.0;
 		int nivelAbrigoRequerido = 40 - (int)temperatura;
 		
-		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario); //todo bound must be positive ese es el error que me estaria mostrando
+		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		gestorSugerencia.obtenerSugerencia(Instant.now(), guardarropa, usuario);
 		
 		MoldeAtuendo moldeAtuendo = gestorSugerencia.buscarMoldeParaNivelAbrigo(usuario.getSensibilidadFrio(), nivelAbrigoRequerido);
@@ -239,37 +239,5 @@ public class ObtenerSugerenciaTest {
 		}
 
 	}
-	
-//	@Test
-//	public void crearAtuendoConMolde(){
-//		System.out.println("\ncrearAtuendoConMolde()");
-//		Atuendo atuendoSugerido = new Atuendo(usuario);//, usuario.getSensibilidadFrio());
-//		atuendoSugerido.agregarPrenda(remera);
-//		atuendoSugerido.agregarPrenda(ojotas);
-//		atuendoSugerido.agregarPrenda(antiparras);
-//		atuendoSugerido.agregarPrenda(shorts);
-//		atuendoSugerido.setNivelAbrigo(16);
-//
-//		MoldeAtuendo moldeAtuendo = new MoldeAtuendo(atuendoSugerido);
-//		for(Tipo t : moldeAtuendo.getMoldeTipos()){
-//			System.out.println(t);
-//		}
-//		System.out.println(moldeAtuendo.getNivelAbrigo());
-//	}
-//
-	@Test
-	public void cronSugerencia(){ //todo kind of faltan cosas aca
-		System.out.println("\ncronSugerencia()");
-		EventoDto eventoDto = new EventoDto();
-		eventoDto.repeticionDias = 2000;
-		eventoDto.anticipacionHoras = 2;
-		eventoDto.fecha = "2019-09-02T13:04:00Z";
-		eventoDto.estado = new Pendiente();
-		eventoDto.guardarropa = guardarropa;
-		eventoDto.usuario = usuario;
-		Evento evento = new Evento(eventoDto);
-		CronGenerarSugerencia cron = CronGenerarSugerencia.getInstance();
-		
-		}
 
 }

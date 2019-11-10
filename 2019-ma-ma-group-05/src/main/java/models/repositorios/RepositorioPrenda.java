@@ -54,14 +54,10 @@ public class RepositorioPrenda extends Repositorio {
         else
             unaPrenda.setTipo((new Tipo(tipo)));
     }
-    public void verificarAtributosPersistidosDePrenda(Prenda prenda){
-        this.dao.agregar(prenda);
-    }
     @Override
     public void agregar(Object unObjeto){
         Prenda prenda = (Prenda)unObjeto;
-        this.verificarAtributosPersistidosDePrenda(prenda);
-        //this.dao.agregar(prenda);
+        this.dao.agregar(prenda);
 
     }
 }

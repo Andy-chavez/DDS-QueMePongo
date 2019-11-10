@@ -1,17 +1,11 @@
 package models.repositorios;
 
 import models.entities.Categoria;
-import models.entities.Categorias.Accesorio;
-import models.entities.Categorias.Calzado;
-import models.entities.Categorias.Inferior;
-import models.entities.Categorias.Superior;
 import models.entities.Tela;
 import models.entities.Tipo;
 import models.repositorios.DAOs.DAO;
-import models.repositorios.DAOs.DAOCategoria;
 import models.repositorios.DAOs.DAOTipo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioTipo extends Repositorio{
@@ -97,18 +91,6 @@ public class RepositorioTipo extends Repositorio{
         this.agregar(sweater);
         this.agregar(zapatillas);
     }
-    private void hidratarTelaEnCasoDeExistir(Tela tela, List<Tela> telasParaTipo){
-        if(RepositorioTela.getInstance().buscarPorNombre(tela.getNombre())!= null ){
-            telasParaTipo.add(RepositorioTela.getInstance().buscarPorNombre(tela.getNombre()));
-        }
-        else{
-            telasParaTipo.add(tela);
-        }
-    }
-
-    private void verificarListaDeTelas(Tipo tipo){
-        tipo.getTelasPosibles().forEach(tela -> {RepositorioTela.getInstance().agregar(tela);});
-    }
     public Tipo crearNuevoTipo(String nombre){
         Tipo tipo = this.buscarPorNombre(nombre);
         if(tipo != null)
@@ -134,7 +116,6 @@ public class RepositorioTipo extends Repositorio{
     public void agregar(Object unObjeto){
         Tipo tipo = (Tipo)unObjeto;
         if(this.dao.buscarPorNombre(tipo.getNombre())== null){
-            this.verificarListaDeTelas(tipo);
             dao.agregar(tipo);
         }
     }
