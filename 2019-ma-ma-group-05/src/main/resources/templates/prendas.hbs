@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- disño de pestaña -> to do agregar fotito -->
+    <title>Prendas</title>
+      <link rel="icon" type="image/png" href="/images/Portada.png" />
+  </head>
+  <body style="background-color: #808080">
+    <!-- Titulo -->
+    <div class = "container-fluid p-2" style = "background-color: #78c1ad;">
+        <div class = "container">
+            <h1 class = "display-3 text-center text-white">Prendas</h1>
+            <button type="button" class="btn btn-outline-dark">+ Agregar prenda</button>
+
+        </div>
+    </div>
+
+    <!-- Ahora si va cada prenda -->
+    <div class = "container border p-1 bg-white">
+        <div class = "row">
+            {{#each prendas }}
+            <div class ="col-4">
+                <div class = "p-1 border"><img src="{{imagen}}" style="width:100%;"> </div>
+                <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}} - {{tipo.categoria.nombre}}</div>
+                <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
+                <div class = "p-1 border" style=”padding:12px;background-color:{{colorPrimario.hex}};line-height:120%;font-size:1%”>. </div>
+                <div class = "p-1 border " style=”padding:12px;background-color:{{colorSecundario.hex}};line-height:120%;font-size:1%”>. </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+<!-- ================= MODAL ELIMINACION ================== -->
+<div class="modalEliminar modal" id="modalEliminar">
+    <div class="modalContent">
+        <input id="userId" type="hidden" value="">
+        <p>¿Desea eliminar la prenda del guardarropa?</p>
+        <button type="button" name="button" class="btn-close-modal" onclick="cerrarModal()" ><i class="fas fa-times-circle"></i></button>
+        <br>
+        <div class="">
+            <button type="button" name="button" class="btn-rojo" onclick="eliminarPrenda()">Eliminar</button>
+            <button type="button" name="button" class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+<!-- ================= FIN MODAL ELIMINACION ================== -->
+
+</html>

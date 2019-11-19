@@ -25,7 +25,7 @@ public class PrendaController {
         Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.params("idGuardarropa")));
         List<Prenda> prendas = g.getPrendas();
         parametros.put("prendas", prendas);
-        return new ModelAndView(parametros, "prendasDeGuardarropa.hbs");
+        return new ModelAndView(parametros, "prendas.hbs");
     }
 
     public Response eliminar(Request request, Response response){
