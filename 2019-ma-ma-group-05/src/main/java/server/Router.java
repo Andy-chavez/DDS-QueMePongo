@@ -1,14 +1,13 @@
 package server;
 
-import controllers.GuardarropaController;
-import controllers.EventoController;
-import controllers.PrendaController;
-import controllers.UsuarioController;
+import controllers.*;
+
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
+
 
 public class Router {
     private static HandlebarsTemplateEngine engine;
@@ -33,17 +32,18 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
+        LoginController loginController = new LoginController();
 
 //        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
-        Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
-
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
 
         Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
-        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-//        Spark.get("/:idUsuario/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
+        Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
+        Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
+        Spark.get("/login", loginController::serveLoginPage, Router.engine);
+        Spark.post("/login", loginController::handleLoginPost, Router.engine);
+        Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
 //        Spark.get("/usuario", usuarioController::crear, Router.engine);
 //

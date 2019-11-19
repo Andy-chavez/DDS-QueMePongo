@@ -22,8 +22,11 @@ public class EventoController {
     }
 
     public ModelAndView mostrarTodos(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
 
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        List<Evento> eventos = usuario.getEventos();
 //        List<Evento> eventos = new ArrayList<Evento>();
 //        EventoDto eventoDto = new EventoDto();
 //        eventoDto.fecha = Instant.now().toString();
@@ -39,7 +42,6 @@ public class EventoController {
 //        eventoDto.fecha = Instant.now().plus(Duration.ofDays(30)).toString();
 //        eventos.add(new Evento(eventoDto));
 //        parametros.put("eventos", eventos);
-        List<Evento> eventos = this.repo.buscarTodos();
 
         return new ModelAndView(parametros, "eventos.hbs");
     }
