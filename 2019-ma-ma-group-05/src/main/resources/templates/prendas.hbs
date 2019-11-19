@@ -7,11 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- disño de pestaña -> to do agregar fotito -->
+    <!-- disño de pestaña -->
     <title>Prendas</title>
       <link rel="icon" type="image/png" href="/images/Portada.png" />
   </head>
-  <body style="background-color: #808080">
+  <body style="background-color: #080808">
     <!-- Titulo -->
     <div class = "container-fluid p-2" style = "background-color: #78c1ad;">
         <div class = "container">
@@ -22,15 +22,17 @@
     </div>
 
     <!-- Ahora si va cada prenda -->
-    <div class = "container border p-1 bg-white">
+    <div class = "container border bg-white">
         <div class = "row">
             {{#each prendas }}
-            <div class ="col-4">
-                <div class = "p-1 border"><img src="{{imagen}}" style="width:100%;"> </div>
-                <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}} - {{tipo.categoria.nombre}}</div>
-                <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
-                <div class = "p-1 border" style=”padding:12px;background-color:{{colorPrimario.hex}};line-height:120%;font-size:1%”>. </div>
-                <div class = "p-1 border " style=”padding:12px;background-color:{{colorSecundario.hex}};line-height:120%;font-size:1%”>. </div>
+            <div class ="col-lg-3 col-md-4 col-sm-6 col-6 border">
+                <div class = "m-2">
+                    <div class = "p-1 border"><img src="{{imagen}}" style="width:100%;"> </div>
+                    <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}} - {{tipo.categoria.nombre}}</div>
+                    <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
+                    <div class = "p-1 border" style=”padding:12px;background-color:{{colorPrimario.hex}};line-height:120%;font-size:1%”>. </div>
+                    <div class = "p-1 border " style=”padding:12px;background-color:{{colorSecundario.hex}};line-height:120%;font-size:1%”>. </div>
+                </div>
             </div>
             {{/each}}
         </div>
