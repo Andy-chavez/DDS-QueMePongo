@@ -6,7 +6,7 @@
     version="1.0"> 
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
-    	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
     	
     	<class>models.entities.Usuario</class> <!-- CHECK -->
     	<class>models.entities.Evento</class> <!-- CHECK -->

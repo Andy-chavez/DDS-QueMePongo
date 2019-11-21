@@ -34,7 +34,7 @@ public class Router {
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
 
-        Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
+        //Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
 
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
 
