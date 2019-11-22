@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- diseño de pestaña -->
-    <title>Prendas</title>
+    <title>Atuendos</title>
     <link rel="icon" type="image/png" href="/images/Portada.png" />
 </head>
 <body style="background-color: #080808">
@@ -30,6 +30,22 @@
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}}</div>
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
                     {{/each}}
+                    <div>
+                        <form>
+                            <p class="clasificacion">
+                                <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                --><label for="radio1">★</label>
+                                <input id="radio2" type="radio" name="estrellas" value="4"><!--
+                                --><label for="radio2">★</label>
+                                <input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                --><label for="radio3">★</label>
+                                <input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                --><label for="radio4">★</label>
+                                <input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                --><label for="radio5">★</label>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         {{/each}}
@@ -42,34 +58,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/js/generales.js"></script>
 </body>
-
-<script type="text/javascript">
-    $('#myModal').on('show.bs.modal', function (event) {
-        let id = $(event.relatedTarget).data('id')
-        $(this).find('.modal-body input').val(id)
-    })
-  </script>
-<div class="modal fade" id = "myModal"tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <input id="id" name="id" value="">
-            <div class="modal-header">
-                <h4 class="modal-title">Confirmar eliminación</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿Desea eliminar esa prenda?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <!-- aca es donde entra js, no estoy pudiendo hacerlo -->
-                <a type="button" class="btn btn-danger" onclick="eliminarPrenda()" >Eliminar prenda</a>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <div class="">
     <footer class="footer  ">
@@ -93,4 +81,41 @@
   clear:both !important;
   position: fixed; !important;
 }
+
+#form {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
 </style>
