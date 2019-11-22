@@ -34,6 +34,7 @@ public class Atuendo extends EntidadPersistente {
 		this.abrigoSuperior = 0;
 		this.abrigoInferior = 0;
 		this.abrigoCalzado = 0;
+		this.rechazado = false;
 	}
 
 	public Atuendo(Usuario unUsuario) {

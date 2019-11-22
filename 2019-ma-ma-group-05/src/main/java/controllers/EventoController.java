@@ -9,6 +9,8 @@ import spark.Response;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,5 +70,34 @@ public class EventoController {
         return new ModelAndView(null, "crearEvento.hbs");
     }
 
+    public Response guardarEvento(Request request, Response response) {
+        Evento evento = new Evento();
+        if(request.queryParams("nombre") != null){
+            evento.setNombre(request.queryParams("nombre"));
+        }
 
+        if(request.queryParams("tipo") != null){
+            evento.setTipo(request.queryParams("tipo"));
+        }
+
+        if(request.queryParams("lugar") != null){
+            evento.setLugar(request.queryParams("lugar"));
+        }
+
+        if((request.queryParams("fecha") != null) && (request.queryParams("hora") != null)){
+            evento.setFecha(request.queryParams("fecha")+request.queryParams("hora"));
+        }
+        else if((request.queryParams("fecha") != null) && (request.queryParams("hora") == null)){
+            LocalDate fecha = LocalDate.parse(request.queryParams("fecha"));
+            Instant instant = fecha.atStartOfDay(ZoneId.systemDefault()).toInstant();
+            evento.setFecha(instant);
+        }
+        if(request.queryParams("guardarropa") != null){
+            Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
+            evento.setGuardarropa(g);
+        }
+        this.repo.agregar(evento);
+        response.redirect("/eventos");
+        return response;
+    }
 }

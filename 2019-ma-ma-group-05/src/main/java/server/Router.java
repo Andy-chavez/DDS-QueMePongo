@@ -1,9 +1,6 @@
 package server;
 
-import controllers.GuardarropaController;
-import controllers.EventoController;
-import controllers.PrendaController;
-import controllers.UsuarioController;
+import controllers.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -33,7 +30,7 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
-
+        AtuendoController atuendoController = new AtuendoController();
         //Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
 
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
@@ -43,8 +40,10 @@ public class Router {
 //        Spark.get("/:idUsuario/guardarropas", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
         Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
-
+        Spark.post("/crearEvento", eventoController::guardarEvento);
         Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
+
+        Spark.get("/calificarAtuendos", atuendoController::mostrarTodos, Router.engine);
 //        Spark.post("/usuario/:id", usuarioController::modificar);
 //
 //        Spark.post("/usuario", usuarioController::guardar);

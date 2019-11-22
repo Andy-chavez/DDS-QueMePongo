@@ -69,8 +69,16 @@ public class Evento extends EntidadPersistente implements Observee {
     	this.repeticionDias = eventoDto.repeticionDias;
     	this.repetir = eventoDto.repetir;
     }
-	    
-    public void confirmarEvento(){
+
+	public Evento() {
+		this.gestorSugerencia = GestorSugerencia.getInstance();
+		this.cronNotificarSugerencia = CronNotificarSugerencia.getInstance();
+		this.cronSugerencia = CronGenerarSugerencia.getInstance();
+		this.gestorClima = GestorDeClima.getInstance();
+		this.estado = new Pendiente();
+	}
+
+	public void confirmarEvento(){
     	this.estado = new Pendiente();
     	this.cronSugerencia.registrar(this);
     }

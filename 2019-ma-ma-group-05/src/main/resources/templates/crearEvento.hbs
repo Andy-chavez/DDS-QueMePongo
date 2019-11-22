@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+
+    <script src="/js/crearEvento.js"></script>
     <!-- disño de pestaña -->
     <title>Crear evento</title>
     <link rel="icon" type="image/png" href="/images/Portada.png" />
@@ -23,26 +25,30 @@
 </div>
 <!-- form para completar -->
 <div class="container">
-    <form>
+    <form id="form">
         <div class="form-group">
             <label for="inputNombre">Nombre</label>
-            <input class="form-control" id="inputNombre" placeholder="Ingrese nombre">
+            <input class="form-control" name="nombre" id="inputNombre" placeholder="Ingrese nombre">
         </div>
         <div class="form-group">
             <label for="inputTipo">Tipo</label>
-            <input class="form-control" id="inputTipo" placeholder="Formal o informal?">
+            <input class="form-control" name="tipo" id="inputTipo" placeholder="Formal o informal?">
         </div>
         <div class="form-group">
             <label for="inputFecha">Fecha</label>
-            <input type='text' class="form-control" placeholder="dd/mm/aaaa" data-provide="datepicker" style='width: 300px;' >
+            <input type='text' name="fecha" class="form-control" placeholder="dd/mm/aaaa" data-provide="datepicker" style='width: 300px;' >
+        </div>
+        <div class="form-group">
+            <label for="inputHora">Hora</label>
+            <input type='text' name="hora" class="form-control" style='width: 200px;' >
         </div>
         <div class="form-group">
             <label for="inputLugar">Lugar</label>
-            <input class="form-control" id="inputLugar" placeholder="Barrio, provincia?">
+            <input class="form-control" name="lugar" id="inputLugar" placeholder="Barrio, provincia?">
         </div>
         <div class="form-group">
             <label for="inputGuardarropa">Guardarropa</label>
-            <input class="form-control" id="inputLugar" placeholder="Seleccione el guardarropa">
+            <input class="form-control" id="inputGuardarropa" placeholder="Seleccione el guardarropa">
         </div>
         <button type="submit" class="btn btn-primary">Crear evento</button>
     </form>
