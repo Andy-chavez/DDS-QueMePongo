@@ -63,4 +63,10 @@ public class EventoController {
         return new ModelAndView(parametros, "evento.hbs");
     }
 
+    public ModelAndView crearEvento(Request request, Response response){
+
+        return new ModelAndView(null, "crearEvento.hbs");
+    }
+
+
 }

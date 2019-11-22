@@ -44,6 +44,7 @@ public class Router {
         Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
         Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
 
+        Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
 //        Spark.post("/usuario/:id", usuarioController::modificar);
 //
 //        Spark.post("/usuario", usuarioController::guardar);
