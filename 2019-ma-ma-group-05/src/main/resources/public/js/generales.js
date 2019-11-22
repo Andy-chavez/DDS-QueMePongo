@@ -40,7 +40,7 @@ function confirmarEliminacion(id){
 }
 
 function eliminarPrenda(){
-    var id = document.getElementById("userId").value;
+    var id = document.getElementById("id").value;
     $.ajax({
         type: "DELETE",
         url: "/usuario/guardarropa/"+id,

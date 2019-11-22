@@ -23,6 +23,12 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "nombre")
 	private String nombre;
 
+	@Column(name = "apellido")
+	private String apellido;
+
+	@Column(name = "usuario")
+	private String usuario;
+
 	@Column(name = "contraseña")
 	private String contraseña; //normalmente esto deberia de guardarse hasheado o algo pero como no lo pide no lo agrego
 
@@ -49,9 +55,7 @@ public class Usuario extends EntidadPersistente {
 	@Transient
 	private GestorDeOperaciones gestorOperaciones;
 	
-	public Usuario() {}
-	public Usuario(String nombre){
-		this.nombre=nombre;
+	public Usuario() {
 		this.guardarropas= new ArrayList<Guardarropa>();
 		this.suscripcion= Free.getInstance();
 		this.sensibilidadFrio = new SensibilidadFrio();
@@ -59,6 +63,30 @@ public class Usuario extends EntidadPersistente {
 		this.gestorSugerencia = GestorSugerencia.getInstance();
 		this.gestorOperaciones = new  GestorDeOperaciones();
 		this.eventos = new ArrayList<Evento>();
+	}
+	public Usuario(String nombre) {
+		this.setNombre(nombre);
+		this.guardarropas= new ArrayList<Guardarropa>();
+		this.suscripcion= Free.getInstance();
+		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
+		this.gestorSugerencia = GestorSugerencia.getInstance();
+		this.gestorOperaciones = new  GestorDeOperaciones();
+		this.eventos = new ArrayList<Evento>();
+	}
+	public Usuario(String nombre, String apellido, String usuario, String contraseña, Suscripcion suscripcion){
+		this.guardarropas= new ArrayList<Guardarropa>();
+		this.suscripcion= Free.getInstance();
+		this.sensibilidadFrio = new SensibilidadFrio();
+		this.guardarropasCompartidos = new HashMap<Usuario,Guardarropa>();
+		this.gestorSugerencia = GestorSugerencia.getInstance();
+		this.gestorOperaciones = new  GestorDeOperaciones();
+		this.eventos = new ArrayList<Evento>();
+		this.setNombre(nombre);
+		this.setUsuario(usuario);
+		this.setApellido(apellido);
+		this.setContraseña(contraseña);
+		this.setSuscripcion(suscripcion);
 	}
 	public Usuario(String unNombre,Guardarropa guardarropa){
 		this.nombre = unNombre;
@@ -90,9 +118,14 @@ public class Usuario extends EntidadPersistente {
 	public void setSuscripcion(Suscripcion unaSuscripcion) {this.suscripcion = unaSuscripcion;}
 	public Suscripcion getSuscripcion(){return this.suscripcion;}
 	public String getNombre(){return this.nombre;}
+	public String getApellido(){return this.apellido;}
+	public String getUsuario(){return this.usuario;}
 	public String getContraseña(){ return this.contraseña; }
 	public List<Evento> getEventos(){ return this.eventos; }
 	public void setNombre(String unNombre){this.nombre=unNombre;}
+	public void setApellido(String apellido){this.apellido=apellido;}
+	public void setUsuario(String usuario){this.usuario=usuario;}
+	public void setContraseña(String contraseña){this.contraseña=contraseña;}
 	public Guardarropa getGuardarropa(String unNombre){
 		return this.getGuardarropas().stream().filter(g -> g.getNombre().toLowerCase()==unNombre.toLowerCase())
 				.collect(Collectors.toList()).get(0);

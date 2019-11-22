@@ -28,16 +28,17 @@ public class RepositorioTela extends Repositorio {
     @Override
     public void iniciarBase(){
         Tela algodon = new Tela("Algodon");
-        Tela cuero = new Tela("Cuero");
-        Tela elastina = new Tela ("Elastina");
-        Tela encaje = new Tela ("Encaje");
-        Tela nylon = new Tela("Nylon");
         Tela poliester = new Tela("Poliester");
         Tela seda = new Tela("Seda");
+        Tela lycra = new Tela("Lycra");
+        Tela cuero = new Tela("Cuero");
+        Tela jean = new Tela ("Jean");
+        Tela nylon = new Tela("Nylon");
+
         this.agregar(algodon);
         this.agregar(cuero);
-        this.agregar(elastina);
-        this.agregar(encaje);
+        this.agregar(lycra);
+        this.agregar(jean);
         this.agregar(nylon);
         this.agregar(poliester);
         this.agregar(seda);

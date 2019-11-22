@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+
+    <script src="/js/crearEvento.js"></script>
+    <!-- disño de pestaña -->
+    <title>Crear evento</title>
+    <link rel="icon" type="image/png" href="/images/Portada.png" />
+</head>
+<body>
+<!-- Titulo -->
+<div class = "container-fluid p-2" style = "background-color: #78c1ad;">
+    <div class = "container">
+        <h4 class = "text-center text-white">Complete los siguientes datos y cree su evento.</h4>
+    </div>
+</div>
+<!-- form para completar -->
+<div class="container">
+    <form id="form">
+        <div class="form-group">
+            <label for="inputNombre">Nombre</label>
+            <input class="form-control" name="nombre" id="inputNombre" placeholder="Ingrese nombre">
+        </div>
+        <div class="form-group">
+            <label for="inputTipo">Tipo</label>
+            <input class="form-control" name="tipo" id="inputTipo" placeholder="Formal o informal?">
+        </div>
+        <div class="form-group">
+            <label for="inputFecha">Fecha</label>
+            <input type='text' name="fecha" class="form-control" placeholder="dd/mm/aaaa" data-provide="datepicker" style='width: 300px;' >
+        </div>
+        <div class="form-group">
+            <label for="inputHora">Hora</label>
+            <input type='text' name="hora" class="form-control" style='width: 200px;' >
+        </div>
+        <div class="form-group">
+            <label for="inputLugar">Lugar</label>
+            <input class="form-control" name="lugar" id="inputLugar" placeholder="Barrio, provincia?">
+        </div>
+        <div class="form-group">
+            <label for="inputGuardarropa">Guardarropa</label>
+            <input class="form-control" id="inputGuardarropa" placeholder="Seleccione el guardarropa">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear evento</button>
+    </form>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker').datetimepicker();
+    });
+</script>
+</body>
+</html>
