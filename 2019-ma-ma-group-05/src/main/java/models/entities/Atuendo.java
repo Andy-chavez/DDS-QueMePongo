@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "atuendo")
 public class Atuendo extends EntidadPersistente {
 
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "prenda_id",referencedColumnName = "id")
 	private List<Prenda> prendas;
 	@Column(name = "rechazado")

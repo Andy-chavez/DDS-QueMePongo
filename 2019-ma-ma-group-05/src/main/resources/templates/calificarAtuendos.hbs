@@ -15,7 +15,7 @@
 <!-- Titulo -->
 <div class = "container-fluid p-2" style = "background-color: #78c1ad;">
     <div class = "container">
-        <h1 class = "display-3 text-center text-white">Calificar atuendos</h1>
+        <h4 class = "display-3 text-center text-white">Calificar atuendos</h4>
     </div>
 </div>
 
@@ -23,16 +23,12 @@
 <div class = "container border bg-white">
     <div class = "row">
         {{#each atuendos }}
-            <div class ="col-lg-4 col-md-4 col-sm-6 col-6 border">
+            <div class ="col-lg-4 col-md-6 col-sm-12 col-12 border">
                 <div class = "m-2">
-                    <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{rechazado}}</div>
                     {{#each prendas}}
                     <div class = "p-1 border"><img src="{{imagen}}" style="width:100%;"> </div>
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}}</div>
-                    <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tipo.categoria.nombre}}</div>
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
-                    <div class = "p-1 border" style=”padding:12px;background-color:{{colorPrimario.hex}};line-height:120%;font-size:1%”>. </div>
-                    <div class = "p-1 border " style=”padding:12px;background-color:{{colorSecundario.hex}};line-height:120%;font-size:1%”>. </div>
                     {{/each}}
                 </div>
             </div>

@@ -22,7 +22,7 @@ public class AtuendoController {
 
     public ModelAndView mostrarTodos(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        List<Atuendo> atuendos =  repo.getInstance().buscarTodos(4);
+        List<Atuendo> atuendos =  repo.getInstance().buscarTodos(3);
         parametros.put("atuendos", atuendos);
         return new ModelAndView(parametros, "calificarAtuendos.hbs");
     }
