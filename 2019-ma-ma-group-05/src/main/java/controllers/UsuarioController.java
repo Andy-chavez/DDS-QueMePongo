@@ -22,14 +22,13 @@ public class UsuarioController {
             return false;
         }
         Usuario user = repo.buscarPorNombre(username);
-
         if (user == null) {
             return false;
         }
 //        String hashedPassword = BCrypt.hashpw(password, user.getSalt());
 //        return hashedPassword.equals(user.getHashedPassword());
 //        return user.getContraseña().equals(password);
-        return user.getNombre().equals(username);
+        return user.getContraseña().equals(password);
     }
 
     public static int getID(String username){
