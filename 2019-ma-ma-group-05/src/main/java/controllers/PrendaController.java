@@ -20,7 +20,7 @@ public class PrendaController {
     }
 
    public ModelAndView mostrarTodos(Request request, Response response) {
-
+       LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
         Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.params("idGuardarropa")));
         List<Prenda> prendas = g.getPrendas();
