@@ -2,6 +2,7 @@ package models.repositorios.DAOs;
 
 import db.EntityManagerHelper;
 import models.entities.Categorias.*;
+import models.entities.Prenda;
 import models.entities.Tela;
 import models.entities.Tipo;
 
@@ -48,4 +49,10 @@ public class DAOTipo implements DAO {
         return null;
     }
 
+    public List<Prenda> buscarPorCategoria(String categoria){
+        String query = "SELECT tc.nombre,tt.nombre FROM quemepongo.tipo tt, quemepongo.categoria tc " +
+                            "WHERE tc.id=tt.categoria_id AND tc.nombre='"+categoria+"'";
+        List tipos = EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        return tipos;
+    }
 }
