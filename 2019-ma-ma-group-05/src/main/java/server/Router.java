@@ -32,7 +32,12 @@ public class Router {
         PrendaController prendaController = new PrendaController();
         AtuendoController atuendoController = new AtuendoController();
         LoginController loginController = new LoginController();
-
+      
+        Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
+      
+        Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
+      
+      
         Spark.get("/login", loginController::serveLoginPage, Router.engine);
         Spark.post("/login", loginController::handleLoginPost, Router.engine);
         Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
