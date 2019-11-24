@@ -1,7 +1,7 @@
 {{#partial "contenido"}}
-    <header>
+<!--    <header>-->
 <!--        <h6 class="title">Guardarropas</h6>-->
-    </header>
+<!--    </header>-->
 
 <!--    <form align="right" name="logout" method="POST" action="session_logout.php">-->
 <!--        <label>-->
@@ -10,55 +10,151 @@
 <!--    </form>-->
     <h1 class="text-center p-4"> Guardarropas</h1>
 
-    <div class="col-md-12 text-center">
+<!--    <div class="col-md-12 col-sm-4 text-center">-->
 <!--        <form class="was-validated" method="get">-->
 <!--            -->
 <!--            <input type="text" name="filtro" placeholder = "Filtro" value = "" >-->
 
 <!--            <button type="submit">Filtrar</button>-->
 <!--        </form>-->
-    </div>
+<!--    </div>-->
 
-    <div class = "container">
+    <div id="container" class="table table-responsive-lg" style="width:100%">
 
-        <!-- <table class="table table-hover table-dark"> -->
-        <table class="col-md-12 table table-hover align-center" style="height: 20px; width:100%;">
-
-            <thead class="col-md-12 thead-dark">
-            <tr>
-                <th class="text-center"  style="width:25%">Guardarropa</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Agregar prenda</th>
-                <th scope="col">Visualizar prendas</th>
-            </tr>
+<!--         <table class="table table-hover table-dark">-->
+        <table class="table table-xs table-striped table-hover align-center" style="height: auto; width:auto;">
+<!--            style="height: 20px; width:100%;"-->
+            <thead class=" thead-dark">
+            <div class="row">
+                <tr>
+                    <th class="col-xs-3 col-sm-3 col-md-3 well text-center" scope="col"  style="width:40%;vertical-align: middle;">Guardarropa</th>
+                    <th class="col-xs-1 col-sm-3 col-md-3 well text-center" scope="col" style="width:20%;vertical-align: middle;">Nombre</th>
+                    <th class="col-xs-5 col-sm-3 col-md-3 well text-center" scope="col" style="width:20%;vertical-align: middle;">Agregar prenda</th>
+                    <th class="col-xs-3 col-sm-3 col-md-3 well text-center" scope="col" style="width:20%;vertical-align: middle;">Visualizar Prendas</th>
+                </tr>
+            </div>
             </thead>
 
 <!--            <tbody>-->
             {{#each guardarropas}}
-                <tr>
-                    <td class="text-center">
-                        <a href="default.asp">
-                            <img src="../images/sport-wardrobe-icon.jpg" style="width:30%" alt="HTML tutorial" style="width:42px;height:42px;border:0">
-                        </a>
-<!--                        <a rel="icon" href="/images/sport-wardrobe-icon.jpg" ></a>-->
-                    </td>
-                    <td><i class="text-center fas fa-user" style="height: 20px; vertical-align: middle;"></i> {{nombre}}</td>
-                    <td>
-                        <a class="btn btn-outline-warning" href="google.com.ar"> Agregar</a>
-                        <!--<a href="/usuario/{{id}}" name="button" style="margin:0px;" class="btn btn-border btn-border-blue" ><i class="far fa-eye"></i></a>-->
-<!--                        <a href="www.google.com.ar" name="button" class=" btn btn-edit"><i class="fas fa-user-edit"></i></a>-->
-<!--                        <button type="button" name="button" class="btn" onclick="confirmarEliminacion('{{id}}')"><i class="fas fa-trash"></i></button>-->
-                    </td>
-                    <td>
-                        <a class="btn btn-outline-info" href="google.com.ar"> Visualizar prendas de {{nombre}}</a>
-                    </td>
-
-                    <!--                    <td></td>-->
+                <tr id="tabl">
+                    <div class="row">
+                        <td class="text-center" style="height: 40px; vertical-align: middle;">
+                            <a href="default.asp">
+                                <img src="../images/sport-wardrobe-icon.jpg" style="width:30%" alt="HTML tutorial" style="width:42px;height:42px;border:0">
+                            </a>
+                            <!--                        <a rel="icon" href="/images/sport-wardrobe-icon.jpg" ></a>-->
+                        </td>
+                        <td id="nombre" class="text-center" style="height: 40px; vertical-align: middle;"> <a href="#">{{nombre}}</a> </td>
+                        <td class="text-center" style="height: 40px; vertical-align: middle;">
+                            <a class="btn btn-warning" href="google.com.ar"> Agregar</a>
+                            <!--<a href="/usuario/{{id}}" name="button" style="margin:0px;" class="btn btn-border btn-border-blue" ><i class="far fa-eye"></i></a>-->
+                            <!--                        <a href="www.google.com.ar" name="button" class=" btn btn-edit"><i class="fas fa-user-edit"></i></a>-->
+                            <!--                        <button type="button" name="button" class="btn" onclick="confirmarEliminacion('{{id}}')"><i class="fas fa-trash"></i></button>-->
+                        </td>
+                        <td class="text-center" style="height: 40px; vertical-align: middle;">
+                            <a class="btn btn-info" href="google.com.ar"> Visualizar</a>
+                        </td>
+                    </div>
                 </tr>
             {{/each}}
 <!--            </tbody>-->
         </table>
     </div>
 <!--<script type="text/javascript" src="/js/usuarios.js"></script>-->
+
+    <script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("filtro");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("tabl");
+    li = ul.getElementsByTagName("td");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+}
+    </script>
 {{/partial}}
 {{>pagina_base.hbs}}
+
+<style>
+    .table-xs {
+    width:544px;
+}
+
+.table-sm {
+    width: 576px;
+}
+
+.table-md {
+    width: 768px;
+}
+
+.table-lg {
+    width: 992px;
+}
+
+.table-xl {
+    width: 1200px;
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 576px) {
+    .table-sm {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+
+    .table-lg {
+        width: 100%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+
+    .table-lg {
+        width: 100%;
+    }
+
+    .table-xl {
+        width: 100%;
+    }
+}
+</style>

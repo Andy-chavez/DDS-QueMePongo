@@ -33,11 +33,16 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
+//        PrendaController tipoController = new TipoController();
 
 //        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
         Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
 
         Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
+        Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
+//        Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
+
 
         Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
         Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);

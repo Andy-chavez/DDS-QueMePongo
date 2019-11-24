@@ -2,6 +2,7 @@ package controllers;
 
 import models.entities.Guardarropa;
 import models.entities.Prenda;
+import models.entities.Tipo;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
 import spark.ModelAndView;
@@ -12,10 +13,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PrendaController {
+public class TipoController {
     private RepositorioPrenda repo;
 
-    public PrendaController(){
+    public TipoController(){
         this.repo = RepositorioPrenda.getInstance();
     }
 
@@ -41,6 +42,14 @@ public class PrendaController {
     public ModelAndView eleccionDeCategoria(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
         return new ModelAndView(parametros, "eleccionDeCategoria.html");
+    }
+
+    public ModelAndView buscarPorCategoria(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        //List<Tipo> tipos = this.repo.buscarTodos(); // debo crear
+        //parametros.put("tipos", tipos);
+        return new ModelAndView(parametros, "eleccionDeCategoria.html");
+    }
     }
 
 /*
