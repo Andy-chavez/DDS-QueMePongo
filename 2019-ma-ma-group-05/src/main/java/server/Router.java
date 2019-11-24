@@ -1,9 +1,6 @@
 package server;
 
-import controllers.GuardarropaController;
-import controllers.EventoController;
-import controllers.PrendaController;
-import controllers.UsuarioController;
+import controllers.*;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -33,30 +30,28 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
-//        PrendaController tipoController = new TipoController();
-
-//        Spark.get("/usuarios", usuarioController::mostrarTodos, Router.engine);
-        Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
-
-        Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        AtuendoController atuendoController = new AtuendoController();
+        LoginController loginController = new LoginController();
+      
         Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
+      
         Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
-//        Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
+      
+      
+        Spark.get("/login", loginController::serveLoginPage, Router.engine);
+        Spark.post("/login", loginController::handleLoginPost, Router.engine);
+        Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
+        Spark.get("/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
+        Spark.delete("/guardarropa/:idPrenda", prendaController::eliminar);
+        Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
+        Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
+        Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
+        Spark.post("/crearEvento", eventoController::guardarEvento);
 
-        Spark.delete("/usuario/guardarropa/:idPrenda", prendaController::eliminar);
-        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-//        Spark.get("/:idUsuario/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
+        Spark.get("/calificarAtuendos", atuendoController::mostrarTodos, Router.engine);
 
-//        Spark.get("/usuario", usuarioController::crear, Router.engine);
-//
-//        Spark.post("/usuario/:id", usuarioController::modificar);
-//
-//        Spark.post("/usuario", usuarioController::guardar);
-//
-//        Spark.delete("/usuario/:id", usuarioController::eliminar);
 //
 //        Spark.after((req, res) -> {
 //            PerThreadEntityManagers.closeEntityManager();

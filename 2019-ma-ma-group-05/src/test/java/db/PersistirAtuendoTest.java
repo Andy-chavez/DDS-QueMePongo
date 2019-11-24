@@ -25,11 +25,11 @@ public class PersistirAtuendoTest {
 
 		guardarropa = new Guardarropa("deportivo");
 
-		remera = SimpleFactoryPrendas.crearPrenda("Remera");
+		remera = SimpleFactoryPrendas.crearPrenda("Musculosa");
 		RepositorioPrenda.getInstance().setTela(remera,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(remera, ColorPersistible.pink.getHex());
 
-		pantalon = SimpleFactoryPrendas.crearPrenda("Pantalon");
+		pantalon = SimpleFactoryPrendas.crearPrenda("Pantalón Corto");
 		RepositorioPrenda.getInstance().setTela(pantalon,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(pantalon, ColorPersistible.blue.getHex());
 
@@ -41,16 +41,12 @@ public class PersistirAtuendoTest {
 		RepositorioPrenda.getInstance().setTela(campera,"Algodon");
 		RepositorioPrenda.getInstance().setColorPrimario(campera, ColorPersistible.black.getHex());
 
-		reloj = SimpleFactoryPrendas.crearPrenda("Reloj");
-		RepositorioPrenda.getInstance().setTela(reloj,"Cuero");
-		RepositorioPrenda.getInstance().setColorPrimario(reloj, ColorPersistible.yellow.getHex());
 
 		usuario.agregarGuardarropa(guardarropa);
 		usuario.agregarPrenda(guardarropa, remera);
 		usuario.agregarPrenda(guardarropa, pantalon);
 		usuario.agregarPrenda(guardarropa, zapatillas);
 		usuario.agregarPrenda(guardarropa, campera);
-		usuario.agregarPrenda(guardarropa, reloj);
 	}
 
 	@Test

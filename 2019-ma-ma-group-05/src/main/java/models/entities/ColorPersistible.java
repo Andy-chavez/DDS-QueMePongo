@@ -45,6 +45,7 @@ public class ColorPersistible extends EntidadPersistente implements java.io.Seri
      */
     public static final ColorPersistible white = new ColorPersistible(255, 255, 255);
 
+    public static final ColorPersistible darkRed = new ColorPersistible(90, 11, 10);
     /**
      * The color white.  In the default sRGB space.
      *

@@ -29,7 +29,12 @@ public class Prenda extends EntidadPersistente  implements Cloneable{
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	private List<Reserva> reservas;
 	
-	public Prenda() {}
+	public Prenda() {
+		this.reservas = new ArrayList<Reserva>();
+		this.colores = new ArrayList<ColorPersistible>();
+		this.colores.add(0,null);
+		this.colores.add(1,null);
+	}
 	public Prenda(Tipo unTipo) {
 		this.setTipo(unTipo);
 		this.reservas = new ArrayList<Reserva>();

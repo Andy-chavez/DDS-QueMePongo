@@ -28,67 +28,134 @@ public class RepositorioTipo extends Repositorio{
 
     @Override
     public void iniciarBase() {
-        Tipo collar = new Tipo("Collar",0,0);
-        this.setCategoria(collar,"Accesorio");
-        this.setTela(collar,"Cuero"); this.setTela(collar, "Algodon");
+        // -------------------- SUPERIOR ----------------------
+        Tipo remeraCuelloRedondoMangaCorta = new Tipo("Remera cuello redondo manga corta",0,5);
+        this.setCategoria(remeraCuelloRedondoMangaCorta,"Superior");
+        this.setTela(remeraCuelloRedondoMangaCorta,"Seda");
+        this.setTela(remeraCuelloRedondoMangaCorta, "Algodon");
+        this.setTela(remeraCuelloRedondoMangaCorta,"Poliester");
+        this.setTela(remeraCuelloRedondoMangaCorta,"Lycra");
 
-        Tipo camisa = new Tipo("Camisa",1,12);
-        this.setCategoria(camisa,"Superior");
-        this.setTela(camisa,"Nylon"); this.setTela(camisa, "Algodon");
-        this.setTela(camisa, "Seda"); this.setTela(camisa, "Poliester");
+        Tipo remeraCuelloRedondoMangaLarga = new Tipo("Remera cuello redondo manga larga",0,8);
+        this.setCategoria(remeraCuelloRedondoMangaLarga,"Superior");
+        this.setTela(remeraCuelloRedondoMangaLarga,"Seda");
+        this.setTela(remeraCuelloRedondoMangaLarga, "Algodon");
+        this.setTela(remeraCuelloRedondoMangaLarga,"Poliester");
+        this.setTela(remeraCuelloRedondoMangaLarga,"Lycra");
 
-        Tipo pantalon = new Tipo("Pantalon",0,30);
-        this.setCategoria(pantalon,"Inferior");
-        this.setTela(pantalon,"Nylon"); this.setTela(pantalon, "Algodon");
-        this.setTela(pantalon, "Seda"); this.setTela(pantalon, "Poliester");
+        Tipo remeraEscoteVMangaCorta = new Tipo("Remera escote V manga corta",0,5);
+        this.setCategoria(remeraEscoteVMangaCorta,"Superior");
+        this.setTela(remeraEscoteVMangaCorta,"Seda");
+        this.setTela(remeraEscoteVMangaCorta, "Algodon");
+        this.setTela(remeraEscoteVMangaCorta,"Poliester");
+        this.setTela(remeraEscoteVMangaCorta,"Lycra");
 
-        Tipo remera = new Tipo("Remera",0,10);
-        this.setCategoria(remera,"Superior");
-        this.setTela(remera,"Nylon"); this.setTela(remera, "Algodon");
-        this.setTela(remera, "Seda"); this.setTela(remera, "Poliester");
+        Tipo remeraEscoteVMangaLarga = new Tipo("Remera escote V manga larga",0,8);
+        this.setCategoria(remeraEscoteVMangaLarga,"Superior");
+        this.setTela(remeraEscoteVMangaLarga,"Seda");
+        this.setTela(remeraEscoteVMangaLarga, "Algodon");
+        this.setTela(remeraEscoteVMangaLarga,"Poliester");
+        this.setTela(remeraEscoteVMangaLarga,"Lycra");
 
-        Tipo ojotas = new Tipo("Ojotas",0,1);
-        this.setCategoria(ojotas,"Calzado");
-        this.setTela(ojotas,"Cuero"); this.setTela(ojotas, "Algodon");
+        Tipo sueter = new Tipo("Sueter",2,15);
+        this.setCategoria(sueter,"Superior");
+        this.setTela(sueter,"Seda");
+        this.setTela(sueter, "Algodon");
+        this.setTela(sueter,"Poliester");
 
-        Tipo reloj = new Tipo("Reloj",0,0);
-        this.setCategoria(reloj,"Accesorio");
-        this.setTela(reloj,"Cuero"); this.setTela(reloj, "Algodon");
-
-        Tipo zapatillas = new Tipo("Zapatillas",0,10);
-        this.setCategoria(zapatillas,"Calzado");
-        this.setTela(zapatillas,"Cuero"); this.setTela(zapatillas, "Algodon");
-
-        Tipo sweater = new Tipo("Sweater",2,12);
-        this.setCategoria(sweater,"Superior");
-        this.setTela(sweater,"Nylon"); this.setTela(sweater, "Algodon");
-        this.setTela(sweater, "Seda"); this.setTela(sweater, "Poliester");
-
-        Tipo shorts = new Tipo("Shorts",0,15);
-        this.setCategoria(shorts,"Inferior");
-        this.setTela(shorts,"Nylon"); this.setTela(shorts, "Algodon");
-        this.setTela(shorts, "Seda"); this.setTela(shorts, "Poliester");
-
-        Tipo musculosa = new Tipo("Camisa",0,8);
-        this.setCategoria(musculosa,"Superior");
-        this.setTela(musculosa,"Nylon"); this.setTela(musculosa, "Algodon");
-        this.setTela(musculosa, "Seda"); this.setTela(musculosa, "Poliester");
-
-        Tipo campera = new Tipo("Campera",3,25);
+        Tipo campera = new Tipo("Campera",2,13);
         this.setCategoria(campera,"Superior");
-        this.setTela(campera,"Nylon"); this.setTela(campera, "Algodon");
-        this.setTela(campera, "Seda"); this.setTela(campera, "Poliester");
+        this.setTela(campera,"Seda");
+        this.setTela(campera, "Algodon");
+        this.setTela(campera,"Poliester");
+        this.setTela(campera,"Cuero");
+        this.setTela(campera,"Nylon");
 
-        this.agregar(collar);
-        this.agregar(camisa);
+        Tipo buzo = new Tipo("Buzo",2,13);
+        this.setCategoria(buzo,"Superior");
+        this.setTela(buzo,"Lycra");
+        this.setTela(buzo, "Algodon");
+        this.setTela(buzo,"Poliester");
+        this.setTela(buzo,"Nylon");
+
+        Tipo musculosa = new Tipo("Musculosa",0,3);
+        this.setCategoria(musculosa,"Superior");
+        this.setTela(musculosa,"Lycra");
+        this.setTela(musculosa, "Algodon");
+
+        // -------------------- INFERIOR ----------------------
+        Tipo pantalónLargo = new Tipo("Pantalón largo",0,8);
+        this.setCategoria(pantalónLargo,"Inferior");
+        this.setTela(pantalónLargo,"Seda");
+        this.setTela(pantalónLargo, "Algodon");
+        this.setTela(pantalónLargo,"Poliester");
+        this.setTela(pantalónLargo,"Jean");
+        this.setTela(pantalónLargo,"Nylon");
+
+        Tipo pantalónCorto = new Tipo("Pantalón corto",0,3);
+        this.setCategoria(pantalónCorto,"Inferior");
+        this.setTela(pantalónCorto,"Seda");
+        this.setTela(pantalónCorto, "Algodon");
+        this.setTela(pantalónCorto,"Poliester");
+        this.setTela(pantalónCorto,"Jean");
+        this.setTela(pantalónCorto,"Nylon");
+
+        Tipo bermuda = new Tipo("Bermuda",0,3);
+        this.setCategoria(bermuda,"Inferior");
+        this.setTela(bermuda,"Seda");
+        this.setTela(bermuda, "Algodon");
+        this.setTela(bermuda,"Poliester");
+        this.setTela(bermuda,"Jean");
+        this.setTela(bermuda,"Nylon");
+
+        Tipo pollera = new Tipo("Pollera",0,3);
+        this.setCategoria(pollera,"Inferior");
+        this.setTela(pollera,"Seda");
+        this.setTela(pollera, "Algodon");
+        this.setTela(pollera,"Poliester");
+        this.setTela(pollera,"Jean");
+        this.setTela(pollera,"Nylon");
+
+        Tipo calza = new Tipo("Calza",0,5);
+        this.setCategoria(calza,"Inferior");
+        this.setTela(calza,"Lycra");
+        this.setTela(calza, "Algodon");
+        this.setTela(calza,"Poliester");
+        this.setTela(calza,"Nylon");
+        // -------------------- CALZADO ----------------------
+        Tipo zapatos = new Tipo("Zapatos",0,1);
+        this.setCategoria(zapatos,"Calzado");
+        this.setTela(zapatos,"Cuero");
+
+        Tipo zapatillas = new Tipo("Zapatillas",0,1);
+        this.setCategoria(zapatillas,"Calzado");
+        this.setTela(zapatillas,"Cuero");
+        this.setTela(zapatillas,"Nylon");
+
+        Tipo sandalias = new Tipo("Sandalias",0,1);
+        this.setCategoria(sandalias,"Calzado");
+        this.setTela(sandalias,"Cuero");
+        this.setTela(sandalias,"Nylon");
+        // -------------------- ACCESORIO ----------------------
+
+        // -------------------- PERSISTENCIA ----------------------
+        this.agregar(remeraCuelloRedondoMangaCorta);
+        this.agregar(remeraCuelloRedondoMangaLarga);
+        this.agregar(remeraEscoteVMangaCorta);
+        this.agregar(remeraEscoteVMangaLarga);
+        this.agregar(sueter);
         this.agregar(campera);
+        this.agregar(buzo);
         this.agregar(musculosa);
-        this.agregar(ojotas);
-        this.agregar(pantalon);
-        this.agregar(reloj);
-        this.agregar(remera);
-        this.agregar(shorts);
-        this.agregar(sweater);
+
+        this.agregar(pantalónCorto);
+        this.agregar(pantalónLargo);
+        this.agregar(bermuda);
+        this.agregar(pollera);
+        this.agregar(calza);
+
+        this.agregar(zapatos);
+        this.agregar(sandalias);
         this.agregar(zapatillas);
     }
     public Tipo crearNuevoTipo(String nombre){

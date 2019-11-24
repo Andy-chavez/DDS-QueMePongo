@@ -9,6 +9,8 @@ import spark.Response;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +24,11 @@ public class EventoController {
     }
 
     public ModelAndView mostrarTodos(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
 
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        List<Evento> eventos = usuario.getEventos();
 //        List<Evento> eventos = new ArrayList<Evento>();
 //        EventoDto eventoDto = new EventoDto();
 //        eventoDto.fecha = Instant.now().toString();
@@ -39,7 +44,6 @@ public class EventoController {
 //        eventoDto.fecha = Instant.now().plus(Duration.ofDays(30)).toString();
 //        eventos.add(new Evento(eventoDto));
 //        parametros.put("eventos", eventos);
-        List<Evento> eventos = this.repo.buscarTodos();
 
         return new ModelAndView(parametros, "eventos.hbs");
     }
@@ -61,4 +65,39 @@ public class EventoController {
         return new ModelAndView(parametros, "evento.hbs");
     }
 
+    public ModelAndView crearEvento(Request request, Response response){
+
+        return new ModelAndView(null, "crearEvento.hbs");
+    }
+
+    public Response guardarEvento(Request request, Response response) {
+        Evento evento = new Evento();
+        if(request.queryParams("nombre") != null){
+            evento.setNombre(request.queryParams("nombre"));
+        }
+
+        if(request.queryParams("tipo") != null){
+            evento.setTipo(request.queryParams("tipo"));
+        }
+
+        if(request.queryParams("lugar") != null){
+            evento.setLugar(request.queryParams("lugar"));
+        }
+
+        if((request.queryParams("fecha") != null) && (request.queryParams("hora") != null)){
+            evento.setFecha(request.queryParams("fecha")+request.queryParams("hora"));
+        }
+        else if((request.queryParams("fecha") != null) && (request.queryParams("hora") == null)){
+            LocalDate fecha = LocalDate.parse(request.queryParams("fecha"));
+            Instant instant = fecha.atStartOfDay(ZoneId.systemDefault()).toInstant();
+            evento.setFecha(instant);
+        }
+        if(request.queryParams("guardarropa") != null){
+            Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
+            evento.setGuardarropa(g);
+        }
+        this.repo.agregar(evento);
+        response.redirect("/eventos");
+        return response;
+    }
 }
