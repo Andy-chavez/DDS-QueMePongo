@@ -40,9 +40,9 @@ public class LoginController {
         }
         parametros.put("authenticationSucceeded", true);
         request.session().attribute("currentUser", UsuarioController.getID(request.queryParams("username")));
-//        if (request.queryParams("loginRedirect") != null) {
-//            response.redirect(request.queryParams("loginRedirect"));
-//        }
+        if (request.queryParams("loginRedirect") != null) {
+            response.redirect(request.queryParams("loginRedirect"));
+        }
         response.redirect("/");
         return null;
     }

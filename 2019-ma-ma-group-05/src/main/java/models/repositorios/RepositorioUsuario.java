@@ -31,5 +31,4 @@ public class RepositorioUsuario extends Repositorio {
     }
 
     public Usuario buscarPorNombre(String nombre){ return (Usuario) this.dao.buscarPorNombre(nombre); }
-
 }

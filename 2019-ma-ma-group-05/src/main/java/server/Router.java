@@ -31,24 +31,21 @@ public class Router {
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
         AtuendoController atuendoController = new AtuendoController();
-        //Spark.get("/quemepongo",usuarioController::pantallaDeInicio, Router.engine);
+        LoginController loginController = new LoginController();
 
-        Spark.get("/:idUsuario/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
+        Spark.get("/login", loginController::serveLoginPage, Router.engine);
+        Spark.post("/login", loginController::handleLoginPost, Router.engine);
+        Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
+        Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
         Spark.delete("/guardarropa/:idPrenda", prendaController::eliminar);
-        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-//        Spark.get("/:idUsuario/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/eventos", eventoController::mostrarTodos, Router.engine);
-        Spark.get("/:idUsuario/:idEvento", eventoController::mostrar, Router.engine);
-        Spark.post("/crearEvento", eventoController::guardarEvento);
+        Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
+        Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
         Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
+        Spark.post("/crearEvento", eventoController::guardarEvento);
 
         Spark.get("/calificarAtuendos", atuendoController::mostrarTodos, Router.engine);
-//        Spark.post("/usuario/:id", usuarioController::modificar);
-//
-//        Spark.post("/usuario", usuarioController::guardar);
-//
-//        Spark.delete("/usuario/:id", usuarioController::eliminar);
+
 //
 //        Spark.after((req, res) -> {
 //            PerThreadEntityManagers.closeEntityManager();

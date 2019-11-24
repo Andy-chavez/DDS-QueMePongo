@@ -21,7 +21,7 @@ public class DAOUsuario implements DAO {
     }
     @Override
     public Object buscarPorNombre(String nombre) { //obtiene el primer resultado en caso de haber varios
-        String query = "from Usuario as u where u.nombre = '" + nombre + "'";
+        String query = "from Usuario as u where u.usuario = '" + nombre + "'";
         List listUsuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         if(listUsuarios.size()>0){
