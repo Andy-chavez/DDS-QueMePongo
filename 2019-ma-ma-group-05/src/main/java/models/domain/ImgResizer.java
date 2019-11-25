@@ -12,12 +12,13 @@ import javax.imageio.ImageIO;
 
 public class ImgResizer {
 
-	private static int MAX_ANCHO;
-	private static int MAX_ALTO;
-	private static String pathEnSistema; //habria que obtenerlo del sistema?
+	private static int MAX_ANCHO = 500;
+	private static int MAX_ALTO = 500;
+	private static String pathEnSistema = "C:/Users/Andy/Documents/GitHub/3 SISTEMAS/DDS/2019-ma-ma-group-05/2019-ma-ma-group-05/src/main/resources/public/img/";
 	public ImgResizer(){
-		this.MAX_ALTO = ConfigReader.getIntValue("configuraciones.properties","max_alto");
-		this.MAX_ANCHO = ConfigReader.getIntValue("configuraciones.properties","max_ancho");
+		//this.MAX_ALTO = ConfigReader.getIntValue("configuraciones.properties","max_alto");
+		//this.MAX_ANCHO = ConfigReader.getIntValue("configuraciones.properties","max_ancho");
+		this.pathEnSistema = ConfigReader.getStringValue("configuraciones.properties", "pathImagenes");
 	}
 	public static void copyImage(String filePath, Prenda prenda) { //guarda la imagen resizeada
         BufferedImage bimage = getImagen(filePath);
@@ -49,7 +50,7 @@ public class ImgResizer {
 	 public static void saveImage(BufferedImage bufferedImage, String pathName) { //guarda imagen a disco
 	        try {
 	            String format = (pathName.endsWith(".png")) ? "png" : "jpg";
-	            File file =new File(pathName);
+	            File file =new File((pathEnSistema + pathName));
 	            file.getParentFile().mkdirs();
 	            ImageIO.write(bufferedImage, format, file);
 	        } catch (IOException e) {

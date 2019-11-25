@@ -105,6 +105,7 @@ public class CargaDatosDespliegue {
         aroco_remeraCuelloRedondoMangaCorta = SimpleFactoryPrendas.crearPrenda("Remera cuello redondo manga corta");
         RepositorioPrenda.getInstance().setTela(aroco_remeraCuelloRedondoMangaCorta, "Algodon");
         RepositorioPrenda.getInstance().setColorPrimario(aroco_remeraCuelloRedondoMangaCorta, ColorPersistible.black.getHex());
+        aroco_remeraCuelloRedondoMangaCorta.setImage("C:/Users/Andy/Documents/GitHub/3 SISTEMAS/DDS/2019-ma-ma-group-05/2019-ma-ma-group-05/src/main/resources/public/images/foto_remera.jpg");
         aroco_remeraEscoteVMangaCorta = SimpleFactoryPrendas.crearPrenda("Remera escote V manga corta");
         RepositorioPrenda.getInstance().setTela(aroco_remeraEscoteVMangaCorta,"Lycra");
         RepositorioPrenda.getInstance().setColorPrimario(aroco_remeraEscoteVMangaCorta, ColorPersistible.white.getHex());
