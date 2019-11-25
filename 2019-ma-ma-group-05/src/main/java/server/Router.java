@@ -30,20 +30,23 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
+        TipoController tipoController = new TipoController();
         AtuendoController atuendoController = new AtuendoController();
         LoginController loginController = new LoginController();
-      
+
         Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
       
         Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
-      
+
+        Spark.get("/tiposPorCategoria", tipoController::buscarPorCategoria, Router.engine);
       
         Spark.get("/login", loginController::serveLoginPage, Router.engine);
         Spark.post("/login", loginController::handleLoginPost, Router.engine);
         Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
-        Spark.get("/:idGuardarropa", prendaController::mostrarTodos, Router.engine);
         Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
+        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
+        Spark.get("/guardarropas/:idGuardarropa", guardarropaController::mostrar, Router.engine);
         Spark.delete("/guardarropa/:idPrenda", prendaController::eliminar);
         Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
         Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
@@ -58,3 +61,4 @@ public class Router {
 //        });
     }
 }
+

@@ -31,12 +31,14 @@ public class GuardarropaController {
     }
 
     public ModelAndView mostrar(Request request, Response response){
-        Guardarropa guardarropa = this.repo.buscarPorId(Integer.valueOf(request.params("id")));
+        LoginController.ensureUserIsLoggedIn(request, response);
         RepositorioPrenda repoPrendas = RepositorioPrenda.getInstance();
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        Guardarropa guardarropa = usuario.getGuardarropas().get(Integer.valueOf(request.params(":idguardarropa"))); // le paso el indice por params, no el id.
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("guardarropa", guardarropa);
         parametros.put("prendas", repoPrendas.buscarTodos(guardarropa.getId()));
-        return new ModelAndView(parametros, "guardarropa.hbs");
+        return new ModelAndView(parametros, "prendas.hbs");
     }
 
     public Response modificar(Request request, Response response){

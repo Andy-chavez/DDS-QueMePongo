@@ -26,6 +26,8 @@ public class RepositorioTipo extends Repositorio{
 
     public Tipo buscarPorNombre(String nombre){ return (Tipo) this.dao.buscarPorNombre(nombre); }
 
+    public List<Tipo> buscarPorCategoria(String categoria){ return (List<Tipo>)(List<?>) this.dao.buscarPorCategoria(categoria); }
+
     @Override
     public void iniciarBase() {
         // -------------------- SUPERIOR ----------------------

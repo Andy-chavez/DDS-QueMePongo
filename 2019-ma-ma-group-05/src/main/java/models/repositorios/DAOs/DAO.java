@@ -26,4 +26,8 @@ public interface DAO {
         EntityManagerHelper.getEntityManager().getTransaction().commit();
     };
 
+    default Object buscarPorCategoria(String categoria){
+        return null;
+    };
+
 }
