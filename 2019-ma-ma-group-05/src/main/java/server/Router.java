@@ -39,8 +39,12 @@ public class Router {
 
         Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
-        Spark.get("/guardarropas/:idGuardarropa", guardarropaController::mostrar, Router.engine);
-        Spark.delete("/guardarropa/:idPrenda", prendaController::eliminar);
+        Spark.get("/guardarropas/:idGuardarropa/prendas", guardarropaController::mostrar, Router.engine);
+        Spark.get("/guardarropas/:idGuardarropa/prendas/new", guardarropaController::mostrar, Router.engine);
+        Spark.delete("/guardarropas/:idGuardarropa/prendas/:idPrenda", prendaController::eliminar);
+
+        Spark.delete("/prendas/:idPrenda", prendaController::eliminar);
+
         Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
         Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
         Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);

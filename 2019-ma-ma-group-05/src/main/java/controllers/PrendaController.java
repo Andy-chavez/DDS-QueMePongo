@@ -29,7 +29,7 @@ public class PrendaController {
     }
 
     public Response eliminar(Request request, Response response){
-        this.repo.eliminar(this.repo.buscarPorId(new Integer(request.params("idPrenda"))));
+        this.repo.eliminar(this.repo.buscarPorId(new Integer(request.params(":idPrenda"))));
         return response;
     }
 /*

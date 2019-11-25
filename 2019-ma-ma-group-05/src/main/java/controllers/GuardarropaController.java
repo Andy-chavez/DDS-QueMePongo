@@ -34,7 +34,7 @@ public class GuardarropaController {
         LoginController.ensureUserIsLoggedIn(request, response);
         RepositorioPrenda repoPrendas = RepositorioPrenda.getInstance();
         Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
-        Guardarropa guardarropa = usuario.getGuardarropas().get(Integer.valueOf(request.params(":idguardarropa"))); // le paso el indice por params, no el id.
+        Guardarropa guardarropa = repo.buscarPorId(Integer.valueOf(request.params(":idguardarropa")));
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("guardarropa", guardarropa);
         parametros.put("prendas", repoPrendas.buscarTodos(guardarropa.getId()));
