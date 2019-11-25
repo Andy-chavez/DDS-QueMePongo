@@ -34,6 +34,7 @@ public class GuardarropaController {
         LoginController.ensureUserIsLoggedIn(request, response);
         RepositorioPrenda repoPrendas = RepositorioPrenda.getInstance();
         Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        // TODO: verificar que guardarropa pertenece al usuario, sino cualquier usuario logeado podria ver los guardarropas de los demas
         Guardarropa guardarropa = repo.buscarPorId(Integer.valueOf(request.params(":idguardarropa")));
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("guardarropa", guardarropa);

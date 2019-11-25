@@ -70,32 +70,21 @@ public class EventoController {
         return new ModelAndView(null, "crearEvento.hbs");
     }
 
+    private String parseFecha(String fecha, String hora){
+        String instantString =  fecha + "T" + hora + ":00Z";
+        instantString = instantString.replaceAll("/", "-");
+        return instantString;
+    }
     public Response guardarEvento(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Evento evento = new Evento();
-        if(request.queryParams("nombre") != null){
-            evento.setNombre(request.queryParams("nombre"));
-        }
-
-        if(request.queryParams("tipo") != null){
-            evento.setTipo(request.queryParams("tipo"));
-        }
-
-        if(request.queryParams("lugar") != null){
-            evento.setLugar(request.queryParams("lugar"));
-        }
-
-        if((request.queryParams("fecha") != null) && (request.queryParams("hora") != null)){
-            evento.setFecha(request.queryParams("fecha")+request.queryParams("hora"));
-        }
-        else if((request.queryParams("fecha") != null) && (request.queryParams("hora") == null)){
-            LocalDate fecha = LocalDate.parse(request.queryParams("fecha"));
-            Instant instant = fecha.atStartOfDay(ZoneId.systemDefault()).toInstant();
-            evento.setFecha(instant);
-        }
-        if(request.queryParams("guardarropa") != null){
-            Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
-            evento.setGuardarropa(g);
-        }
+        evento.setNombre(request.queryParams("nombre"));
+        evento.setTipo(request.queryParams("tipo"));
+        evento.setLugar(request.queryParams("lugar"));
+        String fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora"));
+        evento.setFecha(fecha); // tiene que tener este formato: "2019-09-04T10:15:30Z";
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
+        evento.setGuardarropa(g);
         this.repo.agregar(evento);
         response.redirect("/eventos");
         return response;

@@ -40,15 +40,17 @@ public class Router {
         Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa/prendas", guardarropaController::mostrar, Router.engine);
-        Spark.get("/guardarropas/:idGuardarropa/prendas/new", guardarropaController::mostrar, Router.engine);
+        Spark.get("/guardarropas/:idGuardarropa/prendas/new", guardarropaController::crear, Router.engine);
         Spark.delete("/guardarropas/:idGuardarropa/prendas/:idPrenda", prendaController::eliminar);
 
         Spark.delete("/prendas/:idPrenda", prendaController::eliminar);
 
+
+        // DATO: eventos/new tiene que declararse antes que eventos/:id porque sino, cuando se escriba el url, piensa que "new" es un id
         Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
+        Spark.get("/eventos/new", eventoController::crearEvento, Router.engine);
+        Spark.post("/eventos/new", eventoController::guardarEvento);
         Spark.get("/eventos/:idEvento", eventoController::mostrar, Router.engine);
-        Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
-        Spark.post("/crearEvento", eventoController::guardarEvento);
 
         Spark.get("/calificarAtuendos", atuendoController::mostrarTodos, Router.engine);
 
