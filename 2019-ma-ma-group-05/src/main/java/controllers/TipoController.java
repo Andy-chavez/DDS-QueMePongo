@@ -112,6 +112,6 @@ public class TipoController {
         response.redirect("/usuarios");
         return response;
     }
+}
 */
-
 
