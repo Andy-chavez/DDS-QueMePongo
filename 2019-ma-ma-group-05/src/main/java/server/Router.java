@@ -44,6 +44,9 @@ public class Router {
         Spark.post("/login", loginController::handleLoginPost, Router.engine);
         Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
+        Spark.get("/signup", usuarioController::crearCuenta, Router.engine);
+        Spark.post("/signup", usuarioController::guardarCuenta);
+
         Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
 
         Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
