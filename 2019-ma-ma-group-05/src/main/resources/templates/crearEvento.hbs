@@ -64,11 +64,11 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#datepicker').datetimepicker();
+        $('#datepicker').datepicker({
+            dateFormat:'yy-mm-dd',
+        });
     });
-var altFormat = $( ".selector" ).datepicker( "option", "altFormat" );
 
-$( ".selector" ).datepicker( "option", "altFormat", "yy-mm-dd" );
 </script>
 </body>
 </html>

@@ -67,23 +67,35 @@ public class EventoController {
 
     public ModelAndView crearEvento(Request request, Response response){
         LoginController.ensureUserIsLoggedIn(request, response);
-        return new ModelAndView(null, "crearEvento.hbs");
+        Map<String, Object> parametros = new HashMap<>();
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        List<Guardarropa> guardarropas = usuario.getGuardarropas();
+        List<String> tipos = new ArrayList<String>();
+        parametros.put("tipos", tipos);
+        parametros.put("guardarropas", guardarropas);
+        return new ModelAndView(parametros, "crearEvento.hbs");
     }
 
+    // ni miren esta funcion, es horrible
     private String parseFecha(String fecha, String hora){
-        String instantString =  fecha + "T" + hora + ":00Z";
-        instantString = instantString.replaceAll("/", "-");
+        String[] splittedFecha= fecha.split("/");
+
+        String instantString =  splittedFecha[2] + "-" + splittedFecha[0] + "-" + splittedFecha[1]  + "T" + hora + ":00Z";
         return instantString;
     }
     public Response guardarEvento(Request request, Response response) {
         LoginController.ensureUserIsLoggedIn(request, response);
-        Evento evento = new Evento();
-        evento.setNombre(request.queryParams("nombre"));
-        evento.setTipo(request.queryParams("tipo"));
-        evento.setLugar(request.queryParams("lugar"));
-        String fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora"));
-        evento.setFecha(fecha); // tiene que tener este formato: "2019-09-04T10:15:30Z";
-        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        EventoDto eventoDto = new EventoDto();
+        eventoDto.usuario = usuario;
+        eventoDto.nombre = request.queryParams("nombre");
+        eventoDto.tipo = request.queryParams("tipo");
+        eventoDto.lugar = request.queryParams("lugar");
+        String fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora")); // tiene que tener este formato: "2019-09-04T10:15:30Z";
+        eventoDto.fecha = fecha;
+        Evento evento = new Evento(eventoDto);
+
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(Integer.valueOf(request.queryParams("guardarropa")));
         evento.setGuardarropa(g);
         this.repo.agregar(evento);
         response.redirect("/eventos");
