@@ -34,5 +34,80 @@
             </tr>
         </tbody>
     </table>
+
 {{/partial}}
 {{>pagina_base.hbs}}
+
+<style>
+    .table-xs {
+    width:544px;
+}
+
+.table-sm {
+    width: 576px;
+}
+
+.table-md {
+    width: 768px;
+}
+
+.table-lg {
+    width: 992px;
+}
+
+.table-xl {
+    width: 1200px;
+}
+
+/* Small devices (landscape phones, 544px and up) */
+@media (min-width: 576px) {
+    .table-sm {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+
+    .table-lg {
+        width: 100%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .table-sm {
+        width: 100%;
+    }
+
+    .table-md {
+        width: 100%;
+    }
+
+    .table-lg {
+        width: 100%;
+    }
+
+    .table-xl {
+        width: 100%;
+    }
+}
+</style>

@@ -4,7 +4,9 @@ import db.EntityManagerHelper;
 import models.entities.Atuendo;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
+import models.entities.Tipo;
 import models.repositorios.RepositorioAtuendo;
+import models.repositorios.RepositorioCategoria;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
 import org.junit.Test;
@@ -29,6 +31,14 @@ public class SalvaPapasTest {
     public void verAtuendos(){
         List<Atuendo> atuendos =  RepositorioAtuendo.getInstance().buscarTodos(4);
         atuendos.forEach(prenda->{System.out.println(prenda.getId());});
+    }
+    @Test
+    public void verTiposdeCategoria(){
+        String categoria = "Superior";
+        String query = "from Tipo where categoria.id =" + RepositorioCategoria.getInstance().buscarPorNombre(categoria).getId();
+        List<Tipo> tipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        tipos.forEach(tipo->{System.out.println(tipo.getNombre());});
     }
 
 }
