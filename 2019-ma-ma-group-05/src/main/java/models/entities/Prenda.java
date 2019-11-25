@@ -16,7 +16,7 @@ import java.time.ZoneId;
 @Entity
 @Table(name="prenda")
 public class Prenda extends EntidadPersistente  implements Cloneable{
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<ColorPersistible> colores;
 	@Column(name = "imagen")
 	private String imagen;
