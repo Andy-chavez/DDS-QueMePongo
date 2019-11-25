@@ -45,7 +45,6 @@ public class Router {
         Spark.post("/logout", loginController::handleLogoutPost, Router.engine);
 
         Spark.get("/", guardarropaController::mostrarTodos, Router.engine);
-        Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa", guardarropaController::mostrar, Router.engine);
         Spark.delete("/guardarropa/:idPrenda", prendaController::eliminar);
         Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);
@@ -53,7 +52,7 @@ public class Router {
         Spark.get("/crearEvento", eventoController::crearEvento, Router.engine);
         Spark.post("/crearEvento", eventoController::guardarEvento);
 
-        Spark.get("/calificarAtuendos", atuendoController::mostrarTodos, Router.engine);
+        Spark.get("/atuendos", atuendoController::mostrarTodos, Router.engine);
 
 //
 //        Spark.after((req, res) -> {

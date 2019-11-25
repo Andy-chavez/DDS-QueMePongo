@@ -2,8 +2,10 @@ package controllers;
 
 import models.entities.Guardarropa;
 import models.entities.Prenda;
+import models.entities.Tipo;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
+import models.repositorios.RepositorioTipo;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -34,12 +36,16 @@ public class PrendaController {
     }
 
     public ModelAndView pantallaDeCreacion(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
         return new ModelAndView(parametros, "creacion_de_prendas.hbs");
     }
 
     public ModelAndView eleccionDeCategoria(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
+//        List<Tipo> tipos = RepositorioTipo.getInstance().buscarPorCategoria(request.params("nombre"));
+//        parametros.put("tipos", tipos);
         return new ModelAndView(parametros, "eleccionDeCategoria.hbs");
     }
 }

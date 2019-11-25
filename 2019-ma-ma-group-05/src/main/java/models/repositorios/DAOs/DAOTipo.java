@@ -56,8 +56,7 @@ public class DAOTipo implements DAO {
     @Override
     public List<Tipo> buscarPorCategoria(String categoria){
         List<Tipo> tipos = (List<Tipo>)(List<?>) this.buscarTodos();
-
-        String filtro = "Superior";
+ //       String filtro = "Superior";
         List<Tipo> tipaso = tipos.stream()
 //                .filter(tipo -> "Superior".equals(tipo.getCategoria().getNombre()))
                 .filter(tipo ->  categoria.equals(tipo.getCategoria().getNombre()))
