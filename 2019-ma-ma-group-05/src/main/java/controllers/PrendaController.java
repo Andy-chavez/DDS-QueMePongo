@@ -20,7 +20,7 @@ public class PrendaController {
     }
 
    public ModelAndView mostrarTodos(Request request, Response response) {
-
+       LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
         Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.params("idGuardarropa")));
         List<Prenda> prendas = g.getPrendas();
@@ -29,65 +29,18 @@ public class PrendaController {
     }
 
     public Response eliminar(Request request, Response response){
-        this.repo.eliminar(this.repo.buscarPorId(new Integer(request.params(":idPrenda"))));
+        this.repo.eliminar(this.repo.buscarPorId(new Integer(request.params("idPrenda"))));
         return response;
     }
-/*
 
-    private void asignarAtributosA(Usuario usuario, Request request){
-        if(request.queryParams("telefono") != null){
-            int telefono = new Integer(request.queryParams("telefono"));
-            usuario.setTelefono(telefono);
-        }
-
-        if(request.queryParams("nombre") != null){
-            usuario.setNombre(request.queryParams("nombre"));
-        }
-
-        if(request.queryParams("email") != null){
-            usuario.setEmail(request.queryParams("email"));
-        }
-
-        if(request.queryParams("nombreDeUsuario") != null){
-            usuario.setNombreDeUsuario(request.queryParams("nombreDeUsuario"));
-        }
-
-        if(request.queryParams("apellido") != null){
-            usuario.setApellido(request.queryParams("apellido"));
-        }
-
-        if(request.queryParams("legajo") != null){
-            int legajo = new Integer(request.queryParams("legajo"));
-            usuario.setLegajo(legajo);
-        }
-
-        if(request.queryParams("fechaDeNacimiento") != null && !request.queryParams("fechaDeNacimiento").isEmpty()){
-            LocalDate fechaDeNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
-            usuario.setFechaDeNacimiento(fechaDeNacimiento);
-        }
-
-        if(request.queryParams("rol") != null){
-            RepositorioRol repoRol = FactoryRepositorioRol.get();
-            Rol unRol = repoRol.buscar(new Integer(request.queryParams("rol")));
-            usuario.setRol(unRol);
-        }
-    }
-
-    public ModelAndView crear(Request request, Response response){
+    public ModelAndView pantallaDeCreacion(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        RepositorioRol repoRol = FactoryRepositorioRol.get();
-
-        parametros.put("roles", repoRol.buscarTodos());
-        return new ModelAndView(parametros, "usuario.hbs");
+        return new ModelAndView(parametros, "creacion_de_prendas.hbs");
     }
 
-    public Response guardar(Request request, Response response){
-        Usuario usuario = new Usuario();
-        asignarAtributosA(usuario, request);
-        this.repo.agregar(usuario);
-        response.redirect("/usuarios");
-        return response;
+    public ModelAndView eleccionDeCategoria(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        return new ModelAndView(parametros, "eleccionDeCategoria.html");
     }
-*/
-
 }
+
