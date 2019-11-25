@@ -66,7 +66,7 @@ public class EventoController {
     }
 
     public ModelAndView crearEvento(Request request, Response response){
-
+        LoginController.ensureUserIsLoggedIn(request, response);
         return new ModelAndView(null, "crearEvento.hbs");
     }
 
