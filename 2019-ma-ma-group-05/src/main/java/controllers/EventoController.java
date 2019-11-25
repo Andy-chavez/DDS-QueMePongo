@@ -2,6 +2,7 @@ package controllers;
 import dtoClases.EventoDto;
 import models.entities.*;
 import models.entities.EstadosEvento.Inactivo;
+import models.entities.EstadosEvento.Pendiente;
 import models.repositorios.*;
 import spark.ModelAndView;
 import spark.Request;
@@ -89,14 +90,19 @@ public class EventoController {
         EventoDto eventoDto = new EventoDto();
         eventoDto.usuario = usuario;
         eventoDto.nombre = request.queryParams("nombre");
-        eventoDto.tipo = request.queryParams("tipo");
         eventoDto.lugar = request.queryParams("lugar");
         String fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora")); // tiene que tener este formato: "2019-09-04T10:15:30Z";
         eventoDto.fecha = fecha;
+        eventoDto.tipo = request.queryParams("tipo");
+        Guardarropa guardarropa = RepositorioGuardarropa.getInstance().buscarPorId(Integer.valueOf(request.queryParams("guardarropa")));
+        eventoDto.guardarropa = guardarropa;
+        eventoDto.repeticionDias = Integer.valueOf(request.queryParams("repeticionDias"));
+        eventoDto.anticipacionHoras = Integer.valueOf(request.queryParams("anticipacionHoras"));
+        eventoDto.estado = new Pendiente();
+        eventoDto.repetir = Integer.valueOf(request.queryParams("repeticionDias")) != 0;
+
         Evento evento = new Evento(eventoDto);
 
-        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(Integer.valueOf(request.queryParams("guardarropa")));
-        evento.setGuardarropa(g);
         this.repo.agregar(evento);
         response.redirect("/eventos");
         return response;
