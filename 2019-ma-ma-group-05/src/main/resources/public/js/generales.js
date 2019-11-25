@@ -39,14 +39,13 @@ function confirmarEliminacion(id){
   document.getElementById("modalEliminar").style.display = 'block';
 }
 
-function eliminarPrenda(){
-    var id = document.getElementById("id").value;
+function eliminarPrenda(idGuardarropas, idPrenda){
     $.ajax({
-        type: "DELETE",
-        url: "/usuario/guardarropa/"+id,
-        success: function(result){
-            location.reload(true);
-        }
+        method: "DELETE",
+        url: "prendas/" + idPrenda,
+        success: function(){
+            window.location.reload();
+        },
     });
 }
 

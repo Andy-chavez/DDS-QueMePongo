@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +17,7 @@
     <div class = "container-fluid p-2" style = "background-color: #78c1ad;">
         <div class = "container">
             <h1 class = "display-3 text-center text-white">Prendas</h1>
-            <a type="button" class="btn btn-outline-dark" href="/agregarPrenda">+ Agregar prenda</a>
+            <a type="button" class="btn btn-outline-dark" href="/guardarropas/{{guardarropa.id}}/prendas/new">+ Agregar prenda</a>
         </div>
     </div>
 
@@ -32,14 +33,9 @@
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
                     <div class = "p-1 border" style="padding:12px;background-color: {{colorPrimario.hex}}; line-height:24px;font-size:1%">. </div>
                     <div class = "p-1 border " style="padding:12px;background-color: {{colorSecundario.hex}}; line-height:24px;font-size:1%">. </div>
-                    <div class = "p-1">
-                    <a type="button"
-                       class="btn btn-danger open-AddBookDialog p-1"
-                       data-toggle="modal"
-                       data-target = "#myModal"
-                       data-id ="@{{id}}" >Eliminar prenda
-                    </a>
-                    </div>
+                    <button onclick="eliminarPrenda({{guardarropa.id}}, {{@id}})">
+                       Eliminar prenda
+                    </button>
                 </div>
             </div>
             {{/each}}
@@ -86,9 +82,12 @@
           <p> UTN FRBA 2019 - Diseño de Sistemas - ¿Qué me pongo? - Grupo 5. Copyright &copy;</p>
       </footer>
   </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 </html>
 
 <style>
+
 .footer {
   width: 100% !important;
   height: 20px !important;
@@ -104,3 +103,4 @@
   position: fixed; !important;
 }
 </style>
+
