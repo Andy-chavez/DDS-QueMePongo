@@ -1,13 +1,17 @@
 package models.repositorios.DAOs;
 
+import com.google.gson.internal.$Gson$Preconditions;
 import db.EntityManagerHelper;
 import models.entities.Categorias.*;
 import models.entities.Prenda;
 import models.entities.Tela;
 import models.entities.Tipo;
+import models.repositorios.RepositorioCategoria;
+import org.hibernate.annotations.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DAOTipo implements DAO {
     private static DAOTipo instance;
@@ -49,10 +53,16 @@ public class DAOTipo implements DAO {
         return null;
     }
 
-    public List<Prenda> buscarPorCategoria(String categoria){
-        String query = "SELECT tc.nombre,tt.nombre FROM quemepongo.tipo tt, quemepongo.categoria tc " +
-                            "WHERE tc.id=tt.categoria_id AND tc.nombre='"+categoria+"'";
-        List tipos = EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
-        return tipos;
+    @Override
+    public List<Tipo> buscarPorCategoria(String categoria){
+        List<Tipo> tipos = (List<Tipo>)(List<?>) this.buscarTodos();
+
+        String filtro = "Superior";
+        List<Tipo> tipaso = tipos.stream()
+//                .filter(tipo -> "Superior".equals(tipo.getCategoria().getNombre()))
+                .filter(tipo ->  categoria.equals(tipo.getCategoria().getNombre()))
+                .collect(Collectors.toList());
+//        EntityManagerHelper.closeEntityManager();
+        return tipaso;
     }
 }

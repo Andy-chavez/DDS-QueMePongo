@@ -40,7 +40,7 @@ public class PrendaController {
 
     public ModelAndView eleccionDeCategoria(Request request, Response response) {
         Map<String, Object> parametros = new HashMap<>();
-        return new ModelAndView(parametros, "eleccionDeCategoria.html");
+        return new ModelAndView(parametros, "eleccionDeCategoria.hbs");
     }
 }
 

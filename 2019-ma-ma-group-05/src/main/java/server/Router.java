@@ -30,13 +30,15 @@ public class Router {
         GuardarropaController guardarropaController = new GuardarropaController();
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
+        TipoController tipoController = new TipoController();
         AtuendoController atuendoController = new AtuendoController();
         LoginController loginController = new LoginController();
       
         Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
       
         Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
-      
+
+        Spark.get("/tiposPorCategoria", tipoController::buscarPorCategoria, Router.engine);
       
         Spark.get("/login", loginController::serveLoginPage, Router.engine);
         Spark.post("/login", loginController::handleLoginPost, Router.engine);
