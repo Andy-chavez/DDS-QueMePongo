@@ -41,11 +41,57 @@ public class GuardarropaController {
         return new ModelAndView(parametros, "prendas.hbs");
     }
 
+    public ModelAndView mostrarAtuendos(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Map<String, Object> parametros = new HashMap<>();
+
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        Guardarropa guardarropa =  repo.buscarPorId(Integer.valueOf(request.params(":idGuardarropa")));
+        parametros.put("guardarropa", guardarropa);
+        parametros.put("atuendos", guardarropa.getAtuendosSugeridos());
+        parametros.put("atuendosRechazados", guardarropa.getAtuendosRechazados());
+        return new ModelAndView(parametros, "atuendos_sugeridos.hbs");
+    }
+    public ModelAndView generarSugerencia(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Map<String, Object> parametros = new HashMap<>();
+
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        Guardarropa guardarropa =  repo.buscarPorId(Integer.valueOf(request.params(":idGuardarropa")));
+        parametros.put("guardarropa", guardarropa);
+        Atuendo atuendo = usuario.obtenerSugerencia(guardarropa);
+        guardarropa.agregarSugerencia(atuendo);
+        RepositorioAtuendo.getInstance().agregar(atuendo);
+        parametros.put("atuendo", atuendo);
+        return new ModelAndView(parametros, "generar_sugerencia.hbs");
+    }
+
     public Response modificar(Request request, Response response){
         Guardarropa guardarropa = this.repo.buscarPorId(Integer.valueOf(request.params("id")));
 //        asignarAtributosA(guardarropa, request);
 //        this.repo.modificar(guardarropa);
         response.redirect("/guardarropas");
+        return response;
+    }
+    public Response aceptarAtuendo(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Atuendo atuendo =  RepositorioAtuendo.getInstance().buscarPorId(Integer.valueOf(request.params(":idAtuendo")));
+        Guardarropa guardarropa = repo.buscarPorId(Integer.valueOf(request.params(":idGuardarropa")));
+        atuendo.setRechazado(false);
+        repo.modficar(guardarropa);
+        response.redirect("/guardarropas/" + guardarropa.getId() + "/atuendos");
+        return response;
+    }
+    public Response rechazarAtuendo(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Atuendo atuendo =  RepositorioAtuendo.getInstance().buscarPorId(Integer.valueOf(request.params(":idAtuendo")));
+        Guardarropa guardarropa = repo.buscarPorId(Integer.valueOf(request.params(":idGuardarropa")));
+        atuendo.setRechazado(true);
+//        guardarropa.getAtuendosSugeridos().remove(atuendo);
+//        guardarropa.agregarAtuendoRechazado(atuendo);
+        guardarropa.agregarSugerencia(atuendo);
+        repo.modficar(guardarropa);
+        response.redirect("/guardarropas/" + guardarropa.getId() + "/atuendos");
         return response;
     }
 

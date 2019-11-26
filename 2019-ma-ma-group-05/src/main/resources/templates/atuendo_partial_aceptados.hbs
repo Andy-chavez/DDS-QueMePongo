@@ -1,0 +1,51 @@
+<style>
+    .rate {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .thumb{
+        font-size: 70px;
+        color: rgb(237,237,237);
+    }
+    .fa-thumbs-down:hover {
+        color: rgb(232, 122, 122) !important;
+    }
+    .fa-thumbs-up:hover {
+        color: rgb(119, 169, 255) !important;
+    }
+    .disliked {
+        color: rgb(232, 122, 122) !important;
+    }
+    .liked {
+        color: rgb(119, 169, 255) !important;
+    }
+    .atuendo-div {
+        margin-bottom: 24px;
+        border-bottom: 1px;
+        border-color: rgba(0,0,0,0.1);
+    }
+
+</style>
+<div class ="col-lg-4 col-md-6 col-sm-12 col-12 border atuendo-div">
+    <div class = "m-2">
+        {{#each prendas}}
+        <div class = "p-1 border"><img src="{{imagen}}" style="width:100%;"> </div>
+        <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}}</div>
+        <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tela.nombre}} </div>
+        {{/each}}
+        <div>
+            <form>
+                {{#if rechazado}}
+                {{else}}
+                <div class="rate">
+                    <i class="fa fa-thumbs-down thumb"></i>
+                    <i class="fa fa-thumbs-up thumb liked"></i>
+                </div>
+                {{/if}}
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/js/generales.js"></script>

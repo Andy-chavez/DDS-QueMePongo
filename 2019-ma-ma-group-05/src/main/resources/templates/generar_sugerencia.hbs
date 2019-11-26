@@ -1,0 +1,51 @@
+    <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/27517fada0.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="/js/generales.js"></script>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="icon" href="img/Logo.png">
+    <link rel="stylesheet" href="/css/prendas.estilos.css">
+    <title>Atuendos</title>
+  </head>
+  <body id="body">
+    <style>
+        .event-info {
+            background-color: white;
+            width: auto;
+            border-radius: 8px;
+            padding: 20px;
+            line-height: 40px;
+            margin-bottom: 16px;
+        }
+        .event-table-data{
+            font-size: 18px;
+            color: grey;
+            text-align: right;
+        }
+        .event-info-title{
+            margin-bottom: 8px;
+            color: rgb(250, 110, 133);
+            font-size: 30px;"
+        }
+    </style>
+    <header>
+        <img src="/img/logo.png" alt="logo" class="Logo">
+        <h1  class="encabezado"><i class="fas fa-tshirt"></i>Atuendos</h1>
+    </header>
+    <div class="main_container" style="width: auto !important; height:auto !important; top: 100px; padding: 20px;">
+        <div>
+            <h2 class="event-info-title">Sugerencia</h2>
+                <div class="event-info">
+                    {{>atuendo_partial_sin_calificar.hbs atuendo}}
+                </div>
+        </div>
+    </div>
+  </body>
+  <script>
+  </script>
+</html>
