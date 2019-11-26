@@ -20,20 +20,27 @@
             border-radius: 8px;
             padding: 20px;
             line-height: 40px;
+            margin-bottom: 16px;
         }
         .event-table-data{
             font-size: 18px;
             color: grey;
+            text-align: right;
+        }
+        .event-info-title{
+            margin-bottom: 8px;
+            color: rgb(250, 110, 133);
+            font-size: 30px;"
         }
     </style>
     <header>
         <img src="/img/logo.png" alt="logo" class="Logo">
         <h1  class="encabezado"><i class="fas fa-tshirt"></i>Evento</h1>
     </header>
-    <div class="main_container" style="top: 100px; padding: 20px;">
+    <div class="main_container" style="width: auto !important; height:auto !important; top: 100px; padding: 20px;">
         <div>
-            <h2 style="margin: 18px 0px 6px 6px; color: rgb(250, 110, 133); font-size: 30px;">{{evento.nombre}}</h2>
             <div class="event-info">
+            <h2 class="event-info-title">{{evento.nombre}}</h2>
             <table>
                 <tbody style="margin:auto;">
 
@@ -55,9 +62,11 @@
             </div>
         </div>
         <div>
-            <h2 style="margin: 18px 0px 6px 6px; color: rgb(250, 110, 133); font-size: 30px;">Atuendo sugerido</h2>
             <div class="event-info">
-
+                <h2 class="event-info-title">Atuendo sugerido</h2>
+                {{#each atuendo.prendas}}
+                    {{> prenda_partial.hbs}}
+                {{/each}}
             </div>
         </div>
     </div>

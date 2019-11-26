@@ -28,40 +28,43 @@ public class EventoController {
         LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
 
+        EventoDto eventoDto = new EventoDto();
+        eventoDto.fecha = Instant.now().toString();
+        eventoDto.nombre = "fiesta";
+        eventoDto.estado = new Inactivo();
+        eventoDto.repeticionDias = 2;
+        eventoDto.repetir = false;
+        eventoDto.lugar = "campus";
+        eventoDto.tipo = "deportivo";
+        Evento evento = new Evento(eventoDto);
+
         Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
         List<Evento> eventos = usuario.getEventos();
-//        List<Evento> eventos = new ArrayList<Evento>();
-//        EventoDto eventoDto = new EventoDto();
-//        eventoDto.fecha = Instant.now().toString();
-//        eventoDto.nombre = "fiesta";
-//        eventoDto.estado = new Inactivo();
-//        eventoDto.repeticionDias = 2;
-//        eventoDto.repetir = false;
-//        eventoDto.lugar = "campus";
-//        eventoDto.tipo = "deportivo";
-//        eventos.add(new Evento(eventoDto));
-//        eventoDto.fecha = Instant.now().plus(Duration.ofDays(2)).toString();
-//        eventos.add(new Evento(eventoDto));
-//        eventoDto.fecha = Instant.now().plus(Duration.ofDays(30)).toString();
-//        eventos.add(new Evento(eventoDto));
-//        parametros.put("eventos", eventos);
-
+        eventos.add(evento);
+        parametros.put("eventos", eventos);
         return new ModelAndView(parametros, "eventos.hbs");
     }
 
     public ModelAndView mostrar(Request request, Response response){
-//        EventoDto eventoDto = new EventoDto();
-//        eventoDto.fecha = Instant.now().toString();
-//        eventoDto.nombre = "fiesta";
-//        eventoDto.estado = new Inactivo();
-//        eventoDto.repeticionDias = 2;
-//        eventoDto.repetir = false;
-//        eventoDto.lugar = "campus";
-//        eventoDto.tipo = "deportivo";
-//        Evento evento = new Evento(eventoDto);
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(1);
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(2);
 
-        Evento evento = this.repo.buscarPorId(Integer.parseInt(request.params("id")));
+
+        Atuendo atuendo = usuario.obtenerSugerencia(g);
+//        atuendo.addPrendas(g.getPrendas().subList(0,3));
+        EventoDto eventoDto = new EventoDto();
+        eventoDto.fecha = Instant.now().toString();
+        eventoDto.nombre = "fiesta";
+        eventoDto.estado = new Inactivo();
+        eventoDto.repeticionDias = 2;
+        eventoDto.repetir = false;
+        eventoDto.lugar = "campus";
+        eventoDto.tipo = "deportivo";
+        Evento evento = new Evento(eventoDto);
+
+//        Evento evento = this.repo.buscarPorId(Integer.parseInt(request.params("id")));
         Map<String, Object> parametros = new HashMap<>();
+        parametros.put("atuendo", atuendo);
         parametros.put("evento", evento);
         return new ModelAndView(parametros, "evento.hbs");
     }

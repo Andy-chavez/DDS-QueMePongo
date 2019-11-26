@@ -45,6 +45,9 @@ public class Atuendo extends EntidadPersistente {
 	public void addPrenda(Prenda prenda){
 		this.prendas.add(prenda);
 	}
+	public void addPrendas(List<Prenda> prendas){
+		this.prendas.addAll(prendas);
+	}
 
 	public void agregarPrenda(Prenda prenda){
 		if(prenda != null && !tieneTipo(prenda.getTipo())) {
