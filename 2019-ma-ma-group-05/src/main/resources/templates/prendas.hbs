@@ -26,9 +26,9 @@
         <div class = "row">
             {{#each prendas }}
             <div class ="col-lg-4 col-md-4 col-sm-6 col-6 border">
-                <div class = "m-2" >
-                    <div style="background-image: url('{{imagen}}'); height: 100px; width:100px; background-size: auto 100%;">
-
+                <div class = "m-2">
+                    <div>
+                        <img src="{{imagen}}" class="img-fluid" alt="Responsive image">
                     </div>
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic">{{tipo.nombre}}</div>
                     <div class = "p-1" style="font-size:100%; line-height:120%; font-style: italic"> > {{tipo.categoria.nombre}}</div>
