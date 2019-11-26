@@ -25,6 +25,7 @@ public class RepositorioAtuendo extends Repositorio{
     }
     //Busca atuendos aceptados por id de usuario
     public List<Atuendo> buscarTodos(int id){ return (List<Atuendo>) (List<?>) this.dao.buscarTodos(id); }
+    public Atuendo buscarPorId(int id){ return (Atuendo) this.dao.buscarPorId(id);}
 
 
 }
