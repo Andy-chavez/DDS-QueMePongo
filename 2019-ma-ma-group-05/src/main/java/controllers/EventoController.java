@@ -27,41 +27,21 @@ public class EventoController {
     public ModelAndView mostrarTodos(Request request, Response response) {
         LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
-
         Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
         List<Evento> eventos = usuario.getEventos();
-//        List<Evento> eventos = new ArrayList<Evento>();
-//        EventoDto eventoDto = new EventoDto();
-//        eventoDto.fecha = Instant.now().toString();
-//        eventoDto.nombre = "fiesta";
-//        eventoDto.estado = new Inactivo();
-//        eventoDto.repeticionDias = 2;
-//        eventoDto.repetir = false;
-//        eventoDto.lugar = "campus";
-//        eventoDto.tipo = "deportivo";
-//        eventos.add(new Evento(eventoDto));
-//        eventoDto.fecha = Instant.now().plus(Duration.ofDays(2)).toString();
-//        eventos.add(new Evento(eventoDto));
-//        eventoDto.fecha = Instant.now().plus(Duration.ofDays(30)).toString();
-//        eventos.add(new Evento(eventoDto));
-//        parametros.put("eventos", eventos);
-
+        parametros.put("eventos", eventos);
         return new ModelAndView(parametros, "eventos.hbs");
     }
 
     public ModelAndView mostrar(Request request, Response response){
-//        EventoDto eventoDto = new EventoDto();
-//        eventoDto.fecha = Instant.now().toString();
-//        eventoDto.nombre = "fiesta";
-//        eventoDto.estado = new Inactivo();
-//        eventoDto.repeticionDias = 2;
-//        eventoDto.repetir = false;
-//        eventoDto.lugar = "campus";
-//        eventoDto.tipo = "deportivo";
-//        Evento evento = new Evento(eventoDto);
-
-        Evento evento = this.repo.buscarPorId(Integer.parseInt(request.params("id")));
+//        LoginController.ensureUserIsLoggedIn(request, response);
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(1);
+        Evento evento = repo.buscarPorId(Integer.valueOf(request.params(":idEvento")));
+        Guardarropa g = evento.getGuardarropa();
         Map<String, Object> parametros = new HashMap<>();
+
+        parametros.put("atuendo", evento.getAtuendo());
+        parametros.put("atuendos", evento.getAtuendosSugeridos());
         parametros.put("evento", evento);
         return new ModelAndView(parametros, "evento.hbs");
     }
@@ -91,10 +71,9 @@ public class EventoController {
         eventoDto.usuario = usuario;
         eventoDto.nombre = request.queryParams("nombre");
         eventoDto.lugar = request.queryParams("lugar");
-        String fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora")); // tiene que tener este formato: "2019-09-04T10:15:30Z";
-        eventoDto.fecha = fecha;
+        eventoDto.fecha = parseFecha(request.queryParams("fecha"), request.queryParams("hora"));
         eventoDto.tipo = request.queryParams("tipo");
-        Guardarropa guardarropa = RepositorioGuardarropa.getInstance().buscarPorId(Integer.valueOf(request.queryParams("guardarropa")));
+        Guardarropa guardarropa =RepositorioGuardarropa.getInstance().buscarPorId(Integer.valueOf(request.queryParams("guardarropa")));
         eventoDto.guardarropa = guardarropa;
         eventoDto.repeticionDias = Integer.valueOf(request.queryParams("repeticionDias"));
         eventoDto.anticipacionHoras = Integer.valueOf(request.queryParams("anticipacionHoras"));
@@ -102,9 +81,33 @@ public class EventoController {
         eventoDto.repetir = Integer.valueOf(request.queryParams("repeticionDias")) != 0;
 
         Evento evento = new Evento(eventoDto);
+        evento.confirmarEvento();
+
+        Atuendo atuendo = usuario.obtenerSugerencia(guardarropa);
+        evento.addAtuendoSugerido(atuendo);
 
         this.repo.agregar(evento);
         response.redirect("/eventos");
+        return response;
+    }
+    public Response aceptarAtuendo(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Atuendo atuendo =  RepositorioAtuendo.getInstance().buscarPorId(Integer.valueOf(request.params(":idAtuendo")));
+        Evento evento =  repo.buscarPorId(Integer.valueOf(request.params(":idEvento")));
+        evento.setAtuendo(atuendo);
+        this.repo.modficar(evento);
+        return response;
+    }
+    public Response rechazarAtuendo(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Atuendo atuendo =  RepositorioAtuendo.getInstance().buscarPorId(Integer.valueOf(request.params(":idAtuendo")));
+        Evento evento =  repo.buscarPorId(Integer.valueOf(request.params(":idEvento")));
+        atuendo.setRechazado(true);
+        RepositorioAtuendo.getInstance().modficar(atuendo);
+        Atuendo nuevoAtuendo = evento.getGestorSugerencia().obtenerSugerencia(evento.getFecha(), evento.getGuardarropa(), evento.getUsuario());
+        evento.addAtuendoSugerido(nuevoAtuendo);
+        repo.modficar(evento);
+        response.redirect("/eventos/" + evento.getId());
         return response;
     }
 }

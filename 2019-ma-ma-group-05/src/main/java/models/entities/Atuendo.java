@@ -29,12 +29,14 @@ public class Atuendo extends EntidadPersistente {
 	@Column(name = "abrigo_calzado")
 	int abrigoCalzado;
 
+	@Transient
+	private Boolean sinCalificar; // este atributo es solo para usar en handlebars porque es una cagada
 	public Atuendo() {
 		prendas = new ArrayList<Prenda>();
 		this.abrigoSuperior = 0;
 		this.abrigoInferior = 0;
 		this.abrigoCalzado = 0;
-		this.rechazado = false;
+//		this.rechazado = false;
 	}
 
 	public Atuendo(Usuario unUsuario) {
@@ -44,6 +46,9 @@ public class Atuendo extends EntidadPersistente {
 
 	public void addPrenda(Prenda prenda){
 		this.prendas.add(prenda);
+	}
+	public void addPrendas(List<Prenda> prendas){
+		this.prendas.addAll(prendas);
 	}
 
 	public void agregarPrenda(Prenda prenda){
@@ -123,7 +128,8 @@ public class Atuendo extends EntidadPersistente {
 
 	// --- GETTERS Y SETTERS ---
 	public void setRechazado(Boolean flag){	this.rechazado=flag;}
-	public Boolean getRechazado(){	return this.rechazado;	}
+	public Boolean getRechazado(){	return this.rechazado;}
+	public Boolean getSinCalificar() { return this.rechazado == null; }
 	public List<Prenda> getPrendas(){	return this.prendas;	}
 	public int getAbrigoSuperior() { return abrigoSuperior; }
 	public int getAbrigoInferior() { return abrigoInferior; }

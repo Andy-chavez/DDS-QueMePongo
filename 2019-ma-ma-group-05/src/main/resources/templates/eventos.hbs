@@ -62,9 +62,13 @@
           </div>
         </div>
         <a class="nav-item" href="/eventos/new">Nuevo evento</a>
+        <div class="eventoosss">
         {{#each eventos}}
-        <div class="fecha-evento" hidden>{{fecha}}</div>
+            <div class="fecha-evento" hidden>{{fecha}}</div>
+            <a href="/eventos/{{@id}}">{{nombre}}</a>
         {{/each}}
+        </div>
+
     </div>
 
     <script type="text/javascript">

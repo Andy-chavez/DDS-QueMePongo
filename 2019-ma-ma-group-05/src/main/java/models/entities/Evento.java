@@ -2,6 +2,8 @@ package models.entities;
 
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -27,6 +29,10 @@ public class Evento extends EntidadPersistente implements Observee {
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "atuendo_id", referencedColumnName = "id")
     private Atuendo atuendo;
+
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "evento_id", referencedColumnName = "id")
+	private List<Atuendo> atuendosSugeridos;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")    
@@ -68,6 +74,7 @@ public class Evento extends EntidadPersistente implements Observee {
     	this.tipo = eventoDto.tipo;
     	this.repeticionDias = eventoDto.repeticionDias;
     	this.repetir = eventoDto.repetir;
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
     }
 
 	public Evento() {
@@ -76,6 +83,7 @@ public class Evento extends EntidadPersistente implements Observee {
 		this.cronSugerencia = CronGenerarSugerencia.getInstance();
 		this.gestorClima = GestorDeClima.getInstance();
 		this.estado = new Pendiente();
+		this.atuendosSugeridos = new ArrayList<Atuendo>();
 	}
 
 	public void confirmarEvento(){
@@ -108,7 +116,13 @@ public class Evento extends EntidadPersistente implements Observee {
     public Guardarropa getGuardarropa(){ return this.guardarropa; }
     public void setGuardarropa(Guardarropa guardarropa){ this.guardarropa = guardarropa; }
     public Usuario getUsuario(){ return this.usuario; }
-    public void setAtuendo(Atuendo atuendo){ this.atuendo = atuendo; }
+    public void setAtuendo(Atuendo atuendo){
+		atuendo.setRechazado(false);
+		this.atuendosSugeridos.remove(atuendo);
+		this.atuendo = atuendo;
+    }
+    public List<Atuendo> getAtuendosSugeridos(){ return this.atuendosSugeridos; }
+    public void addAtuendoSugerido(Atuendo atuendo){ atuendosSugeridos.add(atuendo); }
 	public void setNombre(String unNombre){ this.nombre=unNombre; }
 	public String getNombre(){ return this.nombre; }
 	public void setLugar(String unLugar){ this.lugar=unLugar; }
