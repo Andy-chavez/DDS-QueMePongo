@@ -62,12 +62,21 @@
             </div>
         </div>
         <div>
+            {{#if atuendo}}
+                <div class="event-info">
+                    <h2 class="event-info-title">Atuendo elegido</h2>
+                    {{>atuendo_partial.hbs atuendo}}
+                </div>
+            {{/if}}
+
+            {{#if atuendos}}
             <div class="event-info">
-                <h2 class="event-info-title">Atuendo sugerido</h2>
-                {{#each atuendo.prendas}}
-                    {{> prenda_partial.hbs}}
+                <h2 class="event-info-title">Atuendos sugerido</h2>
+                {{#each atuendos}}
+                    {{>atuendo_partial.hbs this}}
                 {{/each}}
             </div>
+            {{/if}}
         </div>
     </div>
   </body>

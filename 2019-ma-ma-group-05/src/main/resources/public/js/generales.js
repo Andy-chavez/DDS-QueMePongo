@@ -48,6 +48,24 @@ function eliminarPrenda(idGuardarropas, idPrenda){
         },
     });
 }
+function aceptarAtuendo(idEvento, idAtuendo){
+  $.ajax({
+    method: "POST",
+    url: "/eventos/" + idEvento + "/atuendos/" + idAtuendo + "/aceptar",
+    success: function(){
+      window.location.reload();
+    },
+  });
+}
+function rechazarAtuendo(idEvento, idAtuendo){
+  $.ajax({
+    method: "POST",
+    url: "/eventos/" + idEvento + "/atuendos/" + idAtuendo + "/rechazar",
+    success: function(){
+      window.location.reload();
+    },
+  });
+}
 
 function cerrarModal(){
   document.getElementsByClassName("modal")[0].style.display = 'none';

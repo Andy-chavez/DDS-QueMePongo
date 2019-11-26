@@ -1,10 +1,8 @@
 package controllers;
 
-import models.entities.Atuendo;
-import models.entities.Guardarropa;
-import models.entities.Prenda;
-import models.entities.Usuario;
+import models.entities.*;
 import models.repositorios.RepositorioAtuendo;
+import models.repositorios.RepositorioEvento;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioUsuario;
 import spark.ModelAndView;
@@ -30,4 +28,5 @@ public class AtuendoController {
         parametros.put("atuendos", atuendos);
         return new ModelAndView(parametros, "calificarAtuendos.hbs");
     }
-}
+
+ }
