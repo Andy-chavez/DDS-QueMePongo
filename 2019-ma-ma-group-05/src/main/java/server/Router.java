@@ -55,6 +55,10 @@ public class Router {
         Spark.get("/guardarropas/:idGuardarropa/prendas", guardarropaController::mostrar, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa/prendas/new", prendaController::pantallaDeCreacion, Router.engine);
         Spark.delete("/guardarropas/:idGuardarropa/prendas/:idPrenda", prendaController::eliminar);
+        Spark.get("/guardarropas/:idGuardarropa/atuendos", guardarropaController::mostrarAtuendos, Router.engine);
+        Spark.get("/guardarropas/:idGuardarropa/atuendos/new", guardarropaController::generarSugerencia, Router.engine);
+        Spark.post("/guardarropas/:idGuardarropa/atuendos/:idAtuendo/aceptar", guardarropaController::aceptarAtuendo);
+        Spark.post("/guardarropas/:idGuardarropa/atuendos/:idAtuendo/rechazar", guardarropaController::rechazarAtuendo);
 
         // DATO: eventos/new tiene que declararse antes que eventos/:id porque sino, cuando se escriba el url, piensa que "new" es un id
         Spark.get("/eventos", eventoController::mostrarTodos, Router.engine);

@@ -45,7 +45,7 @@ function eliminarPrenda(idGuardarropas, idPrenda){
         url: "prendas/" + idPrenda,
         success: function(){
             window.location.reload();
-        },
+        }
     });
 }
 function aceptarAtuendo(idEvento, idAtuendo){
@@ -54,7 +54,7 @@ function aceptarAtuendo(idEvento, idAtuendo){
     url: "/eventos/" + idEvento + "/atuendos/" + idAtuendo + "/aceptar",
     success: function(){
       window.location.reload();
-    },
+    }
   });
 }
 function rechazarAtuendo(idEvento, idAtuendo){
@@ -63,9 +63,29 @@ function rechazarAtuendo(idEvento, idAtuendo){
     url: "/eventos/" + idEvento + "/atuendos/" + idAtuendo + "/rechazar",
     success: function(){
       window.location.reload();
-    },
+    }
   });
 }
+function aceptarAtuendoGuardarropa(idGuardarropa, idAtuendo){
+  $.ajax({
+    method: "POST",
+    url: "/guardarropas/" + idGuardarropa + "/atuendos/" + idAtuendo + "/aceptar",
+    success: function(){
+      window.location.reload();
+    }
+  });
+}
+function rechazarAtuendoGuardarropa(idGuardarropa, idAtuendo){
+  $.ajax({
+    method: "POST",
+    url: "/guardarropas/" + idGuardarropa + "/atuendos/" + idAtuendo + "/rechazar",
+    success: function(){
+      window.location.reload();
+    }
+  });
+}
+
+
 
 function cerrarModal(){
   document.getElementsByClassName("modal")[0].style.display = 'none';
