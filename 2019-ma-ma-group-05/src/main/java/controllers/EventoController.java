@@ -34,10 +34,9 @@ public class EventoController {
     }
 
     public ModelAndView mostrar(Request request, Response response){
-//        LoginController.ensureUserIsLoggedIn(request, response);
-        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(1);
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
         Evento evento = repo.buscarPorId(Integer.valueOf(request.params(":idEvento")));
-        Guardarropa g = evento.getGuardarropa();
         Map<String, Object> parametros = new HashMap<>();
 
         parametros.put("atuendo", evento.getAtuendo());

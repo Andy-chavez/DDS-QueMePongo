@@ -31,8 +31,7 @@ public class DAOAtuendo implements DAO {
 
     @Override
     public List<Object> buscarTodos(int id) {
-
-        String query = "from Atuendo where usuario_id ="+id+" and rechazado = 0";
+        String query = "from Atuendo where usuario_id ="+id+" and (rechazado is null or rechazado = 0)";
         List atuendos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         return atuendos;

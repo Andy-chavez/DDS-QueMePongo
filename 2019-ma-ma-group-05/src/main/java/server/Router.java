@@ -36,7 +36,8 @@ public class Router {
         LoginController loginController = new LoginController();
 
         Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
-      
+        Spark.post("/crearPrenda", prendaController::guardarPrenda);
+
         Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
         Spark.get("/eleccionDeTela", telaController::eleccionDeTela, Router.engine);
 
