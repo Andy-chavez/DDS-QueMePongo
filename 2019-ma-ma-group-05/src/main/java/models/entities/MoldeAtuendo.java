@@ -17,8 +17,7 @@ public class MoldeAtuendo extends EntidadPersistente{
 	private int abrigoInferior;
 	@Column(name = "abrigo_calzado")
 	private int abrigoCalzado;
-
-	@Transient //TODO nos quedo esto inconcluso muchachos
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Tipo> moldeTipos;
 	
 	public MoldeAtuendo() {

@@ -35,7 +35,7 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "usuario")
 	private List<Evento> eventos;
 	
 	@Column(name = "celular")
@@ -135,7 +135,14 @@ public class Usuario extends EntidadPersistente {
 		Guardarropa g =  this.getGuardarropa(nombre);
 		return this.suscripcion.getPrendasDelGuardarropa(g);
 	}
-	
+	public List<Prenda> getPrendasDelguardarropa(int id){
+		Guardarropa g =  this.getGuardarropa(id);
+		return this.suscripcion.getPrendasDelGuardarropa(g);
+	}
+	public Guardarropa getGuardarropa(int id){
+		return this.getGuardarropas().stream().filter(g -> g.getId()==id)
+				.collect(Collectors.toList()).get(0);
+	}
 	
 	public void cambiarAPremium(){
 		this.suscripcion.cambiarAPremium(this);
