@@ -54,7 +54,7 @@ public class ImgResizer {
 	 public static void saveImage(BufferedImage bufferedImage, String pathName, String endPath) { //guarda imagen a disco
 	        try {
 	            String format = (pathName.endsWith(".png")) ? "png" : "jpg";
-	            File file =new File((pathEnSistema + endPath)); //todo
+	            File file =new File((pathEnSistema + endPath));
 	            file.getParentFile().mkdirs();
 	            ImageIO.write(bufferedImage, format, file);
 	        } catch (IOException e) {

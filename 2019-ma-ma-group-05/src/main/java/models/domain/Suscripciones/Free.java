@@ -41,7 +41,10 @@ public class Free extends Suscripcion {
 	}
 	@Override
 	public List<Prenda> getPrendasDelGuardarropa(Guardarropa g) {
-		return g.getPrendas().subList(0, this.getLimiteDePrendas());
+		if(g.getPrendas().size()>this.getLimiteDePrendas())
+			return g.getPrendas().subList(0, this.getLimiteDePrendas());
+		else
+			return g.getPrendas();
 	}
 	
 }
