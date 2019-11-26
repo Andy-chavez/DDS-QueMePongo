@@ -23,7 +23,7 @@ public class SalvaPapasTest {
     }
     @Test
     public void verAtuendos(){
-        List<Atuendo> atuendos =  RepositorioAtuendo.getInstance().buscarTodos(4);
+        List<Atuendo> atuendos =  RepositorioAtuendo.getInstance().buscarTodos(1);
         atuendos.forEach(prenda->{System.out.println(prenda.getId());});
     }
     @Test
