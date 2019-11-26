@@ -14,15 +14,20 @@ public class Guardarropa extends EntidadPersistente{
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)	
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Atuendo> atuendosSugeridos;
+
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
+	private List<Atuendo> atuendosRechazados;
 
 	public Guardarropa() {}
 	public Guardarropa(String unNombre, List<Prenda> unasPrendas) {
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
+		this.atuendosRechazados = new ArrayList<Atuendo>();
 		this.agregarPrendas(unasPrendas);
 
 	}
@@ -30,6 +35,7 @@ public class Guardarropa extends EntidadPersistente{
 		this.nombre = unNombre;
 		this.prendas = new ArrayList<Prenda>();
 		this.atuendosSugeridos = new ArrayList<Atuendo>();
+		this.atuendosRechazados = new ArrayList<Atuendo>();
 
 	}
 	// --- GETTERS Y SETTERS ---
@@ -37,6 +43,7 @@ public class Guardarropa extends EntidadPersistente{
 	public void setNombre(String unNombre) { this.nombre = unNombre;}
 	public List<Prenda> getPrendas() {	return this.prendas; }
 	public List<Atuendo> getAtuendosSugeridos(){ return this.atuendosSugeridos;	}
+	public List<Atuendo> getAtuendosRechazados(){ return this.atuendosRechazados;	}
 
 	public void agregarPrenda(Prenda prenda) { 
 		this.prendas.add(prenda); 
@@ -56,7 +63,10 @@ public class Guardarropa extends EntidadPersistente{
 	public void agregarSugerencia(Atuendo atuendo) {
 		this.atuendosSugeridos.add(atuendo);
 	}
-	
+	public void agregarAtuendoRechazado(Atuendo atuendo) {
+		this.atuendosRechazados.add(atuendo);
+	}
+
 	public void eliminarAtuendoSugerido(Atuendo atuendo) {
 		for (Atuendo atuendoYaSugerido : this.atuendosSugeridos) {
 			if(atuendo.compararConOtroAtuendo(atuendoYaSugerido)) {
