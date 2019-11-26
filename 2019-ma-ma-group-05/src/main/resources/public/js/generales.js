@@ -42,7 +42,7 @@ function confirmarEliminacion(id){
 function eliminarPrenda(idGuardarropas, idPrenda){
     $.ajax({
         method: "DELETE",
-        url: "prendas/" + idPrenda,
+        url: "/guardarropas/"+idGuardarropas + "/prendas/"+ idPrenda,
         success: function(){
             window.location.reload();
         }
