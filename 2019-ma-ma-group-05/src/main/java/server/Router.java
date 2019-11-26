@@ -55,7 +55,7 @@ public class Router {
         Spark.get("/guardarropas", guardarropaController::mostrarTodos, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa/prendas", guardarropaController::mostrar, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa/prendas/new", prendaController::pantallaDeCreacion, Router.engine);
-        Spark.delete("/guardarropas/:idGuardarropa/prendas/:idPrenda", prendaController::eliminar);
+        Spark.delete("/prendas/:idPrenda", prendaController::eliminar);
         Spark.get("/guardarropas/:idGuardarropa/atuendos", guardarropaController::mostrarAtuendos, Router.engine);
         Spark.get("/guardarropas/:idGuardarropa/atuendos/new", guardarropaController::generarSugerencia, Router.engine);
         Spark.post("/guardarropas/:idGuardarropa/atuendos/:idAtuendo/aceptar", guardarropaController::aceptarAtuendo);

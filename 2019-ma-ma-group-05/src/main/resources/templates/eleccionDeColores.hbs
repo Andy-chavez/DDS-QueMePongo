@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div class="container">
+    <tr>
+
+{{#each color}}
+    <td><font color="#FFFFFF" face="arial, verdana, helvetica">
+        <b>Recuadro curioso con HTML</b>
+    </font></td>
+</tr>
+<!--    <div-->
+<!--    <img class="registration_form_option" id=imgC{{id}} name=b{{id}} src="images/remera.png" width="120px" height="120px">-->
+<!--    <div class="registration_form_option" id={{id}}><imgC src="images/upperBody.png" width="120px" height="120px"></div>-->
+
+    <input type="checkbox" id=imgC{{id}}_check name=a{{id}} value={{nombre}} />
+
+
+        {{/each}}
+</div>
+<script>
+$('#imgC1,#imgC2,#imgC3,#imgC4,#imgC5,#imgC6,#imgC7,#imgC8,#imgC9,#imgC10').on('click', function () {
+    $('.registration_form_option').not(this).removeClass('checked');
+        $(this).addClass('checked');
+        $(':checkbox').not(this).prop('checked', false);
+        $('#'+this.id+'_check').prop('checked', true);
+});
+    </script>
+        <style>
+
+#imgC1_check, #imgC2_check, #imgC3_check, #imgC4_check, #imgC5_check, #imgC6_check, #imgC7_check, #imgC8_check{
+    display:none;
+    padding:1em;
+}
+
+</style>
+<style>
+.wrapper {
+    overflow:hidden;
+    width:320px;
+}
+.wrapper div {
+    /* cualquier altura mayor que el total de sumar la anchura de las imgC */
+    width:330px;
+
+    /* para evitar el margen superior de la primera fila */
+    margin-top:-10px;
+}
+img {
+    width:100px;
+    height:75px;
+    float:left;
+    margin:10px 10px 0 0;
+}
+</style>
+</body>
+
+</html>
+
