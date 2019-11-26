@@ -43,7 +43,7 @@ public class PrendaController {
         parametros.put("tela", telas);
         parametros.put("color", colores);
         parametros.put("guardarropas", guardarropas);
-        return new ModelAndView(parametros, "crearPrendaPedorro.hbs");
+        return new ModelAndView(parametros, "creacion_de_prendas.hbs");
     }
 
     public ModelAndView eleccionDeCategoria(Request request, Response response) {

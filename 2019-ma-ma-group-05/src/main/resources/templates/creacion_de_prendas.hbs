@@ -49,7 +49,23 @@ $(document).ready(function(){
     <div class="progress">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-    <form id="regiration_form" novalidate action="action.php"  method="post">
+    <form id="form" method="post">
+
+        <fieldset>
+            <h2>Elige por favor el Guardarropas</h2>
+            <div class="form-group" id="step1">
+                <div class="form-group">
+                    <label for="inputGuardarropa">Guardarropa</label>
+                    <select class="form-control" name="guardarropa" id="inputGuardarropa" placeholder="Seleccione el guardarropa"  default="0">
+                        {{#each guardarropas}}
+                            <option value="{{id}}">{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
+            <input type="button" name="next" class="next btn btn-info" value="Next" />
+        </fieldset>
         <fieldset>
 
             <h2>Elige por favor la categoria</h2>
@@ -89,11 +105,33 @@ $(document).ready(function(){
 
             </div>
             <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
-            <input type="button" name="next" onclick="step4()" class="next btn btn-info" value="Next" />
+            <input type="button" name="next" class="next btn btn-info" value="Next" />
         </fieldset>
         <fieldset>
-            <h2>Step 3: Contact Information</h2>
             <div class="form-group" id="step4">
+                <h5>Por favor elija los colores</h5>
+                <div class="form-group">
+                    <label for="inputRepeticionDias">Cual es su color primario?</label>
+                    <select class="form-control" name="colorPrimario" id="inputRepeticionDias" placeholder="Tipo?" default="0">
+                        {{#each color}}
+                            <option value="{{hex}}" style="background-color:{{hex}}">{{hex}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputRepeticionDias">Cual es su color secundario?</label>
+                    <select class="form-control" name="colorSecundario" id="inputRepeticionDias" placeholder="Tipo?" default="0">
+                        {{#each color}}
+                            <option value="{{hex}}" style="background-color:{{hex}}">{{hex}}</option>
+                        {{/each}}
+                    </select>
+                    <br>
+                    <div class="form-group">
+                        <label for="inputLugar">Imagen</label>
+                        <input class="form-control" name="imagen" id="inputLugar" placeholder="Copie y pegue el path hacia su imagen junto con el nombre del archivo en formato .jpg o .png" >
+                    </div>
+                </div>
+
 
             </div>
             <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
@@ -159,7 +197,7 @@ $(document).ready(function(){
             }
         })
 }
-    function step4() {
+        function step4() {
         var sel=[],nosel=[],check;
         $('form input:checkbox').map(function(){
             if($(this).prop('checked')){
@@ -176,7 +214,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "GET",
-            url: "/eleccionDeTela",
+            url: "/",
             data: {nombre:check},
             dataType: "text",
             success : function(data){
@@ -186,7 +224,7 @@ $(document).ready(function(){
 
 
 }
-    </script>
+</script>
 <script>
 $('#reg_option_1,#reg_option_2,#reg_option_3,#reg_option_4').on('click', function () {
     $('.registration_form_option').not(this).removeClass('checked');
