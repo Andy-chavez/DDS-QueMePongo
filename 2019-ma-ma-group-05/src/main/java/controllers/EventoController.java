@@ -83,9 +83,6 @@ public class EventoController {
         Evento evento = new Evento(eventoDto);
         evento.confirmarEvento();
 
-        Atuendo atuendo = usuario.obtenerSugerencia(guardarropa);
-        evento.addAtuendoSugerido(atuendo);
-
         this.repo.agregar(evento);
         response.redirect("/eventos");
         return response;
