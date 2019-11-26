@@ -3,9 +3,11 @@ package controllers;
 import models.entities.Guardarropa;
 import models.entities.Prenda;
 import models.entities.Tipo;
+import models.entities.Usuario;
 import models.repositorios.RepositorioGuardarropa;
 import models.repositorios.RepositorioPrenda;
 import models.repositorios.RepositorioTipo;
+import models.repositorios.RepositorioUsuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -47,6 +49,14 @@ public class PrendaController {
 //        List<Tipo> tipos = RepositorioTipo.getInstance().buscarPorCategoria(request.params("nombre"));
 //        parametros.put("tipos", tipos);
         return new ModelAndView(parametros, "eleccionDeCategoria.hbs");
+    }
+    public Response guardarPrenda(Request request, Response response) {
+        LoginController.ensureUserIsLoggedIn(request, response);
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        Prenda prenda = new Prenda();
+        //todo conexion con la bd para carga de prenda
+        response.redirect("/guardarropas");
+        return response;
     }
 }
 
