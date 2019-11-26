@@ -1,14 +1,8 @@
 package testSalvaPapas;
 
 import db.EntityManagerHelper;
-import models.entities.Atuendo;
-import models.entities.Guardarropa;
-import models.entities.Prenda;
-import models.entities.Tipo;
-import models.repositorios.RepositorioAtuendo;
-import models.repositorios.RepositorioCategoria;
-import models.repositorios.RepositorioGuardarropa;
-import models.repositorios.RepositorioPrenda;
+import models.entities.*;
+import models.repositorios.*;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -39,6 +33,13 @@ public class SalvaPapasTest {
         List<Tipo> tipos =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
         tipos.forEach(tipo->{System.out.println(tipo.getNombre());});
+    }
+    @Test
+    public void verEventos(){
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(1);
+        List<Evento> eventos = usuario.getEventos();
+        System.out.println(usuario.getNombre());
+        eventos.forEach(prenda->{System.out.println(prenda.getFecha());});
     }
 
 }

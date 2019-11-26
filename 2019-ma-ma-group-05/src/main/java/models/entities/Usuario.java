@@ -35,7 +35,7 @@ public class Usuario extends EntidadPersistente {
 	@Column(name = "suscripcion")
 	private Suscripcion suscripcion;
 	
-	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "usuario")
 	private List<Evento> eventos;
 	
 	@Column(name = "celular")

@@ -12,12 +12,16 @@ public class InstantAttributeConverter implements AttributeConverter<Instant, Da
 
     @Override
     public Date convertToDatabaseColumn(Instant instant) {
+        if(instant == null)
+            return null;
         LocalDate locDate = instant.atZone(ZoneId.systemDefault()).toLocalDate();
         return locDate == null ? null : Date.valueOf(locDate);
     }
 
     @Override
     public Instant convertToEntityAttribute(Date sqlDate) {
-        return sqlDate == null ? null : sqlDate.toInstant();
+        if(sqlDate == null)
+            return null;
+        return sqlDate == null ? null : Instant.ofEpochMilli(sqlDate.getTime());
     }
 }
