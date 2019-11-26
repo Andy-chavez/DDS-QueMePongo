@@ -7,16 +7,16 @@
 <div class="container">
 {{#each telas}}
 
-    <img class="registration_form_option" id=img{{id}} name=b{{id}} src="images/poliester.jpg" width="120px" height="120px">
-<!--    <div class="registration_form_option" id={{id}}><img src="images/upperBody.png" width="120px" height="120px"></div>-->
+    <img class="registration_form_option" id=imgT{{id}} name=b{{id}} src="images/poliester.jpg" width="120px" height="120px">
+<!--    <div class="registration_form_option" id={{id}}><imgT src="images/upperBody.png" width="120px" height="120px"></div>-->
 
-    <input type="checkbox" id=img{{id}}_check name=a{{id}} value={{nombre}} />
+    <input type="checkbox" id=imgT{{id}}_check name=a{{id}} value={{nombre}} />
 
 
         {{/each}}
 </div>
 <script>
-$('#img1,#img2,#img3,#img4,#img5,#img6,#img7,#img8,#img9,#img10').on('click', function () {
+$('#imgT1,#imgT2,#imgT3,#imgT4,#imgT5,#imgT6,#imgT7,#imgT8,#imgT9,#imgT10').on('click', function () {
     $('.registration_form_option').not(this).removeClass('checked');
         $(this).addClass('checked');
         $(':checkbox').not(this).prop('checked', false);
@@ -25,7 +25,7 @@ $('#img1,#img2,#img3,#img4,#img5,#img6,#img7,#img8,#img9,#img10').on('click', fu
     </script>
         <style>
 
-#img1_check, #img2_check, #img3_check, #img4_check, #img5_check, #img6_check, #img7_check, #img8_check{
+#imgT1_check, #imgT2_check, #imgT3_check, #imgT4_check, #imgT5_check, #imgT6_check, #imgT7_check, #imgT8_check{
     display:none;
     padding:1em;
 }
@@ -37,7 +37,7 @@ $('#img1,#img2,#img3,#img4,#img5,#img6,#img7,#img8,#img9,#img10').on('click', fu
     width:320px;
 }
 .wrapper div {
-    /* cualquier altura mayor que el total de sumar la anchura de las img */
+    /* cualquier altura mayor que el total de sumar la anchura de las imgT */
     width:330px;
 
     /* para evitar el margen superior de la primera fila */

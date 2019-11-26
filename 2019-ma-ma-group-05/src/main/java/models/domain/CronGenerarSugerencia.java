@@ -19,7 +19,7 @@ public class CronGenerarSugerencia extends TimerTask implements Observer {
 		// para cronTestMain
 //		timer.schedule(this, 1000, 2000, 3000);
 
-		timer.schedule(this, 0, Duration.ofHours(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
+		timer.schedule(this, 0, Duration.ofSeconds(ConfigReader.getIntValue("configuraciones.properties", "intervaloGeneradorSugerencia")).toMillis());
 	}
 	public static CronGenerarSugerencia getInstance(){
 		if(singleInstance == null){
