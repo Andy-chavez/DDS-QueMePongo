@@ -55,10 +55,15 @@ $(document).ready(function(){
             <h2>Elige por favor la categoria</h2>
             <div class="container" id="categoria">
 
-            <div class="registration_form_option" id="reg_option_1"><img src="images/upperBody.png" width="120px" height="120px"></div>
-            <div class="registration_form_option" id="reg_option_2"><img src="images/jeans.png" width="120px" height="120px"></div>
-            <div class="registration_form_option" id="reg_option_3"><img src="images/foot.png" width="120px" height="120px"></div>
-            <div class="registration_form_option" id="reg_option_4"><img src="images/accesories.png" width="120px" height="120px"></div>
+            <img class="registration_form_option" id="reg_option_1" src="images/upperBody.png" width="120px" height="120px">
+            <img class="registration_form_option" id="reg_option_2" src="images/jeans.png" width="120px" height="120px">
+            <img class="registration_form_option" id="reg_option_3" src="images/foot.png" width="120px" height="120px">
+            <img class="registration_form_option" id="reg_option_4" src="images/accesories.png" width="120px" height="120px">
+
+<!--            <div class="registration_form_option" id="reg_option_1"><img src="images/upperBody.png" width="120px" height="120px"></div>-->
+<!--            <div class="registration_form_option" id="reg_option_2"><img src="images/jeans.png" width="120px" height="120px"></div>-->
+<!--            <div class="registration_form_option" id="reg_option_3"><img src="images/foot.png" width="120px" height="120px"></div>-->
+<!--            <div class="registration_form_option" id="reg_option_4"><img src="images/accesories.png" width="120px" height="120px"></div>-->
 
             <input type="checkbox" id="reg_option_1_check" name="reg_option_1_check" value="Superior" />
             <input type="checkbox" id="reg_option_2_check" name="reg_option_2_check" value="Inferior" />
@@ -71,30 +76,28 @@ $(document).ready(function(){
 
         </fieldset>
         <fieldset>
-            <h2> Step 2: Add Personnel Details</h2>
+            <h2> Elige por favor el Tipo</h2>
             <div class="form-group" id="step2">
-<!--                <label for="fName">First Name</label>-->
-<!--                <input type="text" class="form-control" name="fName" id="fName" placeholder="First Name">-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <label for="lName">Last Name</label>-->
-<!--                <input type="text" class="form-control" name="lName" id="lName" placeholder="Last Name">-->
+
             </div>
             <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
-            <input type="button" name="next" class="next btn btn-info" value="Next" />
+            <input type="button" name="next" onclick="step3()" class="next btn btn-info" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2>Elige por favor la Tela</h2>
+            <div class="form-group" id="step3">
+
+            </div>
+            <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
+            <input type="button" name="next" onclick="step4()" class="next btn btn-info" value="Next" />
         </fieldset>
         <fieldset>
             <h2>Step 3: Contact Information</h2>
-            <div class="form-group">
-                <label for="mob">Mobile Number</label>
-                <input type="text" class="form-control" id="mob" placeholder="Mobile Number">
-            </div>
-            <div class="form-group">
-                <label for="address">Address</label>
-                <textarea  class="form-control" name="address" placeholder="Communication Address"></textarea>
+            <div class="form-group" id="step4">
+
             </div>
             <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
-            <input type="submit" name="submit" class="submit btn btn-success" value="Submit" />
+            <input type="submit" name="submit"  onclick="step4()" class="submit btn btn-success" value="Submit" />
         </fieldset>
     </form>
 
@@ -108,27 +111,81 @@ $(document).ready(function(){
         $('form input:checkbox').map(function(){
             if($(this).prop('checked')){
               check = $(this).val();
-              console.log($(this).val());
+<!--              console.log($(this).val());-->
               sel.push($(this).val());
             }else{
               nosel.push($(this).val());
             }
         })
         console.log(check);
-        console.log("seleccionados");console.log(sel);
-        console.log("no seleccionados");console.log(nosel);
+        var checkStr = "\"" + check + "\"";
+        console.log(checkStr);
+
+<!--        console.log("seleccionados");console.log(sel);-->
+<!--        console.log("no seleccionados");console.log(nosel);-->
         $.ajax({
             type: "GET",
             url: "/tiposPorCategoria",
-            data: {nombre:check},
+            data: {categoria:check},
             dataType: "text",
             success : function(data){
                 $('#step2').html(data);
-                console.log(data);
+<!--                console.log(data);-->
+            }
+        })
+}
+  function step3() {
+        var sel=[],nosel=[],check;
+        $('form input:checkbox').map(function(){
+            if($(this).prop('checked')){
+              check = $(this).val();
+<!--              console.log($(this).val());-->
+              sel.push($(this).val());
+            }else{
+              nosel.push($(this).val());
+            }
+        })
+        console.log(check);
+        var checkStr = "\"" + check + "\"";
+        console.log(checkStr);
+
+        $.ajax({
+            type: "GET",
+            url: "/eleccionDeTela",
+            data: {nombre:check},
+            dataType: "text",
+            success : function(data){
+                $('#step3').html(data);
+            }
+        })
+}
+    function step4() {
+        var sel=[],nosel=[],check;
+        $('form input:checkbox').map(function(){
+            if($(this).prop('checked')){
+              check = $(this).val();
+<!--              console.log($(this).val());-->
+              sel.push($(this).val());
+            }else{
+              nosel.push($(this).val());
+            }
+        })
+        console.log(check);
+        var checkStr = "\"" + check + "\"";
+        console.log(checkStr);
+
+        $.ajax({
+            type: "GET",
+            url: "/eleccionDeTela",
+            data: {nombre:check},
+            dataType: "text",
+            success : function(data){
+                $('#step4').html(data);
             }
         })
 
-    }
+
+}
     </script>
 <script>
 $('#reg_option_1,#reg_option_2,#reg_option_3,#reg_option_4').on('click', function () {

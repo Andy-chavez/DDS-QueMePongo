@@ -57,9 +57,12 @@ public class DAOTipo implements DAO {
     public List<Tipo> buscarPorCategoria(String categoria){
         List<Tipo> tipos = (List<Tipo>)(List<?>) this.buscarTodos();
  //       String filtro = "Superior";
+//        if (categoria.contains("Superior")){
+//            categoria = "Superior";
+//        };
         List<Tipo> tipaso = tipos.stream()
-//                .filter(tipo -> "Superior".equals(tipo.getCategoria().getNombre()))
-                .filter(tipo ->  categoria.equals(tipo.getCategoria().getNombre()))
+                .filter(tipo -> "Superior".equals(tipo.getCategoria().getNombre()))
+//                .filter(tipo ->  categoria.equals(tipo.getCategoria().getNombre()))
                 .collect(Collectors.toList());
 //        EntityManagerHelper.closeEntityManager();
         return tipaso;

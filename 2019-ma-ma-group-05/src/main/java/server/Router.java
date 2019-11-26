@@ -31,12 +31,14 @@ public class Router {
         EventoController eventoController = new EventoController();
         PrendaController prendaController = new PrendaController();
         TipoController tipoController = new TipoController();
+        TelaController telaController = new TelaController();
         AtuendoController atuendoController = new AtuendoController();
         LoginController loginController = new LoginController();
 
         Spark.get("/crearPrenda", prendaController::pantallaDeCreacion, Router.engine);
       
         Spark.get("/eleccionDeCategoria", prendaController::eleccionDeCategoria, Router.engine);
+        Spark.get("/eleccionDeTela", telaController::eleccionDeTela, Router.engine);
 
         Spark.get("/tiposPorCategoria", tipoController::buscarPorCategoria, Router.engine);
       
