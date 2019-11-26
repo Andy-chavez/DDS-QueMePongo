@@ -1,13 +1,7 @@
 package controllers;
 
-import models.entities.Guardarropa;
-import models.entities.Prenda;
-import models.entities.Tipo;
-import models.entities.Usuario;
-import models.repositorios.RepositorioGuardarropa;
-import models.repositorios.RepositorioPrenda;
-import models.repositorios.RepositorioTipo;
-import models.repositorios.RepositorioUsuario;
+import models.entities.*;
+import models.repositorios.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -40,7 +34,16 @@ public class PrendaController {
     public ModelAndView pantallaDeCreacion(Request request, Response response) {
         LoginController.ensureUserIsLoggedIn(request, response);
         Map<String, Object> parametros = new HashMap<>();
-        return new ModelAndView(parametros, "creacion_de_prendas.hbs");
+        List<Tipo> tipos = RepositorioTipo.getInstance().buscarTodos();
+        List<Tela> telas = RepositorioTela.getInstance().buscarTodos();
+        List<ColorPersistible> colores = RepositorioColor.getInstance().buscarTodos();
+        Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
+        List<Guardarropa> guardarropas = usuario.getGuardarropas();
+        parametros.put("tipo", tipos);
+        parametros.put("tela", telas);
+        parametros.put("color", colores);
+        parametros.put("guardarropas", guardarropas);
+        return new ModelAndView(parametros, "crearPrendaPedorro.hbs");
     }
 
     public ModelAndView eleccionDeCategoria(Request request, Response response) {
@@ -54,7 +57,18 @@ public class PrendaController {
         LoginController.ensureUserIsLoggedIn(request, response);
         Usuario usuario = RepositorioUsuario.getInstance().buscarPorId(request.session().attribute("currentUser"));
         Prenda prenda = new Prenda();
-        //todo conexion con la bd para carga de prenda
+        if(request.queryParams("nombre") != null)
+            prenda.setImage(request.queryParams("imagen"));
+        RepositorioPrenda.getInstance().setTipo(prenda, request.queryParams("tipo"));
+        RepositorioPrenda.getInstance().setTela(prenda, request.queryParams("tela"));
+        RepositorioPrenda.getInstance().setColorPrimario(prenda, request.queryParams("colorPrimario"));
+        RepositorioPrenda.getInstance().setColorSecundario(prenda, request.queryParams("colorSecundario"));
+
+        Guardarropa g = RepositorioGuardarropa.getInstance().buscarPorId(new Integer(request.queryParams("guardarropa")));
+        g.agregarPrenda(prenda);
+
+        RepositorioGuardarropa.getInstance().modficar(g);
+
         response.redirect("/guardarropas");
         return response;
     }

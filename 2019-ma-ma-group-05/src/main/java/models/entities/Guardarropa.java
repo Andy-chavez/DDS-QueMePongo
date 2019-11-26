@@ -10,7 +10,7 @@ public class Guardarropa extends EntidadPersistente{
 
 	@Column(name = "nombre")
 	private String nombre;
-	@OneToMany(cascade = {CascadeType.ALL})
+	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "guardarropa_id", referencedColumnName = "id")
 	private List<Prenda> prendas;
 
